@@ -1,4 +1,7 @@
 {
+  "name": "vuepress-blog",
+  "version": "1.0.0",
+  "description": "pengyue's blog",
   "scripts": {
     "dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"

@@ -1,6 +1,6 @@
 ---
 home: true
 heroImage: /logo.png
-actionText: 开始学习 →
-actionLink: /chapter1/
+actionText: let's go →
+actionLink: /fontend/
 ---

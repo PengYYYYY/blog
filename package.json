@@ -1,5 +1,5 @@
 {
-  "name": "vuepress-blog",
+  "name": "my-blog",
   "version": "1.0.0",
   "description": "pengyue's blog",
   "scripts": {
@@ -7,6 +7,7 @@
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
+    "@vuepress/plugin-nprogress": "^1.4.0",
     "vuepress": "^1.3.1"
   }
 }

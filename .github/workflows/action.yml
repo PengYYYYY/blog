@@ -1,4 +1,4 @@
-name: vuepress-blog deploy to gh-pages
+name: my-blog deploy to gh-pages
 on:
   push:
     branches:

@@ -1,8 +1,24 @@
+const { getFontEndBar, getNodeBar, getNetWorkBar, getInterestBar, getAlgorithmBar} = require('./slider')
+const { cnNav, nav } = require('./nav')
+
 module.exports = {
   base: '/my-blog/',
   dest: 'dist',
-  title: 'super-YUE blogs',
-  description: 'Hello FE!',
+  locales: {
+    '/': {
+      label: '简体中文',
+      selectText: '选择语言',
+      ariaLabel: '选择语言',
+      lang: 'zh-CN',
+      title: 'Super-YUE Blog',
+      description: '日常学习和技术积累'
+    },
+    '/en/': {
+      lang: 'en-US',
+      title: 'Super-YUE Blog',
+      description: 'Daily learning and technology accumulation'
+    }
+  },
   markdown: {
     lineNumbers: true
   },
@@ -16,84 +32,50 @@ module.exports = {
   themeConfig: {
     editLinks: false,
     docsDir: 'docs',
-    nav : [ // 添加导航栏
-      {
-        text: '前端',
-        link: '/fontend/'
+    editLinks: true,
+    smoothScroll: true,
+    locales: {
+      '/': {
+        label: '简体中文',
+        selectText: '选择语言',
+        ariaLabel: '选择语言',
+        editLinkText: '在 GitHub 上编辑此页',
+        lastUpdated: '上次更新',
+        sidebar: {
+          '/zh/fontend/': getFontEndBar('前端'),
+          '/zh/node/': getNodeBar('Node'),
+          '/zh/network/': getNetWorkBar('网络'),
+          '/zh/algorithm/': getAlgorithmBar('算法'),
+          '/zh/interest/': getInterestBar('兴趣'),
+        },
+        nav : cnNav,
       },
-      {
-        text: 'Node',
-        link: '/node/'
+      '/en/': {
+        label: 'English',
+        selectText: 'Languages',
+        ariaLabel: 'Select language',
+        editLinkText: 'Edit this page on GitHub',
+        lastUpdated: 'Last Updated',
+        sidebar: {
+          '/en/fontend/': getFontEndBar('FontEnd'),
+          '/en/node/': getNodeBar('Node'),
+          '/en/network/': getNetWorkBar('Network'),
+          '/en/algorithm/': getAlgorithmBar('Algorithm'),
+          '/en/interest/': getInterestBar('Interest'),
+        },
+        nav : nav
       },
-      {
-        text: '网络',
-        link: '/network/'
-      },
-      {
-        text: '其他',
-        link: '/other/'
-      },
-      {
-        text: 'GitHub',
-        link: 'https://github.com/super-YUE'
-      }
-    ],
-    sidebar: {
-      '/fontend/': getFontEndBar(),
-      '/node/': getNodeBar(),
-      '/network/': getNetWorkBar(),
-      '/other/': getOtherBar(),
     }
   },
-  plugins: ['@vuepress/nprogress']
-}
-
-function getFontEndBar() {
-  return [
-    {
-      title: 'Font-end',
-      collapsable: false,
-      children: [
-        ['/fontend/', 'Mind mapping'],
-        '/fontend/install',
-        '/fontend/start',
-      ]
-    },
-  ]
-}
-
-function getNodeBar() {
-  return [
-    {
-      title: 'node',
-      collapsable: false,
-      children: [
-        ['/node/', 'Mind mapping'],
-      ]
-    },
-  ]
-}
-
-function getNetWorkBar() {
-  return [
-    {
-      title: 'network',
-      collapsable: false,
-      children: [
-        ['/network/', 'Mind mapping'],
-      ]
-    },
-  ]
-}
-
-function getOtherBar() {
-  return [
-    {
-      title: 'other',
-      collapsable: false,
-      children: [
-        ['/other/', 'Mind mapping'],
-      ]
-    },
+  extraWatchFiles: [
+    '.vuepress/nav.js',
+    '.vuepress/slider.js'
+  ],
+  plugins: [
+    '@vuepress/nprogress',
+    ['@vuepress/back-to-top', true],
+    ['@vuepress/google-analytics', {
+      ga: 'UA-163627658-1'
+    }],
   ]
 }

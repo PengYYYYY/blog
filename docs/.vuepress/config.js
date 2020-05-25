@@ -13,11 +13,11 @@ module.exports = {
       title: 'Super-YUE Blog',
       description: '日常学习和技术积累'
     },
-    '/en/': {
-      lang: 'en-US',
-      title: 'Super-YUE Blog',
-      description: 'Daily learning and technology accumulation'
-    }
+    // '/en/': {
+    //   lang: 'en-US',
+    //   title: 'Super-YUE Blog',
+    //   description: 'Daily learning and technology accumulation'
+    // }
   },
   markdown: {
     lineNumbers: true
@@ -50,21 +50,21 @@ module.exports = {
         },
         nav : cnNav,
       },
-      '/en/': {
-        label: 'English',
-        selectText: 'Languages',
-        ariaLabel: 'Select language',
-        editLinkText: 'Edit this page on GitHub',
-        lastUpdated: 'Last Updated',
-        sidebar: {
-          '/en/fontend/': getFontEndBar('FontEnd'),
-          '/en/node/': getNodeBar('Node'),
-          '/en/network/': getNetWorkBar('Network'),
-          '/en/algorithm/': getAlgorithmBar('Algorithm'),
-          '/en/interest/': getInterestBar('Interest'),
-        },
-        nav : nav
-      },
+      // '/en/': {
+      //   label: 'English',
+      //   selectText: 'Languages',
+      //   ariaLabel: 'Select language',
+      //   editLinkText: 'Edit this page on GitHub',
+      //   lastUpdated: 'Last Updated',
+      //   sidebar: {
+      //     '/en/fontend/': getFontEndBar('FontEnd'),
+      //     '/en/node/': getNodeBar('Node'),
+      //     '/en/network/': getNetWorkBar('Network'),
+      //     '/en/algorithm/': getAlgorithmBar('Algorithm'),
+      //     '/en/interest/': getInterestBar('Interest'),
+      //   },
+      //   nav : nav
+      // },
     }
   },
   extraWatchFiles: [

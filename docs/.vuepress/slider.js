@@ -50,7 +50,10 @@ exports.getAlgorithmBar = (title) => {
 		title: title,
 		collapsable: false,
 		children: [
-			'',
+			'skills',
+			'search',
+			'sort',
+			'complexity',
 		]
 	}, ]
 }

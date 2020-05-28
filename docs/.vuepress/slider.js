@@ -4,6 +4,7 @@ exports.getFontEndBar = (title) => {
 		collapsable: false,
 		children: [
 			'',
+			'array',
 			'js',
 			'html',
 			'css',

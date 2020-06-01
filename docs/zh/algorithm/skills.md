@@ -103,8 +103,6 @@ var mergeKLists = function(lists) {
 
 ## 贪心算法
 
-### 跳跃游戏
-
 ## 动态规划
 
 ## 双指针法
@@ -170,39 +168,12 @@ while (newNum) {
 }
 ```
 
-## 运算符技巧
+## 数组中的位置交换
 
-### ^= 异或
-
-二进制对比，在两次对比以后会是原来的值
-
-4 ^= 5
-
-```javascript
-100 //4
-101 //5
-001 //异或后得到
-```
-
-#### 示例：[只出现一次的数字](https://leetcode-cn.com/problems/single-number/)
+i，j两个位置的交换
 
 ``` javascript
-let ans = 0
- for (const num of nums) {  
-  ans ^= num;
- }
- return ans
-```
-
-### 移位>>和>>>
-
-`>>>` 是无符号的
-`>>` 是有符号的
-
-#### 示例
-
-通过寻找二分的中间点
-
-```javascript
-const mid = start + ((start + end) >> 1)
+arr[i] = arr[i] + arr[j]
+arr[j] = arr[i] - arr[j]
+arr[i] = arr[i] - arr[j]
 ```

@@ -23,4 +23,33 @@ line-clamp: 2;
 -webkit-box-orient: vertical;
 ```
 
+## 三角形
+
+- 正三角形
+
+```css
+/** 正三角 */
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 25px 40px 25px;
+  border-color: transparent transparent rgb(245, 129, 127) transparent;
+}
+```
+
+- 倒三角
+
+```css
+/** 倒三角 */
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 40px 25px 0 25px;
+  border-color:  rgb(245, 129, 127) transparent transparent transparent;
+}
+```
+
+
 ## less相关

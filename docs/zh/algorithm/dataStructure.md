@@ -360,6 +360,7 @@ const mergeArr = (left, right) => {
   let temp = []
   let leftIndex = 0;
   let rightIndex = 0;
+  // 合并两个子数组
   while(left.length > leftIndex && right.length > rightIndex) {
     if (left[leftIndex] <= right[rightIndex]) {
       temp.push(left[leftIndex])
@@ -372,3 +373,176 @@ const mergeArr = (left, right) => {
   return temp.concat(left.slice(leftIndex)).concat(right.slice(rightIndex))
 }
 ```
+
+### 快速排序
+
+随机选取一个数组中的值作为基准值，从左至右取值与基准值对比大小。比基准值小的放数组左边，大的放右边，对比完成后将基准值和第一个比基准值大的值交换位置。然后将数组以基准值的位置分为两部分，继续递归以上操作
+
+```javascript
+const swap = (arr, i, startIndex) => {
+  arr[i] = arr[i] + arr[startIndex]
+  arr[startIndex] = arr[i] - arr[startIndex]
+  arr[i] = arr[i] - arr[startIndex]
+  startIndex++
+}
+const partition = (arr, pivot, left, right) => {
+  const pivotVal = arr[pivot]
+  let startIndex = left
+  for (let i = left; i < right; i++) {
+    if (arr[i] < pivotVal) {
+      swap(arr, i, startIndex)
+    }
+  }
+  swap(arr, startIndex, pivot)
+  return startIndex
+}
+
+const quickSort = (arr, left = 0, right= arr.length-1) => {
+  if (left < right) {
+    let pivot = right
+    let partitionIndex = partition(arr, pivot, left, right)
+    quickSort(arr, left, partitionIndex - 1 < left ? left : partitionIndex - 1)
+    quickSort(arr, partitionIndex + 1 > right ? right : partitionIndex + 1, right)
+  }
+}
+```
+
+### 桶排序
+
+桶排序将要排序的数据分到有序的桶中，每个桶里的数据再单独进行排序。
+
+```javascript
+function bucketSort(array, bucketSize = 5) {
+  if(array.length < 2) {
+    return array
+  }
+  const buckets = createBucket(array, bucketSize)
+  return sortBuckets(buckets)
+}
+function createBuckets(array, bucketSize) {
+  let minValue = array[0]
+  let maxValue = array[0]
+  for(let i = 1; i < array.length; i++) {
+    if(array[i] < minValue) {
+      minValue = array[i]
+    } else if(array[i] > maxValue) {
+      maxValue = array[i]
+    }
+  }
+  const bucketCount = Math.floor((maxValue - minValue) / bucketSize) + 1
+  const buckets = []
+  for (let i = 0; i < bucketCount; i++) {
+    buckets[i] = []
+  }
+  for (let i = 0; i < array.length; i++) {
+    const bucketIndex = Math.floor((array[i] - minValue) / bucketSize)
+    buckets[bucketIndex].push(array[i])
+  }
+  return buckets
+}
+function sortBuckets(buckets) {
+  const sortedArray = []
+  for(let i = 0; i < buckets.length; i++) {
+    if(buckets[i] != null) {
+      insertionSort(buckets[i])
+      sortedArray.push(...buckets[i])
+    }
+  }
+}
+```
+
+### 计数排序
+
+### 基数排序
+
+### 排序算法对比
+
+|类型 | 时间复杂度 | 是否是稳定排序 | 是否为原地排序 |
+|----|-----|------|------|
+|冒泡排序|O(n^2)|是|是|
+|插入排序|O(n^2)|是|是|
+|选择排序|O(n^2)|否|是|
+|归并排序|O(nlogn)|否|否|
+|快速排序|O(nlogn)|否|是|
+|计数排序|O(n+k)k是数据范围|是|否|
+|桶排序|O(n)|是|否|
+|基数排序|O(dn)d是维度|是|否|
+
+### 优化快速排序
+
+- 三数取中法
+
+## 二分查找（Binary Search）
+
+二分查找简单来说就是折半，步骤就是，找到中间值，然后查找左右区间，一直递归下去。
+二分查找的时间复杂度是O(logn)
+
+```javascript
+// 非递归实现，利用指针
+var search = function(nums, target) {
+ let left = 0
+ let right = nums.length - 1
+ while(left <= right) {
+  const mid =  left + (right - left >> 1)
+  if(nums[mid] == target) {
+   return mid
+  }
+  if(nums[mid] < target) {
+   left = mid + 1
+  } else {
+   right = mid - 1
+  }
+ }
+ return -1
+};
+// 递归实现
+var search = function(nums, target, l = 0, r = l.length - 1) {
+  if(l > r) {
+    return - 1
+  }
+  const mid = l + (l - r >> 1)
+  if(nums[mid] = target) {
+    return mid
+  } else if(target[mid] < target) {
+    search(nums, target, l, mid)
+  } else {
+    search(nums, target, mid+1, r)
+  }
+}
+```
+
+### 二分查找的局限性
+
+- 二分查找依赖顺序表结构,二分查找针对的是有序数据
+- 数据量太小不适合二分查找：直接顺序遍历即可，没有太大优势
+- 数据量太大也不适合二分查找：如果查找1GB的数据，数组为了支持随机访问的特性，要求内存空间连续，对内存的要求比较苛刻。
+
+### 4种常见的2分变形问题
+
+- 查找第一个值等于给定值的元素
+
+```javascript
+var search = function(nums, target) {
+ let left = 0
+ let right = nums.length - 1
+ while(left <= right) {
+  const mid =  left + (right - left >> 1)
+  if(nums[mid] > target) {
+    right = mid - 1
+  } else {
+    left = mid + 1
+  } else {
+    if(mid == 0 || a[mid] != value) {
+      return mid
+    } else {
+      right = mid - 1
+    }
+  }
+ }
+ return -1
+};
+```
+
+- 查找最后一个值等于给定值的元素
+- 查找第一个大于给定值的元素
+- 查找最后一个小于给定值的元素

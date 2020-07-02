@@ -1,5 +1,7 @@
 # CSS
 
+一些css常用的东西
+
 ## 省略号
 
 - 超出一行，省略号
@@ -51,5 +53,16 @@ line-clamp: 2;
 }
 ```
 
+## flex相关
 
-## less相关
+- flex-shrink 属性指定了 flex 元素的收缩规则。flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。设置为0时不缩小。
+
+## scroll相关
+
+scroll:auto 时，内容超出时滑动条会自动呈现。
+
+### 隐藏滑动条
+
+```css
+-webkit-scrollbar { width: 0; height: 0;  }
+```

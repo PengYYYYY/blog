@@ -72,7 +72,7 @@ JavaScript 也是运行在渲染进程中 的，所以即使 JavaScript 阻塞�
 
 - 构建请求
 
-```
+```shell
 GET /index.html HTTP1.1
 ```
 
@@ -668,7 +668,7 @@ Cross-site request forgery(跨站请求伪造)，指的是黑客引诱用户打�
 
 - CSRF TOKEN：类似于JWT。
 
-### csp常用设置
+### CSP常用设置
 
 - 内容均来自同一站点：`Content-Security-Policy: default-src 'self'`
 - 允许内容来自信任的域名及其子域名: `Content-Security-Policy: default-src 'self' *.trusted.com`

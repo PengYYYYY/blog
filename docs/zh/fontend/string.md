@@ -1,4 +1,4 @@
-# JavaScript
+# 字符操作
 
 ## JavaScript 中的字符操作
 

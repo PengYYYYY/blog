@@ -1,4 +1,4 @@
-const { getFontEndBar, getNodeBar, getNetWorkBar, getInterestBar, getAlgorithmBar} = require('./slider')
+const { getFontEndBar, getNodeBar, getNetWorkBar, getInterestBar, getAlgorithmBar, getArticles } = require('./slider')
 const { cnNav, nav } = require('./nav')
 
 module.exports = {
@@ -45,8 +45,9 @@ module.exports = {
           '/zh/fontend/': getFontEndBar('前端'),
           '/zh/node/': getNodeBar('Node'),
           '/zh/network/': getNetWorkBar('网络'),
-          '/zh/algorithm/': getAlgorithmBar('算法'),
+          '/zh/algorithm/': getAlgorithmBar('算法与数据结构'),
           '/zh/interest/': getInterestBar('兴趣'),
+          '/zh/articles/': getArticles('文章'),
         },
         nav : cnNav,
       },

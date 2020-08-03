@@ -25,27 +25,32 @@ exports.nav = [{
 ]
 
 exports.cnNav = [{
-	text: '前端',
-	link: '/zh/fontend/'
-},
-{
-	text: 'Node',
-	link: '/zh/node/'
-},
-{
-	text: '网络',
-	link: '/zh/network/'
-},
-{
-	text: '算法',
-	link: '/zh/algorithm/'
-},
-{
-	text: '兴趣',
-	link: '/zh/interest/'
-},
-{
-	text: 'GitHub',
-	link: 'https://github.com/super-YUE'
-}
+		text: '前端',
+		link: '/zh/fontend/'
+	},
+	{
+		text: '算法',
+		link: '/zh/algorithm/'
+	},
+	{
+		text: '文章',
+		link: '/zh/articles/'
+	},
+	{
+		text: 'Node',
+		link: '/zh/node/'
+	},
+	{
+		text: '网络',
+		link: '/zh/network/'
+	},
+
+	{
+		text: '兴趣',
+		link: '/zh/interest/'
+	},
+	{
+		text: 'GitHub',
+		link: 'https://github.com/super-YUE'
+	}
 ]

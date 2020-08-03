@@ -3,17 +3,19 @@ exports.getFontEndBar = (title) => {
 		title: title,
 		collapsable: false,
 		children: [
-			'',
-			'array',
 			'js',
 			'html',
 			'css',
 			'browser',
+			'babel',
+			'webpack',
 			'vue',
 			'react',
 			'optimize',
+			'array',
+			'string',
 		]
-	}, ]
+	}]
 }
 
 exports.getNodeBar = (title) => {
@@ -21,9 +23,9 @@ exports.getNodeBar = (title) => {
 		title: title,
 		collapsable: false,
 		children: [
-			'',
+			'egg',
 		]
-	}, ]
+	}]
 }
 
 exports.getNetWorkBar = (title) => {
@@ -33,7 +35,7 @@ exports.getNetWorkBar = (title) => {
 		children: [
 			'',
 		]
-	}, ]
+	}]
 }
 
 exports.getInterestBar = (title) => {
@@ -41,9 +43,9 @@ exports.getInterestBar = (title) => {
 		title: title,
 		collapsable: false,
 		children: [
-			'',
+			'computerOrganization',
 		]
-	}, ]
+	}]
 }
 
 exports.getAlgorithmBar = (title) => {
@@ -51,10 +53,21 @@ exports.getAlgorithmBar = (title) => {
 		title: title,
 		collapsable: false,
 		children: [
+			'dataStructure',
 			'skills',
 			'search',
 			'sort',
 			'complexity',
 		]
-	}, ]
+	}]
+}
+
+exports.getArticles = (title) => {
+	return [{
+		title: title,
+		collapsable: false,
+		children: [
+			'vueSkill'
+		]
+	}]
 }

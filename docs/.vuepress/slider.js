@@ -38,11 +38,12 @@ exports.getNetWorkBar = (title) => {
 	}]
 }
 
-exports.getInterestBar = (title) => {
+exports.getOthersBar = (title) => {
 	return [{
 		title: title,
 		collapsable: false,
 		children: [
+			'daily',
 			'computerOrganization',
 		]
 	}]
@@ -62,7 +63,7 @@ exports.getAlgorithmBar = (title) => {
 	}]
 }
 
-exports.getArticles = (title) => {
+exports.getArticlesBar = (title) => {
 	return [{
 		title: title,
 		collapsable: false,

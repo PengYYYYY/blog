@@ -1,8 +1,10 @@
 # babel
 
-记录和babel相关的一些配置
+babel相关的知识点，包括babel配置和写个小插件.
 
-## 插件
+## 常用的配置
+
+### 插件
 
 Babel 是一个编译器（输入源码 => 输出编译后的代码）;编译过程分为：解析、转换、和打印输出。这些插件用于转换你的代码。
 
@@ -16,7 +18,7 @@ Babel 是一个编译器（输入源码 => 输出编译后的代码）;编译过
 
 [常用的插件](https://www.babeljs.cn/docs/plugins)
 
-## preset
+### preset
 
 预设是已经定义好的一组插件。
 
@@ -29,7 +31,7 @@ Babel 是一个编译器（输入源码 => 输出编译后的代码）;编译过
 - stage-3-候选（Candidate）:完成规范并在浏览器上初步实现。
 - stage-4-完成（Finished）:将添加到下一个年度版本中的。
 
-## Polyfills
+### Polyfills
 
 > @babel/polyfill
 
@@ -38,7 +40,7 @@ Babel 是一个编译器（输入源码 => 输出编译后的代码）;编译过
 在babel7中，@babel/polyfill集成了`core-js/stable`，`core.js`使用了`es5`实现`es6，7，8，9，10`的功能，并且支持按需引入。
 `regenerator-runtime/runtime`，则是一个转化器的补充。像`Promise or WeakMap`这样的方法。
 
-## @babel/cli
+### @babel/cli
 
 babel-cli可以支持在命令行中对js进行转换。
 
@@ -46,25 +48,25 @@ babel-cli可以支持在命令行中对js进行转换。
 babel xxx.js
 ```
 
-### 指定输出文件
+#### 指定输出文件
 
 ```shell
 npx babel script.js --out-file script-compiled.js
 ```
 
-### 监听文件
+#### 监听文件
 
 ```shell
 npx babel script.js --watch --out-file script-compiled.js
 ```
 
-### 加入Source Maps
+#### 加入Source Maps
 
 ```shell
 npx babel script.js --out-file script-compiled.js --source-maps
 ```
 
-## @babel/plugin-transform-runtime
+### @babel/plugin-transform-runtime
 
 每个Babel编译后的脚本文件，都以导入的方式使用Babel的帮助函数，而不是每个文件都复制一份帮助函数的代码。
 
@@ -81,3 +83,7 @@ npx babel script.js --out-file script-compiled.js --source-maps
 @babel/runtime-corejs2 ≈ @babel/runtime + babel-polyfill;
 
 @babel/runtime只能处理语法关键字，而@babel/runtime-corejs2还能处理新的全局变量（例如，Promise）、新的原生方法（例如，String.padStart
+
+## babel插件编写
+
+写个babel插件

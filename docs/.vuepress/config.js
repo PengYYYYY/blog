@@ -1,4 +1,4 @@
-const { getFontEndBar, getNodeBar, getNetWorkBar, getInterestBar, getAlgorithmBar, getArticles } = require('./slider')
+const { getFontEndBar, getNodeBar, getNetWorkBar, getOthersBar, getAlgorithmBar, getArticlesBar } = require('./slider')
 const { cnNav, nav } = require('./nav')
 
 module.exports = {

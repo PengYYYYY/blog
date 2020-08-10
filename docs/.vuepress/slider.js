@@ -6,11 +6,11 @@ exports.getFontEndBar = (title) => {
 			'js',
 			'html',
 			'css',
-			'browser',
-			'babel',
-			'webpack',
 			'vue',
 			'react',
+			'webpack',
+			'browser',
+			'babel',
 			'optimize',
 			'array',
 			'string',
@@ -68,7 +68,8 @@ exports.getArticlesBar = (title) => {
 		title: title,
 		collapsable: false,
 		children: [
-			'vueSkill'
+			'vueProtocol',
+			'simpleVuex',
 		]
 	}]
 }

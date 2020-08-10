@@ -4,4 +4,4 @@
 
 ## 数据结构脑图
 
-![img](/mindMap_dataStructure.png)
+![img](http://ww1.sinaimg.cn/large/006ekNqVgy1ghlqzb81z6j31rq10i18d.jpg)

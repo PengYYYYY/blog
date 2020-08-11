@@ -69,7 +69,8 @@ exports.getArticlesBar = (title) => {
 		collapsable: false,
 		children: [
 			'vueProtocol',
-			'simpleVuex',
+			'eventLoop',
+			'nat',
 		]
 	}]
 }

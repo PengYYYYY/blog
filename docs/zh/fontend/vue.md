@@ -35,6 +35,27 @@ class PYVue {
 }
 ```
 
+### 数组拦截操作
+
+```javascript
+const originalProto = Array.prototype
+const arrProto = Object.create(originalProto)
+const methodsToPatch = [
+  'push',
+  'pop',
+  'shift',
+  'unshift',
+  'splice',
+  'sort',
+  'reverse'
+]
+methodsToPatch.forEach(method => {
+  arrProto[method] = function() {
+    originalProto[method].apply(this, arguments)
+  }
+})
+```
+
 ### 数据响应式
 
 ```javascript
@@ -62,17 +83,27 @@ function observe(obj) {
   if (typeof obj !== 'object' || obj !== null) {
     return obj
   }
-  new Observe(obj)
+  if (Array.isArray(obj)) {
+    obj.__proto__ = arrProto
+    const keys = Object.keys(obj)
+    for (let i = 0; i < keys.length; i++) {
+      observe(obj[i])
+    }
+  } else {
+    new Observe(obj)
+  }
 }
 
 function proxy(vm, key) {
   Object.keys(obj).forEach(k => {
-    get() {
-      return vm[keys][k]
-    },
-    set(v) {
-      vm[keys][k] = v
-    }
+    Object.defineProperty(vm, k, {
+       get() {
+        return vm[keys][k]
+      },
+      set(v) {
+        vm[keys][k] = v
+      }
+    })
   })
 }
 

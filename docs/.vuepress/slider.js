@@ -70,6 +70,7 @@ exports.getArticlesBar = (title) => {
 		children: [
 			'vueProtocol',
 			'eventLoop',
+			'ssr',
 			'nat',
 		]
 	}]

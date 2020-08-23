@@ -293,3 +293,7 @@ class Compile {
   },
 }
 ```
+
+## vue3.0
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/tUoPsF.png)

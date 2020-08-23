@@ -1,5 +1,11 @@
 # JavaScript
 
+## TypeScript
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/HTCSeb.png)
+
+[xmind](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/TypeScript.xmind)
+
 ## JavaScript 中的特性
 
 ### delete
@@ -96,7 +102,3 @@ ReferenceError: b is not define
 ### JIT
 
 任何 JavaScript 代码片段在执行前都要进行编译，
-
-## 模块技术
-
-### ECMAScript 6中的模块技术

@@ -1,5 +1,9 @@
 # JavaScript
 
+- [事件循环](/zh/articles/eventLoop/)
+- [函数式编程](/zh/articles/functional/)
+- [ssr](/zh/articles/ssr/)
+
 ## TypeScript
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/HTCSeb.png)

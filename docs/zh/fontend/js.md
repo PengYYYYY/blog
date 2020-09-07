@@ -106,3 +106,40 @@ ReferenceError: b is not define
 ### JIT
 
 任何 JavaScript 代码片段在执行前都要进行编译，
+
+## Generator
+
+Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。
+
+1. function关键字与函数名之间有一个*
+2. 函数体内部使用yield表达式，定义不同状态的内部状态。
+3. yield 表达式只能在Generator函数里使用，在其他地方会报错。
+
+```js
+function* helloWorldGenerator() {
+  yield 'hello'
+  yield 'world'
+  return 'ending'
+}
+const hw = helloWorldGenerator()
+
+// 执行
+console.log(hw.next()); // {value:”hello“, done: false}
+console.log(hw.next()); // {value:”world“, done: false}
+console.log(hw.next()); // {value:”ending“, done: true}
+console.log(hw.next()); // {value:undefined, done: true}
+```
+
+惰性求值
+
+```js
+var a = 0;
+function* fun() {
+  let aa = yield (a = 1 + 1);
+  return aa;
+}
+console.log("fun0", a); //0
+let b = fun();
+console.log("fun", b.next()); //2
+console.log("fun1", a); //2
+```

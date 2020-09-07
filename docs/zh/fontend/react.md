@@ -313,4 +313,44 @@ ref 实际上并不是一个 prop - 就像 key 一样，它是由 React 专门�
 - Ref 传递问题：Ref 被隔断,开发中需要专门去处理
 - Wrapper Hell：HOC 泛滥，出现 Wrapper Hell
 
-## React Hooks
+## Hooks
+
+### useState
+
+```js
+const [state, setState] = useState(initialState);
+```
+
+返回一个 state，以及更新 state 的函数。在初始化渲染期间，返回的状态（state）与传入的第一个参数`initialState`相同。
+setState函数用于更新state。它接收一个新的state值并将组件的一次重新渲染加入队列。
+
+- 函数式更新
+
+如果新的 state 需要通过使用先前的 state 计算得出，那么可以将函数传递给 setState。
+
+```js
+function Counter(initialState) {
+  const [count, setCount] = useState(initialState)
+  return (
+    <>
+      Count: {count}
+      <button onClick={() => setCount(initialCount)}>Reset</button>
+      <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+    </>
+  )
+}
+```
+
+- 惰性初始值
+
+```js
+const [state, setState] = useState(() => {
+  const initialState = someFun(xxx)
+  return initialState
+})
+```
+
+- 跳过state更新
+
+调用 State Hook 的更新函数并传入当前的 state 时，React 将跳过子组件的渲染及 effect 的执行。

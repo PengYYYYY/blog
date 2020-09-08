@@ -297,3 +297,33 @@ class Compile {
 ## vue3.0
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/tUoPsF.png)
+
+record## vue常见问题
+
+### v-if与v-for哪个优先级更高？如果两个同时出现，应该怎么优化得到更好的性能
+
+在`vue`源码中的`compiler/codegen/index.js`中可以找到答案。
+
+- 解决方案1
+
+```js
+<p v-for="child in children" v-if="isFolder">{{child.title}}</p>
+```
+
+由于在生成渲染函数的时候 `v-for` 的优先级高于 `v-if`,`v-if`会在`v-for`生成渲染子项的内部。循环会在外面先执行,浪费了性能。
+
+- 解决方案2
+
+```js
+<template v-if="isFolder">
+  <p v-for="child in children" >{{child.title}}</p>
+</template>
+```
+
+先判断函数再循环，当condition成立的时候才会去执行渲染列表，否则是个empty函数
+
+::: tip
+如果和渲染子项的数据有关,则把渲染数据放到`computed`里面做一次`filter`,留下需要渲染的项目即可。
+:::
+
+### Vue组件中的data为什么必须是函数，而根实例没有此限制

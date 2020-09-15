@@ -173,7 +173,7 @@ let res = arr.filter(item => getObj("李四", item))
 console.log(res)
 ```
 
-## 单一原则；-->组合函数
+## 单一原则,组合函数
 
 ```javascript
 function afn(a) {

@@ -4,6 +4,7 @@ exports.getFontEndBar = (title) => {
 		collapsable: false,
 		children: [
 			'js',
+			'typeScript',
 			'html',
 			'css',
 			'vue',
@@ -33,7 +34,7 @@ exports.getNetWorkBar = (title) => {
 		title: title,
 		collapsable: false,
 		children: [
-			'',
+			'link',
 		]
 	}]
 }

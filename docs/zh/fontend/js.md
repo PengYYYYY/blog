@@ -8,7 +8,7 @@
 
 ## 基础语法原理
 
-手写 `call`、`apply`、`bind`
+### 手写 `call`、`apply`、`bind`
 
 call 与 apply 的差别在于参数
 
@@ -66,6 +66,8 @@ Function.prototype.bind = function(context) {
   }
 }
 ```
+
+### sort内部原理
 
 ## 异步
 

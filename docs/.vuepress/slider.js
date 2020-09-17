@@ -35,6 +35,7 @@ exports.getNetWorkBar = (title) => {
 		collapsable: false,
 		children: [
 			'link',
+			'cache',
 		]
 	}]
 }
@@ -60,6 +61,7 @@ exports.getAlgorithmBar = (title) => {
 			'search',
 			'sort',
 			'complexity',
+			'mobileadapter'
 		]
 	}]
 }

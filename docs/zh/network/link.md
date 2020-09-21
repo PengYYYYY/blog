@@ -90,6 +90,6 @@ IP 地址的主机号
 ### socket库与dns解析
 
 - Socket 库是操作系统中的一种库，其中包含的程序组件，可以让其他的应用程序调用操作系统的网络功能。而解析器就是这个库中 的其中一种程序组件。Socket 库是用于调用网络功能的程序组件集合。
-- 在编写浏览器等应用程序的时候只需要。写上解析器的程序名称“gethostbyname”以及 Web 服务器 B的域名“www.xxx.com”就可以了，这样就完成了对解析器的调用.
-`gethostbyname("www.xxx.com")`。
-- 解析器原理，
+- 在编写浏览器等应用程序的时候只需要。写上解析器的程序名称“gethostbyname”以及 Web 服务器 B的域名“www.xxx.com”就可以了，这样就完成了对解析器的调用.`gethostbyname("www.xxx.com")`。
+
+- 解析器内部原理，

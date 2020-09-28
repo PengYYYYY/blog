@@ -10,7 +10,7 @@
     "@vuepress/plugin-back-to-top": "^1.5.2",
     "@vuepress/plugin-google-analytics": "^1.5.2",
     "@vuepress/plugin-nprogress": "^1.5.2",
-    "cz-conventional-changelog": "^3.2.1",
+    "cz-conventional-changelog": "^3.3.0",
     "vuepress": "^1.5.2"
   },
   "config": {

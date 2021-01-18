@@ -1,12 +1,14 @@
+# js继承
+
 最近在看《js高级程序设计》,对象的继承问题困扰了我很久,这个问题也是面试中大概率会被问到的问题。之前试过硬背代码，到了要写的时候还是写不出来，不知其所以然。在充分了解这一块之后，来进行一些总结。
 
 ## 创建对象
 
 在理解对象继承之前得先弄明白创建对象这回事儿。
 
-#### 工厂模式
+### 工厂模式
 
-```
+```js
 function createCar(color, passengers, brand){
     var car = new Object();
     car.color = color;
@@ -23,9 +25,9 @@ function createCar(color, passengers, brand){
 
 缺点：无法进行对象识别。由于返回的对象都是由Objcet对象实例化出来的，但是开发过程中，需要创建很多种对象，肯定会有进行对象识别的需求，工厂模式显然无法完成我们这样的诉求。我们继续探索。
 
-#### 构造函数模式
+### 构造函数模式
 
-```
+```js
 function Car(color, passengers, brand){
     this.color = color;
     this.passengers = passengers;
@@ -47,9 +49,9 @@ console.log(car2 instanceof Car);    //true
 
 缺点：但是无法解决引用类型的创建问题，我们每次对Car对象进行实例化的时候，都需要对outBrand方法进行创建，无法复用，浪费内存。要解决只能把他放到全局作用域。但是在全局作用域中定义的函数一般来说只能被某个对象调用，这会让全局作用域名不副实。并且也会失去封装性，我们来想象一下，如果该对象中有很多方法，那会让全局作用域充满了单独拎出来的方法，让代码可读性变差。
 
-#### 原型模式
+### 原型模式
 
-```
+```js
 function Car(){
 
 }
@@ -74,9 +76,9 @@ console.log(car2.color); // "red"
 
 缺点：省去了初始化参数，这一点有好有坏。最大的问题是对引用类型值的共享，car1和car2实例在实例化以后还会与Car类存在关系。如果对其赋值基本类型值的话，会在实例化的对象当中创建，并且调用时会首先在实例化对象中寻找。而对引用类型值进行操作的时候，会直接在原型对象的引用类型值上进行操作，所以会在所有实例中共享。
 
-#### 组合构造函数
+### 组合构造函数
 
-```
+```js
 function Car(color,brand){
     this.color = color;
     this.brand = brand;
@@ -98,7 +100,7 @@ console.log(car2.brand); //["a","b","c","d"]
 
 每个实例都会存在一份实例的副本，并且会对方法共享，最大程度节省了内存，也提供了向构造函数中传递参数的功能
 
-#### 创建对象总结
+### 创建对象总结
 
 - 我们在使用工厂模式的时候，发现了对象识别的问题，于是使用构造函数模式去解决这个问题。
 - 在使用构造函数时，发现了引用类型值创建的问题，无法对其复用。于是使用了原型模式。
@@ -107,9 +109,9 @@ console.log(car2.brand); //["a","b","c","d"]
 
 ## 继承
 
-#### 原型链继承
+### 原型链继承
 
-```
+```js
 function OldCar(){
     this.color = "red";
     this.passengers = ['a','b','c']
@@ -132,9 +134,9 @@ console.log(car.getOldColor); //"red"
 
 问题：会产生引用类型值的问题。与生成对象中的原型模式一脉相承。
 
-#### 借用构造函数
+### 借用构造函数
 
-```
+```js
 function OldCar(){
     this.passengers = ['a','b','c'];
 }
@@ -147,9 +149,9 @@ function NewCar(){
 
 缺点：和构造函数创建对象一致的问题，方法都得在构造函数中定义，导致函数无法复用，造成内存的浪费。
 
-#### 组合继承
+### 组合继承
 
-```
+```js
 function OldCar(brand){
     this.brand = brand;
     this.passengers = ['a','b','c']
@@ -172,7 +174,7 @@ SubType.prototype.getColor = function(){
 
 缺点：需要调用两次超类的构造函数，第一次是`OldCar.call(this,name)`,第二次是`new OldCar()`。下一步我们需要解决的是超类的两次调用问题。
 
-```
+```js
 function A(){
 
 }
@@ -190,11 +192,11 @@ A.prototype.constructor = A
 
 上面的例子中，上半部分是最基本的对原型的赋值，而下班部分的对原型的赋值A的原型的构造函数会变成Object（先new Object然后再赋值参数），所以需要显式的去增强构造函数。
 
-#### 寄生组合继承
+### 寄生组合继承
 
 为了解决组合继承的痛点，出现了寄生组合继承。
 
-```
+```js
 function OldCar(brand){
     this.brand = brand;
     this.passengers = ['a','b','c']
@@ -218,7 +220,7 @@ NewCar.prototype.getColor = function(){
 }
 ```
 
-```
+```js
 function createObj(obj){
     function Car();
     Car.prototype = obj;
@@ -229,7 +231,7 @@ Object.create() 等价于 crateObj()，相当于对传入的对象进行了一�
 
 那么，我们来看看继承的过程中发生了什么。先对超类的原型进行一次浅复制。然后将中间对象的构造函数替换为普通类。为什么要进行这一步？因为对超类的原型进行浅复制以后，中间对象的构造函数变成了Object，需要对该对象进行增强处理。最后将普通类的原型指向中间变量，这样就只需要调用一次超类就可以完成继承。
 
-#### 继承的总结
+### 继承的总结
 
 - 在原型链继承中，我们又遇到了老对手引用类型值的共享问题。
 - 在借用构造函数进行继承中，方法共享问题，这个老对手又出现了。

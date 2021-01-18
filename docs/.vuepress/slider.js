@@ -45,7 +45,6 @@ exports.getOthersBar = (title) => {
 		title: title,
 		collapsable: false,
 		children: [
-			'daily',
 			'computerOrganization',
 		]
 	}]

@@ -6,4 +6,3 @@
 
 [webpack4.0+vue+es6](https://juejin.im/post/6844903781365186573)
 
-[webpack4.0+vue+es6](https://juejin.im/post/6844903781365186573)

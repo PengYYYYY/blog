@@ -656,3 +656,24 @@ scroll:auto 时，内容超出时滑动条会自动呈现。
   }
 }
 ```
+
+## css动画
+
+### animation
+
+- animation：时长|过渡方式|延迟|次数|方向|填充模式|是否暂停|动画名
+- animation-duration(时长)：1S或者1000ms
+- animation-timing-function(过渡方式)：同transition取值相同，如：linear
+- animation-delay(延迟)：延迟
+- animation-iteration-count(次数)：1或者2.5或者infinite
+- animation-direction(方向)：reverse|alternate|alternate-reverse
+- animation-fill-mode(填充模式)：none|forwards|backwards|both
+- animation-play-state(是否暂停)：paused|running
+
+### transition
+
+- transition：属性名 时长 过渡方式 延迟。
+- transition：left 200ms linear。
+- 还可以用逗号分隔两个不同属性： transition：left 200ms，top 300ms。
+- 也可以用all来代表所有属性： transition：all 1s；
+- 过渡方式： linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier | step-start | step-end | steps

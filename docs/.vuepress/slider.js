@@ -1,80 +1,103 @@
-exports.getFontEndBar = (title) => {
-	return [{
-		title: title,
-		collapsable: false,
-		children: [
-			'js',
-			'typeScript',
-			'html',
-			'css',
-			'vue',
-			'react',
-			'webpack',
-			'browser',
-			'babel',
-			'optimize',
-			'array',
-			'string',
-		]
-	}]
+exports.getFontEndBar = () => {
+	return [
+		{
+			title: 'js',
+			children: [
+				'js/js',
+				'js/typeScript',
+				'js/array',
+				'js/string',
+			]
+		},
+		{
+			title: 'vue',
+			children: [
+				'vue/vue',
+				'vue/vue3',
+			]
+		},
+		{
+			title: 'react',
+			children: [
+				'react/react',
+			]
+		},
+		{
+			title: 'webpack',
+			children: [
+				'webpack/webpack',
+			]
+		},
+		'html',
+		'css',
+		'browser',
+		'babel',
+		'optimize',
+	]
 }
 
-exports.getNodeBar = (title) => {
-	return [{
-		title: title,
-		collapsable: false,
-		children: [
-			'egg',
-		]
-	}]
+exports.getNodeBar = () => {
+	return [
+		'egg',
+	]
 }
 
-exports.getNetWorkBar = (title) => {
-	return [{
-		title: title,
-		collapsable: false,
-		children: [
-			'link',
-			'cache',
-		]
-	}]
+exports.getNetWorkBar = () => {
+	return [
+		'link',
+		'cache',
+	]
 }
 
-exports.getOthersBar = (title) => {
-	return [{
-		title: title,
-		collapsable: false,
-		children: [
-			'computerOrganization',
-		]
-	}]
+exports.getOthersBar = () => {
+	return [
+		'computerOrganization',
+	]
 }
 
-exports.getAlgorithmBar = (title) => {
-	return [{
-		title: title,
-		collapsable: false,
-		children: [
-			'dataStructure',
-			'skills',
-			'search',
-			'sort',
-			'complexity',
-			'mobileadapter'
-		]
-	}]
+exports.getAlgorithmBar = () => {
+	return [
+		'dataStructure',
+		'tree',
+		'skills',
+		'search',
+		'sort',
+		'complexity',
+	]
 }
 
-exports.getArticlesBar = (title) => {
-	return [{
-		title: title,
-		collapsable: false,
-		children: [
-			'vueProtocol',
-			'eventLoop',
-			'functional',
-			'ssr',
-			'nat',
-		]
-	}]
+exports.getArticlesBar = () => {
+	return [
+		{
+			title: '前端',
+			children: [
+				'fe/inheritance',
+				'fe/functional',
+				'fe/eventLoop'
+			]
+		},
+		{
+			title: 'vue',
+			children: [
+				'vue/vue-protocol',
+				'vue/ssr',
+				'vue/simple-vue',
+				'vue/vue-loader'
+			]
+		},
+		'mobileadapter',
+		{
+			title: '兴趣',
+			children: [
+				'other/nat',
+				'other/db',
+				'other/howComputerRun',
+				'other/flutter',
+				'other/react-native',
+				'other/docker',
+				'other/cicd',
+				'other/setUpPlatform',
+			]
+		},
+	]
 }

@@ -1,5 +1,5 @@
 const { getFontEndBar, getNodeBar, getNetWorkBar, getOthersBar, getAlgorithmBar, getArticlesBar } = require('./slider')
-const { cnNav, nav } = require('./nav')
+const { cnNav } = require('./nav')
 
 module.exports = {
   base: '/my-blog/',
@@ -39,15 +39,13 @@ module.exports = {
         label: '简体中文',
         selectText: '选择语言',
         ariaLabel: '选择语言',
-        editLinkText: '在 GitHub 上编辑此页',
         lastUpdated: '上次更新',
         sidebar: {
-          '/zh/fontend/': getFontEndBar('前端'),
-          '/zh/node/': getNodeBar('Node'),
-          '/zh/network/': getNetWorkBar('网络'),
-          '/zh/algorithm/': getAlgorithmBar('算法与数据结构'),
-          '/zh/others/': getOthersBar('其他'),
-          '/zh/articles/': getArticlesBar('文章'),
+          '/zh/fontend/': getFontEndBar(),
+          '/zh/node/': getNodeBar(),
+          '/zh/network/': getNetWorkBar(),
+          '/zh/algorithm/': getAlgorithmBar(),
+          '/zh/articles/': getArticlesBar(),
         },
         nav : cnNav,
       },

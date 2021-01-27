@@ -46,6 +46,4 @@ mysql -h localhost -u root -P 3306 -p
 
 ### ORM（Object Relation Mapping）
 
-### 中间件
 
-### 1

@@ -3,6 +3,7 @@
 - [vue组件通信](/zh/articles/vueProtocol/)
 - vuex
 - vue-router
+- [ssr](/zh/articles/ssr/)
 
 ## 生命周期图
 

@@ -28,4 +28,8 @@ Web缓存的作用
 
 ## Ajax缓存
 
+Ajax缓存
+
 ## ServiceWorker
+
+ServiceWorker

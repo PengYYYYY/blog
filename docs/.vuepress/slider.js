@@ -44,8 +44,11 @@ exports.getNodeBar = () => {
 
 exports.getNetWorkBar = () => {
 	return [
+		'base',
 		'link',
 		'cache',
+		'cros',
+		'https'
 	]
 }
 
@@ -73,7 +76,8 @@ exports.getArticlesBar = () => {
 			children: [
 				'fe/inheritance',
 				'fe/functional',
-				'fe/eventLoop'
+				'fe/eventLoop',
+				'fe/mobileadapter',
 			]
 		},
 		{
@@ -85,7 +89,6 @@ exports.getArticlesBar = () => {
 				'vue/vue-loader'
 			]
 		},
-		'mobileadapter',
 		{
 			title: '兴趣',
 			children: [
@@ -97,6 +100,12 @@ exports.getArticlesBar = () => {
 				'other/docker',
 				'other/cicd',
 				'other/setUpPlatform',
+			]
+		},
+		{
+			title: '工程与实践',
+			children: [
+				'engineering/build-system',
 			]
 		},
 	]

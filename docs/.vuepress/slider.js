@@ -23,15 +23,17 @@ exports.getFontEndBar = () => {
 			]
 		},
 		{
-			title: 'webpack',
+			title: '工程化',
 			children: [
-				'webpack/webpack',
+				'engineering/npm',
+				'engineering/webpack',
+				'engineering/modular',
+				'engineering/babel',
 			]
 		},
 		'html',
 		'css',
 		'browser',
-		'babel',
 		'optimize',
 	]
 }
@@ -44,10 +46,11 @@ exports.getNodeBar = () => {
 
 exports.getNetWorkBar = () => {
 	return [
-		'base',
-		'link',
+		'connectionProcess',
 		'cache',
-		'cros',
+		'crossDomain',
+		'httpCode',
+		'security',
 		'https'
 	]
 }

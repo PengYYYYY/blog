@@ -1,4 +1,6 @@
-# 网络编程
+# 网络连接过程
+
+读《网络是怎么样连接的》笔记
 
 > 7层模型，从上到下
 
@@ -30,13 +32,9 @@
 - 交换机
 - 路由器
 
-## 网络连接流程
+## 浏览器生成的消息
 
-读《网络是怎么样连接的》笔记
-
-### 浏览器生成的消息
-
-#### 浏览器生成 HTTP 请求消息
+### 浏览器生成 HTTP 请求消息
 
 - 浏览器先要解析 URL
 - 文件路径
@@ -45,7 +43,7 @@
   - 请求头字段
   - 响应状态码
 
-#### 向 DNS 服务器查询 Web 服务器的 IP 地址
+### 向 DNS 服务器查询 Web 服务器的 IP 地址
 
 - ip地址
   - 子网
@@ -55,22 +53,112 @@
   - web浏览器调用操作系统库socket库
   - 通过解析器向 DNS 服务器发出查询
 
-##### DNS 查询
+#### DNS 查询
 
 - 域名层级
 - DNS服务器层级
 - DNS缓存加速
 
-##### 委托协议栈发送消息
+#### 委托协议栈发送消息
 
 - 创建套接字(创建套接字阶段)
 - 将管道连接到服务器端的套接字上(连接阶段)
 - 收发数据(通信阶段)
 - 断开管道并删除套接字(断开阶段)
 
-### 用电信号传输 TCP/IP 数据
+### http
 
-#### 协议栈
+#### 头中的重要字段
+
+| 头字段类型 | Http版本 | 含义 |
+| - | - | - |
+| 通用头:适用于请求和响应消息的头字段 |
+| Date | http1.0/http1.1 | 表示请求和响应生成的日期|
+| Pragma | http1.0/http1.1 | 表示数据是否允许缓存的通信选项 |
+| Cache-Control | http1.1 | 控制缓存的相关信息 |
+| Connection | http1.1 | 设置发送响应之后 TCP 连接是否继续保持的通信选项 |
+| Transfer-Encoding | http1.1 | 表示消息主体的编码格式 |
+| Via | http1.1 | 记录途中经过的代理和网关 |
+| 请求头:用于表示请求消息的附加信息的头字段 |
+| Authorization | http1.0/http1.1 | 身份认证数据 |
+| From | http1.0/http1.1 | 请求发送者的邮件地址 |
+| If-Modified-Since | http1.0/http1.1 | 处理缓存字段：如果希望仅当数据在某个日期之后有更新时才执 行请求，可以在这个字段指定希望的日期。 |
+| Referer | http1.0/http1.1 | 当通过点击超级链接进入下一个页面时，在这里会记录下上一个页面的 URI |
+| User-Agent | http1.0/http1.1 | 客户端软件的名称和版本号等相关信息 |
+| Accept | http1.0/http1.1 | 客户端可支持的数据类型(Content-Type)，以 MIME 类型来表示 |
+| Accept-Charset | http1.0/http1.1 | 客户端可支持的字符集 |
+| Accept-Encoding | http1.0/http1.1 | 客户端可支持的编码格式(Content-Encoding)， 一般来说表示数据的压缩格式 |
+| Accept-Language | http1.0/http1.1 | 客户端可支持的语言，汉语为 zh，英语为 en |
+| Host | http1.1 | 接收请求的服务器 IP 地址和端口号 |
+| If-Match | http1.1 | 参见 Etag |
+| If-None-Match | http1.1 | 参见 Etag |
+| If-Unmodified-Since | http1.1 | 当指定日期之后数据未更新时执行请求 |
+| Range | http1.1 | 当需要只获取部分数据而不是全部数据时，可通过这个字段指定要获取的数据范围 |
+| 响应头:用于表示响应消息的附加信息的头字段 |
+| Location | http1.0/http1.1 | 表示信息的准确位置。当请求的 URI 为相对路径 时，这个字段用来返回绝对路径 |
+| Server | http1.0/http1.1 | 服务器程序的名称和版本号等相关信息 |
+| WWW-Authenticate | http1.0/http1.1 | 当请求的信息存在访问控制时，返回身份认证用的数据(Challenge 1) |
+| Accept-Ranges | http1.1 | 当希望仅请求部分数据(使用 Range 来指定范围) 时，服务器会告知客户端是否支持这一功能 |
+| 实体头:用于表示实体(消息体)的附加信息的头字段 |
+| Allow | http1.0/http1.1 | 表示指定的 URI 支持的方法 |
+| Content-Encoding | http1.0/http1.1 | 当消息体经过压缩等编码处理时，表示其编码格式 |
+| Content-Length | http1.0/http1.1 | 表示消息体的长度 |
+| Content-Type | http1.0/http1.1 | 表示消息体的数据类型，以 MIME 规格定义的数 据类型来表示 |
+| Expires | http1.0/http1.1 | 表示消息体的有效期 |
+| Last-Modified | http1.0/http1.1 | 数据的最后更新日期 |
+| Content-Language | http1.0/http1.1 | 表示消息体的语言。汉语为 zh，英语为 en |
+| Content-Location | http1.1 | 表示消息体在服务器上的位置(URI) |
+| Content-Range | http1.1 | 当仅请求部分数据时，表示消息体包含的数据范围 |
+| Etag | http1.1 | 在更新操作中，有时候需要基于上一次请求的响应 数据来发送下一次请求。在这种情况下，这个字段 可以用来提供上次响应与下次请求之间的关联信息。 上次响应中，服务器会通过 Etag 向客户端发送一 个唯一标识，在下次请求中客户端可以通过 If- Match、If-None-Match、If-Range 字段将这个标识 告知服务器，这样服务器就知道该请求和上次的响 应是相关的。这个字段的功能和 Cookie 是相同的， 但 Cookie 是网景(Netscape)公司自行开发的规格， 而 Etag 是将其进行标准化后的规格 |
+
+#### HTTP状态码
+
+| 状态码 | 含义 |
+| 1xx | 告知请求的处理进度和情况 |
+| 2xx | 成功 |
+| 3xx | 表示需要进一步操作 |
+| 4xx | 客户端错误 |
+| 5xx | 服务器错误 |
+
+### DNS
+
+### ip地址
+
+- TCP/IP 的结构
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/M2OEc8.png)
+
+TCP/IP 结构可以理解为由一些小的子网，通过路由器连接起来的一个大网络。子网可以理解为用集线器连接起来的计算机。可以将其看成一个单位，称为子网。将子网通过路由器连接起来，就形成了一个网络。
+
+- 路由器：一种对包进行转发的设备，在第 3 章有详细介绍
+- 集线器：一种对包进行转发的设备，分为中继式集线器和交换式集线器两种
+
+1. ip地址主体表示方式：`10.11.12.13`
+2. 采用ip地址主体相同的格式表示子网掩码的方法：`10.11.12.13/255.255.255.0`
+3. 采用网络号比特数来表示子网掩码的方法：`10.11.12.13/24`
+4. 表示子网的地址：`10.11.12.0/24`
+5. 表示子网内广播的地址：`10.11.12.255/24`
+
+| - | 十进制表示 | 将左侧十进制转换成为比特 |
+| - | - | - |
+| IP地址 | 10.1.2.3 | 00001010.00000001.00000010.00000011 |
+| 子网掩码 | 255.255.255.0 | 11111111.11111111.11111111.00000000 |
+| 网络号/主机号 | 10.1.2/3 | 00001010.00000001.00000010/00000011 |
+
+:::tip
+IP 地址的主机号
+全 0:表示整个子网
+全 1:表示向子网上所有设备发送包，即“广播”
+
+### socket库与dns解析
+
+- Socket 库是操作系统中的一种库，其中包含的程序组件，可以让其他的应用程序调用操作系统的网络功能。而解析器就是这个库中 的其中一种程序组件。Socket 库是用于调用网络功能的程序组件集合。
+- 在编写浏览器等应用程序的时候只需要。写上解析器的程序名称“gethostbyname”以及 Web 服务器 B的域名“www.xxx.com”就可以了，这样就完成了对解析器的调用.`gethostbyname("www.xxx.com")`。
+
+- 解析器内部原理，
+
+## 用电信号传输 TCP/IP 数据
+
+### 协议栈
 
 - 创建套接字
 - 连接服务器
@@ -90,7 +178,7 @@
 
 3. 在互联网上传送数 据时，数据会被切分成一个一个的网络包，而将网络包发送给通信对象的操作就是由 IP 来负责的，此外，IP 中还包括 ICMPA 协议和 ARPB 协议。 ICMP 用于告知网络包传送过程中产生的错误以及各种控制消息，ARP 用 于根据 IP 地址查询相应的以太网 MAC 地址
 
-#### 套接字实体
+### 套接字实体
 
 套接字的实体就是通信控制信息。
 
@@ -98,7 +186,7 @@
 - 在发送数据时，需要看一看套接字中的通信对象 IP 地址和端口号，以便向指定的 IP 地址 和端口发送数据。等待一定时间后发送丢失的数据。
 套接字中记录了用于控制通信操作的各种控制信息，协议栈则需要根据这些信息判断下一步的行动，这就是套接 字的作用。
 
-#### 调用socket时的操作
+### 调用socket时的操作
 
 消息收发的操作
 
@@ -134,8 +222,6 @@ connect(< 描述符 >, < 服务器 IP 地址和端口号 >, ...)
 服务器：收到这个返回包之后，连接操作才算全部完成。
 
 只要数据传输过程在持续，也就是在调用 close 断 开之前，连接是一直存在的。建立连接之后，协议栈的连接操作就结束了，也就是说 connect 已经 执行完毕，控制流程被交回到应用程序。
-
-### 收发数据
 
 #### 将 HTTP 请求消息交给协议栈
 
@@ -244,7 +330,7 @@ ACK 号的这段时间，需要有效利用
 - 设置发送方 IP 地址时， 我们已经判断出了从哪块网卡发送这个包，那么现在只要将这块网卡对应 的 MAC 地址填进去就好了。
 - 接收方所以先得搞清楚应该把包发给谁，这个只要查一下路由表 就知道了。在路由表中找到相匹配的条目，然后把包发给 Gateway 列中的 IP 地址就可以了。
 
-#### 通过 ARP 查询目标路由器的 MAC 地址
+### 通过 ARP 查询目标路由器的 MAC 地址
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/0E7J5c.png)
 
@@ -254,7 +340,7 @@ ACK 号的这段时间，需要有效利用
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/UjvXdY.png)
 
-#### 网卡
+### 网卡
 
 > 以太网结构图
 
@@ -271,7 +357,7 @@ ACK 号的这段时间，需要有效利用
 - 以太网是局域网
 - 英特网是具有全球性质的
 
-#### 将 IP 包转换成电或光信号发送出去
+### 将 IP 包转换成电或光信号发送出去
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/s7RNs0.png)
 
@@ -285,11 +371,11 @@ ACK 号的这段时间，需要有效利用
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/D7X5O6.png)
 
-#### 电信号和时钟信号
+### 电信号和时钟信号
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/ciANJL.png)
 
-#### 向集线器发送网络包
+### 向集线器发送网络包
 
 - 半双工通信
 发送和接收同时并行的方式叫作“全双工”
@@ -306,7 +392,7 @@ MAC 模块将可转换为任意格式的通用信号发送给 PHY(MAU)模块，�
 
 #### UDP 头部中的控制信息
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/o3cI3r.png)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/lbQlmm.png)
 
 ## 从网线到网络设备
 
@@ -471,3 +557,87 @@ TTL(Time to Live，生存时间)
 地址转换的基本原理是在转发网络包时对 IP 头部中的 IP 地址和端口号进行改写。
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/YHUAbb.png)
+
+## 通过接入网进入互联网内部
+
+看一看网络包是如何通过互联网接入路由器，最终进入互联网内部的
+
+### ADSL 接入网的结构和工作方式
+
+> 互联网的整体架构
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/qzgOvg.png)
+
+互联网的基本结构与家庭、公司网络一样，我们可以将互联网理解为家庭、公司网络的一个放大版。
+
+- 距离的不同和路由的维护方式，就是互联网与家庭、公司网络之间最主要的两个不同点。
+
+#### 接入网
+
+指连接互联网与家庭、公司网络的通信线路。一般家用的接入网方式包括 ADSLB、FTTHC、CATV、电话线、ISDN 等，公司则还可能使用专线。接入网的线路有很多种类，我们无法探索所有这些线路，因此下面先介绍一个比较有代表性的例子——ADSL。
+
+> 网络包形态的变化
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/3xr8j7.png)
+
+#### ADSL Modem 将包拆分成信元
+
+> 信号的调制
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/ZeAaIz.png)
+
+#### 连接用户与互联网的接入网
+
+> 从用户到电话局
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/r3C2qSv.png)
+
+### 光纤接入网(FTTH)
+
+光纤是由一种双层结构的纤维状透明材质(玻璃和塑料)构成的，通过在里面的纤芯中传导光信号来传输数字信息。ADSL 信号是由多个频段的信号组成的，比较复杂，但光信号却非 常简单，亮表示 1，暗表示 0。
+
+> 光纤的结构
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/SK8zmH.png)
+
+> 光纤的通信原理
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/pDeAzS.png)
+
+- 数字信息并不能一下子变成光信号，先将数字信息转换成电信号，然后再将电信号转换成光信号。这里的电信号非常简单，1 用高电压表示，0 用低电压表示。
+- 将这样的电信号输入 LED、激光二极管等光源后，这些光源就会根据信号电压的变化发光， 高电压发光亮，低电压发光暗。
+
+### 接入网中使用的 PPP 和隧道
+
+互联网本来就是由很多台路由器相互连接组成的，因此原则上应该是 将接入网连接到路由器上。随着接入网发展到 ADSL 和 FTTH，接入网连接的路由器也跟着演进，而这种进化型的路由器就叫作 BAS。
+
+#### PPP
+
+PPP 拨号连接操作
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/A6mVZV.png)
+
+#### PPPoE
+
+PPPoE 是由传统电话拨号 上网上使用的 PPP 协议发展而来的，所以我们先来看一看 PPP 拨号上网的工作方式。
+
+### 网络运营商的内部
+
+#### POP 和 NOC
+
+> 互联网内部概览
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/DGdYjV.png)
+
+> POP概览
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/h9MP8b.png)
+
+### 跨越运营商的网络包
+
+> 运营商之间的路由信息交换
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/qCQWpW.png)
+
+> 路由信息交换的类型
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/Fhht2W.png)

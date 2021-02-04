@@ -83,7 +83,3 @@ npx babel script.js --out-file script-compiled.js --source-maps
 @babel/runtime-corejs2 ≈ @babel/runtime + babel-polyfill;
 
 @babel/runtime只能处理语法关键字，而@babel/runtime-corejs2还能处理新的全局变量（例如，Promise）、新的原生方法（例如，String.padStart
-
-## babel插件编写
-
-写个babel插件

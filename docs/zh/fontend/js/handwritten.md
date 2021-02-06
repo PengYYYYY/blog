@@ -1,5 +1,84 @@
 # 手写源码系列
 
+## 深拷贝和浅拷贝
+
+### 浅拷贝
+
+```js
+let a = {
+  age: 1
+}
+let b = Object.assign({}, a)
+```
+
+```js
+let a = {
+  age: 1
+}
+let b = { ...a }
+```
+
+### 深拷贝
+
+```js
+
+let a = {
+  age: 1,
+  jobs: {
+    first: 'FE'
+  }
+}
+
+const b = JSON.parse(JSON.stringify(a))
+```
+
+此方法的局限性
+
+- 会忽略 `undefined`
+- 会忽略 `symbol`
+- 不能序列化函数
+- 不能解决循环引用的对象
+- 当遇到函数、 undefined 或者 symbol 的时候，会被自动过滤掉
+
+## Object.assign()与Object.create()实现原理
+
+- assign实现原理
+
+```js
+if (typeof Object.assign != 'function' ) {
+  Object.defineProperty(Object, 'assing', {
+    value: function(target) {
+      if (target == null) {
+        throw new TypeError('目标对象不能为空')
+      }
+      var to = Object(target)
+      for (var i = 1; index < arguments.length; i++) {
+        var nextSource = arguments[i]
+        if (nextSource != null) {
+          for (let nextKey in nextSource) {
+            if (Object.property.hasOwnProperty.call(nextSource, nextKey)) {
+              to[nextKey] = nextSource[nextKey]
+            }
+          }
+        }
+      }
+      return to
+    }
+  })
+}
+```
+
+- create实现原理
+
+```js
+Object.create = function(obj) {
+  function F() {}
+  F.prototype = obj
+  return = new F()
+}
+
+```
+
 ## 手写 `call`、`apply`、`bind`
 
 call 与 apply 的差别在于参数

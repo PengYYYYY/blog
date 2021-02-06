@@ -5,9 +5,7 @@
 - [事件循环](/zh/articles/eventLoop/)
 - [函数式编程](/zh/articles/functional/)
 
-## 基础语法原理
-
-## 异步
+## 基础
 
 ### Generator函数
 

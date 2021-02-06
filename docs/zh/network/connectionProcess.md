@@ -15,7 +15,7 @@
 > 5层模型
 
 - 应用层：TELENET, SSH, HTTP, SMTP, POP, SSL/TLS, FTP, MIME, HTML, SNMP, MIB, SIP, RTP
-- 传输层：TCP,UDP,UDP-lite
+- 传输层：TCP,UDP
 
 > TELENET与SSH协议都是客户端连接终端的协议，SSH加密，TELENET不加密.
 
@@ -641,3 +641,60 @@ PPPoE 是由传统电话拨号 上网上使用的 PPP 协议发展而来的，�
 > 路由信息交换的类型
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/Fhht2W.png)
+
+## 服务器端的局域网
+
+### Web 服务器的部署地点
+
+> 服务器位置
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/5WSpYm.png)
+
+- 第一种，网络包裸奔，不安全，
+- 防火墙可以对网络包进行安全检查
+- 数据中心通过高速线路直接连接到互联网的核心部分，当服务器访问量很大时这是非常有效的。
+
+### 防火墙的结构和原理
+
+> 地址转换和包过滤中用于设置规则的字段
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/D1sIio.png)
+
+> 包过滤的示例
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/MEVYb2.png)
+
+- 也可以通过端口号来限定应用程序是否可以通过
+- 从公司内网访问公开区域的规则
+- 从外部无法访问公司内网
+- 当网络包经过时，可以通过防火墙
+
+### 通过将请求平均分配给多台服务器来平衡负载
+
+性能不足时需要负载均衡
+
+通过轮询的方式来指定访问服务器IP地址
+
+> DNS轮询
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/iglWS7.png)
+
+> 负载均衡器
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/VNzctz.png)
+
+> 缓存服务器工作流程
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/hVjUF1.png)
+
+> 利用代理实现防火墙
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/RuPtoV.png)
+
+> 缓存服务器的三种部署方式
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/fDGXca.png)
+
+> 如何找到最近的缓存服务器
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/BNKwaj.png)
+
+### 利用缓存服务器分担负载

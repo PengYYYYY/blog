@@ -29,6 +29,7 @@ exports.getFontEndBar = () => {
 				'engineering/webpack',
 				'engineering/modular',
 				'engineering/babel',
+				'engineering/unitTest',
 			]
 		},
 		'html',

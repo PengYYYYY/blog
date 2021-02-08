@@ -65,6 +65,7 @@ exports.getOthersBar = () => {
 exports.getAlgorithmBar = () => {
 	return [
 		'dataStructure',
+		'linkedList',
 		'tree',
 		'skills',
 		'search',

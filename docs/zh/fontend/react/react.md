@@ -1,15 +1,8 @@
-# React
-
-- react
-- react-router  
-- redux
-- mobx
-
-## React逻辑复用
+# React逻辑复用
 
 React中，组件是代码复用的基本单元，基于组合的组件复用机制非常优雅。对于`状态逻辑、行为逻辑`,复用起来不那么容易，一般通过以下方式来解决`状态逻辑复用`问题。
 
-### Mixin
+## Mixin
 
 混入模式就是一些提供能够被一个或者一组子类简单,继承功能的类。
 
@@ -54,11 +47,11 @@ React中，组件是代码复用的基本单元，基于组合的组件复用机
 
 ```
 
-#### Mixin带来的缺陷（Mixins introduce implicit dependencies）
+### Mixin带来的缺陷（Mixins introduce implicit dependencies）
 
 引入了隐式的`依赖关系：在写一些有状态的组件的时候，mixin的使用方，可能读取mixin里的state.这样会带来隐式的依赖关系。隐式依赖导致依赖关系不透明，维护成本和理解成本迅速攀升。
 
-##### 隐式依赖导致依赖关系不透明，维护成本和理解成本迅速攀升
+#### 隐式依赖导致依赖关系不透明，维护成本和理解成本迅速攀升
 
 - 难以快速理解组件行为，需要全盘了解所有依赖 Mixin 的扩展行为，及其之间的相互影响
 - 组价自身的方法和state字段不敢轻易删改，因为难以确定有没有 Mixin 依赖它
@@ -76,7 +69,7 @@ Mixin，倾向于增加更多状态，这会降低应用的可预测性，导致
 React v0.13.0 放弃了 Mixin（继承），转而走向HOC（组合）
 :::
 
-### HOC高阶组件
+## HOC高阶组件
 
 HOC是React中用于逻辑复用的一种高级技巧。HOC自身不是React API的一部分。只是一直设计模式。
 
@@ -94,13 +87,13 @@ export default (WrappedComponent) => {
 }
 ```
 
-#### 装饰者模式
+### 装饰者模式
 
 装饰者模式就是，动态的给类或者对象增加职责的设计模式，它能在不改变类或对象自身的基础上，在程序的运行期间动态的添加职责。
 
 es7中的语法糖decorator就是用来实现装饰者模式的。
 
-#### HOC的工厂实现
+### HOC的工厂实现
 
 > Props Proxy
 
@@ -128,7 +121,7 @@ function inheritHOC(WrappedComponent) {
 }
 ```
 
-#### HOC可以做的事情
+### HOC可以做的事情
 
 在HOC中可以读取、添加、编辑、删除传给 WrappedComponent 的 props(属性)。
 在删除或者编辑重要的props时，应该通过命名空间确保高阶组件的 props 不会破坏 WrappedComponent。

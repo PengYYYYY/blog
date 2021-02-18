@@ -407,54 +407,6 @@ const quickSort = (arr, left = 0, right= arr.length-1) => {
 }
 ```
 
-### 桶排序
-
-桶排序将要排序的数据分到有序的桶中，每个桶里的数据再单独进行排序。
-
-```javascript
-function bucketSort(array, bucketSize = 5) {
-  if(array.length < 2) {
-    return array
-  }
-  const buckets = createBucket(array, bucketSize)
-  return sortBuckets(buckets)
-}
-function createBuckets(array, bucketSize) {
-  let minValue = array[0]
-  let maxValue = array[0]
-  for(let i = 1; i < array.length; i++) {
-    if(array[i] < minValue) {
-      minValue = array[i]
-    } else if(array[i] > maxValue) {
-      maxValue = array[i]
-    }
-  }
-  const bucketCount = Math.floor((maxValue - minValue) / bucketSize) + 1
-  const buckets = []
-  for (let i = 0; i < bucketCount; i++) {
-    buckets[i] = []
-  }
-  for (let i = 0; i < array.length; i++) {
-    const bucketIndex = Math.floor((array[i] - minValue) / bucketSize)
-    buckets[bucketIndex].push(array[i])
-  }
-  return buckets
-}
-function sortBuckets(buckets) {
-  const sortedArray = []
-  for(let i = 0; i < buckets.length; i++) {
-    if(buckets[i] != null) {
-      insertionSort(buckets[i])
-      sortedArray.push(...buckets[i])
-    }
-  }
-}
-```
-
-### 计数排序
-
-### 基数排序
-
 ### 排序算法对比
 
 |类型 | 时间复杂度 | 是否是稳定排序 | 是否为原地排序 |
@@ -464,13 +416,11 @@ function sortBuckets(buckets) {
 |选择排序|O(n^2)|否|是|
 |归并排序|O(nlogn)|否|否|
 |快速排序|O(nlogn)|否|是|
-|计数排序|O(n+k)k是数据范围|是|否|
-|桶排序|O(n)|是|否|
-|基数排序|O(dn)d是维度|是|否|
+|希尔排序|O(nlogn)|否|是|
 
 ### 优化快速排序
 
-- 三数取中法
+- 三数取中法，第一个值，中间值，最后一个值
 
 ## 二分查找（Binary Search）
 

@@ -504,3 +504,5 @@ Array.prototype.distinct = () => {
 }
 [1,2,3,3,4,4].distinct(); //[1,2,3,4]
 ```
+
+## reduce

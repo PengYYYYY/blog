@@ -1,6 +1,70 @@
 # js继承
 
-最近在看《js高级程序设计》,对象的继承问题困扰了我很久,这个问题也是面试中大概率会被问到的问题。之前试过硬背代码，到了要写的时候还是写不出来，不知其所以然。在充分了解这一块之后，来进行一些总结。
+简单讲讲js的继承，也是js的原型链问题的实际应用。
+
+## 原型
+
+原型和原型链都是来源于对象而服务于对象的概念：
+
+JavaScript中一切引用类型都是对象，对象就是属性的集合。
+
+Array类型、Function类型、Object类型、Date类型、RegExp类型等都是引用类型。
+
+## 原型与原型链
+
+每一个对象从被创建开始就和另一个对象关联，从另一个对象上继承其属性，这个另一个对象就是原型。
+
+当访问一个对象的属性时，先在对象的本身找，找不到就去对象的原型上找，如果还是找不到，就去对象的原型的原型上找，如此继续，直到找到为止。如果在最顶层的原型对象也没有找到，就返回`undefined`。
+这条由对象及其原型组成的链就叫做原型链。
+
+### 原型的意义
+
+- 原型链存在的意义就是继承：访问对象属性时，在对象本身找不到，就在原型链上一层一层找。就是一个对象可以访问其他对象的属性。
+- 继承存在的意义就是属性共享：一是代码重用，字面意思；二是可扩展，不同对象可能继承相同的属性，也可以定义只属于自己的属性。
+
+### 访问原型链
+
+`__proto__`属性虽然在 ECMAScript 6 语言规范中标准化，但是不推荐被使用，现在更推荐使用 `Object.getPrototypeOf`，
+
+```js
+Object.getPrototypeOf(person) === person.__proto__
+```
+
+- 模拟原型链的查找
+
+```js
+function getProperty(obj, propName) {
+    if(obj.hasOwnProperty(propName)) {
+        return obj[propName]
+    } else if (obj.__proto__ !== null) {
+        return getProperty(obj.__proto__, propName)
+    } else {
+        return undefined
+    }
+}
+```
+
+### 原型链示意图
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/GS5mqO.png)
+
+从上图我们可以看出
+
+- 引用类型都是对象，每个对象都有原型对象。
+- 对象都是由构造函数创建，对象的`__proto__`属性指向其原型对象，构造函数的`prototype`属性指向其创建的对象实例的原型对象，所以对象的`__proto__`属性等于创建它的构造函数的`prototype`属性。
+- 所有通过字面量表示法创建的普通对象的构造函数为Object
+- 所有原型对象都是普通对象，构造函数为Object
+- 所有函数的构造函数是Function
+- Object.prototype没有原型对象
+
+### 简单总结
+
+原型链就是多个对象通过 `__proto__` 的方式连接了起来的一个链表结构。
+
+- `Object` 是所有对象的父节点，所有对象都可以通过 `__proto__` 找到它
+- `Function` 是所有函数的父节点，所有函数都可以通过 `__proto__` 找到它
+- 函数的 prototype 是一个对象
+- 对象的 `__proto__` 属性指向原型, `__proto__` 将对象和原型连接起来组成了原型链
 
 ## 创建对象
 
@@ -12,18 +76,22 @@
 function createCar(color, passengers, brand){
     var car = new Object();
     car.color = color;
-    car.passengers = color;
+    car.passengers = passengers;
     car.brand = brand;
-    car.outBrand = function(){
+    car.printBrand = function(){
         console.log(this.brand)
     }
     return car;
 }
+
+const car = createCar('red', ['a','b'], 'benz')
 ```
 
 工厂模式很好理解，实例化一个对象，在把传入的参数放入该对象，再返回。
 
-缺点：无法进行对象识别。由于返回的对象都是由Objcet对象实例化出来的，但是开发过程中，需要创建很多种对象，肯定会有进行对象识别的需求，工厂模式显然无法完成我们这样的诉求。我们继续探索。
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/BUOPMK.png)
+
+缺点：无法进行对象识别。由于返回的对象都是由Object对象实例化出来的，但是开发过程中，需要创建很多种对象，肯定会有进行对象识别的需求，工厂模式显然无法完成我们这样的诉求。我们继续探索。
 
 ### 构造函数模式
 
@@ -32,12 +100,12 @@ function Car(color, passengers, brand){
     this.color = color;
     this.passengers = passengers;
     this.brand = brand;
-    this.outBrand = function(){
+    this.printBrand = function(){
         console.log(this.brand)
     }
 }
-var car1 = new Car('red', ['a','b'], 'benz');
-var car2 = new Car('black', ['c','d'], 'BMW');
+const car1 = new Car('red', ['a','b'], 'benz');
+const car2 = new Car('black', ['c','d'], 'BMW');
 
 console.log(car1 instanceof Object); //true
 console.log(car1 instanceof Car);    //true
@@ -45,9 +113,13 @@ console.log(car2 instanceof Object); //true
 console.log(car2 instanceof Car);    //true
 ```
 
-构造函数模式能够很好的使用 instanceof 进行对象的识别，Objcet对象是所有对象的顶层对象类，所有的对象都会继承他。对对象进行操作的各类方法就存放在Object对象里面。
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/9P66Ik.png)
 
-缺点：但是无法解决引用类型的创建问题，我们每次对Car对象进行实例化的时候，都需要对outBrand方法进行创建，无法复用，浪费内存。要解决只能把他放到全局作用域。但是在全局作用域中定义的函数一般来说只能被某个对象调用，这会让全局作用域名不副实。并且也会失去封装性，我们来想象一下，如果该对象中有很多方法，那会让全局作用域充满了单独拎出来的方法，让代码可读性变差。
+从打印中可以看到 `car1` 与 `car` 的区别。
+
+构造函数模式能够很好的使用 `instanceof` 进行对象的识别，`Object` 对象是所有对象的顶层对象类，所有的对象都会继承他。对对象进行操作的各类方法就存放在Object对象里面。`function`实际上也是一个对象，从`typeof` 方法中可以体现出来
+
+缺点：但是无法解决引用类型的创建问题，我们每次对Car对象进行实例化的时候，都需要对printBrand方法进行创建，无法复用，浪费内存。要解决只能把他放到全局作用域。但是在全局作用域中定义的函数一般来说只能被某个对象调用，这会让全局作用域名不副实。并且也会失去封装性，我们来想象一下，如果该对象中有很多方法，那会让全局作用域充满了单独拎出来的方法，让代码可读性变差。
 
 ### 原型模式
 
@@ -58,14 +130,14 @@ function Car(){
 car.prototype.color = "red";
 car.prototype.passengers = ["a","b","c"];
 car.prototype.brand = "benz";
-car.prototype.outBrand = function () {
+car.prototype.printBrand = function () {
     console.log(this.brand)
 };
 
 var car1 = new Car();
 var car2 = new Car();
 car1.color = "blue";
-car1.passengers('d');
+car1.passengers.push('d');
 console.log(car1.brand); //["a","b","c","d"]
 console.log(car2.brand); //["a","b","c","d"]
 console.log(car1.color); // "bule"
@@ -86,7 +158,7 @@ function Car(color,brand){
 }
 Car.prototype = {
     constructor: Car,
-    outBrand: function () {
+    printBrand: function () {
         console.log(this.brand)
     }
 }
@@ -98,7 +170,7 @@ console.log(car1.brand); //["a","b","c"]
 console.log(car2.brand); //["a","b","c","d"]
 ```
 
-每个实例都会存在一份实例的副本，并且会对方法共享，最大程度节省了内存，也提供了向构造函数中传递参数的功能
+利用原型自定义构造函数，每个实例都会存在一份实例的副本，同时利用原型方法共享的特性，最大程度节省了内存，也提供了向构造函数中传递参数的功能。为最佳实践。
 
 ### 创建对象总结
 
@@ -113,35 +185,41 @@ console.log(car2.brand); //["a","b","c","d"]
 
 ```js
 function OldCar(){
-    this.color = "red";
-    this.passengers = ['a','b','c']
+this.color = "red";
+this.passengers = ['a','b','c']
 }
 OldCar.prototype.getOldColor = function(){
-    return this.color;
+return this.color;
 }
 function NewCar(){
-   this.newColor = "blue";
+this.color = "blue";
 }
 NewCar.prototype = new OldCar();
-SubType.prototype.getNewColor = function(){
-    return this.newColor;
-}
-var car = new newCar();
-console.log(car.getOldColor); //"red"
+
+var car = new NewCar();
+var car2 = new OldCar();
+console.log(car.getOldColor()); //"blue"
+console.log(car.passengers) // [ 'a', 'b', 'c' ]
+console.log(car2.getOldColor()); //"red"
 ```
 
 原型链继承通俗易懂，利用原型链将两个类串起来。
 
-问题：会产生引用类型值的问题。与生成对象中的原型模式一脉相承。
+缺点
+
+- 要新增原型中属性或方法，必须要先new一个实例, 函数无法复用，造成内存的浪费。
+- 无法多继承
+- 创建子类实例时，无法向父类构造函数传参
 
 ### 借用构造函数
 
 ```js
-function OldCar(){
+function OldCar(name = 'default name'){
     this.passengers = ['a','b','c'];
+    this.name = name 
 }
-function NewCar(){
-    OldCar.call(this);
+function NewCar(name){
+    OldCar.call(this, name);
 }
 ```
 
@@ -159,13 +237,13 @@ function OldCar(brand){
 OldCar.prototype.getBrand = function(){
     return this.brand;
 }
-function NewCar(name,color){
+function NewCar(name, color){
     OldCar.call(this,name)  //第一次调用
     this.color = color;
 }
 NewCar.prototype = new OldCar(); //第二次调用
 NewCar.prototype.constructor = NewCar; //增强
-SubType.prototype.getColor = function(){
+NewCar.prototype.getColor = function(){
     return this.color;
 }
 ```
@@ -210,7 +288,7 @@ function NewCar(name,color){
 }
 
 //继承开始
-var middleObj = Objcet.create(OldCar.prototype);
+var middleObj = Object.create(OldCar.prototype);
 middleObj.constructor = NewCar;
 NewCar.prototype = middleObj
 //继承结束

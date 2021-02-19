@@ -10,6 +10,10 @@
 vue 生命周期
 ![img](http://ww1.sinaimg.cn/large/006ekNqVgy1ghlnqv9uuxj323a2mptrz.jpg)
 
+运行流程
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/8aggEe.png)
+
 ## 简易版的vue
 
 运行原理

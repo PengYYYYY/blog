@@ -90,7 +90,7 @@ Function.prototype.call = function(context) {
   if(typeof this !== 'function') {
     throw new TypeError('Error')
   }
-  context = context || windows
+  context = context || window
   context.fn = this
   const args = [...arguments].slice(1)
   const result = context.fn(args)

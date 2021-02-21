@@ -208,5 +208,3 @@ const staff: IStaff = {
  companyId: 'EFT'
 };
 ```
-
-## TypeScript 数组

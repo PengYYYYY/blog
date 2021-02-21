@@ -1,7 +1,7 @@
 exports.getFontEndBar = () => {
 	return [
 		{
-			title: 'js',
+			title: 'javascript',
 			children: [
 				'js/js',
 				'js/typeScript',
@@ -14,12 +14,16 @@ exports.getFontEndBar = () => {
 			children: [
 				'vue/vue',
 				'vue/vue3',
+				'vue/vue-question',
+				'vue/vue-router',
+				'vue/vuex'
 			]
 		},
 		{
 			title: 'react',
 			children: [
-				'react/react',
+				'react/LogicReuse',
+				'react/question',
 			]
 		},
 		{
@@ -66,9 +70,9 @@ exports.getAlgorithmBar = () => {
 	return [
 		'dataStructure',
 		'linkedList',
+		'framework',
 		'tree',
-		'skills',
-		'search',
+		'mind',
 		'sort',
 		'complexity',
 	]

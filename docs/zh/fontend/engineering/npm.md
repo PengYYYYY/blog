@@ -1,9 +1,5 @@
 # 包管理
 
-## npm
+## 脑图
 
-![img](http://ww1.sinaimg.cn/large/006ekNqVgy1ghlr094mppj31pm0ty7jx.jpg)
-
-## yarn
-
-## learn
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/D6JgJt.pngg)

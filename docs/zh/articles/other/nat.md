@@ -86,7 +86,7 @@ nohup ./frps -c frps.ini
 
 打开配置的x.x.x.x:7500就可以看到仪表板截面。
 
-![img](http://ww1.sinaimg.cn/large/006ekNqVgy1ghn21xr48uj327u17qdlb.jpg)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/cnV1Hg.png)
 
 ### 客户端设置
 
@@ -166,7 +166,7 @@ frp还有很多其他协议支持，`tcp`,`udp`,`http`,`https`,`stcp`,  但是fr
 
 ### 下载客户端
 
-![img](http://ww1.sinaimg.cn/large/006ekNqVgy1ghn1jq9fw7j327u152qc1.jpg)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/q0LAns.png)
 
 ### 配置客户端authtoken
 
@@ -187,7 +187,7 @@ authtoken: xxxxx
 
 ### 开始做内网穿透
 
-![img](http://ww1.sinaimg.cn/large/006ekNqVgy1ghn1k985sdj31aa0beabz.jpg)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/ngap0n.png)
 
 假设你在本机上启动了一个端口号为8000的服务，使用内网穿透工具将当前8000端口的服务映射到外网去。 打开ngrok客户端
 
@@ -195,7 +195,7 @@ authtoken: xxxxx
 ngrok http 8000
 ```
 
-![img](http://ww1.sinaimg.cn/large/006ekNqVgy1ghn1m01kslj30zg0aowg8.jpg)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/BfBZNa.png)
 
 这样就可通过外网访问 `http://24a2c2f8390e.ngrok.io` 自己内网的服务啦,是不是非常简单。但是比frp搭建少了一些灵活性，但是不能自定义域名之类的，用来临时处理一下内网穿透需求还是很方便的。
 

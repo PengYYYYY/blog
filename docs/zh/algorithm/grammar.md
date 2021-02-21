@@ -1,5 +1,30 @@
 # 提高效率的语法
 
+## 尾递归调用
+
+函数调用会在内存形成一个"调用记录"，又称"调用帧"（call frame），保存调用位置和内部变量等信息。
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/svPCPR.png)
+
+在递归中，如果尾调用自身，就称为尾递归。递归非常消耗内存，因为需要同时保存成千上百个调用记录，很容易发生"栈溢出"错误（stack overflow）。对于尾递归来说，由于只存在一个调用记录，所以永远不会发生"栈溢出"错误。
+
+```js
+function factorial(n) {
+  if (n === 1) return 1;
+  return n * factorial(n - 1);
+}
+```
+
+上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 O(n) 。
+如果改写成尾递归，只保留一个调用记录，复杂度 O(1) 。
+
+```js
+function factorial(n, total) {
+  if (n === 1) return total;
+  return factorial(n - 1, n * total);
+}
+```
+
 ## 运算符技巧
 
 ### 交换两个数

@@ -12,7 +12,7 @@
 
 ## 浏览器中的 Event Loop
 
-![img](http://ww1.sinaimg.cn/large/006ekNqVgy1ghmnrqvzrrj31450mrae7.jpg)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/Lgi6hI.png)
 
 Event Loop 执行顺序:
 
@@ -27,8 +27,9 @@ Event Loop 执行顺序:
 
 ## Node 中的 Event Loop
 
-![img](http://ww1.sinaimg.cn/large/006ekNqVly1ghmomzm6bhj31180iuq64.jpg)
-![img](http://ww1.sinaimg.cn/large/006ekNqVly1ghmon16o1cj318g0hk4k8.jpg)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/OIprvT.png)
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/yeag8u.png)
 
 Node 中的 Event Loop 和浏览器中的是完全不相同的东西。
 Node 的 Event Loop 分为 6 个阶段，它们会按照顺序反复运行。每当进入一个阶段的时候，都会从对应的回调队列中取出函数去执行。当队列为空或者执行的回调函数数量达到系统的阀值，就会进入下一个阶段。

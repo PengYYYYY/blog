@@ -1,5 +1,7 @@
 # Vue3.0
 
+vue3.0代码结构 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/tUoPsF.png)
+
 ## 优化
 
 vue3.0带来的优化
@@ -18,6 +20,10 @@ Vue 3.0 ，整个源码是通过 monorepo 的方式维护的，根据功能将�
 
 monorepo 把这些模块拆分到不同的 package 中，每个 package 有各自的 API、类型定义和测试。这样使得模块拆分更细化，职责划分更明确，模块之间的依赖关系也更加明确。
 另外一些 package（比如 reactivity 响应式库）是可以独立于 Vue.js 使用的，这样用户如果只想使用 Vue.js 3.0 的响应式能力，可以单独依赖这个响应式库而不用去依赖整个 Vue.js，减小了引用包的体积大小。
+
+### 虚拟dom重写
+
+针对不同类型对节点进行不同策略的处理。
 
 ### 性能提升
 
@@ -89,7 +95,7 @@ Proxy劫持的是整个对象，自然对于对象的属性的增加和删除都
 主要优化发生在patch阶段，也就是diff阶段。
 
 - vue2.0的diff算法与模版的节点数量正相关，会造成大量的性能浪费。
-- vue3.0的diff算法与模版的动态节点数正相关，避免了资源的浪费，其实现原理是通过Block tree。
+- vue3.0的diff算法与模版的动态节点数正相关，避免了资源的浪费，其实现原理是通过Block tree，打补丁时将跳过这些属性不会改变的节点。
 
 ### 语法 API 优化：Composition API
 

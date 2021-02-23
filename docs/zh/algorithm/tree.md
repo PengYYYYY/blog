@@ -108,7 +108,7 @@ const inOrdeIterate = (root) => {
   const stack = []
   let node = root
   while(node || stack.length) {
-    white(node) {
+    while(node) {
       stack.push(node)
       node = node.left
     }
@@ -132,7 +132,7 @@ const preOrderTraverse = (root) => {
   while (stack.length > 0) {
     const curNode = stack.pop()
 
-    // 前序
+    // 从前面插入
     res.unshift(curNode.val)
 
     if(curNode.left) {
@@ -165,5 +165,4 @@ const traverse = (root: TreeNode) => {
     traverse(child)
   }
 }
-
 ```

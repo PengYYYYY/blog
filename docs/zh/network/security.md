@@ -1,6 +1,6 @@
 # 安全
 
-安全从多方面体现，下面一一介绍
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/wpJYkZ.png)
 
 ## 浏览器安全
 

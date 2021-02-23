@@ -1,12 +1,14 @@
 exports.getFontEndBar = () => {
 	return [
 		{
-			title: 'javascript',
+			title: 'Javascript',
 			children: [
 				'js/js',
 				'js/typeScript',
 				'js/array',
 				'js/string',
+				'js/storage',
+				'js/handwritten'
 			]
 		},
 		{
@@ -34,12 +36,17 @@ exports.getFontEndBar = () => {
 				'engineering/modular',
 				'engineering/babel',
 				'engineering/unitTest',
+				'engineering/optimize',
+			]
+		},
+		{
+			title: '浏览器',
+			children: [
+				'browser/base',
 			]
 		},
 		'html',
 		'css',
-		'browser',
-		'optimize',
 	]
 }
 
@@ -86,13 +93,13 @@ exports.getArticlesBar = () => {
 				'fe/inheritance',
 				'fe/functional',
 				'fe/eventLoop',
-				'fe/mobileadapter',
+				'fe/mobileAdapter',
 			]
 		},
 		{
 			title: 'vue',
 			children: [
-				'vue/vue-protocol',
+				'vue/vueProtocol',
 				'vue/ssr',
 				'vue/simple-vue',
 				'vue/vue-loader'
@@ -103,18 +110,20 @@ exports.getArticlesBar = () => {
 			children: [
 				'other/nat',
 				'other/db',
-				'other/howComputerRun',
-				'other/flutter',
-				'other/react-native',
-				'other/docker',
-				'other/cicd',
-				'other/setUpPlatform',
+				'other/howComputerRun'
 			]
 		},
 		{
 			title: '工程与实践',
 			children: [
-				'engineering/build-system',
+				'engineering/buildSystem',
+				'engineering/componentLibrary'
+			]
+		},
+		{
+			title: '杂物与思考',
+			children: [
+				'clutter/24岁的程序员',
 			]
 		},
 	]

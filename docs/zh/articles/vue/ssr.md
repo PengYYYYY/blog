@@ -1,6 +1,6 @@
 # SSR
 
-server-side-render
+来聊一聊SSR
 
 ## ssr的架构图
 

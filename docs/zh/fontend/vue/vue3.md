@@ -90,12 +90,25 @@ const observed = new Proxy(data, {
 
 Proxy劫持的是整个对象，自然对于对象的属性的增加和删除都能检测到，Proxy API也不能监听到内部深层次的对象变化，因此 Vue.js 3.0 的处理方式是在 getter 中去递归响应式，这样的好处是真正访问到的内部对象才会变成响应式。
 
+> Proxy的优势
+
+- 可直接监听数组类型的数据变化
+- 监听的目标为对象本身，不需要像Object.defineProperty一样遍历每个属性，有一定的性能提升
+- 可拦截apply、ownKeys、has等13种对象方法，而Object.defineProperty不行
+- 直接实现对象属性的新增/删除
+
 ### 编译优化
 
 主要优化发生在patch阶段，也就是diff阶段。
 
 - vue2.0的diff算法与模版的节点数量正相关，会造成大量的性能浪费。
 - vue3.0的diff算法与模版的动态节点数正相关，避免了资源的浪费，其实现原理是通过Block tree，打补丁时将跳过这些属性不会改变的节点。
+
+### 重构 Virtual DOM
+
+- 模板编译时的优化，将一些静态节点编译成常量
+- slot优化，将slot编译为lazy函数，将slot的渲染的决定权交给子组件
+- 模板中内联事件的提取并重用（原本每次渲染都重新生成内联函数）
 
 ### 语法 API 优化：Composition API
 

@@ -105,6 +105,40 @@ var mergeKLists = function(lists) {
 
 ## 动态规划
 
+### 爬楼梯
+
+经典问题
+
+```js
+function climbStairs (n) {
+    let dp1 = 0, dp2 = 0, res = 1
+    for(let i = 0; i < n; i++) {
+        dp1 = dp2
+        dp2 = res
+        res = dp1 + dp2
+    }
+    return res
+}
+```
+
+### 打家劫舍
+
+状态转换方程 `dp[n] = Max(dp[n-1], dp[n-2] + nums[n])`
+
+```js
+function rob (nums) {
+    if (!nums.length) return 0
+    if (nums.length == 1) return nums[0]
+    if (nums.length == 2) return Math.max(nums[0],nums[1]);
+
+    let dp = [nums[0], Math.max(nums[0], nums[1])]
+    for (let i = 2; i < nums.length; i++) {
+        dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i])
+    }
+    return Math.max(dp[num.length - 1]. dp[nums.length - 2])
+}
+```
+
 ## 双指针法
 
 前后双指针，有时也叫快慢指针，通常可实现O(n)级别的时间复杂度。用处很多，不做示例

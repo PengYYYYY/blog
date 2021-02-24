@@ -7,6 +7,14 @@ Vuex实现了一个单向数据流，在全局拥有一个State存放数据，�
 - 单例
 - 可预测
 
+核心特性：
+
+- state
+- getters
+- mutations
+- actions
+- modules
+
 ## 流程
 
 vuex本身是一颗状态树，组件使用store实例的state来访问这些状态，然后`mutation`方法来修改这些状态，并且只能用`mutation`来修改状态，在组件中调用`commit`方法提交`mutation`；如果应用中有异步操作或者复杂逻辑组合，我们需要编写`action`，执行结束如果有状态修改任然需要提交`mutation`,组件中调用这些`action`使用`dispatch`方法派发。最后就是模块化，通过`modules`来分模块。
@@ -16,3 +24,91 @@ vuex本身是一颗状态树，组件使用store实例的state来访问这些状
 是借用了vue的数据响应化特性实现的，它会利用Vue将state作为data对其进行响应化处理，从而使得这些状态发生变化的时，能够导致组件进行重新的渲染。
 
 ## event bus
+
+组件间传递参数可以使用event bus来做，实际上就是开了另外一个vue，vuex的本质也是如此。
+
+### 创建EventBus
+
+#### 全局EventBus
+
+```js
+import Vue from 'Vue'
+var EventBus = new Vue()
+Object.defineProperties(Vue.prototype, {
+  $bus: {
+    get: function () {
+      return EventBus
+    }
+  }
+})
+
+this.$bus.$emit('message','message from global bus')
+this.$bus.$on('message', msg => {
+ console.log('message',msg)
+})
+
+```
+
+#### 单文件EventBus
+
+```js
+//event-bus.js
+import Vue from 'Vue'
+
+export const EventBus = new Vue()
+```
+
+- 组件A
+
+```vue
+<template>
+  <div id="example">
+    <button @click="sendMsg">send</button>
+  </div>
+</template>
+
+<script>
+import {EventBus} from '../event-bus'
+
+export default {
+  methods: {
+    sendMsg () {
+      EventBus.$emit('message', {name: 'kim', type: 'human'})
+    }
+  }
+}
+</script>
+```
+
+- 组件B
+
+```vue
+<template>
+  <div id="example">
+    {{msg}}
+  </div>
+</template>
+
+<script>
+import {EventBus} from '../event-bus'
+
+export default {
+  data () {
+    return {
+      msg: '123'
+    }
+  },
+  mounted () {
+    EventBus.$on('message', (msg) => {
+      console.log('receive message', msg)
+    })
+  }
+}
+</script>
+```
+
+### vuex核心原理的实现
+
+```js
+
+```

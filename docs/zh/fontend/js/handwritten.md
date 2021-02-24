@@ -1,5 +1,7 @@
 # 手写源码系列
 
+初级工程师是使用API,往高阶工程师发展需要更加了解API的实现，才能灵活运用。
+
 ## 深拷贝和浅拷贝
 
 ### 浅拷贝
@@ -474,4 +476,50 @@ Array.property.findIndex = function(callback) {
   return -1
 }
 
+```
+
+## reduce的实现
+
+```js
+Array.prototype.myReduce = function(fn, value) {
+  if (getType(fn) !== "function") {
+    console.log("第一个参数需要为函数")
+    return
+  }
+  const acc = value || 0
+  const startIndex = value ? 0 : 1
+
+  for(let i = startIndex; i < this.length; i++) {
+    acc = fn(acc, this[i], i, this)
+  }
+  return acc
+}
+```
+
+## filter实现
+
+```js
+Array.prototype.myFilter = function(fn) {
+  let arr = []
+  let arr1 = Array.prototype.slice.call(this, 0, this.length)
+  for(let i = 0; i < this.length; i++) {
+    if(fn(this[i], i, this)) {
+      arr.push(arr1[i])
+    }
+  }
+  return arr
+}
+```
+
+## 类型判断函数
+
+```js
+function getType (data) {
+  let type = typeof data
+  if (type !== 'object') {
+    return type
+  }
+  const objType = Object.prototype.toString.call(data)
+  return objType.toLowerCase()
+}
 ```

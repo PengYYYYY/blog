@@ -276,6 +276,16 @@ destroyed：发生在实例销毁之后，这个时候只剩下了dom空壳。�
 
 `jsx` 相对于 `template` 会有更高的灵活性，在复杂组件中，更具有优势。`template` 在代码结构上更符合视图与逻辑分离的习惯，更简单、更直观、更好维护。
 
-## 说一下什么是 Virtual DOM
+## 什么是 Virtual DOM
 
 `Virtual DOM` 是 `DOM` 节点在 `JavaScript` 中的一种抽象数据结构,之所以需要虚拟DOM，是因为浏览器中操作 Dom 的代价比较昂贵，频繁操作dom会有性能问题。虚拟DOM的作用是在每一次响应式数据发生变化引起页面重渲染时，Vue对比更新前后的虚拟DOM，匹配找出尽可能少的需要更新的真实DOM，从而达到提升性能的目的。
+
+## keep-alive 组件有什么作用
+
+如果你需要在组件切换的时候，保存一些组件的状态防止多次渲染，就可以使用 keep-alive 组件包裹需要保存的组件。
+
+对于 `keep-alive` 组件来说，它拥有两个独有的生命周期钩子函数，分别为 `activated` 和 `deactivated` 。用 `keep-alive`包 裹的组件在切换时不会进行销毁，而是缓存到内存中并执行 `deactivated` 钩子函数，命中缓存渲染后会执行 `actived` 钩子函数。
+
+源码中：`core/components/keep-alive`
+
+

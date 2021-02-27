@@ -1,7 +1,5 @@
 # 手写源码系列
 
-初级工程师是使用API,往高阶工程师发展需要更加了解API的实现，才能灵活运用。
-
 ## 深拷贝和浅拷贝
 
 ### 浅拷贝
@@ -463,54 +461,6 @@ function asyncToGenerator(generatorFunc) {
 }
 ```
 
-## 实现 findX 函数
-
-```js
-Array.property.findIndex = function(callback) {
-  var arr = this;
-  for (var i = 0; i < arr.length; i++) {
-    if (callback(arr[i]), i) {
-      return i
-    }
-  }
-  return -1
-}
-
-```
-
-## reduce的实现
-
-```js
-Array.prototype.myReduce = function(fn, value) {
-  if (getType(fn) !== "function") {
-    console.log("第一个参数需要为函数")
-    return
-  }
-  const acc = value || 0
-  const startIndex = value ? 0 : 1
-
-  for(let i = startIndex; i < this.length; i++) {
-    acc = fn(acc, this[i], i, this)
-  }
-  return acc
-}
-```
-
-## filter实现
-
-```js
-Array.prototype.myFilter = function(fn) {
-  let arr = []
-  let arr1 = Array.prototype.slice.call(this, 0, this.length)
-  for(let i = 0; i < this.length; i++) {
-    if(fn(this[i], i, this)) {
-      arr.push(arr1[i])
-    }
-  }
-  return arr
-}
-```
-
 ## 类型判断函数
 
 ```js
@@ -522,4 +472,31 @@ function getType (data) {
   const objType = Object.prototype.toString.call(data)
   return objType.toLowerCase()
 }
+```
+
+## 使用requestAnimationFrame实现setInterval
+
+```js
+function myInterval(fn, interval) {
+  let timer
+  const now = Date.now
+  let startTime = now()
+  let endTime = startTime
+  const loop = () => {
+    timer = windows.requestAnimationFrame(loop)
+    endTime = now()
+    if (endTime - startTime >= interval) {
+      startTime = endTime = now()
+      callback(timer)
+    }
+  }
+  timer = window.requestAnimationFrame(loop)
+  return timer
+}
+```
+
+## 常用定时器函数
+
+```js
+
 ```

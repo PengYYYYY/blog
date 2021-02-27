@@ -161,3 +161,60 @@ IEEE 754 双精度版本（64位）将 64 位分为了三段
 ```js
 parseFloat((0.1 + 0.2).toFixed(10)) === 0.3 // true
 ```
+
+### 给localStorage加上过期时间
+
+```js
+class myStorage {
+  constructor(props) {
+    this.props = props || {}
+    this.source = this.props.source || window.localStorage
+    this.init();
+  }
+
+  set(key, value, expired) {
+    let source = this.source
+    source[key] = JSON.stringify(value);
+    if (expired) {
+      source[`${key}__expires__`] = Date().now() + 1000 * 60 * expired
+    }
+    return value
+  }
+
+  get(key) {
+    const source = this.source,expired = source[`${key}__expires__`]||Date.now+1;
+    const now = Date.now();
+    if ( now >= expired ) {
+      this.remove(key);
+      return;
+    }
+    const value = source[key] ? JSON.parse(source[key]) : source[key];
+    return value
+  }
+
+  remove(key) {
+    const data = this.source, value = data[key];
+    delete data[key];
+    delete data[`${key}__expires__`];
+    return value;
+  }
+
+  init() {
+    const reg = new RegExp("__expires__");
+    let data = this.source;
+    let list = Object.keys(data);
+    if(list.length > 0) {
+      list.map((k, v) => {
+        if(!reg.test(v)) {
+          let now = Date.now();
+          let expires = data[`${key}__expires__`]||Date.now+1;
+          if (now >= expires ) {
+            this.remove(key);
+          };
+        }
+        return key
+      })
+    }
+  }
+}
+```

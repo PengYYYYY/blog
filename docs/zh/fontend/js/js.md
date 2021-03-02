@@ -218,3 +218,64 @@ class myStorage {
   }
 }
 ```
+
+## 语言类问题
+### symbol 有什么用处
+
+可以用来表示一个独一无二的变量防止命名冲突。主要用来提供遍历接口，布置了 symbol.iterator 的对象才可以使用 for···of 循环，可以统一处理数据结构。调用之后回返回一个遍历器对象，包含有一个 next 方法，使用 next 方法后有两个返回值 value 和 done 分别表示函数当前执行位置的值和是否遍历完毕。Symbol.for() 可以在全局访问 symbol
+
+## js指向问题
+
+### this的要点
+
+- this 永远指向最后调用它的那个对象
+
+`this`的作用域环境。直接从从执行栈的角度上来看，最后一个执行栈帧调用的就是
+
+### 箭头函数
+
+箭头函数的 this 始终指向函数定义时的 this，而非执行时，箭头函数中没有this的绑定，必须通过查找作用域链的方式来决定他的值。如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this。
+
+### 如何改变this的指向
+
+- 使用箭头函数
+- 函数内部使用 _this = this做缓存
+- 使用apply, call, bind
+
+## new的过程
+
+```js
+const myNew = function(Func) {
+  const instance = {};
+  if (Func.prototype) {
+    Object.setPrototypeOf(instance, Func.prototype);
+  }
+  const res = Func.apply(instance, [].slice.call(arguments, 1));
+  return typeof res === 'obj'? res : instance;
+}
+```
+
+- 创造一个全新的对象
+- 这个对象会被执行 [[Prototype]] 连接，将这个新对象的 [[Prototype]] 链接到这个构造函数.prototype 所指向的对象
+- 这个新对象会绑定到函数调用的 this
+- 如果函数没有返回其他对象，那么 new 表达式中的函数调用会自动返回这个新对象
+
+## js脚本加载问题，async、defer问题
+
+如果依赖其他脚本和 DOM 结果，使用 defer
+如果与 DOM 和其他脚本依赖不强时，使用 async
+
+## 如何判断一个对象是不是空对象？
+
+```js
+Object.keys(obj).length === 0
+```
+
+## js的特性
+
+基于原型的动态语言，有this，原型和原型链。某种意义来说，js分为：语言标准部分（es）+ 苏州环境部分。
+
+- 在浏览器宿主环境包括 DOM + BOM 等
+- 在node中，宿主环境包括一些文件、数据库、网络、与操作系统的交互等
+
+### 函数中的arguments是数组吗？类数组转数组的方法了解一下？

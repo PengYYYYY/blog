@@ -86,5 +86,5 @@ let ans = 0
 通过寻找二分的中间点
 
 ```javascript
-const mid = start + ((start + end) >> 1)
+const mid = (start + end) >> 1
 ```

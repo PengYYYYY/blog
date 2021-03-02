@@ -1,6 +1,6 @@
 # 算法架子
 
-## 遍历 traverse
+## 遍历
 
 ```ts
 
@@ -103,6 +103,57 @@ const bsf = (root) => {
       if(cur.left) stcak.push(cur.left)
       if(cur.right) stcak.push(cur.right)
     }
+  }
+}
+```
+
+## 二分
+
+```js
+const binary = (arr) => {
+  const left = 0, right = arr.length - 1
+  where(left < right) {
+    const mid = left + right) >> 2
+    if (arr[mid] < arr[left]) {
+      // condition1 
+    } else if(arr[right] < arr[mid]) {
+      // condition2
+    } else {
+      // condition3
+    }
+  }
+  // 结束
+}
+```
+
+## 链表
+
+### 链表遍历
+
+```js
+const list = (head) => {
+  const cur = head
+  while(cur) {
+    cur = cur.next
+    //doSomeThings
+  }
+}
+```
+
+## 回溯算法
+
+```js
+let res = []
+function backtrack(path, condition, ...) {
+  if (judge(condition)) { //满足条件
+    res.push(path)
+    return
+  }
+  for (let select of selectList) {
+    if(condition) break;
+    path.push(select);  // 走某条路
+    backtrack(path, newSelectList);
+    path.pop(); //返回上一个十字路口
   }
 }
 ```

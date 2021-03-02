@@ -7,11 +7,11 @@
 闭包的例子：
 
 ```js
-var count=10;//全局作用域 标记为flag1
+var count = 10;//全局作用域 标记为flag1
 function add(){
-    var count=0;//函数全局作用域 标记为flag2
+    var count = 0;//函数全局作用域 标记为flag2
     return function(){
-        count+=1;//函数的内部作用域
+        count += 1;//函数的内部作用域
         alert(count);
     }
 }
@@ -21,50 +21,6 @@ s();//输出2
 ```
 
 我的理解是，闭包就是能够读取其他函数内部变量的函数。需要追溯到调用栈和垃圾回收。
-
-### 闭包使用场景
-
-- 设计私有的方法和变量（封装，定义模块）
-
-```js
-var counter = (function(){
-  var privateCounter = 0; //私有变量
-  function change(val){
-    privateCounter += val;
-  }
-  return {
-    increment:function(){  
-      change(1);
-    },
-    decrement:function(){
-      change(-1);
-    },
-    value:function(){
-      return privateCounter;
-    }
-  };
-})();
-```
-
-- 设置缓存
-
-```js
-var fn=(function(){
-  var cache={}//将结果缓存到该对象中
-  return function(){
-    var str=JSON.stringify(arguments);
-    if(cache[str]){//判断缓存中是否存在传递过来的参数，存在直接返回结果，无需计算
-      return cache[str];
-    }else{//进行计算并返回结果
-      var sum=0;
-      for(var i=0;i<arguments.length;i++){
-        sum+=arguments[i];
-      }
-      return cache[str]=sum;
-    }
-  }
-})()
-```
 
 ### 闭包的优点和缺点
 
@@ -120,6 +76,26 @@ var counter = (function() {
     },
     value: function() {
       return privateCounter
+    }
+  }
+})()
+```
+
+- 设置缓存
+
+```js
+var fn=(function(){
+  var cache = {}//将结果缓存到该对象中
+  return function(){
+    var str = JSON.stringify(arguments);
+    if (cache[str]) {//判断缓存中是否存在传递过来的参数，存在直接返回结果，无需计算
+      return cache[str];
+    } else {//进行计算并返回结果
+      var sum=0;
+      for(var i=0;i<arguments.length;i++){
+        sum+=arguments[i];
+      }
+      return cache[str]=sum;
     }
   }
 })()

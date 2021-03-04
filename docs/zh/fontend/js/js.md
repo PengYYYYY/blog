@@ -1,11 +1,32 @@
 # JavaScript
 
-## 相关文章
+## 语言基础
 
-- [事件循环](/zh/articles/eventLoop/)
-- [函数式编程](/zh/articles/functional/)
+### symbol 有什么用处
 
-## 基础
+可以用来表示一个独一无二的变量防止命名冲突。主要用来提供遍历接口，布置了 symbol.iterator 的对象才可以使用 for···of 循环，可以统一处理数据结构。调用之后回返回一个遍历器对象，包含有一个 next 方法，使用 next 方法后有两个返回值 value 和 done 分别表示函数当前执行位置的值和是否遍历完毕。Symbol.for() 可以在全局访问 symbol
+
+## 原型相关
+
+### new的过程
+
+```js
+const myNew = function(Func) {
+  const instance = {};
+  if (Func.prototype) {
+    Object.setPrototypeOf(instance, Func.prototype);
+  }
+  const res = Func.apply(instance, [].slice.call(arguments, 1));
+  return typeof res === 'obj'? res : instance;
+}
+```
+
+- 创造一个全新的对象
+- 这个对象会被执行 [[Prototype]] 连接，将这个新对象的 [[Prototype]] 链接到这个构造函数.prototype 所指向的对象
+- 这个新对象会绑定到函数调用的 this
+- 如果函数没有返回其他对象，那么 new 表达式中的函数调用会自动返回这个新对象
+
+## 异步编程
 
 ### Generator函数
 
@@ -44,8 +65,6 @@ console.log("fun", b.next()); //2
 console.log("fun1", a); //2
 ```
 
-### Async
-
 ## JavaScript 中的特性
 
 ### delete
@@ -70,6 +89,13 @@ delete c.b // true c {a: 1}
 x = 100
 delete x // true
 ```
+
+### js的特性
+
+基于原型的动态语言，有this，原型和原型链。某种意义来说，js分为：语言标准部分（es）+ 苏州环境部分。
+
+- 在浏览器宿主环境包括 DOM + BOM 等
+- 在node中，宿主环境包括一些文件、数据库、网络、与操作系统的交互等
 
 ### 范式引用
 
@@ -125,20 +151,7 @@ true
 ReferenceError: b is not define
 ```
 
-## CommonJS，ES module 的区别
-
-它们都是一种模块规范，例如 Node 使用的就是 CommonJS 规范。ES module 则是语言标准上的模块规范。
-
-- CommonJS 模块使用 require() 和 module.exports，ES6 模块使用 import和 export。
-- CommonJS 模块输出的是一个值的浅拷贝，ES6 模块输出的是值的引用。
-- CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
-- CommonJS 模块的 require() 是同步加载模块，ES6 模块的 import 命令是异步加载，有一个独立的模块依赖的解析阶段。
-- ES6 模块之中，顶层的 this 指向 undefined；CommonJS 模块的顶层 this 指向当前模块，
-- 对于循环加载的处理方法不同
-
-第 3 个差异是因为 CommonJS 加载的是一个对象（即 module.exports 属性），该对象只有在脚本运行完才会生成。
-
-## 为什么 0.1 + 0.2 != 0.3
+### 为什么 0.1 + 0.2 != 0.3
 
 先说原因，因为 JS 采用 IEEE 754 双精度版本（64位），并且只要采用 IEEE 754 的语言都有该问题。
 
@@ -156,126 +169,31 @@ IEEE 754 双精度版本（64位）将 64 位分为了三段
 
 这些循环的数字被裁剪了，就会出现精度丢失的问题，也就造成了 0.1 不再是 0.1 了，而是变成了 0.100000000000000002
 
-### 怎么解决这个问题
+> 怎么解决这个问题
 
 ```js
 parseFloat((0.1 + 0.2).toFixed(10)) === 0.3 // true
 ```
 
-### 给localStorage加上过期时间
+### js指向问题
 
-```js
-class myStorage {
-  constructor(props) {
-    this.props = props || {}
-    this.source = this.props.source || window.localStorage
-    this.init();
-  }
-
-  set(key, value, expired) {
-    let source = this.source
-    source[key] = JSON.stringify(value);
-    if (expired) {
-      source[`${key}__expires__`] = Date().now() + 1000 * 60 * expired
-    }
-    return value
-  }
-
-  get(key) {
-    const source = this.source,expired = source[`${key}__expires__`]||Date.now+1;
-    const now = Date.now();
-    if ( now >= expired ) {
-      this.remove(key);
-      return;
-    }
-    const value = source[key] ? JSON.parse(source[key]) : source[key];
-    return value
-  }
-
-  remove(key) {
-    const data = this.source, value = data[key];
-    delete data[key];
-    delete data[`${key}__expires__`];
-    return value;
-  }
-
-  init() {
-    const reg = new RegExp("__expires__");
-    let data = this.source;
-    let list = Object.keys(data);
-    if(list.length > 0) {
-      list.map((k, v) => {
-        if(!reg.test(v)) {
-          let now = Date.now();
-          let expires = data[`${key}__expires__`]||Date.now+1;
-          if (now >= expires ) {
-            this.remove(key);
-          };
-        }
-        return key
-      })
-    }
-  }
-}
-```
-
-## 语言类问题
-### symbol 有什么用处
-
-可以用来表示一个独一无二的变量防止命名冲突。主要用来提供遍历接口，布置了 symbol.iterator 的对象才可以使用 for···of 循环，可以统一处理数据结构。调用之后回返回一个遍历器对象，包含有一个 next 方法，使用 next 方法后有两个返回值 value 和 done 分别表示函数当前执行位置的值和是否遍历完毕。Symbol.for() 可以在全局访问 symbol
-
-## js指向问题
-
-### this的要点
+#### this的要点
 
 - this 永远指向最后调用它的那个对象
 
 `this`的作用域环境。直接从从执行栈的角度上来看，最后一个执行栈帧调用的就是
 
-### 箭头函数
+#### 箭头函数
 
 箭头函数的 this 始终指向函数定义时的 this，而非执行时，箭头函数中没有this的绑定，必须通过查找作用域链的方式来决定他的值。如果箭头函数被非箭头函数包含，则 this 绑定的是最近一层非箭头函数的 this。
 
-### 如何改变this的指向
+#### 如何改变this的指向
 
 - 使用箭头函数
 - 函数内部使用 _this = this做缓存
 - 使用apply, call, bind
 
-## new的过程
-
-```js
-const myNew = function(Func) {
-  const instance = {};
-  if (Func.prototype) {
-    Object.setPrototypeOf(instance, Func.prototype);
-  }
-  const res = Func.apply(instance, [].slice.call(arguments, 1));
-  return typeof res === 'obj'? res : instance;
-}
-```
-
-- 创造一个全新的对象
-- 这个对象会被执行 [[Prototype]] 连接，将这个新对象的 [[Prototype]] 链接到这个构造函数.prototype 所指向的对象
-- 这个新对象会绑定到函数调用的 this
-- 如果函数没有返回其他对象，那么 new 表达式中的函数调用会自动返回这个新对象
-
 ## js脚本加载问题，async、defer问题
 
 如果依赖其他脚本和 DOM 结果，使用 defer
 如果与 DOM 和其他脚本依赖不强时，使用 async
-
-## 如何判断一个对象是不是空对象？
-
-```js
-Object.keys(obj).length === 0
-```
-
-## js的特性
-
-基于原型的动态语言，有this，原型和原型链。某种意义来说，js分为：语言标准部分（es）+ 苏州环境部分。
-
-- 在浏览器宿主环境包括 DOM + BOM 等
-- 在node中，宿主环境包括一些文件、数据库、网络、与操作系统的交互等
-
-### 函数中的arguments是数组吗？类数组转数组的方法了解一下？

@@ -90,3 +90,60 @@ Web Storage 是一个从定义到使用都非常简单的东西。它使用键�
 | 数据生命周期 | 一般由服务器生成，可以设置过期实际 | 除非被清理，否则一直存在 | 页面关闭就清理 | 除非被清理，否则一直存在 |
 | 数据存储大小 | 4k | 5M | 5M | 无限 |
 | 与服务端通信 | header中对请求性能影响 | 无 | 无 | 无 |
+
+## 给localStorage加上过期时间
+
+```js
+class myStorage {
+  constructor(props) {
+    this.props = props || {}
+    this.source = this.props.source || window.localStorage
+    this.init();
+  }
+
+  set(key, value, expired) {
+    let source = this.source
+    source[key] = JSON.stringify(value);
+    if (expired) {
+      source[`${key}__expires__`] = Date().now() + 1000 * 60 * expired
+    }
+    return value
+  }
+
+  get(key) {
+    const source = this.source,expired = source[`${key}__expires__`]||Date.now+1;
+    const now = Date.now();
+    if ( now >= expired ) {
+      this.remove(key);
+      return;
+    }
+    const value = source[key] ? JSON.parse(source[key]) : source[key];
+    return value
+  }
+
+  remove(key) {
+    const data = this.source, value = data[key];
+    delete data[key];
+    delete data[`${key}__expires__`];
+    return value;
+  }
+
+  init() {
+    const reg = new RegExp("__expires__");
+    let data = this.source;
+    let list = Object.keys(data);
+    if(list.length > 0) {
+      list.map((k, v) => {
+        if(!reg.test(v)) {
+          let now = Date.now();
+          let expires = data[`${key}__expires__`]||Date.now+1;
+          if (now >= expires ) {
+            this.remove(key);
+          };
+        }
+        return key
+      })
+    }
+  }
+}
+```

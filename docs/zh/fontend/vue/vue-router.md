@@ -1,5 +1,88 @@
 # vue-router
 
+## 核心思想
+
+- 策略1，监听哈希变化，触发变化
+- 利用history API, 监听hash变化。
+
+监听路由变化，找到对应的组件，然后渲染。
+
+## 简易的vue-router
+
+理解了核心思想之后，来实现一个简易版的 `vue-router`。vue-router的入口和核心的两个组件`router-link`, `router-view`。
+
+混入插件，执行install函数，在`beforeCreated`钩子中，挂载`options`中的`router`。实例在创建时即可访问到`router`，另外就是`install`时挂载`router-link`和`router-view`组件。
+
+- vue-router的使用
+
+```js
+import router from 'vue-router'
+new Vue({
+  router
+})
+```
+
+```js
+let _vue
+class Router {
+  constructor(options) {
+    this.$options = options
+    this.current = window.location.hash.slice(1) || '/'
+    // 缓存path和route映射关系
+    this.routeMap = {}
+    this.$options.routes.forEach(
+      route => {
+        this.routeMap[route.path] = route
+      }
+    )
+
+    // 监控url变化
+    window.addEventListener('hashchange', this.onHashChange.bind(this))
+    window.addEventListener('load', this.onHashChange.bind(this))
+  }
+
+  onHashChange() {
+    this.current = window.location.hash.slice(1)
+  }
+}
+Router.install = function(Vue) {
+  _vue = Vue
+  Vue.mixin({
+    beforeCreated() {
+      if(this.$options.router) {
+        Vue.prototype.$router = this.$options.router
+      }
+    }
+  })
+  Vue.component('router-link', {
+    props: {
+      to: {
+        type: String,
+        required: true
+      }
+    },
+    render(h) {
+      return h('a',{
+        attrs: {
+          href: '#' + this.to
+        }
+      }, this.$slots.default)
+    }
+  })
+  Vue.component('router-view', {
+    render(h) {
+      let component = null
+      const route = this.$router.$options.routes.find(route => route.path == this.router.current)
+      if (route) {
+        component = route
+      }
+      h(component)
+    }
+  })
+}
+export default VueRouter
+```
+
 ## 一些常见问题
 
 ### vue-router有哪些组件？

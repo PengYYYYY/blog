@@ -5,15 +5,16 @@ Vuex实现了一个单向数据流，在全局拥有一个State存放数据，�
 重点：
 
 - 单例
+- 集中式管理
 - 可预测
 
 核心特性：
 
 - state
 - getters
-- mutations
-- actions
-- modules
+- commit(提交数据更新) -> mutations
+- dispatch(触发异步操作方法) -> actions(异步操作数据更新)
+- modules(模块化)
 
 ## 流程
 
@@ -105,6 +106,25 @@ export default {
   }
 }
 </script>
+```
+
+### eventBus原理
+
+```js
+class Bus {
+  constructor() {
+    this.callbacks = {}
+  }
+  $on(name, fn) {
+    this.callbacks[name] = this.callbacks[name] || []
+    this.callbacks[name].push(fn)
+  }
+  $emit(name, args) {
+    if (this.callbacks[name]) {
+      this.callbacks[name].forEach(cb => cb(args))
+    }
+  }
+}
 ```
 
 ### vuex核心原理的实现

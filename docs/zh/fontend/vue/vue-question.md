@@ -288,4 +288,50 @@ destroyed：发生在实例销毁之后，这个时候只剩下了dom空壳。�
 
 源码中：`core/components/keep-alive`
 
+## 创建vue节点的两种方式
 
+- vue-extend
+
+```js
+function create(Component, props) {
+  // 继承组件
+  const Ctor = Vue.extend(Component)
+  // 传参
+  const comp = new Ctor({
+    propsData: props
+  })
+  // 挂载
+  comp.$mount()
+  document.body.appendChild(comp.$el)
+  comp.remove = function() {
+    document.body.remove(comp.$el)
+    comp.$destory()
+  }
+}
+```
+
+- 实例化
+
+```js
+function create(Component, props) {
+  const vm = new Vue({
+    // h是createElement, 返回VNode，是虚拟dom
+    // 需要挂载才能变成真实dom
+    render: h => h(Component, {props})
+  }).$mount()// 不指定宿主元素，则会创建真实dom，但是不会追加操作
+
+  // 获取真实dom
+  document.body.appendChild(vm.$el)
+
+  const comp = vm.$children[0]
+
+  // 删除
+  comp.remove = function() {
+    document.body.remove(vm.$el)
+    vm.$destroy()
+  }
+  
+  return comp
+}
+
+```

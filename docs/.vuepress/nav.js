@@ -36,10 +36,10 @@ exports.cnNav = [{
 		text: '文章',
 		link: '/zh/articles/'
 	},
-	{
-		text: 'Node',
-		link: '/zh/node/'
-	},
+	// {
+	// 	text: 'Node',
+	// 	link: '/zh/node/'
+	// },
 	{
 		text: '网络',
 		link: '/zh/network/'

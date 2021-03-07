@@ -39,7 +39,7 @@ module.exports = {
         label: '简体中文',
         selectText: '选择语言',
         ariaLabel: '选择语言',
-        lastUpdated: '上次更新',
+        // lastUpdated: '上次更新',
         sidebar: {
           '/zh/fontend/': getFontEndBar(),
           '/zh/node/': getNodeBar(),

@@ -1,6 +1,8 @@
 # Vue3.0
 
-vue3.0代码结构 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/tUoPsF.png)
+- vue3.0代码结构
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/tUoPsF.png)
 
 ## 优化
 
@@ -114,6 +116,29 @@ Proxy劫持的是整个对象，自然对于对象的属性的增加和删除都
 
 - 增强了逻辑复用
 - 增强了代码结构与可读性
+
+### 取消组件的根节点
+
+由老的
+
+```js
+<template>
+  <div>
+
+  </div>
+</template>
+```
+
+变成为
+
+```js
+<template>
+  <div></div>
+  <div></div>
+</template>
+```
+
+在做组件递归的时候可以减少`div`的生成
 
 ## 新特性
 

@@ -717,3 +717,28 @@ TTFB首字节相应时间（TTFB）是最初的网络请求被发起到从服务
 #### 警惕字体变化
 
 字体通常是大文件，需要一段时间才能加载，一些浏览器直到下载完字体后才呈现文本
+
+## webpack性能优化
+
+#### treeShaking
+
+tree-shaking 是一个术语，通常指在 JavaScript 上下文中移除未使用的代码(dead-code)。它依赖于 ES2015 模块语法中的静态结构特性，例如 import 和 export。这个术语和概念兴起于 ES2015 模块打包工具 rollup。
+webpack 4 版本扩展了这个功能，通过 package.json 的 "sideEffects" 属性作为标记，向编译器提供了提示，表示项目中的哪些文件是“纯”的，因此在未使用时可以安全删除它们。
+webpack 打包过程中，对 ES2015 模块代码能够进行 tree-shaking，减少无用代码缩小项目体积大小，起到优化项目的作用。
+
+使用 tree-shaking 需要：
+
+- 1、使用 ES6 模块语法，这样 webpack 能够标记出来未使用的代码（dead-code）,
+- 2、使用 UglifyJSPlugin 这样的压缩工具来删除 tree-shaking 标记出来的无用代码。(webpack4 可以使用 mode 选项开启默认优化)
+
+#### 擦除无用的 CSS
+
+使用 PurgeCSS 来完成对无用 css 的擦除，它需要和 mini-css-extract-plugin 配合使用。
+
+#### 图片压缩
+
+image-webpack-loader，
+
+#### 拆分代码
+
+使用 splitChunksPlugin 把一个大的文件分割成几个小的文件，这样也可以有效的提升 webpack 的打包速度，详细的配置介绍大家可以看笔者写的 配置 SplitChunksPlugin，里面详细介绍了怎么配置 splitChunks。

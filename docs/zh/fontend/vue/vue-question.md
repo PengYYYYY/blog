@@ -125,7 +125,22 @@ vue中diff执行的时刻是组件实例执行其更新函数时，它会比对�
 
 ## 组件化的理解
 
-- 组件定义
+定义：组件是可复用的vue实例，准确的来说他们是`VueComponent`的实例，继承自`vue`
+优点：软件工程中，高内聚，低耦合的一种体现。
+
+### 使用组件
+
+- 定义：Vue.component(), new vue中的 components选项，sfc.
+- 分类：有状态组件，函数式组件（functional），抽象组件（abstract，完成特定的功能）
+- 通信：$on/$emit, props, provide/inject, $children/$parent/$root/$listeners
+- 内容分发：slot, template, v-slot
+- 使用和优化：is，keep-alive，异步组件
+
+### 组件的本质
+
+- 组件配置 => VueComponent实例 => render => Virtual Dom => Dom
+
+组件的本质就是产生虚拟Dom.
 
 ### 自定义模式
 
@@ -335,3 +350,47 @@ function create(Component, props) {
 }
 
 ```
+
+## transition动画
+
+name：用于自动生成 CSS 过渡类名。例如：name: 'fade' 将自动拓展为 .fade-enter，.fade-enter-active 等。默认类名为 "v"
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/vwW5py.png)
+
+## 数组数据的响应化过程
+
+```javascript
+const originalProto = Array.prototype
+const arrProto = Object.create(originalProto)
+const methodsToPatch = [
+  'push',
+  'pop',
+  'shift',
+  'unshift',
+  'splice',
+  'sort',
+  'reverse'
+]
+methodsToPatch.forEach(method => {
+  arrProto[method] = function() {
+    originalProto[method].apply(this, arguments)
+  }
+})
+```
+
+## vue异步更新流程
+
+- 第一步
+
+队列保存更新函数，一个key对应一个`watcher`,如果对相同key进行操作，则只会更新一次
+
+- 第二步
+
+批量处理，利用微任务。
+
+优先级：
+
+1. Promise/MutationObserver
+2. SetImmediate/SetTimeOut
+
+微任务和宏任务，微任务在浏览器刷新前，宏任务在浏览器更新后。

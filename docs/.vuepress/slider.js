@@ -52,18 +52,18 @@ exports.getFontEndBar = () => {
 
 exports.getNodeBar = () => {
 	return [
-		'egg',
+		'nodeBase',
 	]
 }
 
 exports.getNetWorkBar = () => {
 	return [
 		'connectionProcess',
-		'cache',
 		'crossDomain',
 		'httpCode',
 		'security',
-		'https'
+		'https',
+		'cache'
 	]
 }
 
@@ -101,7 +101,6 @@ exports.getArticlesBar = () => {
 			children: [
 				'vue/vueProtocol',
 				'vue/ssr',
-				'vue/simple-vue',
 				'vue/vue-loader'
 			]
 		},
@@ -117,7 +116,11 @@ exports.getArticlesBar = () => {
 			title: '工程与实践',
 			children: [
 				'engineering/buildSystem',
-				'engineering/componentLibrary'
+				'engineering/componentLibrary',
+				'engineering/optimize',
+				'engineering/unitTest',
+				'engineering/npm',
+				'engineering/modular'
 			]
 		},
 		{

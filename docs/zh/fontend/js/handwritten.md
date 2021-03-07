@@ -495,8 +495,3 @@ function myInterval(fn, interval) {
 }
 ```
 
-## 常用定时器函数
-
-```js
-
-```

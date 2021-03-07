@@ -83,3 +83,141 @@ npx babel script.js --out-file script-compiled.js --source-maps
 @babel/runtime-corejs2 ≈ @babel/runtime + babel-polyfill;
 
 @babel/runtime只能处理语法关键字，而@babel/runtime-corejs2还能处理新的全局变量（例如，Promise）、新的原生方法（例如，String.padStart
+
+## babel解析原理
+
+和编译器类似，babel 的转译过程也分为三个阶段，这三步具体是：
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/4RpgZD.png)
+
+### 解析 Parse
+
+将代码解析生成抽象语法树( 即AST )，也就是计算机理解我们代码的方式，一般来说每个 js 引擎都有自己的 AST，比如熟知的 v8，chrome 浏览器会把 js 源码转换为抽象语法树，再进一步转换为字节码或机器代码，而 `babel` 则是通过 `babylon` 实现的。简单来说就是一个对于 JS 代码的一个编译过程，进行了词法分析与语法分析的过程。
+
+### 转换 Transform
+
+对于 AST 进行变换一系列的操作，`babel` 接受得到 `AST` 并通过 `babel-traverse` 对其进行遍历，在此过程中进行添加、更新及移除等操作。
+
+### 生成 Generate
+
+将变换后的 AST 再转换为 JS 代码, 使用到的模块是 babel-generator。
+
+而 babel-core 模块则是将三者结合使得对外提供的API做了一个简化。
+
+babel 只是转译新标准引入的语法，这些是不会转译的，需要引入对应的 polyfill 来解决。在我们编写插件的主要专注于第二步转换过程的工作，专注于对于代码的转化规则的拓展，解析与生成的偏底层相关操作则有对应的模块支持。
+
+### 抽象语法树（AST）是怎么生成的
+
+- 分词：将整个代码字符串分割成语法单元数组（token）
+
+JS代码中的语法单元主要指如标识符、运算符、括号、数字、字符串、空格解析成最小单元。
+
+- 语义分析：在分词结果的基础上分析语法单元之间的关系。
+
+将得到的词汇进行一个立体的组合，确定词语之间的关系。
+
+1. 语句(statement)，即指一个具备边界的代码区域，相邻的两个语句之间从语法上来讲互不影响，即调换顺序也不会产生语法错误。
+2. 表达式(expression)，则指最终有个结果的一小段代码，他可以嵌入到另一个表达式，且包含在语句中。
+
+简单来说语义分析既是对语句和表达式识别，这是个递归过程，解析中，babel会在解析每个语句和表达式的过程中设置一个暂存器，用来暂存当前读取到的词法单元，如果解析失败，就会返回之前的暂存点，再按照另一种方式进行解析，如果解析成功，则将暂存点销毁。类似于回溯算法。
+
+## babel-plugin-import原理
+
+babel-plugin-import 提供组件的按需加载
+
+将
+
+```js
+import { Button } from 'antd';
+```
+
+转换成
+
+```js
+import Button from 'antd/es/button';
+import 'antd/es/button/style';
+```
+
+### 第一步 依赖收集
+
+babel-plubin-import 会在 ImportDeclaration 里将所有的 specifier 收集起来。大致的AST如下:
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/fB0ZEQ.png)
+
+可以从这个 ImportDeclaration 语句中提取几个关键点：
+
+- source.value: antd
+- specifier.local.name: Button
+- specifier.local.name: Rate
+
+代码
+
+```js
+ImportDeclaration(path, state) {
+  const { node } = path;
+  if (!node) return;
+  const { value } = node.source; // 代码里 import 的包名
+  const { libraryName } = this; // 插件 options 的包名
+  const { types } = this; // babel-type 工具函数
+  const pluginState = this.getPluginState(state); // 获取状态
+  if (value === libraryName) {
+    node.specifiers.forEach(spec => {
+      if (types.isImportSpecifier(spec)) { // 判断是不是 ImportSpecifier 类型的节点，也就是是否是大括号的
+        // 收集依赖
+        pluginState.specified[spec.local.name] = spec.imported.name;
+      } else { 
+        pluginState.libraryObjs[spec.local.name] = true;
+      }
+    });
+    pluginState.pathsToRemove.push(path);
+  }
+}
+```
+
+在 `babel` 遍历了所有的 `ImportDeclaration` 节点之后，就收集好了依赖关系，下一步就是如何收集。
+
+### 第二步 判断是否使用
+
+收集了依赖关系之后，得要判断一下这些 `import` 的变量是否被使用到了:
+
+首先会进行如下的转换
+
+```js
+ReactDOM.render(<Button>Hello</Button>);
+```
+
+转换到
+
+```js
+React.createElement(Button, null, "Hello");
+```
+
+判断其是否进行了转换
+
+### 第三步 生成引入代码（核心）
+
+第一步和第二步主要的工作是找到需要被插件处理的依赖关系：
+
+```js
+import { Button, Rate } from 'antd';
+ReactDOM.render(<Button>Hello</Button>);
+```
+
+`Button` 组件使用到了，`Rate` 在代码里未使用。所以插件要做的也只是自动引入 `Button` 的代码和样式即可。
+
+```js
+import { Button } from 'antd';
+```
+
+转换成
+
+```js
+var _button = require('antd/lib/button');
+require('antd/lib/button/style');
+```
+
+`babel-plugin-import` 和普遍的 `babel` 插件一样，会遍历代码的 `ast`，然后在 `ast` 上做了一些事情：
+
+1. 收集依赖：找到`importDeclaration`，分析出包 `x` 和依赖 `y,z`,例如 `x` 和 `libraryName` 是一致的，就将其收集起来。
+2. 判断是否使用：判断收集到的依赖是否被使用，如果有使用就调用 `importMethod` 生成新的 `import` 语句。
+3. 生成引入代码：根据配置项生成代码和样式的 `import` 语句

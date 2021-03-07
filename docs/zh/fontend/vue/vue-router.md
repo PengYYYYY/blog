@@ -13,7 +13,7 @@
 
 混入插件，执行install函数，在`beforeCreated`钩子中，挂载`options`中的`router`。实例在创建时即可访问到`router`，另外就是`install`时挂载`router-link`和`router-view`组件。
 
-- vue-router的使用
+### 第一步vue-router的使用
 
 ```js
 import router from 'vue-router'

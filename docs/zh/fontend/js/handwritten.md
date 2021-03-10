@@ -495,3 +495,29 @@ function myInterval(fn, interval) {
 }
 ```
 
+## New 操作符实现
+
+在调用 new 的过程中会发生以下四件事情：
+
+- 新生成了一个对象
+- 链接到原型
+- 绑定 this
+- 返回新对象
+
+```js
+function create() {
+  let obj = {}
+  let Con = [].shift.call(arguments)
+  obj.__proto__ = Con
+  let result = Con.apply(obj, arguments)
+  return result instanceof Object ? result : obj
+}
+```
+
+以下是对实现的分析：
+
+- 创建一个空对象
+- 获取构造函数
+- 设置空对象的原型
+- 绑定 `this` 并执行构造函数
+- 确保返回值为对象

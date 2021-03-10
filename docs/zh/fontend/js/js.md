@@ -26,6 +26,16 @@ const myNew = function(Func) {
 - 这个新对象会绑定到函数调用的 this
 - 如果函数没有返回其他对象，那么 new 表达式中的函数调用会自动返回这个新对象
 
+## 判断数据类型
+
+- typeof
+
+- Object.prototype.toString
+
+- constructor
+
+- instanceof
+
 ## 异步编程
 
 ### Generator函数
@@ -197,3 +207,17 @@ parseFloat((0.1 + 0.2).toFixed(10)) === 0.3 // true
 
 如果依赖其他脚本和 DOM 结果，使用 defer
 如果与 DOM 和其他脚本依赖不强时，使用 async
+
+## js中求数组最大值
+
+- 解构
+
+```js
+const res = Math.max(...[1,2,3,4])
+```
+
+- 利用apply
+
+```js
+const res = Math.max.apply(null, [1,2,3,4,5])
+```

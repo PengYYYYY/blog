@@ -369,3 +369,150 @@ import 'tc-flight-siskin/lib/vwsize/qq/index.css'
 // 单个组件引用样式(app渠道的button示例)
 import 'tc-flight-siskin/lib/vwsize/app/button.css'
 ```
+
+## 上传组件
+
+总结一下文件上传组件的要点
+
+- 实现上传进度
+- 分片上传
+- 失败重传
+- 断点续传
+- requestIdleCallback
+- 抽样hash
+
+### 上传进度
+
+onprogress这个事件，它是XMLHttpRequest对象的一个回调函数，在上传或者下载过程中会周期性执行。接受一个参数event，event有两个参数：
+
+- loaded：已经传输的数量
+- total：要传输的总数量
+
+```js
+var xhr = new XMLHttpRequest(),
+  method = 'GET',
+  url = 'https://developer.mozilla.org/';
+
+xhr.open(method, url, true);
+xhr.onprogress = function (event) {
+  //do something 
+  const progressRatio = event.loaded / event.total
+};
+xhr.send();
+```
+
+在axios中的配置选项中也提供了对应的接口：
+
+```js
+{
+ // `onUploadProgress` 允许为上传处理进度事件
+  onUploadProgress: function (progressEvent) {
+    // 对原生进度事件的处理
+  },
+
+  // `onDownloadProgress` 允许为下载处理进度事件
+  onDownloadProgress: function (progressEvent) {
+    // 对原生进度事件的处理
+  },
+}
+```
+
+## gulp插件
+
+pipe 意味管道，很好理解，文件流通过 pipe 管道，那么就可以在这个过程中对文件流进行操作，定制自己的需求。所有的处理都是在 pipe 中进行的。在组件库样式包的处理中，我们也实现了一个`gulp`插件,用来给混合包加上对应渠道的`class`类名.
+
+### 第一步：插件定义
+
+```js
+const PluginError = require('plugin-error'); // 错误处理
+const through = require('through2'); // 流处理包，整个gulp流的处理
+const cssWrap = require('./cssWrap'); // 业务处理工程
+
+const PLUGIN_NAME = 'gulp-css-wrap';
+
+module.exports = (options = {}) => {
+  function transform(file, encoding, callback) {
+    if (file.isNull()) return callback(null, file);
+
+    if (file.isStream()) {
+      return callback(new PluginError(PLUGIN_NAME, 'Streaming not supported'));
+    }
+    // 执行业务
+    file.contents = Buffer.from(cssWrap(file.contents.toString(), options, file.path));
+
+    callback(null, file);
+  }
+
+  return through.obj(transform);
+};
+
+```
+
+### 第二步
+
+```js
+const path = require('path');
+const fs = require('fs-extra');
+const deepmerge = require('deepmerge');
+const cssParse = require('css-parse');
+const cssStringify = require('css-stringify');
+const chalk = require('chalk');
+const log = require('fancy-log');
+
+const processRules = (list, options) => list.map((r) => {
+  if (r.selectors) {
+    r.selectors.forEach((s, index) => {
+      if (options.skip && options.skip.test(s)) return;
+      let selector = options.selector
+      // 关键代码，将类名进去前缀拼接
+      if (typeof selector === 'string') {
+        selector = options.selector ? `${options.selector} ${s}` : s;
+      } else {
+        let arr = []
+        options.selector.forEach(e => {
+          arr.push(`${e} ${s}`)
+        })
+        selector = arr.join(', ')
+      }
+      r.selectors[index] = selector;
+    });
+  }
+  if (r.type === 'media') {
+    r.rules = processRules(r.rules, options);
+  }
+  return r;
+});
+const cssWrap = (string, options = {}, filePath = ' ') => {
+  // 初始化参数
+  const _options = deepmerge({
+    selector: '.css-wrap',
+    skip: null,
+    log: true,
+  }, options);
+  // 读取文件
+  if (fs.existsSync(path.resolve(string))) {
+    try {
+      string = fs.readFileSync(string).toString();
+    } catch (error) {
+      if (log) {
+        const fileName = path.basename(filePath);
+        log(`${chalk.yellow('css-wrap: skipping empty file ->')} ${fileName}\n`);
+      }
+      return '';
+    }
+  }
+  // 解析css
+  const css = cssParse(string);
+  // 处理css
+  css.stylesheet.rules = processRules(css.stylesheet.rules, _options);
+  // 序列化css然后返回
+  return cssStringify(css);
+};
+
+
+module.exports = cssWrap;
+```
+
+- cssParse 解析css
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/wph1Jq.png)

@@ -35,7 +35,6 @@ exports.getFontEndBar = () => {
 				'engineering/webpack',
 				'engineering/modular',
 				'engineering/babel',
-				'engineering/unitTest',
 				'engineering/optimize',
 			]
 		},
@@ -117,10 +116,7 @@ exports.getArticlesBar = () => {
 			children: [
 				'engineering/buildSystem',
 				'engineering/componentLibrary',
-				'engineering/optimize',
-				'engineering/unitTest',
-				'engineering/npm',
-				'engineering/modular'
+				'engineering/unitTest'
 			]
 		},
 		{

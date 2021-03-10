@@ -65,9 +65,7 @@ function selectSort(arr) {
 }
 ```
 
-## O(nLogn) 级排序算法
-
-### 归并排序
+## 归并排序
 
 ```js
 function mergeArr(left, right) {
@@ -94,7 +92,7 @@ function mergeSort(arr) {
 }
 ```
 
-### 快速排序
+## 快速排序
 
 ```js
 function partition(arr, pivot, left, right) {
@@ -121,7 +119,7 @@ function quickSort(arr, left = 0; right = arr.length) {
 
 - 三数取中法，第一个值，中间值，最后一个值
 
-### 希尔排序
+## 希尔排序
 
 ```js
 function shellSort(arr) {
@@ -140,6 +138,18 @@ function shellSort(arr) {
   }
   return arr
 }
+```
+
+## 桶排序
+
+```js
+function radixSort(arr, arrDomain, groupSize) {
+  let data = []
+  for (let i = 0; i < arr.length; i++) {
+    
+  }
+}
+
 ```
 
 ## 排序算法对比

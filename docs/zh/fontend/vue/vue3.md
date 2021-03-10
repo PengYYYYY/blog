@@ -308,3 +308,19 @@ effect(() => {
 
 state.foo = 'fooooooo'
 ```
+
+## Composition API原理
+
+写过vue3.0的都知道，vue3.0的 `compositionApi` 和 `options` 是共存的。
+
+### composition和options如何做到和谐共存？
+
+- 关键代码
+
+如果设置了setup就会先处理它，else逻辑在后面做。如果设置了setup则先调用它，随后再处理别的options。
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/j5DPlP.png)
+
+### setup中的this指向哪？
+
+setup中的this就是它执行时的上下文，如果是esm方式打包，会是undefined；如果是单文件的方式运行，会是window；但是不管怎样都没有什么意义，所以请大家彻底忘了this吧，再也不用被它烦恼了。

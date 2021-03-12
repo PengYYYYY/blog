@@ -1,46 +1,8 @@
-# 组件库的一些要点
-
-## 组件库按需加载
-
-目前按需加载有两种方式实现。
-
-- 使用`babel-plugin-import`插件来自动按需引入
-- 提供`es module`版本，开启`tree shaking`
-
-### babel-plugin-import
-
-`babel-plugin-import`是`ant-design`团队出的一个`babel`插件，主要用于模块的按需加载。其原理就是将直接引入的方式通过`babel`转化成按需引入的方式。如果`css`也需要按需加载，也会注入`css`引用代码。
-
-例如
-
-```js
-import { Button } from 'antd';
-```
-
-转换成
-
-```js
-import Button from 'antd/es/button';
-import 'antd/es/button/style';
-```
-
-### tree shaking
-
-如果组件库提供了`es module`版本，并开启了`tree shaking`，那么不需要`babel-plugin-import`，也可以达到按需加载的目的，这个方法只针对于`js`，对于样式的按需加载仍需要手动引入。 当然`babel-plugin-import`和`tree shaking` 也可以并存使用。但大部分情况并存使用与单独使用体积差距不是很大。
-例如：
-
-```js
-import { Button } from 'antd';
-import 'antd/es/button/style';
-```
-
-`webpack`可以通过在`package.json`设置`sideEffects: false`,开启`tree shaking`。
-
-## 组件的样式包
+# 组件库之样式包
 
 在做组件库的时候，需要满足使用方的5个渠道 `wechat app elong qq touch`5个渠道主题样式,一套混合样式(用于使用class类名来加载不同样式的应用)，一套全尺寸样式(基于750px)的应用，一套vw样式（以375px基准）。简单说一些整个流程:
 
-### 文件目录如下
+## 文件目录如下
 
 ```shell
 ├── app
@@ -368,53 +330,6 @@ import 'tc-flight-siskin/lib/vwsize/qq/index.css'
 
 // 单个组件引用样式(app渠道的button示例)
 import 'tc-flight-siskin/lib/vwsize/app/button.css'
-```
-
-## 上传组件
-
-总结一下文件上传组件的要点
-
-- 实现上传进度
-- 分片上传
-- 失败重传
-- 断点续传
-- requestIdleCallback
-- 抽样hash
-
-### 上传进度
-
-onprogress这个事件，它是XMLHttpRequest对象的一个回调函数，在上传或者下载过程中会周期性执行。接受一个参数event，event有两个参数：
-
-- loaded：已经传输的数量
-- total：要传输的总数量
-
-```js
-var xhr = new XMLHttpRequest(),
-  method = 'GET',
-  url = 'https://developer.mozilla.org/';
-
-xhr.open(method, url, true);
-xhr.onprogress = function (event) {
-  //do something 
-  const progressRatio = event.loaded / event.total
-};
-xhr.send();
-```
-
-在axios中的配置选项中也提供了对应的接口：
-
-```js
-{
- // `onUploadProgress` 允许为上传处理进度事件
-  onUploadProgress: function (progressEvent) {
-    // 对原生进度事件的处理
-  },
-
-  // `onDownloadProgress` 允许为下载处理进度事件
-  onDownloadProgress: function (progressEvent) {
-    // 对原生进度事件的处理
-  },
-}
 ```
 
 ## gulp插件

@@ -107,6 +107,7 @@ Content-Security-Policy: child-src 'none'
 - 禁⽌第三⽅⽹站带Cookie
 - Referer Check - Https不发送referer
 - 加验证码
+- Cookie加SameSite，用来防止 CSRF 攻击和用户追踪
 
 ## 点击劫持
 

@@ -204,3 +204,18 @@ const router = new VueRouter({
   ]
 })
 ```
+
+## vue-router执行顺序
+
+1. 导航被触发
+2. 在失活的组件里调用离开守卫
+3. 调用全局的`beforeEach`组件
+4. 在重用的组件里调用`beforeRouteUpdate`组件
+5. 在路由配置里调用`beforeEnter`组件
+6. 解析异步路由组件
+7. 在被激活的组件里面调用`beforeRouterEnter`
+8. 调用全局的`beforeResolve`守卫
+9. 导航被确认
+10. 调用全局的`afterEach`钩子
+11. 触发DOM更新
+12. 用创建好的实例调用`beforeRouterEnter`守卫中传给 `next`的回调函数

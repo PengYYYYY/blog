@@ -44,7 +44,13 @@ exports.getFontEndBar = () => {
 				'browser/base',
 			]
 		},
-		'html',
+		{
+			title: 'HTML',
+			children: [
+				'html/base',
+				'html/Load',
+			]
+		},
 		'css',
 	]
 }
@@ -114,9 +120,17 @@ exports.getArticlesBar = () => {
 		{
 			title: '工程与实践',
 			children: [
+				'engineering/siskinImport',
+				'engineering/siskinStyle',
+				'engineering/siskinStyle',
 				'engineering/buildSystem',
-				'engineering/componentLibrary',
 				'engineering/unitTest'
+			]
+		},
+		{
+			title: '基础知识',
+			children: [
+				'basicComputer/threadsAndProcesses'
 			]
 		},
 		{

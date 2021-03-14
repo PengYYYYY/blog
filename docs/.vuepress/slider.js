@@ -43,6 +43,7 @@ exports.getFontEndBar = () => {
 			title: '浏览器',
 			children: [
 				'browser/base',
+				'browser/process',
 			]
 		},
 		{

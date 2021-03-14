@@ -2,7 +2,7 @@
 
 ## 脑图
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/TAtVQG.png)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/TrpMno.png)
 
 ## yarn
 

@@ -31,11 +31,12 @@ exports.getFontEndBar = () => {
 		{
 			title: '工程化',
 			children: [
+				'engineering/webpackBase',
+				'engineering/webpackAdvance',
 				'engineering/npm',
-				'engineering/webpack',
 				'engineering/modular',
 				'engineering/babel',
-				'engineering/optimize',
+				'engineering/optimize'
 			]
 		},
 		{

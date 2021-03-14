@@ -2,7 +2,7 @@
 
 ## 脑图
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/D6JgJt.png)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/TAtVQG.png)
 
 ## yarn
 
@@ -49,4 +49,14 @@ monorepo 最主要的好处是统一的工作流和Code Sharing。使用统一�
 
 [基于lerna和yarn workspace的monorepo工作流](https://zhuanlan.zhihu.com/p/71385053)
 
-## 版本问题
+## 版本规范
+
+- beta:内部测试版本
+- alpha:开放测试
+- rc:预选发布版本，主要着重于除错
+
+x.y.z
+
+x：主版本号，当做了不兼容当API修改
+y：次版本号：当你做了向下兼容的功能性新增
+z：修订号：当你做了向下兼容的问题修正

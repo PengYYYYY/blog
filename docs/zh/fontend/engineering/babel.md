@@ -96,7 +96,7 @@ npx babel script.js --out-file script-compiled.js --source-maps
 
 ### 转换 Transform
 
-对于 AST 进行变换一系列的操作，`babel` 接受得到 `AST` 并通过 `babel-traverse` 对其进行遍历，在此过程中进行添加、更新及移除等操作。
+对于 AST 进行变换一系列的操作，`babel` 接受得到 `AST` 并通过 `babel-traverse` 对其进行遍历，在此过程中进行添加、更新及移除等操作，通过 ImportDeclaration 可以得到依赖属性。
 
 ### 生成 Generate
 

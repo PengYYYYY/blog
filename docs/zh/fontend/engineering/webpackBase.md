@@ -1,5 +1,7 @@
 # webpack
 
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/k7xwFY.png)
+
 ## webpack的文件监听以及热更新
 
 文件监听原理，轮询判断文件的最后编辑时间是否发生变化
@@ -14,11 +16,7 @@
 
 ### 热更新原理
 
-- webpack-compile:将js编译成Bundle
-- HMR-Server: 将热更新的文件传输给HMR runtime
-- Bundle server: 提供文件在浏览器的访问
-- HRM-runtime: 注入浏览器，更新文件变化
-- bundle.js: 构建输出的文件
+[从零实现webpack热更新HMR](https://juejin.cn/post/6844904020528594957)
 
 ## 文件指纹
 
@@ -185,3 +183,107 @@ webpack.config.js
 
 - 冒烟测试，单元测试，测试覆盖率
 - 持续集成
+
+## webpack优化
+
+webpack的优化分两块
+
+- 速度优化
+- 体积优化
+
+### 性能分析
+
+- 速度分析
+
+分析整个打包总耗时,每个插件和loader的耗时情况
+
+```js
+const  speedMeasureWebpackPlugin = require("speed-measure-webpack-plugin")
+const smp = new speedMeasureWebpackPlugin()
+const webpackConfig = smp.warp({
+  plugins: [
+    xxx
+  ]
+})
+
+```
+
+- webpack-bundle-analyzer
+
+依赖的第三方模块文件大小,业务里面的组件代码大小
+
+```js
+const wba = require("webpack-bundle-analyzer")
+module.exports = {
+  plugins: [
+    new wba()
+  ]
+}
+```
+
+### 速度优化
+
+- HappyPack解析资源
+
+每次 webapck 解析一个模块，HappyPack 会将它及它的依赖分配给 worker 线程中
+
+- 使用 thread-loader 解析资源
+
+每次 webpack 解析一个模块，thread- loader 会将它及它的依赖分配给 worker 线程中
+
+- 并行压缩
+
+方法一:使用 parallel-uglify-plugin 插件
+方法二:uglifyjs-webpack-plugin 开启 parallel 参数
+方法三:terser-webpack-plugin 开启 parallel 参数
+
+### 分包:设置 Externals
+
+- externals
+
+将 vue 等基础包通过 cdn 引入，不打入 bundle 中。
+使用 html-webpack-externals-plugin
+
+### 预编译资源模块
+
+将 vue, vuex、vue-router 基础包和业务基础包打包成一个文件
+
+使用 DLLPlugin 进行分包，DllReferencePlugin 对 manifest.json 引用
+
+使用 DllReferencePlugin 引用 manifest.json
+
+### 缓存
+
+目的:提升二次构建速度
+
+- babel-loader 开启缓存
+- terser-webpack-plugin 开启缓存
+- 使用 cache-loader 或者 hard-source-webpack-plugin
+
+### 缩小构建目标
+
+目的:尽可能的少构建模块,比如 babel-loader 不解析 node_modules
+
+### 减少文件搜索范围
+
+- 优化 resolve.modules 配置(减少模块搜索层级)
+
+- 优化 resolve.mainFields 配置
+
+- 优化 resolve.extensions 配置
+
+- 合理使用 alias
+
+### 体积优化
+
+- 删除掉无用的 CSS
+
+PurifyCSS: 遍历代码，识别已经用到的 CSS class
+uncss: HTML 需要通过 jsdom 加载，所有的样式通过PostCSS解析，通过document.querySelector 来识别在 html 文件里面不存在的选择器
+
+使用 purgecss-webpack-plugin 和 mini-css-extract-plugin 配合使用。
+
+- 动态 Polyfill
+
+Polyfill Service原理:
+识别 User Agent，下发不同的 Polyfill

@@ -37,14 +37,38 @@ module.exports.add = add;
 - b.js
 
 ```js
-vara = require('./a.js');
+var a = require('./a.js');
 console.log(example.x); // 5
 console.log(example.add(1)); // 6
 ```
 
+### 实现
+
+其实在编译的过程中，Node 对我们定义的 JS 模块进行了一次基础的包装
+
+```js
+(function(exports, require, modules, __filename, __dirname)) {
+  ...
+})
+```
+
+这样我们便可以访问这些传入的arguments以及隔离了彼此的作用域。
+CommonJS 的一个模块，就是一个脚本文件。require命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象。
+
+```js
+{
+  id: '...',
+  exports: { ... },
+  loaded: true,
+  ...
+}
+```
+
+以后需要用到这个模块的时候，就会到exports属性上面取值。即使再次执行require命令，也不会再次执行该模块，而是到缓存之中取值。commonJS用同步的方式加载模块，只有在代码执行到require的时候，才回去执行加载。在服务端，模块文件都存在本地磁盘，读取非常快.
+
 优点：CommonJS规范完成了JavaScript的模块化，解决了依赖、全局变量污染的问题
 
-缺点：commonJS用同步的方式加载模块。在服务端，模块文件都存在本地磁盘，读取非常快，所以这样做不会有问题。但是在浏览器端，限于网络原因，更合理的方案是使用异步加载。这就是AMD规范诞生的背景。
+缺点：在浏览器端，限于网络原因，更合理的方案是使用异步加载。这就是AMD规范诞生的背景。
 
 ## AMD
 
@@ -58,11 +82,16 @@ define()定义模块，用require()加载模块
 - require([module], callback)
 
 ```js
-require(["a", "b", "c", "d", "e", "f"], function(a, b, c, d, e, f) {
-    a.test()
-    if (false) {
-       b.foo()
-    }
+
+// 定义 moduleA 依赖 a, b模块
+define(['./a','./b'],function(a,b){
+   a.doSomething()
+   b.doSomething()
+}) 
+
+// 使用
+require(['./moduleA'], function(moduleA) {
+  // ...
 })
 ```
 
@@ -85,13 +114,17 @@ define(function(require, exports, module) {
 })
 ```
 
-实现了浏览器端的模块化加载。 可以按需加载，依赖就近。
+代码在运行时，首先是不知道依赖的，需要遍历所有的require关键字，找出后面的依赖。具体做法是将function toString后，用正则匹配出require关键字后面的依赖。牺牲性能来换取更多开发便利的方法。
+
+而 AMD 是依赖前置的，换句话而 AMD 是依赖前置的，在解析和执行当前模块之前，模块作者必须指明当前模块所依赖的模块。代码在一旦运行到此处，能立即知晓依赖。而无需遍历整个函数体找到它的依赖，因此性能有所提升，缺点就是开发者必须显式得指明依赖——这会使得开发工作量变大。
 
 ## UMD
 
 不是一种规范,是结合 AMD 和 CommonJS 的一种更为通用的 JS 模块解决方案,在webpack打包的时候进行配置
 
 ## ES6 module
+
+ES6 Modules不是对象，import命令会被 JavaScript 引擎静态分析，在编译时就引入模块代码，而不是在代码运行时加载，所以无法实现条件加载。也正因为这个，使得静态分析成为可能。
 
 - 之前的几种模块化方案都是前端社区自己实现的，只是得到了大家的认可和广泛使用
 - ES6 在语言标准的层面上，实现了模块功能，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案。

@@ -179,6 +179,8 @@ Function.prototype.bind = function(context) {
 
 - 防抖
 
+去抖动，方法是在函数触发时，设定一个周期延迟执行函数，若在周期内函数再次执行、则刷新延迟时间，直到最后执行函数，这里函数收集到的结果是最后一次操作的结果
+
 ```js
 function debounce(func, ms = 500) {
   let timer;
@@ -191,10 +193,11 @@ function debounce(func, ms = 500) {
     }, ms);
   };
 }
-
 ```
 
 - 节流
+
+节流的概念是设定一个周期，周期内只执行一次，若有新的事件触发则不执行，周期结束后又有新的事件触发开始新的周期。
 
 ```js
 function throttle(func, ms) {
@@ -499,20 +502,19 @@ function myInterval(fn, interval) {
 
 在调用 new 的过程中会发生以下四件事情：
 
-- 新生成了一个对象
-- 链接到原型
-- 绑定 this
-- 返回新对象
+- 创建一个新的空的对象
+- 将构造函数的作用域赋给新对象（因此this就指向了这个新对象）
+- 执行构造函数中的代码（为这个新对象添加属性）
+- 如果这个函数有返回值，则返回；否则，就会默认返回新对象
 
 ```js
-function create() {
-  let obj = {}
-  let Con = [].shift.call(arguments)
-  obj.__proto__ = Con
-  let result = Con.apply(obj, arguments)
+function myNew() {
+  var Con = Array.prototype.shift.call(arguments);
+  var obj = Object.create(Con.prototype);
+  var result = Con.apply(obj, arguments);
   return result instanceof Object ? result : obj
 }
-```
+```f
 
 以下是对实现的分析：
 
@@ -521,3 +523,12 @@ function create() {
 - 设置空对象的原型
 - 绑定 `this` 并执行构造函数
 - 确保返回值为对象
+
+```js
+function myNew() {
+  const Con = Array.prototype.shift.call(arguments)
+  const obj = Objeact.create(Con.prototype)
+  const result =  Con.apply(obj, arguments)
+  return result instanceof Object ? result : obj
+}
+```

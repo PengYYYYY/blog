@@ -53,6 +53,15 @@ exports.getFontEndBar = () => {
 				'html/Load',
 			]
 		},
+		{
+			title: '常见问题',
+			children: [
+				'questions/js',
+				'questions/html',
+				'questions/css',
+				'questions/writtenTest',
+			]
+		},
 		'css',
 	]
 }
@@ -124,9 +133,9 @@ exports.getArticlesBar = () => {
 			children: [
 				'engineering/siskinImport',
 				'engineering/siskinStyle',
-				'engineering/siskinStyle',
 				'engineering/buildSystem',
-				'engineering/unitTest'
+				'engineering/unitTest',
+				'engineering/jwt'
 			]
 		},
 		{
@@ -139,6 +148,7 @@ exports.getArticlesBar = () => {
 			title: '杂物与思考',
 			children: [
 				'clutter/24岁的程序员',
+				'clutter/engineering',
 			]
 		},
 	]

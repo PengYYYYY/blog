@@ -53,6 +53,7 @@ exports.getFontEndBar = () => {
 				'html/load',
 			]
 		},
+		'mp',
 		'css'
 	]
 }
@@ -69,8 +70,11 @@ exports.getNetWorkBar = () => {
 		'crossDomain',
 		'httpCode',
 		'security',
+		'http',
 		'https',
-		'cache'
+		'http-next',
+		'cache',
+		'network-question'
 	]
 }
 
@@ -112,12 +116,17 @@ exports.getArticlesBar = () => {
 			]
 		},
 		{
-			title: '兴趣',
+			title: '杂七杂八的',
 			children: [
+				'other/AJAX',
 				'other/nat',
 				'other/db',
 				'other/howComputerRun',
-				'other/threadsAndProcesses'
+				'other/designMode',
+				'other/threadsAndProcesses',
+				'other/redis',
+				'other/nginx',
+				'other/currentLimiting'
 			]
 		},
 		{

@@ -337,7 +337,7 @@ minmax(100px, 1fr)表示列宽不小于100px，不大于1fr
 - `align-self`属性设置单元格内容的垂直位置（上中下），跟`align-items`属性的用法完全一致，也是只作用于单个项目。
 - `place-self`属性是`align-self`属性和`justify-self`属性的合并简写形式。
 
-## 水平垂直居中
+## 水平垂直d
 
 ```html
 <div class="out">

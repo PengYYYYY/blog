@@ -25,7 +25,7 @@ exports.getFontEndBar = () => {
 			title: 'react',
 			children: [
 				'react/LogicReuse',
-				'react/question',
+				// 'react/question',
 			]
 		},
 		{
@@ -49,20 +49,11 @@ exports.getFontEndBar = () => {
 		{
 			title: 'HTML',
 			children: [
-				'html/base',
-				'html/Load',
+				'html/html',
+				'html/load',
 			]
 		},
-		{
-			title: '常见问题',
-			children: [
-				'questions/js',
-				'questions/html',
-				'questions/css',
-				'questions/writtenTest',
-			]
-		},
-		'css',
+		'css'
 	]
 }
 
@@ -109,7 +100,7 @@ exports.getArticlesBar = () => {
 				'fe/inheritance',
 				'fe/functional',
 				'fe/eventLoop',
-				'fe/mobileAdapter',
+				'fe/mobile-adapter'
 			]
 		},
 		{
@@ -125,7 +116,8 @@ exports.getArticlesBar = () => {
 			children: [
 				'other/nat',
 				'other/db',
-				'other/howComputerRun'
+				'other/howComputerRun',
+				'other/threadsAndProcesses'
 			]
 		},
 		{
@@ -136,12 +128,6 @@ exports.getArticlesBar = () => {
 				'engineering/buildSystem',
 				'engineering/unitTest',
 				'engineering/jwt'
-			]
-		},
-		{
-			title: '基础知识',
-			children: [
-				'basicComputer/threadsAndProcesses'
 			]
 		},
 		{

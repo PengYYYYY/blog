@@ -299,8 +299,8 @@ function isEven(number) {
   return number % 2 === 0;
 }
 
-evens.some(isEven); // => true
-numbers.some(isEven); // => false
+evens.some(isEven); // => false
+numbers.some(isEven); // => true
 ```
 
 ## 数组的过滤

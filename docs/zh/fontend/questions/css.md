@@ -157,3 +157,21 @@ cubic-bezier() 可用于 animation-timing-function 和 transition-timing-functio
 cubic-bezier(x1,y1,x2,y2)
 快慢由斜率k决定，k1=y1/x1,k2=y2/x2, k>0 则为快，k<0则为慢
 图解 <https://cubic-bezier.com/#.17,.67,.83,.67>
+
+## flex
+
+### 容器
+
+flex-direction: row，row-reverse, column, column-reverse
+flex-warp: warp, no-warp, warp-reverse
+flex-flow: row nowarp
+justify-content: flex-start, flex-end, center, space-between, space-around
+align-item: flex-start, flex-end, center, stretch, baseline
+align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+
+### 子项
+
+order: 排序
+flex-grow: 放大比例
+flex-shrink: 缩小比例
+align-self: 私有对其方式

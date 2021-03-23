@@ -126,7 +126,8 @@ exports.getArticlesBar = () => {
 				'other/threadsAndProcesses',
 				'other/redis',
 				'other/nginx',
-				'other/currentLimiting'
+				'other/currentLimiting',
+				'other/docker'
 			]
 		},
 		{

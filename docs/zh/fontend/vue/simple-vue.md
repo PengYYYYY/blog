@@ -81,6 +81,9 @@ class PYVue {
 function defineReactive(obj, key, val) {
   // val是对象还需要递归处理
   observe(val)
+
+  const dep = new Dep()
+  
   Object.defineProperty(obj, key, {
     get() {
       // 依赖收集
@@ -287,7 +290,9 @@ class Compile {
 }
 ```
 
-## 简易版vue3.0
+## vue3.0响应式
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/xy5F2N.png)
 
 ```js
 const isObject = val => val !== null && typeof val === 'object'

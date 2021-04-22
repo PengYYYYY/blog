@@ -22,7 +22,11 @@
 
 ### vue-event
 
+vue事件系统
+
 ### react-event
+
+react事件系统
 
 ## diff算法
 
@@ -32,7 +36,7 @@
 
 ### vue-dom-diff
 
-四指针循环
+四指针比较操作
 
 ## 协调与异步
 
@@ -40,9 +44,11 @@
 
 ### vue-updateComponent
 
+$nextTick
+
 ## 组件系统
 
-### vue-componet
+### vue-component
 
 ### react-component
 
@@ -57,3 +63,5 @@
 ### vuex
 
 ### redux
+
+### mobx

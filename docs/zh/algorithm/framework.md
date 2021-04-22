@@ -1,5 +1,21 @@
 # 算法架子
 
+- 动态规划
+- 贪心
+- 二分
+- 回溯
+- 排序
+- 并查集
+- 位运算
+- 双指针
+- 矩阵
+- 二叉树
+- 哈希表
+- 链表
+- 栈和队列
+- 链表
+- 字符串
+
 ## 遍历
 
 ```ts
@@ -142,6 +158,8 @@ const list = (head) => {
 
 ## 回溯算法
 
+可以理解为回归树
+
 ```js
 let res = []
 function backtrack(path, condition, ...) {
@@ -154,6 +172,24 @@ function backtrack(path, condition, ...) {
     path.push(select);  // 走某条路
     backtrack(path, newSelectList);
     path.pop(); //返回上一个十字路口
+  }
+}
+```
+
+## 滑动窗口
+
+用于寻找字符串中的某些特性的子字符串
+经典题目
+
+```js
+function lengthOfLongestSubstring(s) {
+  let rk = -1
+  const n = s.length
+  for(let i = 0; i < n; i++) {
+    while(rk + 1 < n && condition()) {
+      // 不断地移动右指针
+      ++rk;
+    }
   }
 }
 ```

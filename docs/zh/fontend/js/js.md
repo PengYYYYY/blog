@@ -11,13 +11,12 @@
 ### new的过程
 
 ```js
-const myNew = function(Func) {
-  const instance = {};
-  if (Func.prototype) {
-    Object.setPrototypeOf(instance, Func.prototype);
-  }
-  const res = Func.apply(instance, [].slice.call(arguments, 1));
-  return typeof res === 'obj'? res : instance;
+function myNew() {
+  const obj = {}
+  const Con = [].shift.call(this)
+  obj.__proto__ = Con
+  const result = Con.apply(obj, arguments)
+  return result instanceof Object ? result : obj
 }
 ```
 
@@ -28,13 +27,46 @@ const myNew = function(Func) {
 
 ## 判断数据类型
 
-- typeof
+## typeof
 
-- Object.prototype.toString
+返回数据类型，包含这7种： number、boolean、symbol、string、object、undefined、function。
 
-- constructor
+- typeof null，返回object
+- 引用类型，除了function返回function类型外，其他均返回object。
 
-- instanceof
+## Object.prototype.toString.call
+
+toString() 是 Object 的原型方法，调用该方法，默认返回当前对象的 [[Class]] 。这是一个内部属性，其格式为 [object Xxx] ，其中 Xxx 就是对象的类型。
+对于 Object 对象，直接调用 toString()  就能返回 [object Object] 。而对于其他对象，则需要通过 call / apply 来调用才能返回正确的类型信息。
+
+```js
+const dataType = Object.prototype.toString.call(data)
+return dataType.slice(8, -1)
+```
+
+## constructor
+
+constructor是原型prototype的一个属性，当函数被定义时候，js引擎会为函数添加原型prototype，并且这个prototype中constructor属性指向函数引用， 因此重写prototype会丢失原来的constructor。
+
+null 和 undefined 无 constructor，这种方法判断不了。
+
+## instanceof
+
+用于判断两个对象是否属于实例关系
+
+基本原理
+
+```js
+function myInstanceOf(left, right) {
+  left = left.__proto__
+  const prototype = right.prototype
+  while(true) {
+    if(left == prototype) return true
+    if(left === undefined || left === null) return false
+    left = left.__proto__
+  }
+}
+```
 
 ## 异步编程
 
@@ -220,4 +252,16 @@ const res = Math.max(...[1,2,3,4])
 
 ```js
 const res = Math.max.apply(null, [1,2,3,4,5])
+```
+
+## 创建出没有原型的对象
+
+Object.create( null )可以创建出没有原型的对象
+
+```js
+const myCreate = function(con) {
+  const F = function() {}
+  F.prototype = con
+  return new F()
+}
 ```

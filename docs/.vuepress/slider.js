@@ -60,7 +60,8 @@ exports.getFontEndBar = () => {
 
 exports.getNodeBar = () => {
 	return [
-		'nodeBase',
+		'node/nodeBase',
+		'node/git-flow',
 	]
 }
 

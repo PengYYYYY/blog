@@ -1,4 +1,4 @@
-const { getFontEndBar, getNodeBar, getNetWorkBar, getOthersBar, getAlgorithmBar, getArticlesBar } = require('./slider')
+const { getFontEndBar, getBackendBar, getNetWorkBar, getAlgorithmBar, getArticlesBar } = require('./slider')
 const { cnNav } = require('./nav')
 
 module.exports = {
@@ -42,7 +42,7 @@ module.exports = {
         // lastUpdated: '上次更新',
         sidebar: {
           '/zh/fontend/': getFontEndBar(),
-          '/zh/node/': getNodeBar(),
+          '/zh/backend/': getBackendBar(),
           '/zh/network/': getNetWorkBar(),
           '/zh/articles/': getArticlesBar(),
           '/zh/algorithm/': getAlgorithmBar(),
@@ -57,7 +57,7 @@ module.exports = {
       //   lastUpdated: 'Last Updated',
       //   sidebar: {
       //     '/en/fontend/': getFontEndBar('FontEnd'),
-      //     '/en/node/': getNodeBar('Node'),
+      //     '/en/node/': getBackendBar('Node'),
       //     '/en/network/': getNetWorkBar('Network'),
       //     '/en/algorithm/': getAlgorithmBar('Algorithm'),
       //     '/en/interest/': getInterestBar('Interest'),

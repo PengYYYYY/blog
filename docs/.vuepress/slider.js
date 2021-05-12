@@ -58,10 +58,31 @@ exports.getFontEndBar = () => {
 	]
 }
 
-exports.getNodeBar = () => {
+exports.getBackendBar = () => {
 	return [
-		'node/nodeBase',
-		'node/git-flow',
+		{
+			title: 'node',
+			children: [
+				'node/egg',
+				'node/base',
+				'node/koa',
+			]
+		},
+		{
+			title: 'devops',
+			children: [
+				'devops/git-flow',
+				'devops/docker',
+				'devops/nginx',
+			]
+		},
+		{
+			title: 'db',
+			children: [
+				'db/mysql',
+				'db/redis',
+			]
+		},
 	]
 }
 
@@ -117,21 +138,6 @@ exports.getArticlesBar = () => {
 			]
 		},
 		{
-			title: '杂七杂八的',
-			children: [
-				'other/AJAX',
-				'other/nat',
-				'other/db',
-				'other/howComputerRun',
-				'other/designMode',
-				'other/threadsAndProcesses',
-				'other/redis',
-				'other/nginx',
-				'other/currentLimiting',
-				'other/docker'
-			]
-		},
-		{
 			title: '工程与实践',
 			children: [
 				'engineering/siskinImport',
@@ -139,6 +145,17 @@ exports.getArticlesBar = () => {
 				'engineering/buildSystem',
 				'engineering/unitTest',
 				'engineering/jwt'
+			]
+		},
+		{
+			title: '杂七杂八的',
+			children: [
+				'other/AJAX',
+				'other/nat',
+				'other/howComputerRun',
+				'other/designMode',
+				'other/threadsAndProcesses',
+				'other/currentLimiting',
 			]
 		},
 		{

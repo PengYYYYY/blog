@@ -105,7 +105,7 @@ var isPalindrome = (head) => {
 }
 ```
 
-## 环形链表
+## [环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
 
 - 标记法
 
@@ -132,6 +132,61 @@ const hasCycle = function(head) {
     slow = slow.next
   }
   return true
+}
+```
+
+## [环形链表2](https://leetcode-cn.com/problems/linked-list-cycle-ii/submissions/)
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/D81eMw.png)
+
+以相遇点为基准
+
+- 快指针走过的距离：a + (b+c) * n + b
+- 慢指针走过的距离是：a + b
+
+a + (b + c) * n + b = 2 （a + b）
+a = c + (n - 1)(b + c)
+
+所以a = c
+
+```js
+var detectCycle = function(head) {
+  if (head === null) {
+    return null;
+  }
+  let slow = head, fast = head;
+  while (fast !== null) {
+    slow = slow.next;
+    if (fast.next !== null) {
+      fast = fast.next.next;
+    } else {
+      return null;
+    }
+    if(slow == fast) {
+      let pre = head
+      while(pre !== slow) {
+        slow = slow.next
+        pre = pre.next
+      }
+      return pre
+    }
+  }
+  return null;
+};
+```
+
+## [相交链表](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/)
+
+```js
+var getIntersectionNode = function(headA, headB) {
+  if(!headA || !headB) return null
+  let pA = headA
+  let pB = headB
+  while(PA !== pB) {
+    pA = pA === null ? headB : pA.next;
+    PB = PB === null ? headA : PB.next
+  }
+  return pA
 }
 ```
 

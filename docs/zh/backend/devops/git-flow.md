@@ -37,15 +37,15 @@
 新功能开始开发前，需准备好开发分支。
 
 ```ssh
-git flow feature start <feature-name>
+git flow feature start feature-name
 ```
 
-执行上面命令后，将会在本地创建一个名为 `<feature-name>` 的分支，并切换到该分支。
+执行上面命令后，将会在本地创建一个名为 `feature-name` 的分支，并切换到该分支。
 而且无论你当前处于哪个分支，它都会基于本地develop分支创建的。
 上述命令相当于执行了下面的Git操作。
 
 ```ssh
-git checkout -b feature/<feature-name> develop
+git checkout -b feature/feature-name develop
 ```
 
 需要注意的一点是，该分支是基于本地的 `develop` 分支创建，所以执行此命令前一般需要拉取最新的远程代码。
@@ -55,12 +55,12 @@ git checkout -b feature/<feature-name> develop
 在本地开发完成新功能并进行commit操作后，需要将本地代码提交到远程仓库。
 
 ```js
-git flow feature publish <feature-name>
+git flow feature publish feature-name
 ```
 
 该命令主要做了三件事情：
 
-- 创建一个名为feature/<feature-name>的远程分支
+- 创建一个名为feature/feature-name的远程分支
 - 本地分支track远程分支
 - 如果本地存在还没提交的代码，就进行代码提交
 
@@ -81,11 +81,11 @@ git push
 当功能开发完毕后就将进入测试阶段，此时需要将该分支合并到 `develop` 分支。
 
 ```ssh
-git flow feature finish <feature-name>
+git flow feature finish feature-name
 ```
 
 该命令也主要做了三件事情：
 
 - 切换到develop分支
 - 合并代码到develop分支
-- 删除本地feature/<feature-name>分支
+- 删除本地feature/feature-name分支

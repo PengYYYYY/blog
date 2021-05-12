@@ -1,4 +1,4 @@
-# js继承
+# js的原型与继承
 
 简单讲讲js的继承，也是js的原型链问题的实际应用。
 
@@ -121,6 +121,27 @@ console.log(car2 instanceof Car);    //true
 
 缺点：但是无法解决引用类型的创建问题，我们每次对Car对象进行实例化的时候，都需要对printBrand方法进行创建，无法复用，浪费内存。要解决只能把他放到全局作用域。但是在全局作用域中定义的函数一般来说只能被某个对象调用，这会让全局作用域名不副实。并且也会失去封装性，我们来想象一下，如果该对象中有很多方法，那会让全局作用域充满了单独拎出来的方法，让代码可读性变差。
 
+### instanceof原理
+
+instanceof 主要用来判断对象是否属于某构造函数
+
+- 利用原型链，不停向上查找
+- 利用 `__proto__` 访问实例原型
+
+```js
+function myInstanceOf(left, right) {
+    const prototype = right.prototype
+    left = left.__proto__
+    while(true) {
+        if(left == undefined || left == null) return false
+        if (left == prototype) {
+            return true
+        }
+        left = left.__proto__
+    }
+}
+```
+
 ### 原型模式
 
 ```js
@@ -185,14 +206,14 @@ console.log(car2.brand); //["a","b","c","d"]
 
 ```js
 function OldCar(){
-this.color = "red";
-this.passengers = ['a','b','c']
+    this.color = "red";
+    this.passengers = ['a','b','c']
 }
 OldCar.prototype.getOldColor = function(){
-return this.color;
+    return this.color;
 }
 function NewCar(){
-this.color = "blue";
+    this.color = "blue";
 }
 NewCar.prototype = new OldCar();
 

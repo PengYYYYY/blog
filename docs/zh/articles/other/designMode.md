@@ -1,87 +1,155 @@
-# 设计模式入门
+# 设计模式
 
-## 创建型模式
+设计模式的代码简述
 
-### 工厂模式
+## 单例模式
 
-其在父类中提供一个创建对象的方法， 允许子类决定实例化对象的类型。
+单例在编程实战中存在大量的应用，比如说弹窗。
 
-- 原型模式
+```javascript
+{
+  const Singleton = function(name) {
+    this.name = name
+    this.instance = null
+  }
+  Singleton.prototype.getName = function() {
+    console.log(this.name)
+  }
+  Singleton.getInstance = function() {
+    if (!this.singleton) {
+      this.instance = new Singleton(name)
+    }
+    return this.instance
+  }
+  var a = Singleton.getInstance('sing1')
+  var b = Singleton.getInstance('sing2')
+}
+```
 
-能够复制已有对象， 而又无需使代码依赖它们所属的类，链式结构。
+## 策略模式
 
-- 单例模式
+一个计算工资的例子
 
-多个共享一个
+```javascript
+var performanceS = function(){};
+performanceS.prototype.calculate = function(salary) {
+  return salary * 4
+}
+var performanceA = function(){};
+performanceA.prototype.calculate = function(salary) {
+  return salary * 3
+}
+var performanceB = function(){}
+performanceB.prototype.calculate = function(salary) {
+  return salary * 2
+}
 
-## 结构型模式
+var Bonus = function() {
+  this.salary = null
+  this.strategy = null
+}
+Bonus.prototype.setSalary = function(salary) {
+  this.salary = salary
+}
+Bonus.prototype.setStrategy = function( strategy ){
+  this.strategy = strategy; // 设置员工绩效等级对应的策略对象
+};
+Bonus.prototype.getBonus = function(){
+  return this.strategy.calculate( this.salary );
+};
+```
 
-- 装饰器模式
+适用于JavaScript的策略模式
 
-允许你通过将对象放入包含行为的特殊封装对象中来为原对象绑定新的行为。
+```javascript
+var strategies = {
+  "S": function(salary) {
+    return salary * 4;
+  },
+  "A": function(salary) {
+    return salary * 3
+  },
+  "B": function(salary) {
+    return salary * 2
+  }
+}
+var calculateBonus = function( level, salary ){ 
+  return strategies[level](salary);
+};
+console.log(calculateBonus("S", 2000)) // 8000
+console.log(calculateBonus("A", 1000)) // 3000
+```
 
-- 代理模式
+## 代理模式
 
-让你能够提供对象的替代品或其占位符。代理控制着对于原对象的访问， 并允许在将请求提交给对象前后进行一些处理。
+- 虚拟代理
 
-- 适配器模式
+```javascript
+var myImage = (function(){
+  var imgNode = document.createElement('img')
+  document.body.appendChild(imgNode)
+  return {
+    setSrc: function(src) {
+      imgNode.src = src
+    }
+  }
+})()
 
-它能使接口不兼容的对象能够相互合作。
+var proxyImage = (function() {
+  var img = new Image
+  img.onload = function() {
+    myImage.setSrc(this.src)
+  }
+  return {
+    setSrc: function(src) {
+      myImage.setSrc('加载中图片');
+      img.src = src;
+    }
+  }
+})()
+proxyImage.setSrc('实际的图片');
+```
 
-- 桥接模式
+- 缓存代理
 
-可将一个大类或一系列紧密相关的类拆分为抽象和实现两个独立的层次结构， 从而能在开发时分别使用。
+```js
+const proxyMulti = function() {
+  const cache = {}
+  return function() {
+    const args = Array.prototype.join.call( arguments, ',' );
+    if (args in cache) {
+      return cache[args]
+    }
+    return cache[args] = multi.apply( this, arguments );
+  }
+}
+function multi() {
+  var a = 1
+  for(var i = 0; l = arguments.length; i++) {
+    a = a * arguments[i]
+  }
+  return a
+}
+```
 
-- 组合模式
+## 迭代器模式
 
-你可以使用它将对象组合成树状结构， 并且能像使用独立对象一样使用它们。
+## 发布-订阅模式
 
-- 外观模式
+## 命令模式
 
-能为程序库、 框架或其他复杂类提供一个简单的接口。
+## 组合模式
 
-- 享元模式
+## 模版模式
 
-它摒弃了在每个对象中保存所有数据的方式， 通过共享多个对象所共有的相同状态， 让你能在有限的内存容量中载入更多对象。
+## 享元模式
 
-## 行为模式
+## 责任链模式
 
-- 责任链模式
+## 中介者模式
 
-允许你将请求沿着处理者链进行发送。收到请求后， 每个处理者均可对请求进行处理， 或将其传递给链上的下个处理者。
+## 装饰者模式
 
-- 命令模式
+## 状态模式
 
-它可将请求转换为一个包含与请求相关的所有信息的独立对象。该转换让你能根据不同的请求将方法参数化、 延迟请求执行或将其放入队列中， 且能实现可撤销操作。
-
-- 迭代器模式
-
-让你能在不暴露集合底层表现形式 （列表、 栈和树等） 的情况下遍历集合中所有的元素。
-
-- 中介者模式
-
-能让你减少对象之间混乱无序的依赖关系。该模式会限制对象之间的直接交互， 迫使它们通过一个中介者对象进行合作。
-
-- 备忘录模式
-
-允许在不暴露对象实现细节的情况下保存和恢复对象之前的状态。
-
-- 观察者模式
-
-允许你定义一种订阅机制， 可在对象事件发生时通知多个 “观察” 该对象的其他对象。
-
-- 状态模式
-
-让你能在一个对象的内部状态变化时改变其行为， 使其看上去就像改变了自身所属的类一样。
-
-- 策略模式
-
-它能让你定义一系列算法， 并将每种算法分别放入独立的类中， 以使算法的对象能够相互替换。
-
-- 模板方法模式
-
-它在超类中定义了一个算法的框架， 允许子类在不修改结构的情况下重写算法的特定步骤。
-
-- 访问者模式
-
-它能将算法与其所作用的对象隔离开来
+## 适配器模式

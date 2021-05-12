@@ -63,8 +63,8 @@ exports.getBackendBar = () => {
 		{
 			title: 'node',
 			children: [
-				'node/egg',
-				'node/base',
+				// 'node/egg',
+				// 'node/base',
 				'node/koa',
 			]
 		},
@@ -79,7 +79,7 @@ exports.getBackendBar = () => {
 		{
 			title: 'db',
 			children: [
-				'db/mysql',
+				// 'db/mysql',
 				'db/redis',
 			]
 		},

@@ -60,3 +60,9 @@ x.y.z
 x：主版本号，当做了不兼容当API修改
 y：次版本号：当你做了向下兼容的功能性新增
 z：修订号：当你做了向下兼容的问题修正
+
+### 修改版本
+
+如何修改版本
+
+`npm version [<newVersion> | major | minor | patch | premajor | preminor | prepatch | prerelease [custom version] ]`

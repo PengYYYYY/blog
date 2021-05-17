@@ -52,7 +52,7 @@ plugins:[
 
 ### 压缩
 
-使用html-webpack-plugin，设置参数即可。
+使用 `html-webpack-plugin`
 
 ## 资源内连
 
@@ -163,7 +163,7 @@ webpack.config.js
 
 #### 实现思路
 
-- 服务端：使用库的renderToString方法将组件渲染成字符串，服务端返回对应的模版。
+- 服务端：使用库的 `renderToString` 方法将组件渲染成字符串，服务端返回对应的模版。
 
 - 客户端：打包出针对服务端的组件
 
@@ -225,11 +225,11 @@ module.exports = {
 
 - HappyPack解析资源
 
-每次 webapck 解析一个模块，HappyPack 会将它及它的依赖分配给 worker 线程中
+每次 webpack 解析一个模块，HappyPack 会将它及它的依赖分配给 worker 线程中
 
 - 使用 thread-loader 解析资源
 
-每次 webpack 解析一个模块，thread- loader 会将它及它的依赖分配给 worker 线程中
+每次 webpack 解析一个模块，thread-loader 会将它及它的依赖分配给 worker 线程中
 
 - 并行压缩
 

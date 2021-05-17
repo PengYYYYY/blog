@@ -720,7 +720,7 @@ TTFB首字节相应时间（TTFB）是最初的网络请求被发起到从服务
 
 ## webpack性能优化
 
-#### treeShaking
+### treeShaking
 
 tree-shaking 是一个术语，通常指在 JavaScript 上下文中移除未使用的代码(dead-code)。它依赖于 ES2015 模块语法中的静态结构特性，例如 import 和 export。这个术语和概念兴起于 ES2015 模块打包工具 rollup。
 webpack 4 版本扩展了这个功能，通过 package.json 的 "sideEffects" 属性作为标记，向编译器提供了提示，表示项目中的哪些文件是“纯”的，因此在未使用时可以安全删除它们。

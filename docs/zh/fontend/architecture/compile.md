@@ -4,7 +4,7 @@
 
 ## vue
 
-核心语法，.vue文件，
+核心语法，.vue文件，模板通过编译生成AST，再由AST生成Vue的渲染函数。渲染函数结合数据生成Virtual DOM树，对Virtual DOM进行diff和patch后生成新的UI。
 
 ## react
 

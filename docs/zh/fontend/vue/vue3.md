@@ -25,7 +25,7 @@ monorepo 把这些模块拆分到不同的 package 中，每个 package 有各�
 
 ### 虚拟dom重写
 
-针对不同类型对节点进行不同策略的处理。
+做了一些静态标记，针对不同类型对节点进行不同策略的处理，静态节点在diff过程中会直接跳过。
 
 ### 性能提升
 
@@ -123,9 +123,7 @@ Proxy劫持的是整个对象，自然对于对象的属性的增加和删除都
 
 ```js
 <template>
-  <div>
-
-  </div>
+  <div></div>
 </template>
 ```
 
@@ -311,7 +309,7 @@ state.foo = 'fooooooo'
 
 ## Composition API原理
 
-写过vue3.0的都知道，vue3.0的 `compositionApi` 和 `options` 是共存的。
+vue3.0的 `compositionApi` 和 `options` 是共存的。
 
 ### composition和options如何做到和谐共存？
 

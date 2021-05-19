@@ -287,3 +287,23 @@ uncss: HTML 需要通过 jsdom 加载，所有的样式通过PostCSS解析，通
 
 Polyfill Service原理:
 识别 User Agent，下发不同的 Polyfill
+
+### loader和plugin
+
+- loader
+loader是文件加载器，能够加载资源文件，并对这些文件进行一些处理，诸如编译、压缩等，最终一起打包到指定的文件中
+
+  - 处理一个文件可以使用多个loader，loader的执行顺序是和本身的顺序是相反的，即最后一个loader最先执行，第一个loader最后执行。
+  - 第一个执行的loader接收源文件内容作为参数，其他loader接收前一个执行的loader的返回值作为参数。最后执行的loader会返回此模块的JavaScript源码
+
+loader接收一个参数，并且return一个内容就ok了。
+
+- plugin
+
+在 Webpack 运行的生命周期中会广播出许多事件，Plugin 可以监听这些事件，在合适的时机通过 Webpack 提供的 API 改变输出结果。
+
+## 事件流
+
+- webpack 通过 Tapable 来组织这条复杂的生产线。
+- webpack 的事件流机制保证了插件的有序性，使得整个系统扩展性很好。
+- webpack 的事件流机制应用了观察者模式，和 Node.js 中的 EventEmitter 非常相似。

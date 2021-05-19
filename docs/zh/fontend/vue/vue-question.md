@@ -413,4 +413,6 @@ methodsToPatch.forEach(method => {
 1. Promise/MutationObserver
 2. SetImmediate/SetTimeOut
 
-微任务和宏任务，微任务在浏览器刷新前，宏任务在浏览器更新后。
+## computed实现原理及其实现方式
+
+计算值会被缓存，依赖的data值改变时才会重新计算

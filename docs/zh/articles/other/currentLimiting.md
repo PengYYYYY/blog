@@ -36,16 +36,16 @@ class CounterLimiter {
 
 此算法可以很好的解决固定窗口算法的临界问题。
 
-<https://gitee.com/PENG_YUE/myImg/raw/master/uPic/5WyR3M.png>
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/5WyR3M.png)
 
 ## 漏桶算法
 
 漏桶算法是访问请求到达时直接放入漏桶，如当前容量已达到上限（限流值），则进行丢弃（触发限流策略）。漏桶以固定的速率进行释放访问请求（即请求通过），直到漏桶为空。
 
-<https://gitee.com/PENG_YUE/myImg/raw/master/uPic/GJSwJo.png>
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/GJSwJo.png)
 
 ## 令牌桶算法
 
 令牌桶算法是程序以r（r=时间周期/限流值）的速度向令牌桶中增加令牌，直到令牌桶满，请求到达时向令牌桶请求令牌，如获取到令牌则通过请求，否则触发限流策略
 
-<https://gitee.com/PENG_YUE/myImg/raw/master/uPic/FGOV5W.png>
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/FGOV5W.png)

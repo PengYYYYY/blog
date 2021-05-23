@@ -1,17 +1,6 @@
 exports.getFontEndBar = () => {
 	return [
 		{
-			title: 'Javascript',
-			children: [
-				'js/js',
-				'js/typeScript',
-				'js/array',
-				'js/string',
-				'js/storage',
-				'js/handwritten'
-			]
-		},
-		{
 			title: 'vue',
 			children: [
 				'vue/vue',
@@ -26,6 +15,17 @@ exports.getFontEndBar = () => {
 			children: [
 				'react/LogicReuse',
 				// 'react/question',
+			]
+		},
+		{
+			title: 'Javascript',
+			children: [
+				'js/js',
+				'js/typeScript',
+				'js/array',
+				'js/string',
+				'js/storage',
+				'js/handwritten'
 			]
 		},
 		{
@@ -121,30 +121,32 @@ exports.getAlgorithmBar = () => {
 exports.getArticlesBar = () => {
 	return [
 		{
-			title: '前端',
+			title: 'vue',
+			children: [
+				'vue/vue-loader',
+				'vue/ssr',
+				'vue/vueProtocol'
+			]
+		},
+		{
+			title: 'javaScript',
 			children: [
 				'fe/inheritance',
 				'fe/functional',
 				'fe/eventLoop',
-				'fe/mobile-adapter'
-			]
-		},
-		{
-			title: 'vue',
-			children: [
-				'vue/vueProtocol',
-				'vue/ssr',
-				'vue/vue-loader'
+				'fe/mobile-adapter',
+				'engineering/jwt'
 			]
 		},
 		{
 			title: '工程与实践',
 			children: [
+				'engineering/engineering',
 				'engineering/siskinImport',
 				'engineering/siskinStyle',
-				'engineering/buildSystem',
 				'engineering/unitTest',
-				'engineering/jwt'
+				'engineering/buildSystem',
+				'engineering/bridge',
 			]
 		},
 		{
@@ -159,10 +161,10 @@ exports.getArticlesBar = () => {
 			]
 		},
 		{
-			title: '杂物与思考',
+			title: '个人思考',
 			children: [
 				'clutter/24岁的程序员',
-				'clutter/engineering',
+				'clutter/心态',
 			]
 		},
 	]

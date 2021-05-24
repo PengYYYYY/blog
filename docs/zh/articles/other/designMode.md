@@ -368,6 +368,39 @@ define(function(require, exports, module) {
 
 ## 命令模式
 
+```js
+var command1 = {
+  execute: function(){
+    console.log(1);
+  }
+};
+var command2 = {
+  execute: function(){
+    console.log(2);
+  }
+}
+var command3 = {
+  execute: function(){
+    console.log(3);
+  }
+}
+var command = function() {
+  return {
+    commandList: [],
+    add: function(command) {
+      this.commandList.push(command)
+    },
+    execute: function(command) {
+      for(var i = 0,commands = this.commandsList.length; i < commands; i+=1) {
+        this.commandsList[i].execute();
+      }
+    }
+  }
+}
+```
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/8io64n.png)
+
 ## 组合模式
 
 ## 模版模式

@@ -1,7 +1,4 @@
-# Vue核心
-
-- [vue组件通信](/zh/articles/vueProtocol/)
-- [ssr](/zh/articles/ssr/)
+# Vue初始化
 
 ## 生命周期图
 

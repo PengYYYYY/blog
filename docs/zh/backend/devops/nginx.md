@@ -1,6 +1,246 @@
-# 一些nginx知识
+# nginx
 
 CPU 朝着多核方向发展，之前的霸主 Apache 一个进程同一时间只能处理一个连接，处理完一个请求后才能处理下一个，这无疑不能应对如今互联网上海量的用户。况且进程间切换的成本是非常高的。在这种背景下，Nginx 应运而生，可以轻松处理数百万、上千万的连接。
+
+## 安装
+
+```bash
+#gcc安装，nginx源码编译需要
+yum install gcc-c++
+
+#PCRE pcre-devel 安装，nginx 的 http 模块使用 pcre 来解析正则表达式
+yum install -y pcre pcre-devel
+
+#zlib安装，nginx 使用zlib对http包的内容进行gzip
+yum install -y zlib zlib-devel
+
+#OpenSSL 安装，强大的安全套接字层密码库，nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http）
+yum install -y openssl openssl-devel
+```
+
+### 下载nginx源码
+
+```bash
+wget -c https://nginx.org/download/nginx-1.16.1.tar.gz //找到自己需要的版本
+
+```
+
+### 安装操作
+
+```bash
+#根目录使用ls命令可以看到下载的nginx压缩包，然后解压
+tar -zxvf nginx-1.16.1.tar.gz
+#解压后进入目录
+cd nginx-1.16.1
+#使用默认配置
+./configure
+# https模块安装
+./configure --with-http_stub_status_module --with-http_ssl_module
+#编译安装
+make
+make install
+#查找安装路径，默认都是这个路径
+[root@VM_0_12_centos ~]# whereis nginx
+nginx: /usr/local/nginx
+#启动、停止nginx
+cd /usr/local/nginx/sbin/
+./nginx     #启动
+./nginx -s stop  #停止，直接查找nginx进程id再使用kill命令强制杀掉进程
+./nginx -s quit  #退出停止，等待nginx进程处理完任务再进行停止
+./nginx -s reload  #重新加载配置文件，修改nginx.conf后使用该命令，新配置即可生效
+#重启nginx，建议先停止，再启动
+./nginx -s stop
+./nginx
+ #查看nginx进程，如下返回，即为成功
+[root@VM_0_12_centos ~]# ps aux|grep nginx
+```
+
+### 环境变量
+
+```bash
+export NGINX_HOME=/usr/local/nginx
+export PATH=$PATH:$NGINX_HOME/sbin
+```
+
+## 常用配置
+
+```bash
+server {
+  listen 80;
+  server_name  code.limchihi.cn;
+  location / {
+    proxy_pass http://127.0.0.1:3000/;
+  }
+}
+```
+
+### 项目配置(http)
+
+```nginx
+server {
+    set $myRoot = /root/fe/stage;
+    set $myServerName = xxxx;
+    set $proxyApi = http://api.ynoo.net/api;
+    
+    listen       80;
+    server_name  $myServerName;
+    rewrite ^/(.*) https://$server_name$1 permanent;
+    root $myRoot;
+
+    location / {
+      try_files $uri $uri/ /index.html =404;
+    }
+
+    location /adminAPI {
+      proxy_pass $proxyApi;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+      root   html;
+    }
+}
+```
+
+### 项目配置(https)
+
+```nginx
+server {
+    set $myServerName = xxxx;
+    listen       80;
+    server_name  $myServerName;
+    rewrite ^/(.*) https://$server_name$1 permanent;
+}
+
+server {
+    set $myRoot = /root/fe/stage;
+    set $myServerName = ms.ynoo.net;
+    set $myNginxConfRoot = /usr/local/nginx/server/cert
+    set $proxyApi = http://api.ynoo.net/api;
+  
+    listen       443 ssl;
+    server_name  xxzk.ynoo.net;
+
+    ssl_certificate      ${myNginxConfRoot}/${myServerName}/index.pem;
+    ssl_certificate_key  ${myNginxConfRoot}/${myServerName}/index.key;
+
+    keepalive_timeout 100;
+
+    ssl_session_cache    shared:SSL:5m;
+    ssl_session_timeout  5m;
+
+    ssl_ciphers  HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers  on;
+  
+    location / {
+      try_files $uri $uri/ /index.html =404;
+    }
+
+    location /adminAPI {
+      proxy_pass $proxyApi;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+      root   html;
+    }
+}
+```
+
+### api服务https配置
+
+```nginx
+server {
+    listen       80;
+    server_name  xxzk.ynoo.net;
+
+    location / {
+        proxy_pass http://localhost:7001/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+server {
+    listen       443 ssl;
+    server_name  xxzk.ynoo.net;
+
+    ssl_certificate      /usr/local/nginx/server/cert/xxzk.ynoo.net/index.pem;
+    ssl_certificate_key  /usr/local/nginx/server/cert/xxzk.ynoo.net/index.key;
+
+    keepalive_timeout 100;
+
+    ssl_session_cache    shared:SSL:5m;
+    ssl_session_timeout  5m;
+
+    ssl_ciphers  HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers  on;
+
+    location / {
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Real-Port $remote_port;
+        proxy_pass http://127.0.0.1:7001;
+        proxy_pass_request_headers      on;
+    }
+}
+```
+
+### history路由配置
+
+```nginx
+server {
+    listen      80;
+    server_name  localhost;
+    index  index.html index.htm;
+    root /xxx/xxx;
+    location / {
+      try_files $uri $uri/ /index.html =404;
+    }
+}
+```
+
+### 静态文件校验
+
+```nginx
+location = /jt0lp6bkO2.txt {
+    default_type text/plain;
+    return 200 '8e2bffc79f0305e793dd1e17f6aa6a43';
+}
+
+#禁止访问的文件或目录
+location ~ ^/(\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)
+{
+    return 404;
+}
+
+location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
+{
+  expires   30d;
+  error_log off;
+  access_log /dev/null;
+}
+
+location ~ .*\.(js|css)?$
+{
+  expires   12h;
+  error_log off;
+  access_log /dev/null; 
+}
+```
+
+### certbot安装https
+
+```bash
+//安装
+sudo yum install certbot python2-certbot-nginx
+//启动
+// nginx.conf路径
+certbot --nginx --nginx-server-root=/usr/local/nginx/conf
+//自动更新
+echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && certbot renew -q" | sudo tee -a /etc/crontab > /dev/null
+```
 
 ## Nginx 优势
 

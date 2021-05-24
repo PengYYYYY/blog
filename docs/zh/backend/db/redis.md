@@ -2,6 +2,66 @@
 
 redis是一个开源数据的kv数据库，它的数据放置于内存当中，常用来做缓存服务器。
 
+## 安装
+
+安装
+
+```bash
+//下载
+
+wget <http://download.redis.io/releases/redis-5.0.8.tar.gz>
+
+安装目录/usr/local/redis
+
+//解压
+tar -zxf xx
+
+make
+
+// 执行make install进行Redis安装
+
+make install
+
+//为了方便管理，将Redis文件中的conf配置文件和常用命令移动到统一文件中
+mkdir bin etc
+
+mv redis.conf /usr/local/redis/etc/
+
+mv mkreleasehdr.sh redis-benchmark redis-check-aof redis-check-rdb redis-cli redis-server /usr/local/redis/bin/
+
+// 启动
+redis-server
+
+// 设置绑定ip
+
+vim /etc/redis.conf
+
+bind xxx
+
+// 设置后台启动redis
+vim redis.conf
+daemonized yes
+
+// 查看redis进程
+netstat -tunpl|grep 6379
+
+// 链接redis客户端
+redis-cli
+```
+
+## 使用yum安装
+
+```js
+//需要安装Remi的软件源
+yum install -y http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+//然后可以使用下面的命令安装最新版本的redis
+yum --enablerepo=remi install redis
+//安装完毕后，即可使用下面的命令启动redis服务
+service redis start
+或者
+systemctl start redis
+```
+
 ## 特点
 
 - 速度快，因为数据在内存当中，类似于HashMap

@@ -3,17 +3,18 @@ exports.getFontEndBar = () => {
 		{
 			title: 'vue',
 			children: [
-				'vue/vue',
+				'vue/lifeCycle',
 				'vue/vue3',
-				'vue/vue-question',
 				'vue/vue-router',
 				'vue/vuex'
+				// 'vue/vue-question',
 			]
 		},
 		{
 			title: 'react',
 			children: [
-				'react/LogicReuse',
+				'react/core',
+				// 'react/redux',
 				// 'react/question',
 			]
 		},
@@ -36,7 +37,14 @@ exports.getFontEndBar = () => {
 				'engineering/npm',
 				'engineering/modular',
 				'engineering/babel',
-				'engineering/optimize'
+			]
+		},
+		{
+			title: '性能优化',
+			children: [
+				'optimize/base',
+				'optimize/engineering',
+				'optimize/indicators',
 			]
 		},
 		{
@@ -44,17 +52,17 @@ exports.getFontEndBar = () => {
 			children: [
 				'browser/base',
 				'browser/process',
+				'browser/jsExecute',
 			]
 		},
 		{
-			title: 'HTML',
+			title: 'HTML && CSS',
 			children: [
 				'html/html',
 				'html/load',
+				'html/css',
 			]
 		},
-		'mp',
-		'css'
 	]
 }
 
@@ -63,9 +71,9 @@ exports.getBackendBar = () => {
 		{
 			title: 'node',
 			children: [
-				// 'node/egg',
-				// 'node/base',
+				'node/base',
 				'node/koa',
+				// 'node/egg',
 			]
 		},
 		{
@@ -79,7 +87,7 @@ exports.getBackendBar = () => {
 		{
 			title: 'db',
 			children: [
-				// 'db/mysql',
+				'db/mysql',
 				'db/redis',
 			]
 		},
@@ -121,11 +129,25 @@ exports.getAlgorithmBar = () => {
 exports.getArticlesBar = () => {
 	return [
 		{
-			title: 'vue',
+			title: '工程与实践',
 			children: [
-				'vue/vue-loader',
-				'vue/ssr',
-				'vue/vueProtocol'
+				'engineering/engineering',
+				'engineering/siskinImport',
+				'engineering/siskinStyle',
+				'engineering/unitTest',
+				'engineering/buildSystem',
+				'engineering/bridge',
+				'engineering/mp',
+				'engineering/jwt'
+			]
+		},
+		{
+			title: '框架原理',
+			children: [
+				'frame/vue-loader',
+				'frame/ssr',
+				'frame/logicReuse',
+				'frame/vueProtocol'
 			]
 		},
 		{
@@ -135,29 +157,17 @@ exports.getArticlesBar = () => {
 				'fe/functional',
 				'fe/eventLoop',
 				'fe/mobile-adapter',
-				'engineering/jwt'
-			]
-		},
-		{
-			title: '工程与实践',
-			children: [
-				'engineering/engineering',
-				'engineering/siskinImport',
-				'engineering/siskinStyle',
-				'engineering/unitTest',
-				'engineering/buildSystem',
-				'engineering/bridge',
+				'fe/AJAX',
 			]
 		},
 		{
 			title: '杂七杂八的',
 			children: [
-				'other/AJAX',
 				'other/nat',
+				'other/currentLimiting',
 				'other/howComputerRun',
 				'other/designMode',
 				'other/threadsAndProcesses',
-				'other/currentLimiting',
 			]
 		},
 		{

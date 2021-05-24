@@ -44,8 +44,8 @@ exports.cnNav = [{
 		text: '网络',
 		link: '/zh/network/'
 	},
-	{
-		text: 'GitHub',
-		link: 'https://github.com/super-YUE'
-	}
+	// {
+	// 	text: 'GitHub',
+	// 	link: 'https://github.com/super-YUE'
+	// }
 ]

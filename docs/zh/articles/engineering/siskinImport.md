@@ -35,3 +35,104 @@ import 'antd/es/button/style';
 ```
 
 `webpack`可以通过在`package.json`设置`sideEffects: false`,开启`tree shaking`。
+
+## babel-plugin-import原理
+
+babel-plugin-import 提供组件的按需加载
+
+将
+
+```js
+import { Button } from 'antd';
+```
+
+转换成
+
+```js
+import Button from 'antd/es/button';
+import 'antd/es/button/style';
+```
+
+### 第一步 依赖收集
+
+babel-plubin-import 会在 ImportDeclaration 里将所有的 specifier 收集起来。大致的AST如下:
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/fB0ZEQ.png)
+
+可以从这个 ImportDeclaration 语句中提取几个关键点：
+
+- source.value: antd
+- specifier.local.name: Button
+- specifier.local.name: Rate
+
+代码
+
+```js
+ImportDeclaration(path, state) {
+  const { node } = path;
+  if (!node) return;
+  const { value } = node.source; // 代码里 import 的包名
+  const { libraryName } = this; // 插件 options 的包名
+  const { types } = this; // babel-type 工具函数
+  const pluginState = this.getPluginState(state); // 获取状态
+  if (value === libraryName) {
+    node.specifiers.forEach(spec => {
+      if (types.isImportSpecifier(spec)) { // 判断是不是 ImportSpecifier 类型的节点，也就是是否是大括号的
+        // 收集依赖
+        pluginState.specified[spec.local.name] = spec.imported.name;
+      } else { 
+        pluginState.libraryObjs[spec.local.name] = true;
+      }
+    });
+    pluginState.pathsToRemove.push(path);
+  }
+}
+```
+
+在 `babel` 遍历了所有的 `ImportDeclaration` 节点之后，就收集好了依赖关系，下一步就是如何收集。
+
+### 第二步 判断是否使用
+
+收集了依赖关系之后，得要判断一下这些 `import` 的变量是否被使用到了:
+
+首先会进行如下的转换
+
+```js
+ReactDOM.render(<Button>Hello</Button>);
+```
+
+转换到
+
+```js
+React.createElement(Button, null, "Hello");
+```
+
+判断其是否进行了转换
+
+### 第三步 生成引入代码（核心）
+
+第一步和第二步主要的工作是找到需要被插件处理的依赖关系：
+
+```js
+import { Button, Rate } from 'antd';
+ReactDOM.render(<Button>Hello</Button>);
+```
+
+`Button` 组件使用到了，`Rate` 在代码里未使用。所以插件要做的也只是自动引入 `Button` 的代码和样式即可。
+
+```js
+import { Button } from 'antd';
+```
+
+转换成
+
+```js
+var _button = require('antd/lib/button');
+require('antd/lib/button/style');
+```
+
+`babel-plugin-import` 和普遍的 `babel` 插件一样，会遍历代码的 `ast`，然后在 `ast` 上做了一些事情：
+
+1. 收集依赖：找到`importDeclaration`，分析出包 `x` 和依赖 `y,z`,例如 `x` 和 `libraryName` 是一致的，就将其收集起来。
+2. 判断是否使用：判断收集到的依赖是否被使用，如果有使用就调用 `importMethod` 生成新的 `import` 语句。
+3. 生成引入代码：根据配置项生成代码和样式的 `import` 语句

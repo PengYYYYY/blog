@@ -89,3 +89,17 @@ git flow feature finish feature-name
 - 切换到develop分支
 - 合并代码到develop分支
 - 删除本地feature/feature-name分支
+
+## git相关操作
+
+```bash
+设置新建的分支为默认的igt pull git push 分支
+git branch --set-upstream-to=origin/dev
+git branch --unset-upstream master
+
+修改ignore文件后操作
+git rm -r --cached .  #清除缓存  
+git add . #重新trace file  
+git commit -m "update .gitignore" #提交和注释  
+git push origin master #可选，如果需要同步到remote上的话
+```

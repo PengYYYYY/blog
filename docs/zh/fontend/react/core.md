@@ -153,7 +153,7 @@ window.requestIdleCallback()方法将在浏览器的空闲时段内调用的函�
 
 在空闲回调函数中调用 requestIdleCallback() ，以便在下一次通过事件循环之前调度另一个回调。
 
-### fiber建议架构
+### fiber架构
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/7ZJDg4.png)
 

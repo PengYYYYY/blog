@@ -39,21 +39,17 @@ Docker 利用容器技术，独立运行一个或者一组应用，容器是通�
 
 容器技术是和我们的宿主机共享硬件资源及操作系统可以实现资源的动态分配。容器包含应用和其所有的依赖包，但是与其他容器共享内核。容器在宿主机操作系统中，在用户空间以分离的进程运行
 
-### docker常见指令
-
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/O8bw3R.png)
-
-### Docker运行原理
+## Docker运行原理
 
 Docker只提供一个运行环境，是不需要运行一个独立的 OS，容器中的系统内核跟宿主机的内核是公用的。docker容器本质上是宿主机的进程。他做了如下操作：
 
-- namespace 进程隔离
+### namespace 进程隔离
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/IuoDmS.png)
 
 Linux Namespaces 机制提供一种进程资源隔离方案。PID、IPC、Network 等系统资源不再是全局性的，而是属于某个特定的Namespace。每个namespace下的资源对于其他 namespace 下的资源都是透明，不可见的。系统中可以同时存在两个进程号为0、1、2的进程，由于属于不同的namespace，所以它们之间并不冲突。
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/0XyPoz.png)
-
-- CGroup 分配资源
+### CGroup 分配资源
 
 Docker 通过 Cgroup 来控制容器使用的资源配额，一旦超过这个配额就发出OOM。配额主要包括 CPU、内存、磁盘三大方面， 基本覆盖了常见的资源配额和使用量控制。
 
@@ -61,7 +57,7 @@ Docker 通过 Cgroup 来控制容器使用的资源配额，一旦超过这个�
 
 Cgroup 是 Control Groups 的缩写，是Linux 内核提供的一种可以限制、记录、隔离进程组所使用的物理资源(如 CPU、内存、磁盘 IO 等等)的机制，被 LXC(Linux container)、Docker 等很多项目用于实现进程资源控制。Cgroup 本身是提供将进程进行分组化管理的功能和接口的基础结构，I/O 或内存的分配控制等具体的资源管理是通过该功能来实现的，这些具体的资源 管理功能称为 Cgroup 子系统。
 
-- chroot 跟 pivot_root 文件系统
+### chroot 跟 pivot_root 文件系统
 
 chroot(change root file system)命令的功能是改变进程的根目录到指定的位置。比如我们现在有一个$HOME/test目录，想要把它作为一个 /bin/bash 进程的根目录。
 
@@ -92,3 +88,58 @@ chroot(change root file system)命令的功能是改变进程的根目录到指�
 - none: 不配置网络
 - bridge: docker默认，也可自创
 - container: 容器网络连通，容器直接互联
+
+## docker命令
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/O8bw3R.png)
+
+- FROM
+
+FROM 指令用于指定基础镜像，因此所有的 dockerfile 都必须使用 FROM 指令开头。FROM 指令可以出现多次，这样会构建多个镜像，每个镜像创建完成后，Docker 命令行界面会输出该镜像的 ID。常用指令格式为：`FROM <image>[:<tag>] [AS <name>]`。
+
+- LABEL
+
+LABEL 指令可以用于指定镜像相关的元数据信息。格式为：`LABEL <key>=<value> <key>=<value> <key>=<value>`... 。
+
+- ENV
+
+ENV 指令用于声明环境变量，声明好的环境变量可以在后面的指令中引用，引用格式为 `$variable_name 或 ${variable_name}` 。常用格式有以下两种：
+
+1. ENV `<key> <value>`：用于设置单个环境变量；
+2. ENV `<key>=<value>` ... ：用于一次设置多个环境变量。
+
+- EXPOSE
+
+EXPOSE 用于指明容器对外暴露的端口号，格式为：`EXPOSE <port> [<port>/<protocol>...]` ，您可以指定端口是侦听 TCP 还是 UDP，如果未指定协议，则默认为 TCP。
+
+- WORKDIR
+
+WORKDIR 用于指明工作目录，它可以多次使用。如果指明的是相对路径，则它将相对于上一个WORKDIR指令的路径。
+
+- COPY
+
+COPY 指令的常用格式为：COPY `<src>... <dest>`，用于将指定路径中的文件添加到新的镜像中，拷贝的目标路径可以不存在，程序会自动创建。
+
+- RUN
+
+RUN 指令会在前一条命令创建出的镜像基础上再创建一个容器，并在容器中运行命令，在命令结束后提交该容器为新的镜像。它支持以下两种格式：
+
+1. `RUN <command>`（shell 格式）
+2. `RUN ["executable", "param1", "param2"]` (exec 格式)
+
+- CMD
+
+1. CMD ["executable","param1","param2"] (exec 格式, 首选)
+2. CMD ["param1","param2"] (作为 ENTRYPOINT 的默认参数)
+3. CMD command param1 param2 (shell 格式)
+
+CMD 指令提供容器运行时的默认值，这些默认值可以是一条指令，也可以是一些参数。一个 dockerfile 中可以有多条 CMD 指令，但只有最后一条 CMD 指令有效。CMD 指令与 RUN 指令的命令格式相同，但作用不同：RUN 指令是在镜像的构建阶段用于产生新的镜像；而 CMD 指令则是在容器的启动阶段默认将 CMD 指令作为第一条执行的命令，如果用户在 docker run 时指定了新的命令参数，则会覆盖 CMD 指令中的命令。
+
+- ENTRYPOINT
+
+ENTRYPOINT 指令 支持以下两种格式：
+
+1. ENTRYPOINT ["executable", "param1", "param2"] (exec 格式，首先)
+2. ENTRYPOINT command param1 param2 (shell 格式)
+
+ENTRYPOINT 指令 和 CMD 指令类似，都可以让容器在每次启动时执行相同的命令。但不同的是 CMD 后面可以是参数也可以是命令，而 ENTRYPOINT 只能是命令；另外 docker run 命令提供的运行参数可以覆盖 CMD，但不能覆盖 ENTRYPOINT ，这意味着 ENTRYPOINT  指令上的命令一定会被执行。

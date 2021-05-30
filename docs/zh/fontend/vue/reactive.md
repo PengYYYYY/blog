@@ -1,14 +1,6 @@
-# 简易版vue
+# 数据响应式
 
-手写简易版vue理解其核心原理
-
-MVVM的三要素：
-
-- 数据响应式
-- 模版引擎
-- 渲染
-
-## 简易版vue2.0
+## vue2.0
 
 数据响应式过程
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/bUZGGg.png)
@@ -290,7 +282,7 @@ class Compile {
 }
 ```
 
-## vue3.0响应式
+## vue3.0
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/xy5F2N.png)
 

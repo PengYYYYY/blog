@@ -1,14 +1,212 @@
 # Vue3.0
 
-- vue3.0代码结构
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/TVgyr9.png)
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/tUoPsF.png)
+## vue3.0初始化流程
 
-## 优化
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/sYzDwc.png)
+
+简单的实现
+
+```js
+// vue3的初始化流程
+const Vue = {
+  createApp(options) {
+    // 创建render, 此处可根据不同平台去创建不同的render
+    const render = Vue.createRender({
+      querySelector(select) {
+        return document.querySelector(select)
+      },
+      insert(children, parent, anchor) {
+        parent.insertBefore(children, anchor || null)
+      }
+    })
+    return render.createApp(options)
+  },
+  createRender({ querySelector, insert }) {
+    return {
+      createApp(options) {
+        return {
+          // 挂载函数
+          mount(selector) {
+            const parent = querySelector(selector)
+            if(!options.render) {
+              options.render = this.compile(parent.innerHTML)
+            }
+            if(options.setup) {
+              this.setupState = options.setup()
+            } else {
+              this.data = options.data()
+            }
+
+            // 确认render中数据从哪获取
+            this.proxy = new Proxy(this, {
+              get(target, key) {
+                if (key in target.setupState) {
+                  return target.setupState[key]
+                } else {
+                  return target.data[key]
+                }
+              },
+              Set(target, key, val) {
+                if (key in target.setupState) {
+                  target.setupState[key] = val
+                } else {
+                  target.data[key] = val
+                }
+              }
+            })
+
+            const el = options.render.call(this.proxy)
+            parent.innerHTML = ''
+            // parent.appendChild(el)
+            insert(el, parent)
+          },
+          // 编译函数，省略
+          compile(template) {
+            return function render() {
+              const node = document.createElement("h3")
+              node.textContent = this.title
+              return node
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### 步骤
+
+- 挂载mount
+  - 获取parent
+- 编译
+  - compile
+  - render
+- 兼容compositionApi
+  - setup
+- 渲染,插入节点
+
+## 数据响应式
+
+```js
+const isObject = val => val !== null && typeof val === 'object'
+
+function reactive(obj) {
+  if (!isObject(obj)) {
+    return obj
+  }
+  // Proxy相当于在对象外层加拦截
+  const observed = new Proxy(obj, {
+    get(target, key, receiver) {
+      // Reflect用于执行对象默认操作，更规范、更友好
+      // Proxy和Object的方法Reflect都有对应
+      const res = Reflect.get(target, key, receiver)
+      console.log(`获取${key}:${res}`)
+      // 依赖收集
+      track(target, key)
+      return isObject(res) ? reactive(res) : res
+    },
+    set(target, key, value, receiver) {
+      const res = Reflect.set(target, key, value, receiver)
+      console.log(`设置${key}:${value}`)
+      trigger(target, key)
+      return res
+    },
+    deleteProperty(target, key) {
+      const res = Reflect.deleteProperty(target, key)
+      console.log(`删除${key}:${res}`)
+      trigger(target, key)
+      return res
+    }
+  })
+  return observed
+}
+
+const effectStack = []
+
+function effect(fn) {
+  const rxEffect = function() {
+    // 1.捕获异常
+    try {
+      // 2.入栈
+      effectStack.push(rxEffect)
+      // 3.触发依赖收集
+      return fn()
+    } finally {
+      // 4.出栈
+      effectStack.pop()
+    }
+  }
+
+  rxEffect()
+
+  return rxEffect
+}
+
+// 依赖收集，建立target，key和上面的effect函数之间映射关系
+// 需要一个数据结构存储该关系
+// {target: {key: [cb1, cb2, ...]}}
+let targetMap = new WeakMap()
+function track(target, key) {
+  // 获取effect存入的函数
+  const effect = effectStack[effectStack.length - 1]
+
+  if (effect) {
+    // 获取target对应Map
+    let depsMap = targetMap.get(target)
+    if (!depsMap) {
+      depsMap = new Map()
+      targetMap.set(target, depsMap)
+    }
+    // 获取depsMap中key和其值，也就是Set
+    let deps = depsMap.get(key)
+    if (!deps) {
+      // 首次deps不存在，创建之
+      deps = new Set()
+      depsMap.set(key, deps)
+    }
+
+    // 将传入effect，添加到Set里面
+    deps.add(effect)
+    console.log(deps)
+  }
+}
+
+function trigger(target, key) {
+  // 获取映射关系
+  const depsMap = targetMap.get(target)
+  if (depsMap) {
+    // 获取函数集合
+    const deps = depsMap.get(key)
+    deps.forEach(effect => {
+      effect()
+    })
+  }
+}
+
+const state = reactive({
+  foo: 'foo',
+  bar: { a: 1 }
+})
+
+effect(() => {
+  console.log('effect:', state.foo)
+})
+
+state.foo = 'fooooooo'
+```
+
+## vue3.0的优化
 
 vue3.0带来的优化
 
-### 源码优化
+### 代码组织
+
+- vue3.0代码结构
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/tUoPsF.png)
 
 更好的代码管理方式：monorepo
 
@@ -29,17 +227,12 @@ monorepo 把这些模块拆分到不同的 package 中，每个 package 有各�
 
 ### 性能提升
 
-- 自定义渲染器，静态标记性能提升
-
-- 编译时优化
-
-- 更好的初始性能
-
-2.tree-shaking支持，更小的文件大小
-3.composition Api新语法
-4.fragment,teleport,suspense新组件
-5.更好的typescript支持
-6.自定义渲染器
+1. 更好的初始性能
+2. tree-shaking支持，更小的文件大小
+3. composition Api新语法
+4. fragment,teleport,suspense新组件
+5. 更好的typescript支持
+6. 自定义渲染器
 
 tree-shaking原理：依赖 ES2015 模块语法的静态结构（即 import 和 export），通过编译阶段的静态分析，找到没有引入的模块并打上标记。未被引入的 square 模块会被标记，然后压缩阶段会利用例如 uglify-js、terser 等压缩工具真正地删除这些没有用到的代码。
 利用 tree-shaking技术，如果在项目中没有引入Transition、KeepAlive 等组件, 那么它们对应的代码就不会打包，这样也就间接达到了减少项目引入的 Vue.js 包体积的目的。
@@ -195,118 +388,6 @@ export default {
 </script>
 ```
 
-## 响应式原理
-
-```js
-const isObject = val => val !== null && typeof val === 'object'
-
-function reactive(obj) {
-  if (!isObject(obj)) {
-    return obj
-  }
-  // Proxy相当于在对象外层加拦截
-  // http://es6.ruanyifeng.com/#docs/proxy
-  const observed = new Proxy(obj, {
-    get(target, key, receiver) {
-      // Reflect用于执行对象默认操作，更规范、更友好
-      // Proxy和Object的方法Reflect都有对应
-      // http://es6.ruanyifeng.com/#docs/reflect
-      const res = Reflect.get(target, key, receiver)
-      console.log(`获取${key}:${res}`)
-      // 依赖收集
-      track(target, key)
-      return isObject(res) ? reactive(res) : res
-    },
-    set(target, key, value, receiver) {
-      const res = Reflect.set(target, key, value, receiver)
-      console.log(`设置${key}:${value}`)
-      trigger(target, key)
-      return res
-    },
-    deleteProperty(target, key) {
-      const res = Reflect.deleteProperty(target, key)
-      console.log(`删除${key}:${res}`)
-      trigger(target, key)
-      return res
-    }
-  })
-  return observed
-}
-
-const effectStack = []
-
-function effect(fn) {
-  const rxEffect = function() {
-    // 1.捕获异常
-    try {
-      // 2.入栈
-      effectStack.push(rxEffect)
-      // 3.触发依赖收集
-      return fn()
-    } finally {
-      // 4.出栈
-      effectStack.pop()
-    }
-  }
-
-  rxEffect()
-
-  return rxEffect
-}
-
-// 依赖收集，建立target，key和上面的effect函数之间映射关系
-// 需要一个数据结构存储该关系
-// {target: {key: [cb1, cb2, ...]}}
-let targetMap = new WeakMap()
-function track(target, key) {
-  // 获取effect存入的函数
-  const effect = effectStack[effectStack.length - 1]
-
-  if (effect) {
-    // 获取target对应Map
-    let depsMap = targetMap.get(target)
-    if (!depsMap) {
-      depsMap = new Map()
-      targetMap.set(target, depsMap)
-    }
-    // 获取depsMap中key和其值，也就是Set
-    let deps = depsMap.get(key)
-    if (!deps) {
-      // 首次deps不存在，创建之
-      deps = new Set()
-      depsMap.set(key, deps)
-    }
-
-    // 将传入effect，添加到Set里面
-    deps.add(effect)
-    console.log(deps)
-  }
-}
-
-function trigger(target, key) {
-  // 获取映射关系
-  const depsMap = targetMap.get(target)
-  if (depsMap) {
-    // 获取函数集合
-    const deps = depsMap.get(key)
-    deps.forEach(effect => {
-      effect()
-    })
-  }
-}
-
-const state = reactive({
-  foo: 'foo',
-  bar: { a: 1 }
-})
-
-effect(() => {
-  console.log('effect:', state.foo)
-})
-
-state.foo = 'fooooooo'
-```
-
 ## Composition API原理
 
 vue3.0的 `compositionApi` 和 `options` 是共存的。
@@ -319,6 +400,6 @@ vue3.0的 `compositionApi` 和 `options` 是共存的。
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/j5DPlP.png)
 
-### setup中的this指向哪？
+### setup中的this指向
 
-setup中的this就是它执行时的上下文，如果是esm方式打包，会是undefined；如果是单文件的方式运行，会是window；但是不管怎样都没有什么意义，所以请大家彻底忘了this吧，再也不用被它烦恼了。
+setup中的this就是它执行时的上下文，如果是esm方式打包，会是undefined；如果是单文件的方式运行，会是window；但是不管怎样都没有什么意义

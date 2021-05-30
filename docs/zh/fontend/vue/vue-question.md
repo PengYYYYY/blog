@@ -1,36 +1,28 @@
 # vue常见问题
 
-## v-if与v-for哪个优先级更高？如果两个同时出现，应该怎么优化得到更好的性能
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/sPSg2I.png)
 
-在`vue`源码中的`compiler/codegen/index.js`中可以找到答案。
+## 生命周期相关
 
-- 解决方案1
+### vue的生命周期
 
-```js
-<p v-for="child in children" v-if="isFolder">{{child.title}}</p>
-```
+beforeCreate：是new Vue()之后触发的第一个钩子，在当前阶段data、methods、computed以及watch上的数据和方法都不能被访问。
 
-由于在生成渲染函数的时候 `v-for` 的优先级高于 `v-if`,`v-if`会在`v-for`生成渲染子项的内部。循环会在外面先执行,浪费了性能。
+created：在实例创建完成后发生，当前阶段已经完成了数据观测，也就是可以使用数据，更改数据，在这里更改数据不会触发updated函数。可以做一些初始数据的获取，在当前阶段无法与Dom进行交互，如果非要想，可以通过vm.$nextTick来访问Dom。
 
-- 解决方案2
+beforeMount：发生在挂载之前，也就是响应式数据发生更新，虚拟dom重新渲染之前被触发，你可以在当前阶段进行更改数据，不会造成重渲染。
 
-```js
-<template v-if="isFolder">
-  <p v-for="child in children" >{{child.title}}</p>
-</template>
-```
+mounted：在挂载完成后发生，在当前阶段，真实的Dom挂载完毕，数据完成双向绑定，可以访问到Dom节点，使用$refs属性对Dom进行操作。
 
-先判断函数再循环，当condition成立的时候才会去执行渲染列表，否则是个empty函数
+beforeUpdate：发生在更新之前，也就是响应式数据发生更新，虚拟dom重新渲染之前被触发，可以在当前阶段进行更改数据，不会造成重渲染。
 
-::: tip
-如果和渲染子项的数据有关,则把渲染数据放到`computed`里面做一次`filter`,留下需要渲染的项目即可。
-:::
+updated：发生在更新完成之后，当前阶段组件Dom已完成更新。要避免在此期间更改数据，因为这可能会导致无限循环的更新。
 
-::: tip
-如果条件出现在循环内部，可通过计算属性提前过滤掉那些不需要显示的项
-:::
+beforeDestroy：发生在实例销毁之前，在当前阶段实例完全可以被使用，我们可以在这时进行善后收尾工作。
 
-## Vue组件中的data为什么必须是函数，而根实例没有此限制
+destroyed：发生在实例销毁之后，这个时候只剩下了dom空壳。组件已被拆解，数据绑定被卸除，监听被移出，子实例也统统被销毁。
+
+### Vue组件中的data为什么必须是函数，而根实例没有此限制
 
 此过程发生在initData函数中。
 
@@ -87,7 +79,71 @@ function mergeDataOrFn (
 }
 ```
 
-## vue中 key 的工作原理
+## 编译相关
+
+### v-if与v-for哪个优先级更高？如果两个同时出现，应该怎么优化得到更好的性能
+
+在`vue`源码中的`compiler/codegen/index.js`中可以找到答案。
+
+- 解决方案1
+
+```js
+<p v-for="child in children" v-if="isFolder">{{child.title}}</p>
+```
+
+由于在生成渲染函数的时候 `v-for` 的优先级高于 `v-if`,`v-if`会在`v-for`生成渲染子项的内部。循环会在外面先执行,浪费了性能。
+
+- 解决方案2
+
+```js
+<template v-if="isFolder">
+  <p v-for="child in children" >{{child.title}}</p>
+</template>
+```
+
+先判断函数再循环，当condition成立的时候才会去执行渲染列表，否则是个empty函数
+
+::: tip
+如果和渲染子项的数据有关,则把渲染数据放到`computed`里面做一次`filter`,留下需要渲染的项目即可。
+:::
+
+::: tip
+如果条件出现在循环内部，可通过计算属性提前过滤掉那些不需要显示的项
+:::
+
+### vue模版渲染
+
+`vue` 中的模版 `template` 会被 `vue-loader` 转换为 `render` 函数,并渲染出对应的HTML元素，就可以让视图跑起来了。
+
+模版编译分三个阶段：解析parse，优化optimize，生成generate，最终生成可执行函数render。
+
+- parse阶段：使用大量的正则表达式对template字符串进行解析，将标签、指令、属性等转换为AST。
+- optimize阶段：遍历AST,找到其中的一些静态节点，并做标记，方便在页面重渲染的时候进行diff比较时，直接跳过这一些静态节点，优化runtime的性能。
+- generate阶段：将最终的AST转化为render函数字符串。
+
+### template预编译是什么
+
+对于 `Vue` 组件来说，模板编译只会在组件实例化的时候编译一次，生成渲染函数之后在也不会进行编译。因此，编译对组件的 `runtime` 是一种性能损耗。
+
+而模版编译的目的仅仅是将 `template` 转换为 `render function`,这个过程，正好可以在项目构建过程中完成，这样可以让实际组件在runtime过程中跳过模版渲染，进而提升性能，这个在项目构建的编译template的过程，就是预编译。
+
+### template和jsx有什么区别
+
+对于runtime来说，只需要保证组件存在 render 函数即可，在预编译之后，只需要保证构建过程中生成 render 函数即可。
+
+在webpack中，只需要保证组件存在 render 函数即可，而我们有了预编译之后，我们只需要保证构建过程中生成 render 函数就可以。
+
+在webpack中，我们使用 vue-loader 编译.vue文件，内部依赖的 vue-template-compiler 模块，在 webpack 构建过程中，将template预编译成 render 函数。
+
+在jsx中，添加了语法糖解析器 `babel-plugin-transform-vue-jsx` 之后，可以直接手写 `render` 函数。
+
+所以，`template` 和 `jsx` 都是 `render` 的一种表现形式，不同的是：
+
+`jsx` 相对于 `template` 会有更高的灵活性，在复杂组件中，更具有优势。`template` 在代码结构上更符合视图与逻辑分离的习惯，更简单、更直观、更好维护。
+
+## 渲染与更新相关
+
+### vue中 key 的工作原理
 
 key的作用主要应用在更新阶段。有以下几点用处：
 
@@ -97,7 +153,7 @@ key的作用主要应用在更新阶段。有以下几点用处：
 
 总而言之就是为了在patch阶段更加高效。
 
-## 怎么理解vue中的diff算法
+### 怎么理解vue中的diff算法
 
 - 为什么要diff算法
 
@@ -123,19 +179,6 @@ vue中diff执行的时刻是组件实例执行其更新函数时，它会比对�
 - 比较如果都有子节点，则进行updateChildren，判断如何对这些新老节点的子节点进行操作
 - 匹配时，找到相同的子节点，递归比较子节点
 
-## 组件化的理解
-
-定义：组件是可复用的vue实例，准确的来说他们是`VueComponent`的实例，继承自`vue`
-优点：软件工程中，高内聚，低耦合的一种体现。
-
-### 使用组件
-
-- 定义：Vue.component(), new vue中的 components选项，sfc.
-- 分类：有状态组件，函数式组件（functional），抽象组件（abstract，完成特定的功能）
-- 通信：$on/$emit, props, provide/inject, $children/$parent/$root/$listeners
-- 内容分发：slot, template, v-slot
-- 使用和优化：is，keep-alive，异步组件
-
 ### 组件的本质
 
 - 组件配置 => VueComponent实例 => render => Virtual Dom => Dom
@@ -160,22 +203,150 @@ vue.component('comp', {
 - 遵循单向数据流的原则
 - vue中常见组件化技术有：属性prop，自定义事件，插槽等，它们主要用于组件通信、扩展等。
 
-## vue设计原则的理解
+### vue异步更新流程
 
-框架定义
+- 第一步
 
-- 渐进式JavaScript框架
-- 易用、灵活和高效
+队列保存更新函数，一个key对应一个`watcher`,如果对相同key进行操作，则只会更新一次
 
-渐进式：
-由点到面，vue被设计为自底向上的应用。Vue核心库只关注视图层，易于上手，也便于与第三方库融合。
+- 第二步
 
-数据响应式：
-数据变化带动视图更新
+批量处理，利用微任务。
 
-另外简单易上手是vue最大的特点之一。
+优先级：
 
-## vue性能优化
+1. Promise/MutationObserver
+2. SetImmediate/SetTimeOut
+
+## 重点API
+
+### computed与watch的区别
+
+计算属性`computed`和监听器`watch`都可以观察属性的变化从而做出响应，不同的是：
+
+- computed
+
+计算属性computed更多是作为缓存功能的观察者，它可以将一个或者多个data的属性进行复杂的计算生成一个新的值，提供给渲染函数使用，当依赖的属性变化时，computed 不会立即重新计算生成新的值，而是先标记为脏数据，当下次computed被获取时候，才会进行重新计算并返回。
+
+存取器的写法看上去就像设置一个属性一样了，而且我们还可以设置计算属性的值，上面的写法会影响到响应式属性n,当设置vm.a时，vm.n也会发生变化。
+computed默认有缓存效果，当计算属性没有发生变化时，不会重新计算更不会重新渲染。
+
+- watch
+
+而监听器watch并不具备缓存性，监听器watch提供一个监听函数，当监听的属性发生变化时，会立即执行该函数。watch是异步函数，如果我们的属性需要在侦听后再执行某个变化,可以使用$nextTick这个API。
+
+#### 属性值的不同影响watch结果
+
+- 当属性值为简单数据类型时，以vm.a为例，由于此时属性值是简单数据类型，所以很容易监听到其发生变化。此时属性值！==改变后的属性值,就会触发watch
+- 当属性值为复杂数据类型时，以vm.b为例子，它保存了{c:2}这个值。
+
+如果它的内存地址发生变化，也就是说原先的{c:2}和我后来设置的{c:2}的内存地址不一致，所以就会触发b变了，
+
+#### deep 和 immediate
+
+deep表示深侦听，也就是我设置的属性对应的属性值即使是复杂数据类型，加上deep，就全方位侦听，包括地址、内层属性的地址、内层属性的属性值。
+
+immediate是表示当侦听开始时就先触发callback函数，默认为一开始不会触发watch效果，而仅仅是侦听。
+
+### 数组数据的响应化过程
+
+```javascript
+const originalProto = Array.prototype
+const arrProto = Object.create(originalProto)
+const methodsToPatch = [
+  'push',
+  'pop',
+  'shift',
+  'unshift',
+  'splice',
+  'sort',
+  'reverse'
+]
+methodsToPatch.forEach(method => {
+  arrProto[method] = function() {
+    originalProto[method].apply(this, arguments)
+  }
+})
+```
+
+### transition动画
+
+name：用于自动生成 CSS 过渡类名。例如：name: 'fade' 将自动拓展为 .fade-enter，.fade-enter-active 等。默认类名为 "v"
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/vwW5py.png)
+
+### keep-alive 组件有什么作用
+
+如果你需要在组件切换的时候，保存一些组件的状态防止多次渲染，就可以使用 keep-alive 组件包裹需要保存的组件。
+
+对于 `keep-alive` 组件来说，它拥有两个独有的生命周期钩子函数，分别为 `activated` 和 `deactivated` 。用 `keep-alive`包 裹的组件在切换时不会进行销毁，而是缓存到内存中并执行 `deactivated` 钩子函数，命中缓存渲染后会执行 `actived` 钩子函数。
+
+源码中：`core/components/keep-alive`
+
+### 创建vue节点的两种方式
+
+- vue-extend
+
+```js
+function create(Component, props) {
+  // 继承组件
+  const Ctor = Vue.extend(Component)
+  // 传参
+  const comp = new Ctor({
+    propsData: props
+  })
+  // 挂载
+  comp.$mount()
+  document.body.appendChild(comp.$el)
+  comp.remove = function() {
+    document.body.remove(comp.$el)
+    comp.$destory()
+  }
+}
+```
+
+- 实例化
+
+```js
+function create(Component, props) {
+  const vm = new Vue({
+    // h是createElement, 返回VNode，是虚拟dom
+    // 需要挂载才能变成真实dom
+    render: h => h(Component, {props})
+  }).$mount()// 不指定宿主元素，则会创建真实dom，但是不会追加操作
+
+  // 获取真实dom
+  document.body.appendChild(vm.$el)
+
+  const comp = vm.$children[0]
+
+  // 删除
+  comp.remove = function() {
+    document.body.remove(vm.$el)
+    vm.$destroy()
+  }
+  
+  return comp
+}
+
+```
+
+## 概念性问题
+
+### 组件化的理解
+
+定义：组件是可复用的vue实例，准确的来说他们是`VueComponent`的实例，继承自`vue`
+优点：软件工程中，高内聚，低耦合的一种体现。
+
+### 使用组件
+
+- 定义：Vue.component(), new vue中的 components选项，sfc.
+- 分类：有状态组件，函数式组件（functional），抽象组件（abstract，完成特定的功能）
+- 通信：$on/$emit, props, provide/inject, $children/$parent/$root/$listeners
+- 内容分发：slot, template, v-slot
+- 使用和优化：is，keep-alive，异步组件
+
+### vue性能优化
 
 - 路由懒加载
 
@@ -234,185 +405,3 @@ export default {
 }
 </script>
 ```
-
-## computed与watch的区别
-
-计算属性`computed`和监听器`watch`都可以观察属性的变化从而做出响应，不同的是：
-
-- computed
-
-计算属性computed更多是作为缓存功能的观察者，它可以将一个或者多个data的属性进行复杂的计算生成一个新的值，提供给渲染函数使用，当依赖的属性变化时，computed 不会立即重新计算生成新的值，而是先标记为脏数据，当下次computed被获取时候，才会进行重新计算并返回。
-
-存取器的写法看上去就像设置一个属性一样了，而且我们还可以设置计算属性的值，上面的写法会影响到响应式属性n,当设置vm.a时，vm.n也会发生变化。
-computed默认有缓存效果，当计算属性没有发生变化时，不会重新计算更不会重新渲染。
-
-- watch
-
-而监听器watch并不具备缓存性，监听器watch提供一个监听函数，当监听的属性发生变化时，会立即执行该函数。watch是异步函数，如果我们的属性需要在侦听后再执行某个变化,可以使用$nextTick这个API。
-
-### 属性值的不同影响watch结果
-
-- 当属性值为简单数据类型时，以vm.a为例，由于此时属性值是简单数据类型，所以很容易监听到其发生变化。此时属性值！==改变后的属性值,就会触发watch
-- 当属性值为复杂数据类型时，以vm.b为例子，它保存了{c:2}这个值。
-
-如果它的内存地址发生变化，也就是说原先的{c:2}和我后来设置的{c:2}的内存地址不一致，所以就会触发b变了，
-
-### deep 和 immediate
-
-deep表示深侦听，也就是我设置的属性对应的属性值即使是复杂数据类型，加上deep，就全方位侦听，包括地址、内层属性的地址、内层属性的属性值。
-
-immediate是表示当侦听开始时就先触发callback函数，默认为一开始不会触发watch效果，而仅仅是侦听。
-
-## vue的生命周期
-
-beforeCreate：是new Vue()之后触发的第一个钩子，在当前阶段data、methods、computed以及watch上的数据和方法都不能被访问。
-
-created：在实例创建完成后发生，当前阶段已经完成了数据观测，也就是可以使用数据，更改数据，在这里更改数据不会触发updated函数。可以做一些初始数据的获取，在当前阶段无法与Dom进行交互，如果非要想，可以通过vm.$nextTick来访问Dom。
-
-beforeMount：发生在挂载之前，也就是响应式数据发生更新，虚拟dom重新渲染之前被触发，你可以在当前阶段进行更改数据，不会造成重渲染。
-
-mounted：在挂载完成后发生，在当前阶段，真实的Dom挂载完毕，数据完成双向绑定，可以访问到Dom节点，使用$refs属性对Dom进行操作。
-
-beforeUpdate：发生在更新之前，也就是响应式数据发生更新，虚拟dom重新渲染之前被触发，可以在当前阶段进行更改数据，不会造成重渲染。
-
-updated：发生在更新完成之后，当前阶段组件Dom已完成更新。要避免在此期间更改数据，因为这可能会导致无限循环的更新。
-
-beforeDestroy：发生在实例销毁之前，在当前阶段实例完全可以被使用，我们可以在这时进行善后收尾工作。
-
-destroyed：发生在实例销毁之后，这个时候只剩下了dom空壳。组件已被拆解，数据绑定被卸除，监听被移出，子实例也统统被销毁。
-
-## vue模版渲染
-
-`vue` 中的模版 `template` 会被 `vue-loader` 转换为 `render` 函数,并渲染出对应的HTML元素，就可以让视图跑起来了。
-
-模版编译分三个阶段：解析parse，优化optimize，生成generate，最终生成可执行函数render。
-
-- parse阶段：使用大量的正则表达式对template字符串进行解析，将标签、指令、属性等转换为AST。
-- optimize阶段：遍历AST,找到其中的一些静态节点，并做标记，方便在页面重渲染的时候进行diff比较时，直接跳过这一些静态节点，优化runtime的性能。
-- generate阶段：将最终的AST转化为render函数字符串。
-
-## template预编译是什么
-
-对于 `Vue` 组件来说，模板编译只会在组件实例化的时候编译一次，生成渲染函数之后在也不会进行编译。因此，编译对组件的 `runtime` 是一种性能损耗。
-
-而模版编译的目的仅仅是将 `template` 转换为 `render function`,这个过程，正好可以在项目构建过程中完成，这样可以让实际组件在runtime过程中跳过模版渲染，进而提升性能，这个在项目构建的编译template的过程，就是预编译。
-
-## template和jsx有什么区别
-
-对于runtime来说，只需要保证组件存在 render 函数即可，在预编译之后，只需要保证构建过程中生成 render 函数即可。
-
-在webpack中，只需要保证组件存在 render 函数即可，而我们有了预编译之后，我们只需要保证构建过程中生成 render 函数就可以。
-
-在webpack中，我们使用 vue-loader 编译.vue文件，内部依赖的 vue-template-compiler 模块，在 webpack 构建过程中，将template预编译成 render 函数。
-
-在jsx中，添加了语法糖解析器 `babel-plugin-transform-vue-jsx` 之后，可以直接手写 `render` 函数。
-
-所以，`template` 和 `jsx` 都是 `render` 的一种表现形式，不同的是：
-
-`jsx` 相对于 `template` 会有更高的灵活性，在复杂组件中，更具有优势。`template` 在代码结构上更符合视图与逻辑分离的习惯，更简单、更直观、更好维护。
-
-## 什么是 Virtual DOM
-
-`Virtual DOM` 是 `DOM` 节点在 `JavaScript` 中的一种抽象数据结构,之所以需要虚拟DOM，是因为浏览器中操作 Dom 的代价比较昂贵，频繁操作dom会有性能问题。虚拟DOM的作用是在每一次响应式数据发生变化引起页面重渲染时，Vue对比更新前后的虚拟DOM，匹配找出尽可能少的需要更新的真实DOM，从而达到提升性能的目的。
-
-## keep-alive 组件有什么作用
-
-如果你需要在组件切换的时候，保存一些组件的状态防止多次渲染，就可以使用 keep-alive 组件包裹需要保存的组件。
-
-对于 `keep-alive` 组件来说，它拥有两个独有的生命周期钩子函数，分别为 `activated` 和 `deactivated` 。用 `keep-alive`包 裹的组件在切换时不会进行销毁，而是缓存到内存中并执行 `deactivated` 钩子函数，命中缓存渲染后会执行 `actived` 钩子函数。
-
-源码中：`core/components/keep-alive`
-
-## 创建vue节点的两种方式
-
-- vue-extend
-
-```js
-function create(Component, props) {
-  // 继承组件
-  const Ctor = Vue.extend(Component)
-  // 传参
-  const comp = new Ctor({
-    propsData: props
-  })
-  // 挂载
-  comp.$mount()
-  document.body.appendChild(comp.$el)
-  comp.remove = function() {
-    document.body.remove(comp.$el)
-    comp.$destory()
-  }
-}
-```
-
-- 实例化
-
-```js
-function create(Component, props) {
-  const vm = new Vue({
-    // h是createElement, 返回VNode，是虚拟dom
-    // 需要挂载才能变成真实dom
-    render: h => h(Component, {props})
-  }).$mount()// 不指定宿主元素，则会创建真实dom，但是不会追加操作
-
-  // 获取真实dom
-  document.body.appendChild(vm.$el)
-
-  const comp = vm.$children[0]
-
-  // 删除
-  comp.remove = function() {
-    document.body.remove(vm.$el)
-    vm.$destroy()
-  }
-  
-  return comp
-}
-
-```
-
-## transition动画
-
-name：用于自动生成 CSS 过渡类名。例如：name: 'fade' 将自动拓展为 .fade-enter，.fade-enter-active 等。默认类名为 "v"
-
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/vwW5py.png)
-
-## 数组数据的响应化过程
-
-```javascript
-const originalProto = Array.prototype
-const arrProto = Object.create(originalProto)
-const methodsToPatch = [
-  'push',
-  'pop',
-  'shift',
-  'unshift',
-  'splice',
-  'sort',
-  'reverse'
-]
-methodsToPatch.forEach(method => {
-  arrProto[method] = function() {
-    originalProto[method].apply(this, arguments)
-  }
-})
-```
-
-## vue异步更新流程
-
-- 第一步
-
-队列保存更新函数，一个key对应一个`watcher`,如果对相同key进行操作，则只会更新一次
-
-- 第二步
-
-批量处理，利用微任务。
-
-优先级：
-
-1. Promise/MutationObserver
-2. SetImmediate/SetTimeOut
-
-## computed实现原理及其实现方式
-
-计算值会被缓存，依赖的data值改变时才会重新计算

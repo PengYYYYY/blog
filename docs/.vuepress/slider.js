@@ -5,17 +5,32 @@ exports.getFontEndBar = () => {
 			children: [
 				'vue/lifeCycle',
 				'vue/vue3',
+				'vue/reactive',
 				'vue/vue-router',
-				'vue/vuex'
-				// 'vue/vue-question',
+				'vue/vuex',
+				'vue/vue-question',
 			]
 		},
 		{
 			title: 'react',
 			children: [
 				'react/core',
-				// 'react/redux',
-				// 'react/question',
+				'react/question',
+				'react/redux',
+			]
+		},
+		{
+			title: '框架对比',
+			children: [
+				// 'architecture/contrast',
+				'architecture/lifeCycle',
+				'architecture/data',
+				'architecture/diff',
+				'architecture/component',
+				'architecture/event',
+				'architecture/render',
+				'architecture/state',
+				'architecture/router',
 			]
 		},
 		{

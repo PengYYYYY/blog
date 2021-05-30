@@ -184,12 +184,12 @@ Function.prototype.bind = function(context) {
 ```js
 function debounce(func, ms = 500) {
   let timer;
-  return function (...args) {
+  return function () {
     if (timer) {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
-      func.apply(this, args);
+      func.apply(this, argument);
     }, ms);
   };
 }
@@ -202,28 +202,14 @@ function debounce(func, ms = 500) {
 ```js
 function throttle(func, ms) {
   let canRun = true;
-  return function (...args) {
+  return function () {
     if (!canRun) return;
     canRun = false;
     setTimeout(() => {
-      func.apply(this, args);
+      func.apply(this, argument);
       canRun = true;
     }, ms);
   };
-}
-```
-
-## new
-
-- new
-
-```js
-function myNew() {
-  const obj = {}
-  const Con = [].shift.call(this)
-  obj.__proto__ = Con
-  const result = Con.apply(obj, arguments)
-  return result instanceof Object ? result : obj
 }
 ```
 
@@ -277,7 +263,7 @@ function myNew() {
   var result = Con.apply(obj, arguments);
   return result instanceof Object ? result : obj
 }
-```f
+```
 
 以下是对实现的分析：
 
@@ -294,4 +280,162 @@ function myNew() {
   const result =  Con.apply(obj, arguments)
   return result instanceof Object ? result : obj
 }
+```
+
+## 与原型有关的
+
+### 创建对象的三种方式
+
+- 工厂模式
+
+```js
+function factory(xx) {
+  const obj = {}
+  obj.xx = xx
+  return obj
+}
+```
+
+- 构造函数
+
+```js
+function create(xxx) {
+  this.xxx = xxx
+}
+```
+
+- 原型链模式
+
+```js
+function myCar() {}
+myCar.prototype.xx = "A"
+myCar.prototype.myName = function() {}
+```
+
+- 组合构造函数
+
+```js
+function Car(color,brand){
+    this.color = color;
+    this.brand = brand;
+    this.passengers = ["a","b","c"];
+}
+Car.prototype = {
+  constructor: Car,
+  myName: function() {}
+}
+```
+
+### js继承
+
+- 原型链继承
+
+```js
+function superType(xxx) {
+  this.xxx = xxx
+}
+function subType(){
+  this.color = "blue";
+}
+superType.prototype = new superType()
+```
+
+- 借用构造函数
+
+```js
+function superType(xxx) {
+  this.xxx = xxx
+}
+function subType(xxx) {
+  OldCar.call(this, xxx);
+}
+```
+
+- 组合继承
+
+```js
+function superType(xxx) {
+  this.xxx = xxx
+}
+function subType(xxx){
+  superType.call(this, name)  //第一次调用
+  this.xxx = xxx;
+} 
+subType.prototype = new superType()
+subType.prototype.constructor = subType
+```
+
+- 寄生组合继承
+
+```js
+
+```
+
+## 数组API
+
+### flatten
+
+```js
+function myFlatten(arr) {
+  return arr.reduce((a, b) => {
+    return a.push(Array.isArray(b) ? myFlatten(b): b)
+  }, [])
+}
+function myFlatten2(arr) {
+  const res = []
+  for(let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      res = res.concat(myFlatten2(arr[i]))
+    } else {
+      res.push(arr[i])
+    }
+  }
+  return res
+}
+function myFlatten3(arr) {
+  return arr.toString().split(',').map(item => +item)
+}
+```
+
+### reduce
+
+```js
+Array.prototype.reduce = function(fn, value) {
+  if(typeof fn !== 'function') {
+    console.log("第一个参数需要为函数")
+    return
+  }
+  let cur = value
+  const startIndex = 0
+  if(cur === undefined) {
+    cur = this[0]
+    startIndex = 1
+  }
+  for(let i = startIndex; i < this.length; i++) {
+    cur = fn(acc, this[i], i, this)
+  }
+  return acc
+}
+```
+
+### filter
+
+```js
+Array.prototype.filter = function(fn) {
+  let arr = []
+  let arr1 = Array.prototype.slice.call(this, 0)
+
+  for (let i = 0; i < arr1.length; i++) {
+    if (fn(this[i], i, this)) {
+      arr.push(arr1[i])
+    }
+  }
+  return arr
+}
+```
+
+## 解决0.2 + 0.1 !== 0.3的问题
+
+```js
+parseFloat(0.1 + 0.2).toFixed(10) == 0.3
 ```

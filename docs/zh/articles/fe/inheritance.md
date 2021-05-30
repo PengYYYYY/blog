@@ -274,9 +274,8 @@ NewCar.prototype.getColor = function(){
 缺点：需要调用两次超类的构造函数，第一次是`OldCar.call(this,name)`,第二次是`new OldCar()`。下一步我们需要解决的是超类的两次调用问题。
 
 ```js
-function A(){
+function A(){}
 
-}
 A.prototype.name = 'py';
 A.prototype.age = 12;
 

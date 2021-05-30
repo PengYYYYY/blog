@@ -57,6 +57,7 @@
 ### 代码的热升级
 
 函数式编程没有副作用，只要保证接口不变，内部实现是外部无关的。所以，可以在运行状态下直接升级代码，不需要重启，也不需要停机
+
 ## 纯函数
 
 - 可推测
@@ -193,22 +194,14 @@ const once = fn => {
 - 把多元函数转化成一元函数;
 
 ```javascript
-function test(x, y) {
-  return x + y;
+function add(x, y) {
+  return x + y
 }
-
-// 二元转换成一元
-const curry = function(fn) {
+function add(y) {
   return function(x) {
-    return function(y) {
-      return fn(x, y)
-    }
+    return x + y
   }
 }
-let myfn = curry(test)
-let res = myfn(1)(2);
-console.log(res)
-console.log(test(1, 2));
 ```
 
 ```javascript
@@ -239,19 +232,22 @@ function bfn(b) {
 }
 // 2先乘2 然后乘三
 let res = bfn(afn(2));
-console.log()
+console.log(res)
 ```
 
 函数式组合
 
 ```javascript
-const compose = function(fn1, fn2) {
-  return function(val) {
-    return fn1(fn2(val));
-  }
+function afn(a) {
+  return a * 2;
 }
-const myfn = compose(bfn, afn);
-console.log(myfn(2));
+function bfn(b) {
+  return b + 3;
+}
+const compose = (fn1, fn2) => val => bfn(afn(val));
+const myFn = compose(bfn, afn);
+myFn(2)
+
 ```
 
 多个函数组合
@@ -272,4 +268,62 @@ const compose = function(...fns) {
     }, val)
   }
 }
+```
+
+## 尾递归和尾调用
+
+尾调用的概念非常简单，一句话就能说清楚，就是指某个函数的最后一步是调用另一个函数。是执行栈的优化。
+
+```js
+function f() {
+  let m = 1;
+  let n = 2;
+  return g(m + n)
+}
+function f() {
+  return g(3)
+}
+// 等同于
+g(3)
+```
+
+上面代码中，如果函数g不是尾调用，函数f就需要保存内部变量m和n的值、g的调用位置等信息。但由于调用g之后，函数f就结束了，所以执行到最后一步，完全可以删除 f() 的调用记录，只保留 g(3) 的调用记录。
+
+### 尾递归
+
+递归非常耗费内存，因为需要同时保存成千上百个调用记录，很容易发生"栈溢出"错误（stack overflow）。对于尾递归来说，由于只存在一个调用记录，所以永远不会发生"栈溢出"错误。
+
+```js
+function factorial(n) {
+  if (n === 1) return 1;
+  return n * factorial(n - 1);
+}
+factorial(5) // 120
+```
+
+如果改写成尾递归，只保留一个调用记录，复杂度 O(1) 。
+
+```js
+function factorial(n, total) {
+  if (n === 1) return total;
+  return factorial(n - 1, n * total);
+}
+factorial(5, 1) // 120
+```
+
+### 函数柯里化
+
+```js
+function currying(fn, n) {
+  return function (m) {
+    return fn.call(this, m, n);
+  };
+}
+
+function tailFactorial(n, total) {
+  if (n === 1) return total;
+  return tailFactorial(n - 1, n * total);
+}
+
+const factorial = currying(tailFactorial, 1);
 ```

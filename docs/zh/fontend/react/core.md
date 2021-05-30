@@ -336,7 +336,7 @@ function commitWorker(fiber) {
 
 ### hook解决的问题
 
-- 组件之间复用状态逻辑问题，避免了像类组件那种侵入式的组件结构。一个hook只做一件事情，有面向过程编程的味道，
+- 组件之间复用状态逻辑问题，避免了像类组件那种侵入式的组件结构。一个hook只做一件事情，面向过程编程，
 - hook可以让颗粒度较小，比如`componentDidMount`中进行多个接口调用，在hook中可以拆分成多个`useEffect`，方便做逻辑拆分。
 - 在类组件中，修改数据是做对象的合并，而hook当中是做数据的覆盖。
 
@@ -358,4 +358,84 @@ function commitWorker(fiber) {
 - useLayoutEffect
 - useDebugValue
 
-### hook原理
+### useEffect
+
+执行state中的副作用，在生命周期中类似于class组件里的，componentDidMount和componentDidUpdate。
+
+- 条件执行
+
+```js
+// 依赖项xxx改变时执行
+useEffect(() => {
+  // do someThing
+},[xxx])
+```
+
+```js
+// 只有didMount的生活执行
+useEffect(() => {
+  // do someThing
+},[])
+```
+
+- 清除
+
+```js
+const [date, setDate] = useState(new Date())
+useEffect(() => {
+  const timer = setInterval(() => {
+    setDate(new Date())
+    return () => clearInterval(timer)
+  }, 1000)
+},[])
+```
+
+### 自定义hook
+
+实现时钟hook,名称以`use`开头，函数内部可以调用其他Hook
+
+```js
+function useClock() {
+  const [date, setDate] = useState(new Date())
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDate(new Date())
+      return () => clearInterval(timer)
+    }, 1000)
+  },[])
+  return date
+}
+```
+
+- hook使用规则
+
+1. Hook就是js函数，只能在最外层定义hook，不能在循环和嵌套函数里面去调用。
+2. 只能在react的函数组件中调用，在自定义hook里面也可以调用hook
+
+### useMemo和useCallBack
+
+#### useMemo
+
+类似于vue中的computed。只有依赖项改变的时候，函数体内容才会执行
+
+```js
+const expensive = useMemo(() => {
+  console.log("compute")
+  let sum = 0;
+  function factorial(n, total = 1) {
+    if(n == 0) return total
+    return factorial(n-1, total + n)
+  }
+}, [count])
+```
+
+#### useCallback
+
+用于和子组件间的回调性能优化
+
+```js
+// 当依赖性xxx变化时才会执行
+const addClick = useCallback(() => {
+
+}, [xx])
+```

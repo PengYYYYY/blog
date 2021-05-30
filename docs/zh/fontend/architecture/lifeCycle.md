@@ -23,10 +23,43 @@ beforeUpdate -> onBeforeUpdate
 updated -> onUpdated
 beforeDestroy -> onBeforeUnmount
 destroyed -> onUnmounted
-errorCaptured -> onErrorCaptured
+errorCaptured  -> onErrorCaptured
 
 ### setup执行时机
 
 在beforeCreate之后，create之前执行.
 
 ## react生命周期
+
+### react16.4之前的生命周期
+
+- defaultProps && propType：初始化props默认值
+- construct：构造函数
+- componentWillMount：组件将要挂载
+- render：组件渲染
+- componentDidMount：组件挂载完成
+组件运行时：
+- 组件卸载
+  - componentWillUnmount
+state改变：
+  - shouldComponentUpdate
+  - componentWillUpdate
+  - render
+  - componentDidUpdate
+父组件更新render(),props改变
+  - componentWillReceiveProps
+
+### react16.4以后的生命周期
+
+v17以后可能会被废弃的三个生命周期用getDerivedStateFromPros替代：
+
+- componentWillMount
+- componentWillUpdate
+- componentWillReceiveProps
+
+要用的话加unsafe
+
+引入了两个新的生命周期：
+
+- static getDerivedStateFromPros: 在render方法之前都会调用的,返回一个对象来更新state，如果返回null则不更新任何内容。
+- getSnapshotBeforeUpdate:在最近一次渲染输出（提交到DOM节点）之前调用，此生命周期的返回值将作为参数传递给`componentDidUpdate(prevProps, prevState, snapshot)`

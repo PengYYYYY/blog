@@ -1,6 +1,6 @@
 # vue常见问题
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/sPSg2I.png)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/Jli5sw.png)
 
 ## 生命周期相关
 

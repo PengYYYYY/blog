@@ -1,4 +1,4 @@
-# Vue初始化
+# Vue核心
 
 ## 生命周期图
 
@@ -336,3 +336,11 @@ initProvide(vm) // resolve provide after data/props
 ### initState
 
 这里的主要工作主要是定义的数据进行defineReactive. 主要是 `props` 和 `data`
+
+## 异步更新
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/SnZbFX.png)
+
+## 组件化流程
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/y1xbRM.png)

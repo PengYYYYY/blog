@@ -136,7 +136,7 @@ Service Worker 是HTML5 的一个新特性，主要用来做持久的离线缓�
 - 安装 (install)
 - 激活 (activate)
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/399lNn.png)
+<!-- ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/399lNn.png) -->
 
 #### 使用 service worker 只需要以下几个步骤
 

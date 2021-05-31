@@ -67,7 +67,7 @@ Connection: Upgrade
 
 通常作为 PUT 或 POST 操作的返回结果，它表示重定向链接指向的不是新上传的资源，而是另外一个页面。比如消息确认页面或上传进度页面。而请求重定向页面的方法要总是使用 GET。
 
-## 304 Not Modified
+### 304 Not Modified
 
 说明无需再次传输请求的内容，也就是说可以使用缓存的内容。在请求中附带了头部信息： If-None-Match 或If-Modified-Since。
 

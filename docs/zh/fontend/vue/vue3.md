@@ -1,6 +1,6 @@
 # Vue3.0
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/TVgyr9.png)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/DrJG06.png)
 
 ## vue3.0初始化流程
 

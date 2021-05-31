@@ -1,6 +1,6 @@
 # 安全
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/wpJYkZ.png)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/iD0vJG.png)
 
 ## 浏览器安全
 

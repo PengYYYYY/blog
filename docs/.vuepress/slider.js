@@ -3,20 +3,22 @@ exports.getFontEndBar = () => {
 		{
 			title: 'vue',
 			children: [
-				'vue/lifeCycle',
+				'vue/core',
 				'vue/vue3',
 				'vue/reactive',
 				'vue/vue-router',
 				'vue/vuex',
 				'vue/vue-question',
+				'vue/vite',
 			]
 		},
 		{
 			title: 'react',
 			children: [
 				'react/core',
-				'react/question',
 				'react/redux',
+				'react/router',
+				'react/question',
 			]
 		},
 		{
@@ -57,6 +59,7 @@ exports.getFontEndBar = () => {
 		{
 			title: '性能优化',
 			children: [
+				'optimize/overview',
 				'optimize/base',
 				'optimize/engineering',
 				'optimize/indicators',

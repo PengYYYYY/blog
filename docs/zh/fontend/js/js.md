@@ -1,6 +1,6 @@
 # js核心
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/g10bYT.png)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/FmL7nI.png)
 
 js的几大核心问题
 

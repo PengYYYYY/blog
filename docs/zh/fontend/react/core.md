@@ -1,6 +1,8 @@
-# react核心编码
+# React核心
 
-## React
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/llYt0m.png)
+
+## React原理
 
 入口 `createElement`，其原理为 `babel-loader` 将jsx代码转换成 `createElement`.
 

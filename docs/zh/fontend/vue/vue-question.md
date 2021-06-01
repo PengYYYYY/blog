@@ -248,6 +248,21 @@ deep表示深侦听，也就是我设置的属性对应的属性值即使是复�
 
 immediate是表示当侦听开始时就先触发callback函数，默认为一开始不会触发watch效果，而仅仅是侦听。
 
+### watch的实现原理
+
+watch的分类：
+
+- deep watch（深层次监听）
+- user watch（用户监听）
+- computed watcher（计算属性）
+- sync watcher（同步监听）
+
+watch实现过程：
+
+- watch的初始化在data初始化之后（此时的data已经通过Object.defineProperty的设置成响应式）
+- watch的key会在Watcher里进行值的读取，也就是立马执行get获取value（从而实现data对应的key执行getter实现对于watch的依赖收集），此时如果有immediate属性那么立马执行watch对应的回调函数
+- 当data对应的key发生变化时，触发user watch实现watch回调函数的执行
+
 ### 数组数据的响应化过程
 
 ```javascript

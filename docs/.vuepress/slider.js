@@ -32,7 +32,6 @@ exports.getFontEndBar = () => {
 				'architecture/event',
 				'architecture/render',
 				'architecture/state',
-				'architecture/router',
 			]
 		},
 		{

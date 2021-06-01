@@ -18,7 +18,7 @@ let a = {
 let b = { ...a }
 ```
 
-## 深拷贝
+### 深拷贝
 
 deepCopy
 
@@ -247,41 +247,6 @@ function myInterval(fn, interval) {
 }
 ```
 
-## New 操作符实现
-
-在调用 new 的过程中会发生以下四件事情：
-
-- 创建一个新的空的对象
-- 将构造函数的作用域赋给新对象（因此this就指向了这个新对象）
-- 执行构造函数中的代码（为这个新对象添加属性）
-- 如果这个函数有返回值，则返回；否则，就会默认返回新对象
-
-```js
-function myNew() {
-  var Con = Array.prototype.shift.call(arguments);
-  var obj = Object.create(Con.prototype);
-  var result = Con.apply(obj, arguments);
-  return result instanceof Object ? result : obj
-}
-```
-
-以下是对实现的分析：
-
-- 创建一个空对象
-- 获取构造函数
-- 设置空对象的原型
-- 绑定 `this` 并执行构造函数
-- 确保返回值为对象
-
-```js
-function myNew() {
-  const Con = Array.prototype.shift.call(arguments)
-  const obj = Objeact.create(Con.prototype)
-  const result =  Con.apply(obj, arguments)
-  return result instanceof Object ? result : obj
-}
-```
-
 ## 与原型有关的
 
 ### 创建对象的三种方式
@@ -371,6 +336,41 @@ subType.prototype.constructor = subType
 
 ```
 
+### New 操作符实现
+
+在调用 new 的过程中会发生以下四件事情：
+
+- 创建一个新的空的对象
+- 将构造函数的作用域赋给新对象（因此this就指向了这个新对象）
+- 执行构造函数中的代码（为这个新对象添加属性）
+- 如果这个函数有返回值，则返回；否则，就会默认返回新对象
+
+```js
+function myNew() {
+  var Con = Array.prototype.shift.call(arguments);
+  var obj = Object.create(Con.prototype);
+  var result = Con.apply(obj, arguments);
+  return result instanceof Object ? result : obj
+}
+```
+
+以下是对实现的分析：
+
+- 创建一个空对象
+- 获取构造函数
+- 设置空对象的原型
+- 绑定 `this` 并执行构造函数
+- 确保返回值为对象
+
+```js
+function myNew() {
+  const Con = Array.prototype.shift.call(arguments)
+  const obj = Objeact.create(Con.prototype)
+  const result =  Con.apply(obj, arguments)
+  return result instanceof Object ? result : obj
+}
+```
+
 ## 数组API
 
 ### flatten
@@ -434,7 +434,9 @@ Array.prototype.filter = function(fn) {
 }
 ```
 
-## 解决0.2 + 0.1 !== 0.3的问题
+## 一些问题
+
+### 解决0.2 + 0.1 !== 0.3的问题
 
 ```js
 parseFloat(0.1 + 0.2).toFixed(10) == 0.3

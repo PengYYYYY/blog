@@ -346,6 +346,8 @@ function create(Component, props) {
 
 ```
 
+### vue的watch原理
+
 ## 概念性问题
 
 ### 组件化的理解

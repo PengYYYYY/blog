@@ -77,6 +77,26 @@ const b = JSON.parse(JSON.stringify(a))
 - 不能解决循环引用的对象
 - 当遇到函数、 undefined 或者 symbol 的时候，会被自动过滤掉
 
+> mini版本
+
+```js
+function deepClone(data) {
+    if (typeof data === 'object') {
+      const result = Array.isArray(data) ? [] : {};
+      for (let key in data) {
+        if (typeof data[key] === 'object') {
+          result[key] = deepClone(data[key]);
+        } else {
+          result[key] = data[key];
+        }
+      }
+      return result;
+    } else {
+      return data;
+    }
+  }
+```
+
 ## Object.assign()与Object.create()实现原理
 
 - assign实现原理
@@ -116,11 +136,11 @@ Object.create = function(obj) {
 
 ```
 
-## 手写 `call`、`apply`、`bind`
+## 和this指向相关的
 
 call 与 apply 的差别在于参数
 
-- call
+### call
 
 ```js
 Function.prototype.call = function(context) {
@@ -136,7 +156,7 @@ Function.prototype.call = function(context) {
 }
 ```
 
-- apply
+### apply
 
 ```js
 Function.prototype.apply = function(context) {
@@ -156,7 +176,7 @@ Function.prototype.apply = function(context) {
 }
 ```
 
-- bind
+### bind
 
 ```js
 Function.prototype.bind = function(context) {
@@ -174,6 +194,32 @@ Function.prototype.bind = function(context) {
   }
 }
 ```
+
+### New 操作符实现
+
+在调用 new 的过程中会发生以下四件事情：
+
+- 创建一个新的空的对象
+- 将构造函数的作用域赋给新对象（因此this就指向了这个新对象）
+- 执行构造函数中的代码（为这个新对象添加属性）
+- 如果这个函数有返回值，则返回；否则，就会默认返回新对象
+
+```js
+function myNew() {
+  var Con = Array.prototype.shift.call(arguments);
+  var obj = Object.create(Con.prototype);
+  var result = Con.apply(obj, arguments);
+  return result instanceof Object ? result : obj
+}
+```
+
+以下是对实现的分析：
+
+- 创建一个空对象
+- 获取构造函数
+- 设置空对象的原型
+- 绑定 `this` 并执行构造函数
+- 确保返回值为对象
 
 ## 防抖节流
 
@@ -198,6 +244,23 @@ function debounce(func, ms = 500) {
 - 节流
 
 节流的概念是设定一个周期，周期内只执行一次，若有新的事件触发则不执行，周期结束后又有新的事件触发开始新的周期。
+
+> 首节流
+
+```js
+function throttle(func, ms) {
+  let last = 0
+  return function() {
+    let now = Date.now()
+    if (now - last >= ms) {
+      last = now
+      fn.apply(this, arguments)
+    }
+  }
+}
+```
+
+> 尾节流
 
 ```js
 function throttle(func, ms) {
@@ -336,49 +399,64 @@ subType.prototype.constructor = subType
 
 ```
 
-### New 操作符实现
-
-在调用 new 的过程中会发生以下四件事情：
-
-- 创建一个新的空的对象
-- 将构造函数的作用域赋给新对象（因此this就指向了这个新对象）
-- 执行构造函数中的代码（为这个新对象添加属性）
-- 如果这个函数有返回值，则返回；否则，就会默认返回新对象
-
-```js
-function myNew() {
-  var Con = Array.prototype.shift.call(arguments);
-  var obj = Object.create(Con.prototype);
-  var result = Con.apply(obj, arguments);
-  return result instanceof Object ? result : obj
-}
-```
-
-以下是对实现的分析：
-
-- 创建一个空对象
-- 获取构造函数
-- 设置空对象的原型
-- 绑定 `this` 并执行构造函数
-- 确保返回值为对象
-
-```js
-function myNew() {
-  const Con = Array.prototype.shift.call(arguments)
-  const obj = Objeact.create(Con.prototype)
-  const result =  Con.apply(obj, arguments)
-  return result instanceof Object ? result : obj
-}
-```
-
 ## 数组API
+
+### 数组去重
+
+- 利用set
+
+```js
+function unique(arr) {
+  return Array.from(new Set(arr))
+}
+```
+
+- 利用indexOf
+
+```js
+function unique(arr) {
+  const res = []
+  for(let i = 0; i < arr.length; i++) {
+    if(res.indexOf(arr[i]) === -1) {
+      res.push(arr[i])
+    }
+  }
+  return res
+}
+```
+
+- 利用filter
+
+```js
+function unique(arr) {
+  return arr.filter((item, index) => {
+    return arr.indexOf(item) === index
+  })
+}
+```
+
+- 利用map
+
+```js
+function unique(arr) {
+  const map = new Map()
+  const res = []
+  for(let i = 0; i < arr.length; i++) {
+    if(!map.has(arr[i])) {
+      map.set(arr[i], true)
+      res.push(arr[i])
+    }
+  }
+  return res
+}
+```
 
 ### flatten
 
 ```js
 function myFlatten(arr) {
   return arr.reduce((a, b) => {
-    return a.push(Array.isArray(b) ? myFlatten(b): b)
+    return a.concat(Array.isArray(b) ? myFlatten(b): b)
   }, [])
 }
 function myFlatten2(arr) {
@@ -421,23 +499,437 @@ Array.prototype.reduce = function(fn, value) {
 ### filter
 
 ```js
-Array.prototype.filter = function(fn) {
-  let arr = []
+Array.prototype.filter = function(cb) {
+  let res = []
   let arr1 = Array.prototype.slice.call(this, 0)
 
   for (let i = 0; i < arr1.length; i++) {
-    if (fn(this[i], i, this)) {
-      arr.push(arr1[i])
+    if (cb(this[i], i, this)) {
+      res.push(arr1[i])
     }
   }
-  return arr
+  return res
 }
 ```
 
-## 一些问题
+### map
+
+```js
+Array.prototype.myMap = function(cb) {
+  let res = []
+  let arr = Array.prototype.slice.call(this, 0)
+  for (let i = 0; i < arr.length; i++) {
+    console.log(this[0])
+    const item = cb(this[i], i, this)
+    res.push(item)
+  }
+  return res
+}
+···
+
+### 类数组转换
+
+arguments和dom操作返回的结果都是类数组
+
+```js
+Array.from(arguments)
+```
+
+```js
+[...arguments]
+```
+
+```js
+Array.prototype.slice.call(arguments)
+```
+
+```js
+Array.prototype.concat.apply([], arguments)
+```
+
+## 场景问题
 
 ### 解决0.2 + 0.1 !== 0.3的问题
 
 ```js
 parseFloat(0.1 + 0.2).toFixed(10) == 0.3
+```
+
+### JSONP
+
+```js
+const jsonp = ({ url, params, callbackName }) => {
+  const generateUrl = () => {
+    let dataSrc = ''
+    for(let key of params) {
+      if(Object.prototype.hanOwnProperty.call(params, key)) {
+        dataSrc += `${key}=${params[key]}&`
+      }
+    }
+    dataSrc += `callback=${callbackName}`
+    return `${url}?${dataSrc}`
+  }
+  return new Promise((resolve, reject) => {
+    const scriptEle = document.createElement("script")
+    scriptEle.src = generateUrl()
+    document.appendChild(scriptEle)
+    window[callbackName] = data => {
+      resolve(data)
+      document.removeChild(scriptEle)
+    }
+  })
+}
+```
+
+### AJAX
+
+```js
+const getJSON = function(url) {
+  return new Promise((resolve, reject) => {
+    const xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHttp')
+    xhr.open("GET", url, false)
+    xhr.setRequestHeader("Accept", "application/json")
+    xhr.onreadystatechange = function() {
+      if(xhr.readyState !== 4) return
+      if(xhr.status === 200 || xhr.status === 304) {
+        resolve(xhr.responseText)
+      } else {
+        reject(new Error(xhr.responseText))
+      }
+    }
+    xhr.send()
+  })
+}
+```
+
+### AJAX Hooks
+
+```js
+class XhrHook {
+  constructor(beforeHooks = {}, afterHooks = {}) {
+    this.XHR = window.XMLHttpRequest
+    this.beforeHooks = beforeHooks
+    this.afterHooks = afterHooks
+    this.init()
+  }
+  // 初始化
+  init() {
+    let _this = this
+    window.XMLHttpRequest = function() {
+      this._xhr = new _this.XHR()
+      _this.overWrite(this)
+    }
+  }
+  // 重写
+  overWrite(proxyXHR) {
+    for(let key in proxyXHR) {
+      if(typeof proxyXHR._xhr[key] == "function") {
+          this.overWriteMethods(key, proxyXHR)
+          continue;
+      }
+      this.overWriteAttributes(key, proxyXHR)
+    }
+  }
+
+  // 重写方法
+  overWriteMethods(key, proxyXHR) {
+    let beforeHooks = this.beforeHooks
+    let afterHooks = this.afterHooks
+    proxyXHR[key] = (...args) => {
+      if(beforeHooks[key]) {
+        const res = beforeHooks[key].apply(proxyXHR, args)
+        if(res === false) {
+          return
+        }
+      }
+      const res = beforeHooks[key].apply(proxyXHR._xhr, args)
+
+      afterHooks[key] && afterHooks[key].call(proxyXHR._xhr, res)
+
+      return res
+    }
+  }
+
+  // 重写属性
+  overWriteAttributes(key, proxyXHR) {
+    Object.defineProperties(proxyXHR, key, this.setPropertyDescriptor(key, proxyXHR))
+  }
+
+  setPropertyDescriptor(key, proxyXHR) {
+    let obj = Object.create(null)
+    let _this = this
+    obj.set = function (val) {
+      if(!keys.startWith('on')) {
+        proxyXHR['_' + key] = val
+        return 
+      }
+
+      if(_this.beforeHooks[key]) {
+        this._xhr[key] = function(...args) {
+          _this.beforeHooks[key].apply(proxyXHR)
+          val.apply(proxyXHR, args)
+        }
+        return
+      }
+
+      this._xhr[key] = val;
+    }
+    
+    obj.get = function () {
+      return proxyXHR['_' + key] || this._xhr[key]
+    }
+
+    return obj
+  }
+}
+
+new XhrHook({
+  open: function() {
+    console.log("open")
+  },
+  onload: function() {
+    console.log("onload")
+  },
+  onreadystatechange: function() {
+    console.log("onreadystatechange")
+  },
+  onerror: function() {
+    console.log("onerror")
+  }
+})
+var xhr = new XMLHttpRequest()
+xhr.open('GET', 'http://www.baidu.com', true)
+xhr.send()
+
+```
+
+### Event Bus
+
+```js
+class EventEmitter {
+   constructor(maxListeners) {
+      this.events = {}
+      this.maxListeners = maxListeners || Infinity
+   }
+
+   emit(event, ...args) {
+     const cbs = this.events[event]
+     if(!cbs) {
+       console.log("无此事件")
+     }
+     cbs.forEach(cb => cb.apply(this, args));
+   }
+
+   on(event, cb) {
+      if(!this.events[event]) {
+        this.events[event] = []
+      }
+      if(this.maxListeners !== Infinity && this.events[event].length >= this.maxListeners) {
+        console.log("长度过长")
+        return this
+      }
+      this.events[event].push(cb)
+      return this
+   }
+
+   once(event, cb) {
+     const func = (..args) => {
+       this.off(event, func)
+       cb.apply(this, args)
+     }
+     this.on(event, func)
+     return this
+   }
+
+   of(event, cb) {
+     if(!cb) {
+       this.events[event] = null
+     } else {
+       this.events[event] = this.events[event].filter((item) => item !== cb)
+     }
+
+     return this
+   }
+}
+```
+
+### 图片懒加载
+
+```js
+function lazyLoad() {
+  const images = document.getElementByTagName('img')
+  const len = images.length
+  // 视口高度
+  const viewHeight = document.body.clientHeight
+  // 滚动条高度
+  const scrollHeight = document.body.scrollTop
+  for (let i = 0; i < len; i++) {
+    const offsetHeight = images[i].offsetTop
+    if (offsetHeight < viewHeight + scrollHeight) {
+      const src = images[i].dataSet.src
+      images[i].src = src
+    }
+  }
+}
+window.addEventListener("scroll", lazyLoad)
+```
+
+### 滚动加载
+
+```js
+window.addEventListener('scroll', () => {
+  const clientHeight = document.body.clientHeight
+  const scrollTop = document.body.scrollTop
+  const scrollHeight = document.body.scrollHeight
+  if(clientHeight + scrollTop >= scrollHeight) {
+    // do someThing
+  }
+}, false)
+```
+
+### 大数据的渲染
+
+```js
+setTimeout(() => {
+  const total = 10000
+  const once = 20
+  const loopCount = Math.ceil(total / once)
+  let countOfRender = 0
+  const ul = document.createElement("ul")
+  document.body.appendChild(ul)
+  function add() {
+    const fragment = document.createDocumentFragment()
+    for (let i = 0; i < once; i++) {
+      const li = document.createElement("li")
+      li.innerText = "123123"
+      fragment.appendChild(li)
+    }
+    ul.appendChild(fragment)
+    countOfRender++
+    loop()
+  }
+  function loop() {
+    if(countOfRender < loopCount) {
+      window.requestAnimationFrame(add)
+    } else {
+      console.log('end')
+      console.log(new Date().valueOf())
+    }
+  }
+  console.log('start')
+  console.log(new Date().valueOf())
+  loop()
+}, 0);
+```
+
+### 打印当前页面有多少元素
+
+```js
+function fn() {
+  return [...new Set([...document.querySelectorAll("*")].map(el => el.tagName))].length
+}
+```
+
+### eventBus
+
+```js
+
+```
+
+## 函数式编程
+
+### 柯里化
+
+指的是将一个接受多个参数的函数变为接收一个参数返回一个函数的固定形式，这样便于二次调用。如f(1)(2).
+
+```js
+function add() {
+  const args = [...arguments]
+  function fn() {
+    args.push(...arguments)
+    return fn
+  }
+  fn.toString = function() {
+    return args.reduce((a, b) => a + b)
+  }
+  return fn
+}
+```
+
+### 函数组合
+
+函数组合就是将多次函数调用组合为单次的调用
+
+```js
+// 简易版
+function compose(...args) {
+  return args.reduce((a, b) => (...args) => a(b(args)))
+}
+```
+
+## promise
+
+### promiseAll
+
+```js
+function PromiseAll(arr) {
+  return new Promise((reslove, reject) => {
+    if(Array.isArray(arr)) {
+      return reject(new Error("需要传入数组"))
+    }
+    const res = []
+    const length = arr.length
+    let counter = 0
+    for(let i = 0; i < length; i++) {
+      Promise.reslove(arr[i]).then(value => {
+        counter++
+        res[i] = value
+        if(counter == length) {
+          reslove(res);
+        }
+      }).catch(res => {
+        reject(res)
+      })
+    }
+  })
+}
+```
+
+### promise.race
+
+```js
+function PromiseRace(arr) {
+  return new Promise((resolve, reject) => {
+    arr.forEach(item => {
+      Promise.resolve(item).then(res => resolve(res)).catch(e => reject(e))
+    })
+  })
+}
+```
+
+### promise-limit
+
+并发控制
+
+```js
+const limitLoad = function(urls, handler, limit) {
+  const sequence = [].concat(urls)
+  let promises = []
+
+  promises = sequence.splice(0, limit).map((url, index) => {
+    return handler(url).then(() => {
+      return index
+    })
+  })
+
+  let p = Promise.race(promises)
+  for(let i = 0; i < sequence.length; i++) {
+    p = p.then((res) => {
+      promises[res] = handler(sequence[i]).then(() => {
+        return res
+      })
+      return Promise.race(promises)
+    })
+  }
+}
 ```

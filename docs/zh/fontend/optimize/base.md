@@ -302,27 +302,20 @@ if (color == 'blue') {
 }
 
 switch (color) {
-    case 'blue':
-
-        break
-    case 'yellow':
-
-        break
-    case 'white':
-
-        break
-    case 'black':
-
-        break
-    case 'green':
-
-        break
-    case 'orange':
-
-        break
-    case 'pink':
-
-        break
+  case 'blue':
+    break
+  case 'yellow':
+    break
+  case 'white':
+    break
+  case 'black':
+    break
+  case 'green':
+    break
+  case 'orange':
+    break
+  case 'pink':
+    break
 }
 ```
 

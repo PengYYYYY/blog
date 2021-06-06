@@ -11,6 +11,27 @@
 - Watcher：执⾏更新函数（更新dom）
 - Dep：依赖，管理多个Watcher，批量更新
 
+### 流程描述
+
+#### 数据劫持
+
+1. 将data做响应式处理,走reactive
+2. 递归的对对象做处理
+3. 创建依赖对象，每一个key一个依赖对象
+
+#### 代理data
+
+1. 代理data，将data的值映射到vm上
+
+#### 编译过程
+
+1. 指令编译，遍历子元素等
+2. 遇到响应式对象，确认update函数，创建wathcer，并将watcher添加到相应key到依赖队列中
+
+#### 响应式处理
+
+1. 修改响应式数据后，触发依赖对象的notify，遍历执行watcher中的更新函数，达到更新效果
+
 ### 响应式核心代码
 
 ```js
@@ -285,6 +306,27 @@ class Compile {
 ## vue3.0
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/xy5F2N.png)
+
+### 大致的流程
+
+#### proxy
+
+1. 代理对象，set，get，deleteProperty
+
+#### 副作用
+
+1. 副作用函数执行，执行过程中，先将副作用函数推入一个栈中
+2. 执行过程中，如果遇到响应式对象，会触发proxy中的get，get触发track
+3. tack过程中，会建立，响应式数据的key与副作用函数的关系，通过WeakMap,Map,Set三级关系
+4. weakMap管理的是总的依赖收集对应到traget,Map对应的是target中的key,set对应的是当前key对应的副作用列表，此时就建立了，target.key到effect的连接
+5. 副作用函数第一次执行完毕，函数从副作用函数栈中弹出，结束收集过程
+
+#### 副作用触发过程
+
+- 修改响应式数据，触发proxy中的set，set触发trigger，
+- trigger获取对象target的depsMap，然后拿到依赖depsMap中key的副作用数组，全部执行一遍
+
+### 核心代码
 
 ```js
 const isObject = val => val !== null && typeof val === 'object'

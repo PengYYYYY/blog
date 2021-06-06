@@ -1,4 +1,4 @@
-# js核心
+# JS核心
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/FmL7nI.png)
 

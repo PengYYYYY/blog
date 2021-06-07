@@ -115,9 +115,9 @@ exports.getNetWorkBar = () => {
 	return [
 		'connectionProcess',
 		'crossDomain',
-		'httpCode',
 		'security',
 		'http',
+		'httpCode',
 		'https',
 		'http-next',
 		'cache',

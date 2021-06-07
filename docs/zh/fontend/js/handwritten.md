@@ -525,7 +525,50 @@ Array.prototype.myMap = function(cb) {
   }
   return res
 }
-···
+```
+
+### find的实现
+
+```js
+Array.prototype.myFind = function(callback) {
+  let curVal
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i])) {
+      curVal = this[i]
+      break
+    }
+  }
+  return curVal
+}
+```
+
+### some的实现
+
+```js
+Array.prototype.mySome = function(callback) {
+  let result = false
+  for (let i = 0; i < this.length; i++) {
+    result = callback && callback[this[i]]
+  }
+  return result
+}
+```
+
+### every的实现
+
+```js
+Array.prototype.every = function(cb) {
+  let result = true
+  for(let i = 0; i < this.length; i++) {
+    if(!cb(this[i])) {
+      result = false
+      break
+    }
+  }
+
+  return result
+}
+```
 
 ### 类数组转换
 
@@ -828,12 +871,6 @@ setTimeout(() => {
 function fn() {
   return [...new Set([...document.querySelectorAll("*")].map(el => el.tagName))].length
 }
-```
-
-### eventBus
-
-```js
-
 ```
 
 ## 函数式编程

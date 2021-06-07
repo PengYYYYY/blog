@@ -81,8 +81,20 @@ Event Loop 执行顺序:
 
 ## Node 中的 Event Loop
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/OIprvT.png)
+> node.js运行流程
 
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/Xqlyuu.png)
+
+Node.js的运行机制如下:
+
+- V8引擎解析JavaScript脚本。
+- 解析后的代码，调用Node API。
+- libUv库负责Node API的执行。它将不同的任务分配给不同的线程，形成一个Event Loop（事件循环），以异步的方式将任务的执行结果返回给V8引擎。
+- V8引擎再将结果返回给用户。
+
+> 六个阶段
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/OIprvT.png)
 
 Node 中的 Event Loop 和浏览器中的是完全不相同的东西。
 Node 的 Event Loop 分为 6 个阶段，它们会按照顺序反复运行。每当进入一个阶段的时候，都会从对应的回调队列中取出函数去执行。当队列为空或者执行的回调函数数量达到系统的阀值，就会进入下一个阶段。
@@ -138,4 +150,68 @@ NodeJs的微任务队列主要有2个：
 `Next Tick Queue`：是放置process.nextTick(callback)的回调任务的
 `Other Micro Queue`：放置其他microtask，比如Promise等
 
-node在11版本之后的eventloop执行与浏览器一致了
+### 版本差异
+
+```js
+setTimeout(()=>{
+  console.log('timer1')
+  Promise.resolve().then(function() {
+    console.log('promise1')
+  })
+}, 0)
+setTimeout(()=>{
+  console.log('timer2')
+  Promise.resolve().then(function() {
+    console.log('promise2')
+  })
+}, 0)
+```
+
+#### timers 阶段的执行时机变化
+
+> node11
+
+如果是 node11 版本一旦执行一个阶段里的一个宏任务(setTimeout,setInterval和setImmediate)就立刻执行微任务队列，这就跟浏览器端运行一致，最后的结果为timer1=>promise1=>timer2=>promise2
+
+> node10
+
+如果是 node10 及其之前版本要看第一个定时器执行完，第二个定时器是否在完成队列中.
+
+- 如果是第二个定时器还未在完成队列中，最后的结果为`timer1=>promise1=>timer2=>promise2`
+- 如果是第二个定时器已经在完成队列中，则最后的结果为`timer1=>timer2=>promise1=>promise2`
+
+#### check 阶段的执行时机变化
+
+```js
+setImmediate(() => console.log('immediate1'));
+setImmediate(() => {
+    console.log('immediate2')
+    Promise.resolve().then(() => console.log('promise resolve'))
+});
+setImmediate(() => console.log('immediate3'));
+setImmediate(() => console.log('immediate4'));
+```
+
+- 如果是 node11 后的版本，会输`immediate1=>immediate2=>promise resolve=>immediate3=>immediate4`
+- 如果是 node11 前的版本，会输`出immediate1=>immediate2=>immediate3=>immediate4=>promise resolve`
+
+#### nextTick 队列的执行时机变化
+
+```js
+setImmediate(() => console.log('timeout1'));
+setImmediate(() => {
+    console.log('timeout2')
+    process.nextTick(() => console.log('next tick'))
+});
+setImmediate(() => console.log('timeout3'));
+setImmediate(() => console.log('timeout4'));
+```
+
+- 如果是 node11 后的版本，会输出timeout1=>timeout2=>next tick=>timeout3=>timeout4
+- 如果是 node11 前的版本，会输出timeout1=>timeout2=>timeout3=>timeout4=>next tick
+
+#### 总结
+
+如果是 node11 版本一旦执行一个阶段里的一个宏任务(setTimeout,setInterval和setImmediate)就立刻执行对应的微任务队列。
+
+[掘金参考文章](<https://juejin.cn/post/6844904079353708557#heading-4>)

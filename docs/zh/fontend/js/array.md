@@ -151,10 +151,27 @@ everyone // ["a", "b", "c", "d"]
 const names = ["a", "b", "c", "d"]
 
 const heroes = names.slice(0, 2)
-const villains = names.splice(2)
+const villains = names.slice(2)
 
 heroes // ["a", "b"]
 villains // ["c", "d"]
+```
+
+### `array.splice()`
+
+该方法向或者从数组中添加或者删除项目，返回被删除的项目。
+
+splice（index,howmany,item1,...itemX）
+
+- index参数：必须，整数，规定添加或者删除的位置，使用负数，从数组尾部规定位置。
+- howmany参数：必须，要删除的数量，如果为0，则不删除项目。
+- item1,...itemX参数：可选，向数组添加的新项目。
+
+> 删除指定位置元素
+
+```js
+var arr = [1,2,3,4,5];
+arr.splice(1)
 ```
 
 ## 数组的拷贝

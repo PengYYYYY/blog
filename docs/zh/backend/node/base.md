@@ -112,11 +112,13 @@ function Module(id, parent) {
 
 ### 异步I/O和非阻塞I/O
 
-- 阻塞I/O
+> 阻塞I/O
 
 阻塞I/O的特点是调用之后一定要等到系统内核层面完成所有操作后，调用才结束。
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/qEcHIB.png)
+
+> 非阻塞I/O
 
 ## 内存控制
 

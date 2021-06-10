@@ -38,9 +38,7 @@
 4. 元素和伪元素，加0,0,0,1。
 5. 通配选择器 * 对特殊性没有贡献，即0,0,0,0。
 
-## flex布局和grid布局
-
-### flex布局
+## Flex布局
 
 采用 `Flex` 布局的元素，称为 `Flex` 容器（flex container），简称"容器"。它的所有子元素自动成为容器成员，称为 `Flex` 项目（flex item），简称"项目"。
 
@@ -48,7 +46,7 @@
 
 项目默认沿主轴排列。单个项目占据的主轴空间叫做`main size`，占据的交叉轴空间叫做`cross size`。
 
-#### flex-direction属性
+### flex-direction属性
 
 flex-direction属性决定主轴的方向
 
@@ -63,7 +61,7 @@ flex-direction属性决定主轴的方向
 - column: 主轴为垂直方向，起点顶端。
 - column-reverse: 主轴为垂直方向，起点为底端。
 
-#### flex-wrap属性
+### flex-wrap属性
 
 项目下，子项目都排在一条线（又称"轴线"）上
 
@@ -77,11 +75,11 @@ flex-direction属性决定主轴的方向
 - wrap: 换行
 - wrap-reverse: 换行，第一行在下方
 
-#### flex-flow
+### flex-flow
 
 `flex-direction` 和 `flex-flow` 的集合
 
-#### justify-content属性
+### justify-content属性
 
 定义了项目在主轴上的对齐方式
 
@@ -97,7 +95,7 @@ flex-direction属性决定主轴的方向
 - space-between：两端对齐，项目之间的间隔都相等。
 - space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
 
-#### align-items属性
+### align-items属性
 
 定义项目在交叉轴上如何对齐。
 
@@ -115,7 +113,7 @@ flex-direction属性决定主轴的方向
 
 > 项目的属性
 
-#### order属性
+### order属性
 
 数值越小，排列越靠前，默认为0。
 
@@ -125,7 +123,7 @@ flex-direction属性决定主轴的方向
 }
 ```
 
-#### flex-grow属性
+### flex-grow属性
 
 属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
 
@@ -137,27 +135,27 @@ flex-direction属性决定主轴的方向
 
 如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
 
-#### flex-shrink属性
+### flex-shrink属性
 
 定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小,flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。设置为0时不缩小。
 
-#### flex-basis属性
+### flex-basis属性
 
 定义了在分配多余空间之前，项目占据的主轴空间（main size）。
 
-#### flex属性
+### flex属性
 
 flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。
 
 该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。
 
-#### align-self属性
+### align-self属性
 
 允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性
 
-### Grid
+## Grid布局
 
-#### display 属性
+### display 属性
 
 ```css
 div {
@@ -165,7 +163,7 @@ div {
 }
 ```
 
-#### grid-template-columns 属性、grid-template-rows 属性
+### grid-template-columns 属性、grid-template-rows 属性
 
 `grid-template-columns`属性定义每一列的列宽, `grid-template-rows` 属性定义每一行的行高.
 
@@ -217,7 +215,7 @@ minmax(100px, 1fr)表示列宽不小于100px，不大于1fr
 }
 ```
 
-#### grid-row-gap 属性，grid-column-gap 属性，grid-gap 属性
+### grid-row-gap 属性，grid-column-gap 属性，grid-gap 属性
 
 - grid-row-gap: 行间距
 - grid-column-gap: 列间隔
@@ -238,7 +236,7 @@ minmax(100px, 1fr)表示列宽不小于100px，不大于1fr
 }
 ```
 
-#### grid-auto-flow 属性
+### grid-auto-flow 属性
 
 - 划分网格以后，容器的子元素会按照顺序，自动放置在每一个网格。默认的放置顺序是"先行后列"。
 
@@ -256,7 +254,7 @@ minmax(100px, 1fr)表示列宽不小于100px，不大于1fr
 }
 ```
 
-#### justify-items 属性，align-items 属性，place-items 属性
+### justify-items 属性，align-items 属性，place-items 属性
 
 `justify-items`属性设置单元格内容的水平位置（左中右），`align-items`属性设置单元格内容的垂直位置（上中下）
 
@@ -267,7 +265,7 @@ minmax(100px, 1fr)表示列宽不小于100px，不大于1fr
 
 `place-items`是`justify-items和align-items`的合并简写形式. 如果省略第二个值则浏览器认为与第一个值相等。
 
-#### justify-content 属性，align-content 属性，place-content 属性
+### justify-content 属性，align-content 属性，place-content 属性
 
 整个内容区域在容器里面的位置
 
@@ -279,13 +277,13 @@ minmax(100px, 1fr)表示列宽不小于100px，不大于1fr
 - space-between：项目与项目的间隔相等，项目与容器边框之间没有间隔。
 - space-evenly：项目与项目的间隔相等，项目与容器边框之间也是同样长度的间隔。
 
-#### grid-auto-columns 属性，grid-auto-rows 属性
+### grid-auto-columns 属性，grid-auto-rows 属性
 
 `grid-auto-columns`属性和`grid-auto-rows`属性用来设置，浏览器自动创建的多余网格的列宽和行高。它们的写法与`grid-template-columns`和`grid-template-rows`完全相同。如果不指定这两个属性，浏览器完全根据单元格内容的大小，决定新增网格的列宽和行高。
 
 > 项目（item）属性
 
-#### grid-column-start 属性，grid-column-end 属性, grid-row-start 属性, grid-row-end 属性
+### grid-column-start 属性，grid-column-end 属性, grid-row-start 属性, grid-row-end 属性
 
 - grid-column-start属性：左边框所在的垂直网格线（第几根）
 - grid-column-end属性：右边框所在的垂直网格线（第几根）
@@ -298,7 +296,7 @@ minmax(100px, 1fr)表示列宽不小于100px，不大于1fr
 
 表示"跨越"，即左右边框（上下边框）之间跨越多少个网格。
 
-#### grid-column 属性，grid-row 属性
+### grid-column 属性，grid-row 属性
 
 - grid-column属性是grid-column-start和grid-column-end的合并简写形式，
 - grid-row属性是grid-row-start属性和grid-row-end的合并简写形式。
@@ -319,7 +317,7 @@ minmax(100px, 1fr)表示列宽不小于100px，不大于1fr
 
 斜杠后面的默认为1
 
-#### grid-area 属性
+### grid-area 属性
 
 - `grid-area`属性指定项目放在哪一个区域,需要配合父元素使用。
 
@@ -331,13 +329,13 @@ minmax(100px, 1fr)表示列宽不小于100px，不大于1fr
 }
 ```
 
-#### justify-self 属性，align-self 属性，place-self 属性
+### justify-self 属性，align-self 属性，place-self 属性
 
 - `justify-self`属性设置单元格内容的水平位置（左中右），跟`justify-items`属性的用法完全一致，但只作用于单个项目。
 - `align-self`属性设置单元格内容的垂直位置（上中下），跟`align-items`属性的用法完全一致，也是只作用于单个项目。
 - `place-self`属性是`align-self`属性和`justify-self`属性的合并简写形式。
 
-## 水平垂直d
+## 水平垂直
 
 ```html
 <div class="out">

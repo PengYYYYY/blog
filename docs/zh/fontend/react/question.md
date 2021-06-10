@@ -159,7 +159,7 @@ React中用JSX语法描述视图，通过babel-loader转译后它们变为React.
 
 React 使用 JSX 来替代常规的 JavaScript。JSX 是一个看起来很像 XML 的 JavaScript 语法扩展。使用 JSX 编写模板简单快速。JSX编译为 JavaScript 代码后进行了优化，执行更快。
 
-### 常见组件优化技术
+## 常见组件优化技术
 
 ### 使用shouldComponentUpdate
 

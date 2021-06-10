@@ -38,7 +38,9 @@ errorCaptured  -> onErrorCaptured
 - componentWillMount：组件将要挂载
 - render：组件渲染
 - componentDidMount：组件挂载完成
+
 组件运行时：
+
 - 组件卸载
   - componentWillUnmount
 state改变：

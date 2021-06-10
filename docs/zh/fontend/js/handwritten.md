@@ -206,9 +206,10 @@ Function.prototype.bind = function(context) {
 
 ```js
 function myNew() {
-  var Con = Array.prototype.shift.call(arguments);
-  var obj = Object.create(Con.prototype);
-  var result = Con.apply(obj, arguments);
+  const obj = {}
+  const Con = [].shift.call(arguments)
+  obj.__proto__ = Con.prototype
+  const result = Con.apply(obj, arguments)
   return result instanceof Object ? result : obj
 }
 ```
@@ -743,7 +744,6 @@ new XhrHook({
 var xhr = new XMLHttpRequest()
 xhr.open('GET', 'http://www.baidu.com', true)
 xhr.send()
-
 ```
 
 ### Event Bus
@@ -870,6 +870,26 @@ setTimeout(() => {
 ```js
 function fn() {
   return [...new Set([...document.querySelectorAll("*")].map(el => el.tagName))].length
+}
+```
+
+### 下划线与驼峰互相转换
+
+> 下划线转驼峰
+
+```js
+function toHump(name) {
+  return name.replace(/\_(\w)/g, function(all, letter) {
+    return letter.toUpperCase()
+  })
+}
+```
+
+> 驼峰转下划线
+
+```js
+function toLine(name) {
+  return name.replace(/([A-Z])/g, "_$1").toLowerCase()
 }
 ```
 

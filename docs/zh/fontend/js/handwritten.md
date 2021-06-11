@@ -1,4 +1,4 @@
-# 手写源码系列
+# 手写源码
 
 ## 深拷贝和浅拷贝
 
@@ -97,9 +97,9 @@ function deepClone(data) {
   }
 ```
 
-## Object.assign()与Object.create()实现原理
+## 对象API
 
-- assign实现原理
+- Object.assign原理
 
 ```js
 if (typeof Object.assign != 'function' ) {
@@ -125,7 +125,7 @@ if (typeof Object.assign != 'function' ) {
 }
 ```
 
-- create实现原理
+- Object.create实现原理
 
 ```js
 Object.create = function(obj) {
@@ -150,7 +150,7 @@ Function.prototype.call = function(context) {
   context = context || window
   context.fn = this
   const args = [...arguments].slice(1)
-  const result = context.fn(args)
+  const result = context.fn(...args)
   delete contes.fn
   return result
 }
@@ -290,7 +290,7 @@ function getType (data) {
 }
 ```
 
-## 使用requestAnimationFrame实现setInterval
+## 实现setInterval
 
 ```js
 function myInterval(fn, interval) {
@@ -311,7 +311,7 @@ function myInterval(fn, interval) {
 }
 ```
 
-## 与原型有关的
+## 原型有关的
 
 ### 创建对象的三种方式
 
@@ -390,14 +390,48 @@ function subType(xxx){
   superType.call(this, name)  //第一次调用
   this.xxx = xxx;
 } 
-subType.prototype = new superType()
-subType.prototype.constructor = subType
+subType.prototype = new superType() // 第二次调用
+subType.prototype.constructor = subType //增强
 ```
 
 - 寄生组合继承
 
 ```js
+function SuperType(xxx) {
+  this.xxx = xxx;
+  this.passengers = [1, 2, 3, 4]
+}
+SuperType.prototype.getXXX = function() {
+  return this.xxx
+}
+function SubType(xxx) {
+  SuperType.call(this, arguments)
+  this.xxx = xxx
+}
 
+var middleObj = Object.create(SuperType.prototype);
+middleObj.constructor = NewCar;
+NewCar.prototype = middleObj
+
+function myCreate(proto) {
+  function F(){}
+  F.prototype = proto
+  return new F()
+}
+```
+
+### instanceOf原理
+
+```js
+function myInstanceof(left, right) {
+  const prototype = right.property
+  left = left.__proto__
+  while(true) {
+    if(left === undefined || left === null) return false
+    if(left == prototype) return true
+    left = left.__proto__
+  }
+}
 ```
 
 ## 数组API

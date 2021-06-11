@@ -25,3 +25,80 @@ koa是对node对一层简单的封装
 ### context
 
 封装原生的request和response，再把request和response集中挂挂载到上下文
+
+```js
+// context.js
+module.exports = {
+  get url() {
+    return this.request.url
+  },
+  get body() {
+    return this.response.body
+  },
+  set body(val){
+    this.response.body = val
+  },
+  get method() {
+    return this.request.method
+  }
+}
+```
+
+```js
+// response.js
+module.exports = {
+  get body(){
+    return this._body
+  },
+  set body(val){
+    this._body = val
+  }
+}
+```
+
+```js
+// request.js
+module.exports ={
+  get url(){
+    return this.req.url
+  },
+  get method(){
+    return this.req.method.toLowerCase()
+  }
+}
+```
+
+- 组合 `context`
+
+```js
+createContext(req, res) {
+  const ctx = Object.create(context)
+  ctx.request = Object.create(request)
+  ctx.response = Object.create(response)
+
+  ctx.req = ctx.request.req = req
+  ctx.res = ctx.response.res = res
+  return ctx
+}
+```
+
+- 组合 `compose` 中间件
+
+```js
+compose(middlewares) {
+  return function (ctx) {
+    return dispatch(0)
+    function dispatch(i) {
+      let fn = middlewares[i]
+      if (!fn) {
+        return Promise.resolve()
+      }
+      return Promise.resolve(
+        fn(ctx, function next() {
+          return dispatch(i + 1)
+        })
+      )
+    }
+  }
+}
+```

@@ -76,8 +76,35 @@ XSS(Cross-Site Scripting)跨站脚本攻击，黑客通过“HTML注入”篡改
 
 ### 防范手段
 
-- 在 Set-Cookie 时给关键 Cookie 植入 HttpOnly 标识；
-- 服务器对输入脚本进行过滤或转码，转译字符
+> X-XSS-Protection
+
+使用`ctx.set("X-XSS-Protection", 1)`来禁止xss过滤
+
+- 0:禁止XSS过滤
+- 1:启用XSS过滤（通常浏览器是默认的）。 如果检测到跨站脚本攻击，浏览器将清除页面（删除不安全的部分）。
+- 1;mode=block: 启用xss过滤。如果检测到攻击，浏览器不会清除页面，而是阻止页面加载
+- 1; report=<reporting-URI>  (Chromium only): 启用XSS过滤。 如果检测到跨站脚本攻击，浏览器将清除页面并使用CSP report-uri (en-US)指令的功能发送违规报告。
+
+> csp
+
+内容安全策略（Content Security Policy）是一个附加的安全层，用于检测和缓解某些类型的攻击，包括跨站脚本攻击（xss）和数据注入等攻击，
+
+csp的本质就是建立白名单，开发者明确告诉浏览器有哪些外部资源是可以加载和执行，我们只需要配置规则，如何拦截是浏览器自己实现的。我们可以通过这种方式来尽量减少XSS攻击。
+
+```js
+Content-Security-Policy: default-src 'self'
+Content-Security-Policy: img-src 'self'
+Content-Security-Policy: child-src 'none'
+```
+
+> cookie
+
+在 Set-Cookie 时给关键 Cookie 植入 HttpOnly 标识；
+
+> 存储性xss
+
+服务器对输入脚本进行过滤或转码，转译字符
+
 - 充分利用 CSP，
 - 把 Cookie 与客户端IP绑定
   - 构造 GET 和 POST 请求
@@ -140,6 +167,7 @@ Cross-site request forgery(跨站请求伪造)，指的是黑客引诱用户打�
 - 自动发起post请求，直接提交一个表单。
 
 - 引诱用户点击恶意链接。
+
 ### 发起CSRF的三个必要条件
 
 - 目标站点一定有CSRF漏洞

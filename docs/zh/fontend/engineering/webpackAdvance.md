@@ -155,4 +155,58 @@ module.exports = class DemoPlugin {
 
 ```
 
-## external
+## webpack构建流程
+
+### webpack准备阶段
+
+webpack启动入口，webpack-cli/bin/cli.js
+
+#### 创建Compiler
+
+创建了 compiler 对象，compiler 可以理解为 webpack 编译的调度中心，是一个编译器实例，在 compiler 对象记录了完整的 webpack 环境信息，在 webpack 的每个进程中，compiler 只会生成一次。
+
+#### 初始化默认插件和Options配置
+
+WebpackOptionsApply 类中会根据配置注册对应的插件。
+
+#### run
+
+初始化 compiler 后，根据 options 的 watch 判断是否启动了 watch，如果启动 watch 了就调用 compiler.watch 来监控构建文件，否则启动 compiler.run 来构建文件，compiler.run 就是我们此次编译的入口方法，代表着要开始编译了。
+
+### 构建编译阶段
+
+调用 compiler.run 方法来启动构建
+
+#### Compilation
+
+创建此次编译的 Compilation 对象
+
+Compilation 对象是后续构建流程中最核心最重要的对象，它包含了一次构建过程中所有的数据。也就是说一次构建过程对应一个 Compilation 实例。在创建 Compilation 实例时会触发钩子 compilaiion 和 thisCompilation。
+
+```js
+在Compilation对象中：
+
+modules 记录了所有解析后的模块
+chunks 记录了所有chunk
+assets记录了所有要生成的文件
+```
+
+#### make
+
+当 Compilation 实例创建完成之后，webpack 的准备阶段已经完成，下一步将开始 modules 的生成阶段。
+
+### 生成modules
+
+compilation.addEntry 方法会触发第一批 module 的解析，即我们在 entry 中配置的入口文件 index.js。
+
+一个依赖对象（Dependency）经过对应的工厂对象（Factory）创建之后，就能够生成对应的模块实例（Module）。
+
+> Dependency，可以理解为还未被解析成模块实例的依赖对象。比如配置中的入口模块，或者一个模块依赖的其他模块，都会先生成一个 Dependency 对象。每个 Dependency 都会有对应的工厂对象，比如我们这次debuger的代码，入口文件 index.js 首先生成 SingleEntryDependency， 对应的工厂对象是 NormalModuleFactory。(前文说到SingleEntryPlugin插件时有放代码，有疑惑的同学可以往前翻翻看)
+
+### 生成chunks
+
+按照modules生成chunks
+
+### 生成bundle
+
+按照chunks生成bundle

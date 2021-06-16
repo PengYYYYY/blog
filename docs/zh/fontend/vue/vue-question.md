@@ -346,7 +346,9 @@ function create(Component, props) {
 
 ```
 
-### vue的watch原理
+### vue双向绑定
+
+
 
 ## 概念性问题
 

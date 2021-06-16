@@ -1,6 +1,6 @@
 # SSR
 
-来聊一聊SSR
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/lZoGn3.png)
 
 ## ssr的架构图
 

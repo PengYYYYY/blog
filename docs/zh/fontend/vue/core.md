@@ -344,3 +344,7 @@ initProvide(vm) // resolve provide after data/props
 ## 组件化流程
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/y1xbRM.png)
+
+## 事件系统
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/X7kyZl.png)

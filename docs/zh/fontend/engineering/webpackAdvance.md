@@ -159,11 +159,11 @@ module.exports = class DemoPlugin {
 
 ### webpack准备阶段
 
-webpack启动入口，webpack-cli/bin/cli.js
+webpack启动入口，webpack-cli/bin/cli.js，初始化参数
 
 #### 创建Compiler
 
-创建了 compiler 对象，compiler 可以理解为 webpack 编译的调度中心，是一个编译器实例，在 compiler 对象记录了完整的 webpack 环境信息，在 webpack 的每个进程中，compiler 只会生成一次。
+创建了 compiler 对象，加载配置，compiler 可以理解为 webpack 编译的调度中心，是一个编译器实例，在 compiler 对象记录了完整的 webpack 环境信息，在 webpack 的每个进程中，compiler 只会生成一次。
 
 #### 初始化默认插件和Options配置
 

@@ -1,6 +1,6 @@
 # webpack
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/k7xwFY.png)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/6tEBVl.png)
 
 ## webpack的文件监听以及热更新
 

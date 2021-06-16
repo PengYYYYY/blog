@@ -20,9 +20,7 @@ koa是对node对一层简单的封装
 - 1代为generator语法诞生
 - 2代为es7语法诞生
 
-## koa核心代码简单实现
-
-### context
+## context
 
 封装原生的request和response，再把request和response集中挂挂载到上下文
 
@@ -82,7 +80,7 @@ createContext(req, res) {
 }
 ```
 
-- 组合 `compose` 中间件
+## 洋葱圈模型
 
 ```js
 compose(middlewares) {
@@ -99,6 +97,51 @@ compose(middlewares) {
         })
       )
     }
+  }
+}
+```
+
+## koa路由
+
+```js
+class Router {
+  constructor() {
+    this.stack = [];
+  }
+
+  register(path, methods, middleware) {
+    let route = {path, methods, middleware}
+    this.stack.push(route);
+  }
+  // 现在只支持get和post，其他的同理
+  get(path,middleware){
+    this.register(path, 'get', middleware);
+  }
+  post(path,middleware){
+    this.register(path, 'post', middleware);
+  }
+  routes() {
+    let stock = this.stack;
+    return async function(ctx, next) {
+      let currentPath = ctx.url;
+      let route;
+
+      for (let i = 0; i < stock.length; i++) {
+        let item = stock[i];
+        // 判断path和method
+        if (currentPath === item.path && item.methods.indexOf(ctx.method) >= 0) {
+          route = item.middleware;
+          break;
+        }
+      }
+
+      if (typeof route === 'function') {
+        route(ctx, next);
+        return;
+      }
+
+      await next();
+    };
   }
 }
 ```

@@ -120,7 +120,21 @@ function Module(id, parent) {
 
 > 非阻塞I/O
 
-## 内存控制
+### 轮询技术
+
+- read：通过重复调用来检查I/O的状态来完成完整数据的读取。在得到最终数据之前，CPU一直耗用在等待上。
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/wHAQo9.png)
+
+- select: 它是在read的基础上改进的一种方案，通过对文件描述符上的事件状态来进行判断。
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/Ow2JID.png)
+
+- epoll：该方案是Linux下效率最高的I/O事件通知机制，在进入轮询的时候如果没有检查到I/O事件，将会进行休眠，直到事件发生将其唤醒。它真实的利用了事件通知、执行回调的方式。
+
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/4zSGA0.png)
+
+<!-- ## 内存控制
 
 ## 异步编程
 
@@ -128,4 +142,4 @@ function Module(id, parent) {
 
 ## 网络模块
 
-## 进程
+## 进程 -->

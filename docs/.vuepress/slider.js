@@ -30,7 +30,7 @@ exports.getFontEndBar = () => {
 				'architecture/diff',
 				'architecture/component',
 				'architecture/event',
-				'architecture/render',
+				// 'architecture/render',
 				'architecture/state',
 			]
 		},

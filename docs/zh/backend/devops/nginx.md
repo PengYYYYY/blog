@@ -230,7 +230,7 @@ location ~ .*\.(js|css)?$
 }
 ```
 
-### certbot安装https
+## certbot安装https
 
 ```bash
 //安装

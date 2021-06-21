@@ -174,7 +174,7 @@ shouldComponentUpdate(nextProps, nextState) {
 }
 ```
 
-#### pureComponentUpdate
+### pureComponentUpdate
 
 内部执行了一个shouldComponentUpdate，进行了一个前后值的浅比较。但是只能用作类组件。
 
@@ -184,7 +184,7 @@ PureComponent默认实现的shouldComponentUpdate()方法使用的是浅比较�
 
 PureComponent也会影响子组件
 
-#### React.memo
+### React.memo
 
 在函数组件中，原理是进行props比较
 
@@ -199,7 +199,7 @@ const MemoComponent = memo(
 )
 ```
 
-#### useMemo
+### useMemo
 
 原理也是进行第二个依赖参数的比较，类似于vue中的computed
 
@@ -209,7 +209,7 @@ const xxx = useMemo(() => {
 }, [props])
 ```
 
-#### useCallback
+### useCallback
 
 函数版本的useMemo,依赖项的对比。
 

@@ -1,6 +1,6 @@
 # koa
 
-koa是对node对一层简单的封装
+koa本质上是对node的一层简单封装
 
 ## 为什么诞生koa
 

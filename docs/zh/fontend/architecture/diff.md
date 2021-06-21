@@ -1,10 +1,31 @@
 # diff过程
 
-## vue的diff过程
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/iklAlG.png)
 
-核心：
+两个框架都是同层比较，深度优先，可以参考树的前序遍历
+
+```js
+function dsf(root) {
+  const dealFn = function(node) {
+    if(!node) return
+
+    // 处理当前节点
+    dealFn(node.left)
+    dealFn(node.right)
+  }
+  dealFn(root)
+}
+```
+
+## vue的diff
+
+优势：
 
 - 新老两棵树：头尾两个节点，四节点间对比
+
+key的作用：
+
+复用节点
 
 ## react的diff过程
 

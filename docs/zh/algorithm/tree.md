@@ -1,6 +1,6 @@
 # 树
 
-和树相关的内容，主要是二叉树
+一些和树相关的内容，主要是二叉树
 
 ## 二叉树遍历结构
 
@@ -21,7 +21,7 @@ const traverse = (root: TreeNode) => {
 
 ```
 
-### 层序遍历
+## 层序遍历
 
 ```js
 const sequence = (root) => {
@@ -44,7 +44,7 @@ const sequence = (root) => {
 }
 ```
 
-### 递归遍历
+## 递归遍历
 
 ```js
 const preOrderTraverse = (root) => {
@@ -71,7 +71,7 @@ const preOrderTraverse = (root) => {
 }
 ```
 
-### 迭代前序遍历
+## 迭代前序遍历
 
 ```js
 const preOrderTraverse = (root) => {
@@ -100,7 +100,7 @@ const preOrderTraverse = (root) => {
 
 ```
 
-### 迭代中序遍历
+## 迭代中序遍历
 
 ``` js
 const inOrdeIterate = (root) => {
@@ -120,7 +120,7 @@ const inOrdeIterate = (root) => {
 }
 ```
 
-### 迭代后序遍历
+## 迭代后序遍历
 
 ```js
 const preOrderTraverse = (root) => {

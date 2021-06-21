@@ -1,151 +1,98 @@
 # 算法思想
 
-## 二分法
+## 递归
 
-时间复杂度O(logn), 空间复杂度O(n)
+所有的递归问题都可以用递推公式来表示
 
-### 示例：[二分搜索](https://leetcode-cn.com/problems/binary-search/description/)
+### 递归需要满足的三个条件
 
-``` javascript
-// 递归
-function binarySearch(nums, target) {
-    return executiveFn(nums, 0, nums.length - 1, target)
+- 一个问题的解可以分解为几个子问题的解
+
+- 这个问题与分解之后的子问题，除了数据规模不同，求解思路完全一样
+
+- 存在递归终止条件
+
+### 递归框架
+
+```js
+const recursive = (level, x) => {
+  // 结束条件
+  if (endCondition) {
+    return
+  }
+
+  // 当前层逻辑
+  curLevelProcess()
+
+  // 下一层逻辑
+  recursive(level + 1)
 }
 
-function executiveFn(nums, l, r, target) {
-    // 找到中间点
-    const m = parseInt(l + (r - l) / 2)
-    // 判断返回条件
-    if (nums[m] == target) {
-        return m
-    }
-    // 递归左边或者右边
-    if (nums[m] < target) {
-        return executiveFn(nums, m + 1, l, target)
-    }
-    if (nums[m] > target) {
-        return executiveFn(nums, r, m - 1, target)
-    }
-}
-
-// 双指针
-var search = function(nums, target) {
-    let left = 0
-    let right = nums.length - 1
-    let mid
-    if(nums.length == 1) {
-        return nums[0] == target ? 0 : -1
-    }
-    while(left <= right) {
-        mid =  left + parseInt((right - left)/2)
-        if(nums[mid] == target) {
-            return mid
-        }
-        if(nums[mid] < target) {
-            left = mid + 1
-        } else {
-            right = mid - 1
-        }
-    }
-    return -1
-};
-```
-
-### [搜索插入位置](https://leetcode-cn.com/problems/search-insert-position/description/)
-
-```javascript
-function searchInsert(nums, target) {
-    const len = nums.length
-    if (!len || target < nums[0]) {
-        return 0
-    } else if (target > nums[len - 1]) {
-    return len
-    }
-    let start = 0, end = len - 1
-    while (start < end) {
-        const mid = (start + end) >> 1
-        if (target > nums[mid]) {
-            start = mid + 1
-        } else {
-            end = mid
-        }
-    }
-    return start
-}
-```
-
-## 归并
-
-### 示例：[合并K个排序链表] (<https://leetcode-cn.com/problems/merge-k-sorted-lists/description/)>
-
-```javascript
-var mergeKLists = function(lists) {
-    if(!lists || lists.length == 0) return null;
-    let arr = [];
-    let res = new ListNode(0);
-    lists.forEach(list => {
-        let cur = list;
-        while(cur){
-            arr.push(cur.val);
-            cur = cur.next;
-        }
-    })
-    let cur = res;
-    // 快排
-    arr.sort((a,b) => a-b).forEach(val => {
-        let node = new ListNode(val);
-        cur.next = node;
-        cur = cur.next;
-    })
-    return res.next;
-};
 ```
 
 ## 贪心算法
 
-## 动态规划
-
-### 爬楼梯
-
-经典问题
+取最大值，经典题目买卖股票的最佳时机
 
 ```js
-function climbStairs (n) {
-    let dp1 = 0, dp2 = 0, res = 1
-    for(let i = 0; i < n; i++) {
-        dp1 = dp2
-        dp2 = res
-        res = dp1 + dp2
-    }
-    return res
-}
-```
+// 终点代码
+let max = 0
 
-### 打家劫舍
-
-状态转换方程 `dp[n] = Max(dp[n-1], dp[n-2] + nums[n])`
-
-```js
-function rob (nums) {
-    if (!nums.length) return 0
-    if (nums.length == 1) return nums[0]
-    if (nums.length == 2) return Math.max(nums[0],nums[1]);
-
-    let dp = [nums[0], Math.max(nums[0], nums[1])]
-    for (let i = 2; i < nums.length; i++) {
-        dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i])
-    }
-    return Math.max(dp[num.length - 1]. dp[nums.length - 2])
-}
+max = Math.max(prev, cur)
 ```
 
 ## 双指针法
 
 前后双指针，有时也叫快慢指针，通常可实现O(n)级别的时间复杂度。用处很多，不做示例
 
+## 归并
+
+归并排序，自下而上，经典题归并排序
+
 ## 分治
 
-## 空间换时间
+大问题化解为小问题
+
+## 滑动窗口
+
+用于寻找字符串中的某些特性的子字符串
+
+经典题目
+
+```js
+function lengthOfLongestSubstring(s) {
+  let rk = -1
+  const n = s.length
+  for(let i = 0; i < n; i++) {
+    while(rk + 1 < n && condition()) {
+      // 不断地移动右指针
+      ++rk;
+    }
+  }
+}
+```
+
+## 回溯
+
+可以理解为回归树
+
+```js
+let res = []
+function backtrack(path, condition, ...) {
+  if (judge(condition)) { //满足条件
+    res.push(path)
+    return
+  }
+  for (let select of selectList) {
+    if(condition) break;
+    path.push(select);  // 走某条路
+    backtrack(path, newSelectList);
+    path.pop(); //返回上一个十字路口
+  }
+}
+```
+
+## 哈希缓存
 
 利用额外空间，空间换时间，将O(n^2)转换为O(n)。示例题目
 
@@ -186,28 +133,4 @@ var fairCandySwap = function(A, B) {
   }
  }
 };
-```
-
-## 数字反转
-
-时间复杂度O(n), 空间复杂度O(1)
-
-``` javascript
-const x = 123
-let absNum = Math.abs(x)
-let num = 0
-while (newNum) {
-    num = num * 10 + absNum % 10
-    newNum = Math.floor(absNum / 10)
-}
-```
-
-## 数组中的位置交换
-
-i，j两个位置的交换
-
-``` javascript
-arr[i] = arr[i] + arr[j]
-arr[j] = arr[i] - arr[j]
-arr[i] = arr[i] - arr[j]
 ```

@@ -148,4 +148,6 @@ React 合成事件的事件类型是 JavaScript 原生事件类型的一个子�
 
 ## vue
 
+vue主要是观察者模式的实现
+
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/X7kyZl.png)

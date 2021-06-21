@@ -40,7 +40,7 @@ function deepCopy(obj, cache = new WeakMap()) {
   // 还可以增加其他对象，比如：Map, Set等，根据情况判断增加即可，面试点到为止就可以了
 
   // 数组是 key 为数字素银的特殊对象
-  const res = Array.isArray(obj) ? [] : {};
+  let res = Array.isArray(obj) ? [...obj] : { ...obj }
   // 缓存 copy 的对象，用于出来循环引用的情况
   cache.set(obj, res);
 
@@ -52,6 +52,26 @@ function deepCopy(obj, cache = new WeakMap()) {
     }
   });
   return res;
+}
+```
+
+> mini版本
+
+```js
+function deepClone(data) {
+  if (typeof data === 'object') {
+    const result = Array.isArray(data) ? [] : {};
+    for (let key in data) {
+      if (typeof data[key] === 'object') {
+        result[key] = deepClone(data[key]);
+      } else {
+        result[key] = data[key];
+      }
+    }
+    return result;
+  } else {
+    return data;
+  }
 }
 ```
 
@@ -76,26 +96,6 @@ const b = JSON.parse(JSON.stringify(a))
 - 不能序列化函数
 - 不能解决循环引用的对象
 - 当遇到函数、 undefined 或者 symbol 的时候，会被自动过滤掉
-
-> mini版本
-
-```js
-function deepClone(data) {
-    if (typeof data === 'object') {
-      const result = Array.isArray(data) ? [] : {};
-      for (let key in data) {
-        if (typeof data[key] === 'object') {
-          result[key] = deepClone(data[key]);
-        } else {
-          result[key] = data[key];
-        }
-      }
-      return result;
-    } else {
-      return data;
-    }
-  }
-```
 
 ## 对象API
 
@@ -177,6 +177,16 @@ Function.prototype.apply = function(context) {
 ```
 
 ### bind
+
+```js
+Function.prototype.myBind = function(context) {
+  var _this = this,
+    args = Array.prototype.call(arguments, 1);
+  return function() {
+    return _this.apply(context, argst)
+  }
+}
+```
 
 ```js
 Function.prototype.bind = function(context) {
@@ -810,7 +820,7 @@ class EventEmitter {
    }
 
    once(event, cb) {
-     const func = (..args) => {
+     const func = (..e.args) => {
        this.off(event, func)
        cb.apply(this, args)
      }
@@ -927,6 +937,14 @@ function toLine(name) {
 }
 ```
 
+### 判断是否支持webp
+
+```js
+function checkSupportWebp() {
+  const isSupportWebp = 0 == document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp')
+}
+```
+
 ## 函数式编程
 
 ### 柯里化
@@ -961,7 +979,7 @@ function compose(...args) {
 ### koa函数组合
 
 ```js
-compose(middlewares) {
+function compose(middlewares) {
   return function (ctx) {
     return dispatch(0)
     function dispatch(i) {
@@ -970,7 +988,7 @@ compose(middlewares) {
         return Promise.resolve()
       }
       return Promise.resolve(
-        fn(function next() {
+        fn(ctx, function next() {
           return dispatch(i + 1)
         })
       )
@@ -985,7 +1003,7 @@ compose(middlewares) {
 
 ```js
 function PromiseAll(arr) {
-  return new Promise((reslove, reject) => {
+  return new Promise((resolve, reject) => {
     if(Array.isArray(arr)) {
       return reject(new Error("需要传入数组"))
     }
@@ -993,11 +1011,11 @@ function PromiseAll(arr) {
     const length = arr.length
     let counter = 0
     for(let i = 0; i < length; i++) {
-      Promise.reslove(arr[i]).then(value => {
+      Promise.resolve(arr[i]).then(value => {
         counter++
         res[i] = value
         if(counter == length) {
-          reslove(res);
+          resolve(res);
         }
       }).catch(res => {
         reject(res)
@@ -1029,8 +1047,15 @@ const limitLoad = function(urls, handler, limit) {
   let promises = []
 
   promises = sequence.splice(0, limit).map((url, index) => {
+    let count = 0
     return handler(url).then(() => {
       return index
+    }).catch(() => {
+      if(count == 3) return index
+      count++
+      return handler(url).then(() => {
+        return index
+      })
     })
   })
 

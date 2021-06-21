@@ -1,6 +1,6 @@
 # 排序
 
-排序算法总结
+排序、插入排序、选择排序、归并排序、快速排序、希尔排序
 
 ## 原地交换方法
 
@@ -138,18 +138,6 @@ function shellSort(arr) {
   }
   return arr
 }
-```
-
-## 桶排序
-
-```js
-function radixSort(arr, arrDomain, groupSize) {
-  let data = []
-  for (let i = 0; i < arr.length; i++) {
-    
-  }
-}
-
 ```
 
 ## 排序算法对比

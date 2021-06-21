@@ -24,7 +24,7 @@ exports.getFontEndBar = () => {
 		{
 			title: '框架对比',
 			children: [
-				// 'architecture/contrast',
+				// 'architecture/contrast工程化思考',
 				'architecture/lifeCycle',
 				'architecture/data',
 				'architecture/diff',
@@ -53,6 +53,7 @@ exports.getFontEndBar = () => {
 				'engineering/npm',
 				'engineering/modular',
 				'engineering/babel',
+				'engineering/monitoring',
 			]
 		},
 		{
@@ -90,7 +91,6 @@ exports.getBackendBar = () => {
 			children: [
 				'node/base',
 				'node/koa',
-				// 'node/egg',
 			]
 		},
 		{
@@ -134,12 +134,15 @@ exports.getOthersBar = () => {
 exports.getAlgorithmBar = () => {
 	return [
 		'dataStructure',
-		'linkedList',
-		'framework',
-		'tree',
 		'mind',
+		'linkedList',
+		'tree',
 		'sort',
-		'complexity',
+		'binarySearch',
+		'doublePointer',
+		'dynamicPlan',
+		'grammar',
+		'complexity'
 	]
 }
 
@@ -188,11 +191,10 @@ exports.getArticlesBar = () => {
 			]
 		},
 		{
-			title: '个人思考',
+			title: '面试题',
 			children: [
-				'clutter/24岁的程序员',
-				'clutter/心态',
+				
 			]
-		},
+		}
 	]
 }

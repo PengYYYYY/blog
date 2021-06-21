@@ -1,4 +1,4 @@
-# 提高效率的语法
+# 一些小技巧
 
 ## 尾递归调用
 
@@ -89,8 +89,88 @@ let ans = 0
 const mid = (start + end) >> 1
 ```
 
-## 智力题
+## 数组中的位置交换
 
-### 一个三升的水桶和一个五升的水桶如何得到4升水
+i，j两个位置的交换
 
-倒两次得到1升水，然后倒空五升水，将一升水倒入五升水，再把三升水倒入五升水的桶子里，得到四升水。
+```js
+function swap(i, j, arr) {
+  if(i == j) {
+    return
+  }
+  arr[i] = arr[i] + arr[j]
+  arr[j] = arr[i] - arr[j]
+  arr[i] = arr[i] - arr[j]
+}
+```
+
+## 整数操作相关
+
+### [整数反转](https://leetcode-cn.com/problems/reverse-integer/)
+
+🌟
+
+```js
+var reverse = function(x) {
+  let ord = Math.abs(x);//去符号
+  let now = 0;
+  while(ord > 0){
+    now = now * 10 + ord % 10;
+    ord = Math.floor(ord / 10);
+  }
+  if(x < 0){
+    return now <= Math.pow(2,31) ? -now : 0;
+  }else{
+    return now < Math.pow(2,31) ? now : 0;
+  }
+};
+```
+
+### [字符串相加](https://leetcode-cn.com/problems/add-strings/)
+
+🌟
+
+```js
+var addStrings = function(num1, num2) {
+  const ans = []
+  let i = num1.length -1, j = num2.length - 1, add = 0
+  while(i >= 0 || j >= 0 || add != 0) {
+    const x = i >= 0 ? parseInt(num1.charAt(i)) : 0;
+    const y = j >= 0 ? parseInt(num2.charAt(j)) : 0;
+    const result = x + y + add;
+    ans.push(result % 10);
+    add = Math.floor(result / 10)
+    i--
+    j--
+  }
+  return ans.reverse().join('')
+}
+```
+
+### [字符串相乘](https://leetcode-cn.com/problems/multiply-strings/)
+
+🌟🌟
+
+```js
+const multiply = (num1, num2) => {
+  if(num1 == '0' || num2 == '0') return 0
+  let len1 = num1.length; 
+  let len2 = num2.length;
+  let arr = new Array(len1 + len2).fill(0)
+  let i = len1, j = len2
+  while(i) {
+    i--
+    while(j) {
+      j--
+      let sum = num1[i]*num2[j] + arr[i+j+1]
+      arr[i+j] += 0 | sum / 10
+      arr[i+j+1] = sum % 10
+    }
+    j=len2;
+  }
+  while(arr[0] == 0) {
+    arr.shift()
+  }
+  return arr.join('')
+}
+```

@@ -2,7 +2,31 @@
 
 基础数据结构
 
-## 反转链表
+## 链表遍历框架
+
+```ts
+class ListNode {
+  constructor(value) {
+    this.value = value
+    this.next = null
+  }
+}
+
+// 循环
+const traverse = (head: ListNode) => {
+  let cur = head
+  while (cur != null) {
+    cur = cur.next
+  }
+}
+
+// 递归
+const recursive = (head: ListNode) => {
+  recursive(head.next)
+}
+```
+
+## [反转链表](<https://leetcode-cn.com/problems/reverse-linked-list/>)
 
 ### 递归实现
 
@@ -34,7 +58,7 @@ const reversLinkedList = (head) => {
 }
 ```
 
-## 合并两个有序链表
+## [合并两个有序链表](https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/)
 
 ### 递归
 
@@ -75,7 +99,7 @@ var mergeTwoLists = (l1, l2) => {
 }
 ```
 
-## 回文链表
+## [回文链表](https://leetcode-cn.com/problems/palindrome-linked-list/)
 
 ```js
 var isPalindrome = (head) => {
@@ -190,7 +214,7 @@ var getIntersectionNode = function(headA, headB) {
 }
 ```
 
-## 构造链表
+## [构造链表](https://leetcode-cn.com/problems/design-linked-list/)
 
 ```js
 class myLinkedList{
@@ -249,4 +273,29 @@ class myLinkedList{
     cur.next = cur.next.next
   }
 }
+```
+
+### [合并K个排序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/description/)
+
+```javascript
+var mergeKLists = function(lists) {
+    if(!lists || lists.length == 0) return null;
+    let arr = [];
+    let res = new ListNode(0);
+    lists.forEach(list => {
+        let cur = list;
+        while(cur){
+            arr.push(cur.val);
+            cur = cur.next;
+        }
+    })
+    let cur = res;
+    // 快排
+    arr.sort((a,b) => a-b).forEach(val => {
+        let node = new ListNode(val);
+        cur.next = node;
+        cur = cur.next;
+    })
+    return res.next;
+};
 ```

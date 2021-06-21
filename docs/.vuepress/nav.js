@@ -11,12 +11,12 @@ exports.cnNav = [{
 		link: '/zh/backend/'
 	},
 	{
-		text: '文章',
-		link: '/zh/articles/'
-	},
-	{
 		text: '网络',
 		link: '/zh/network/'
+	},
+	{
+		text: '总结',
+		link: '/zh/conclusion/'
 	},
 	// {
 	// 	text: 'GitHub',

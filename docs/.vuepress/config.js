@@ -39,7 +39,7 @@ module.exports = {
           '/zh/fontend/': getFontEndBar(),
           '/zh/backend/': getBackendBar(),
           '/zh/network/': getNetWorkBar(),
-          '/zh/articles/': getArticlesBar(),
+          '/zh/conclusion/': getArticlesBar(),
           '/zh/algorithm/': getAlgorithmBar(),
         },
         nav : cnNav,

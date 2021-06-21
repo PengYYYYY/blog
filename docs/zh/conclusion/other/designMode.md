@@ -401,7 +401,7 @@ var command = function() {
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/8io64n.png)
 
-## 组合模式
+<!-- ## 组合模式
 
 ## 模版模式
 
@@ -415,4 +415,4 @@ var command = function() {
 
 ## 状态模式
 
-## 适配器模式
+## 适配器模式 -->

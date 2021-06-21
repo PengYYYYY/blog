@@ -820,7 +820,7 @@ class EventEmitter {
    }
 
    once(event, cb) {
-     const func = (..e.args) => {
+     const func = (...args) => {
        this.off(event, func)
        cb.apply(this, args)
      }
@@ -828,7 +828,7 @@ class EventEmitter {
      return this
    }
 
-   of(event, cb) {
+   off(event, cb) {
      if(!cb) {
        this.events[event] = null
      } else {

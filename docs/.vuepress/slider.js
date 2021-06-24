@@ -191,11 +191,11 @@ exports.getArticlesBar = () => {
 				'other/threadsAndProcesses',
 			]
 		},
-		{
-			title: '面试题',
-			children: [
+		// {
+		// 	title: '面试题',
+		// 	children: [
 				
-			]
-		}
+		// 	]
+		// }
 	]
 }

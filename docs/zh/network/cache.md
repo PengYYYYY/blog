@@ -89,6 +89,8 @@ Pragma 是HTTP/1.0标准中定义的一个header属性，请求中包含Pragma�
 
 ### Last-modified & if-modified-since
 
+Last-Modified 是 HttpHeader 中的资源的最后修改时间，如果带有 Last-Modified ，下一次发送 Http 请求时，将会发生带 If-modified-since 的 HttpHeader。如果没有过期，将会收到 304 的响应，从缓存中读取。
+
 这是一组通过协商修改时间为基础的策略。
 
 - 服务器向后端发送一个数据上次被修改的时间标签。
@@ -96,6 +98,9 @@ Pragma 是HTTP/1.0标准中定义的一个header属性，请求中包含Pragma�
 
 ### ETag && if-no-match
 
+Etag 是 HttpHeader 中代表资源的标签，在服务器端生成。如果带有 Etag ，下一次发送带 Etag 的请求，如果 Etag 没有变化将收到 304 的响应，从缓存中读取。
+
+Etag 在使用时要注意相同资源多台 Web 服务器的 Etag 的一致性。
 通过内容判断，一般的做法是将返回内容进行摘要，然后通过对比来判断内容是否需要更新。
 
 | 用户操作 | Expires/Cache-Control | Last-modified/ETag |

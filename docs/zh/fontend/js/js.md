@@ -1,6 +1,6 @@
-# JS核心
+# JavaScript核心
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/FmL7nI.png)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/aaQ65d.png)
 
 js的几大核心问题
 
@@ -142,3 +142,17 @@ js的几大核心问题
 - bind
 - apply
 - 箭头函数
+
+## 事件
+
+事件的三个阶段
+
+- 事件捕获
+- 事件触发
+- 事件冒泡
+
+### 事件阻断
+
+```js
+event.stopPropagation()
+```

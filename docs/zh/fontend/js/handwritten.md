@@ -1,8 +1,313 @@
-# 手写源码
+# 源码实现
 
-## 深拷贝和浅拷贝
+## 数组API
 
-### 浅拷贝
+### 数组去重
+
+- 利用set
+
+```js
+function unique(arr) {
+  return Array.from(new Set(arr))
+}
+```
+
+- 利用indexOf
+
+```js
+function unique(arr) {
+  const res = []
+  for(let i = 0; i < arr.length; i++) {
+    if(res.indexOf(arr[i]) === -1) {
+      res.push(arr[i])
+    }
+  }
+  return res
+}
+```
+
+- 利用filter
+
+```js
+function unique(arr) {
+  return arr.filter((item, index) => {
+    return arr.indexOf(item) === index
+  })
+}
+```
+
+- 利用map
+
+```js
+function unique(arr) {
+  const map = new Map()
+  const res = []
+  for(let i = 0; i < arr.length; i++) {
+    if(!map.has(arr[i])) {
+      map.set(arr[i], true)
+      res.push(arr[i])
+    }
+  }
+  return res
+}
+```
+
+### flatten的实现
+
+- 利用reduce
+
+```js
+function myFlatten(arr) {
+  return arr.reduce((a, b) => {
+    return a.concat(Array.isArray(b) ? myFlatten(b): b)
+  }, [])
+}
+```
+
+- 递归
+
+```js
+function myFlatten2(arr) {
+  const res = []
+  for(let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      res = res.concat(myFlatten2(arr[i]))
+    } else {
+      res.push(arr[i])
+    }
+  }
+  return res
+}
+```
+
+- 利用toString
+
+```js
+function myFlatten3(arr) {
+  return arr.toString().split(',').map(item => +item)
+}
+```
+
+### reduce的实现
+
+```js
+Array.prototype.reduce = function(fn, value) {
+  if(typeof fn !== 'function') {
+    console.log("第一个参数需要为函数")
+    return
+  }
+  let cur = value
+  const startIndex = 0
+  if(cur === undefined) {
+    cur = this[0]
+    startIndex = 1
+  }
+  for(let i = startIndex; i < this.length; i++) {
+    cur = fn(acc, this[i], i, this)
+  }
+  return acc
+}
+```
+
+### filter的实现
+
+```js
+Array.prototype.filter = function(cb) {
+  let res = []
+  let arr1 = Array.prototype.slice.call(this, 0)
+
+  for (let i = 0; i < arr1.length; i++) {
+    if (cb(this[i], i, this)) {
+      res.push(arr1[i])
+    }
+  }
+  return res
+}
+```
+
+### map的实现
+
+```js
+Array.prototype.myMap = function(cb) {
+  let res = []
+  let arr = Array.prototype.slice.call(this, 0)
+  for (let i = 0; i < arr.length; i++) {
+    console.log(this[0])
+    const item = cb(this[i], i, this)
+    res.push(item)
+  }
+  return res
+}
+```
+
+### find的实现
+
+```js
+Array.prototype.myFind = function(callback) {
+  let curVal
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i])) {
+      curVal = this[i]
+      break
+    }
+  }
+  return curVal
+}
+```
+
+### some的实现
+
+```js
+Array.prototype.mySome = function(callback) {
+  let result = false
+  for (let i = 0; i < this.length; i++) {
+    result = callback && callback[this[i]]
+  }
+  return result
+}
+```
+
+### every的实现
+
+```js
+Array.prototype.every = function(cb) {
+  let result = true
+  for(let i = 0; i < this.length; i++) {
+    if(!cb(this[i])) {
+      result = false
+      break
+    }
+  }
+
+  return result
+}
+```
+
+### 类数组转换
+
+arguments和dom操作返回的结果都是类数组
+
+- 利用`Array.from`
+
+```js
+Array.from(arguments)
+```
+
+- 解构
+
+```js
+[...arguments]
+```
+
+- 利用slice
+
+```js
+Array.prototype.slice.call(arguments)
+```
+
+- 利用concat
+
+```js
+Array.prototype.concat.apply([], arguments)
+```
+
+## 对象API
+
+- Object.assign原理
+
+```js
+if (typeof Object.assign != 'function' ) {
+  Object.defineProperty(Object, 'assing', {
+    value: function(target) {
+      if (target == null) {
+        throw new TypeError('目标对象不能为空')
+      }
+      var to = Object(target)
+      for (var i = 1; index < arguments.length; i++) {
+        var nextSource = arguments[i]
+        if (nextSource != null) {
+          for (let nextKey in nextSource) {
+            if (Object.property.hasOwnProperty.call(nextSource, nextKey)) {
+              to[nextKey] = nextSource[nextKey]
+            }
+          }
+        }
+      }
+      return to
+    }
+  })
+}
+```
+
+- Object.create实现原理
+
+```js
+Object.create = function(obj) {
+  function F() {}
+  F.prototype = obj
+  return = new F()
+}
+
+```
+
+## 常用API
+
+### 类型判断函数
+
+```js
+function getType (data) {
+  let type = typeof data
+  if (type !== 'object') {
+    return type
+  }
+  const objType = Object.prototype.toString.call(data)
+  return objType.toLowerCase()
+}
+```
+
+### 实现parseInt
+
+```js
+function myParseInt(str) {
+  if(typeof str == 'number') return str
+  if(!str || typeof str !== 'string') return NaN
+  let cur = 0
+  for(let i = 0; i < str.length; i++) {
+    const node = str.charAt(i)
+    if (node <= '9' && node >= '0') {
+      cur = (node - 0) + cur * 10
+    } else {
+      break
+    }
+  }
+  return cur
+}
+```
+
+### 利用raf实现setInterval
+
+```js
+function myInterval(fn, interval) {
+  let timer
+  const now = Date.now
+  let startTime = now()
+  let endTime = startTime
+  const loop = () => {
+    timer = windows.requestAnimationFrame(loop)
+    endTime = now()
+    if (endTime - startTime >= interval) {
+      startTime = endTime = now()
+      callback(timer)
+    }
+  }
+  timer = window.requestAnimationFrame(loop)
+  return timer
+}
+```
+
+### 深拷贝和浅拷贝
+
+#### 浅拷贝
 
 ```js
 let a = {
@@ -18,9 +323,7 @@ let a = {
 let b = { ...a }
 ```
 
-### 深拷贝
-
-deepCopy
+#### 深拷贝
 
 ```js
 function deepCopy(obj, cache = new WeakMap()) {
@@ -96,45 +399,6 @@ const b = JSON.parse(JSON.stringify(a))
 - 不能序列化函数
 - 不能解决循环引用的对象
 - 当遇到函数、 undefined 或者 symbol 的时候，会被自动过滤掉
-
-## 对象API
-
-- Object.assign原理
-
-```js
-if (typeof Object.assign != 'function' ) {
-  Object.defineProperty(Object, 'assing', {
-    value: function(target) {
-      if (target == null) {
-        throw new TypeError('目标对象不能为空')
-      }
-      var to = Object(target)
-      for (var i = 1; index < arguments.length; i++) {
-        var nextSource = arguments[i]
-        if (nextSource != null) {
-          for (let nextKey in nextSource) {
-            if (Object.property.hasOwnProperty.call(nextSource, nextKey)) {
-              to[nextKey] = nextSource[nextKey]
-            }
-          }
-        }
-      }
-      return to
-    }
-  })
-}
-```
-
-- Object.create实现原理
-
-```js
-Object.create = function(obj) {
-  function F() {}
-  F.prototype = obj
-  return = new F()
-}
-
-```
 
 ## 和this指向相关的
 
@@ -231,95 +495,6 @@ function myNew() {
 - 设置空对象的原型
 - 绑定 `this` 并执行构造函数
 - 确保返回值为对象
-
-## 防抖节流
-
-- 防抖
-
-去抖动，方法是在函数触发时，设定一个周期延迟执行函数，若在周期内函数再次执行、则刷新延迟时间，直到最后执行函数，这里函数收集到的结果是最后一次操作的结果
-
-```js
-function debounce(func, ms = 500) {
-  let timer;
-  return function () {
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      func.apply(this, argument);
-    }, ms);
-  };
-}
-```
-
-- 节流
-
-节流的概念是设定一个周期，周期内只执行一次，若有新的事件触发则不执行，周期结束后又有新的事件触发开始新的周期。
-
-> 首节流
-
-```js
-function throttle(func, ms) {
-  let last = 0
-  return function() {
-    let now = Date.now()
-    if (now - last >= ms) {
-      last = now
-      fn.apply(this, arguments)
-    }
-  }
-}
-```
-
-> 尾节流
-
-```js
-function throttle(func, ms) {
-  let canRun = true;
-  return function () {
-    if (!canRun) return;
-    canRun = false;
-    setTimeout(() => {
-      func.apply(this, argument);
-      canRun = true;
-    }, ms);
-  };
-}
-```
-
-## 类型判断函数
-
-```js
-function getType (data) {
-  let type = typeof data
-  if (type !== 'object') {
-    return type
-  }
-  const objType = Object.prototype.toString.call(data)
-  return objType.toLowerCase()
-}
-```
-
-## 实现setInterval
-
-```js
-function myInterval(fn, interval) {
-  let timer
-  const now = Date.now
-  let startTime = now()
-  let endTime = startTime
-  const loop = () => {
-    timer = windows.requestAnimationFrame(loop)
-    endTime = now()
-    if (endTime - startTime >= interval) {
-      startTime = endTime = now()
-      callback(timer)
-    }
-  }
-  timer = window.requestAnimationFrame(loop)
-  return timer
-}
-```
 
 ## 原型有关的
 
@@ -444,198 +619,62 @@ function myInstanceof(left, right) {
 }
 ```
 
-## 数组API
+## 一些场景问题
 
-### 数组去重
+### 防抖节流
 
-- 利用set
+- 防抖
+
+去抖动，方法是在函数触发时，设定一个周期延迟执行函数，若在周期内函数再次执行、则刷新延迟时间，直到最后执行函数，这里函数收集到的结果是最后一次操作的结果
 
 ```js
-function unique(arr) {
-  return Array.from(new Set(arr))
+function debounce(func, ms = 500) {
+  let timer;
+  return function () {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      func.apply(this, argument);
+    }, ms);
+  };
 }
 ```
 
-- 利用indexOf
+- 节流
+
+节流的概念是设定一个周期，周期内只执行一次，若有新的事件触发则不执行，周期结束后又有新的事件触发开始新的周期。
+
+> 首节流
 
 ```js
-function unique(arr) {
-  const res = []
-  for(let i = 0; i < arr.length; i++) {
-    if(res.indexOf(arr[i]) === -1) {
-      res.push(arr[i])
+function throttle(func, ms) {
+  let last = 0
+  return function() {
+    let now = Date.now()
+    if (now - last >= ms) {
+      last = now
+      fn.apply(this, arguments)
     }
   }
-  return res
 }
 ```
 
-- 利用filter
+> 尾节流
 
 ```js
-function unique(arr) {
-  return arr.filter((item, index) => {
-    return arr.indexOf(item) === index
-  })
+function throttle(func, ms) {
+  let canRun = true;
+  return function () {
+    if (!canRun) return;
+    canRun = false;
+    setTimeout(() => {
+      func.apply(this, argument);
+      canRun = true;
+    }, ms);
+  };
 }
 ```
-
-- 利用map
-
-```js
-function unique(arr) {
-  const map = new Map()
-  const res = []
-  for(let i = 0; i < arr.length; i++) {
-    if(!map.has(arr[i])) {
-      map.set(arr[i], true)
-      res.push(arr[i])
-    }
-  }
-  return res
-}
-```
-
-### flatten
-
-```js
-function myFlatten(arr) {
-  return arr.reduce((a, b) => {
-    return a.concat(Array.isArray(b) ? myFlatten(b): b)
-  }, [])
-}
-function myFlatten2(arr) {
-  const res = []
-  for(let i = 0; i < arr.length; i++) {
-    if (Array.isArray(arr[i])) {
-      res = res.concat(myFlatten2(arr[i]))
-    } else {
-      res.push(arr[i])
-    }
-  }
-  return res
-}
-function myFlatten3(arr) {
-  return arr.toString().split(',').map(item => +item)
-}
-```
-
-### reduce
-
-```js
-Array.prototype.reduce = function(fn, value) {
-  if(typeof fn !== 'function') {
-    console.log("第一个参数需要为函数")
-    return
-  }
-  let cur = value
-  const startIndex = 0
-  if(cur === undefined) {
-    cur = this[0]
-    startIndex = 1
-  }
-  for(let i = startIndex; i < this.length; i++) {
-    cur = fn(acc, this[i], i, this)
-  }
-  return acc
-}
-```
-
-### filter
-
-```js
-Array.prototype.filter = function(cb) {
-  let res = []
-  let arr1 = Array.prototype.slice.call(this, 0)
-
-  for (let i = 0; i < arr1.length; i++) {
-    if (cb(this[i], i, this)) {
-      res.push(arr1[i])
-    }
-  }
-  return res
-}
-```
-
-### map
-
-```js
-Array.prototype.myMap = function(cb) {
-  let res = []
-  let arr = Array.prototype.slice.call(this, 0)
-  for (let i = 0; i < arr.length; i++) {
-    console.log(this[0])
-    const item = cb(this[i], i, this)
-    res.push(item)
-  }
-  return res
-}
-```
-
-### find的实现
-
-```js
-Array.prototype.myFind = function(callback) {
-  let curVal
-  for (let i = 0; i < this.length; i++) {
-    if (callback(this[i])) {
-      curVal = this[i]
-      break
-    }
-  }
-  return curVal
-}
-```
-
-### some的实现
-
-```js
-Array.prototype.mySome = function(callback) {
-  let result = false
-  for (let i = 0; i < this.length; i++) {
-    result = callback && callback[this[i]]
-  }
-  return result
-}
-```
-
-### every的实现
-
-```js
-Array.prototype.every = function(cb) {
-  let result = true
-  for(let i = 0; i < this.length; i++) {
-    if(!cb(this[i])) {
-      result = false
-      break
-    }
-  }
-
-  return result
-}
-```
-
-### 类数组转换
-
-arguments和dom操作返回的结果都是类数组
-
-```js
-Array.from(arguments)
-```
-
-```js
-[...arguments]
-```
-
-```js
-Array.prototype.slice.call(arguments)
-```
-
-```js
-Array.prototype.concat.apply([], arguments)
-```
-
-## 场景问题
 
 ### 解决0.2 + 0.1 !== 0.3的问题
 

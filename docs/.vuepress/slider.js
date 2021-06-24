@@ -24,7 +24,7 @@ exports.getFontEndBar = () => {
 		{
 			title: '框架对比',
 			children: [
-				// 'architecture/contrast工程化思考',
+				// 'architecture/contrast',
 				'architecture/lifeCycle',
 				'architecture/data',
 				'architecture/diff',
@@ -32,6 +32,7 @@ exports.getFontEndBar = () => {
 				'architecture/event',
 				// 'architecture/render',
 				'architecture/state',
+				'architecture/mp',
 			]
 		},
 		{
@@ -63,6 +64,7 @@ exports.getFontEndBar = () => {
 				'optimize/base',
 				'optimize/engineering',
 				'optimize/indicators',
+				'optimize/whiteScreen',
 			]
 		},
 		{
@@ -157,7 +159,6 @@ exports.getArticlesBar = () => {
 				'engineering/unitTest',
 				'engineering/buildSystem',
 				'engineering/bridge',
-				'engineering/mp',
 				'engineering/jwt'
 			]
 		},

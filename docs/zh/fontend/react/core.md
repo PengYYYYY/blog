@@ -157,7 +157,7 @@ window.requestIdleCallback()方法将在浏览器的空闲时段内调用的函�
 
 ### fiber架构
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/7ZJDg4.png)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/tCtcnb.png)
 
 ### fiber核心代码
 
@@ -331,7 +331,7 @@ function commitWorker(fiber) {
 }
 ```
 
-## reactHook
+## hook
 
 - 类组件，当把属性改变的时候state可以对组件进行更新，
 - 函数组件，在hook出现时候，无法进行视图的更新，且函数组件无生命周期，导致函数组件无更广的使用面。
@@ -440,4 +440,51 @@ const expensive = useMemo(() => {
 const addClick = useCallback(() => {
 
 }, [xx])
+```
+
+### useState的大概原理
+
+```js
+const stateArray = [] // 收集状态，这里用的是数组，实际上是链表,存在fiber节点里面
+let cursor = 0
+function myUseState(initialState) {
+  const currentCursor = cursor
+  stateArray[currentCursor] = stateArray[currentCursor] || initialState
+  
+  function setState(newState) {
+    stateArray[currentCursor] = newState
+    render()
+  }
+
+  cursor++
+
+  return [state, setState]
+}
+```
+
+### useEffect大致原理
+
+```js
+const allDeps = [] // 收集状态，这里用的是数组，实际上是链表结构
+let effectCursor = 0 //游标
+
+function myUseEffect(callBack: () => {}, depArray: []) {
+  if(!depArray) {
+    callBack()
+    allDeps[effectCursor] = depArray
+    effectCursor++
+    return
+  }
+  
+  const deps = allDeps[effectCursor]
+
+  const flag = deps ? depArray.some((el, i) => el !== deps[i]) : true
+
+  if (flag) {
+    callBack()
+    allDeps[effectCursor] = depArray
+  }
+
+  effectCursor++
+}
 ```

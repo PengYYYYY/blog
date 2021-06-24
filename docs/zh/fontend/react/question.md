@@ -159,6 +159,10 @@ React中用JSX语法描述视图，通过babel-loader转译后它们变为React.
 
 React 使用 JSX 来替代常规的 JavaScript。JSX 是一个看起来很像 XML 的 JavaScript 语法扩展。使用 JSX 编写模板简单快速。JSX编译为 JavaScript 代码后进行了优化，执行更快。
 
+#### 虚拟dom的缺点
+
+在首次渲染的情况下，需要多一层计算，然后渲染页面。会比组装原生dom节点然后直接innerHtml的性能差一下
+
 ## 常见组件优化技术
 
 ### 使用shouldComponentUpdate

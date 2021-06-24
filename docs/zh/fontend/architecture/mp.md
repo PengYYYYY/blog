@@ -1,34 +1,28 @@
 # 小程序原理
 
-一直认为小程序就是面向文档编程。还是需要了解一下它的原理。
+小程序是双线程应用，提高了渲染速度。通过两个webview来达到安全沙箱的目的，线程之间的通信则是通过jsBridge底层。
 
-## 小程序基本原理
-
-小程序是双线程应用，提高了渲染速度。通过两个webview来达到安全沙箱的目的，线程之间的通信则是通过底层。
+## 基本概念
 
 ### 逻辑层：业务处理
 
 - 加载js => 业务、生命周期(Page、App)、事件、数据加载等处理
-
 - 单独的线程: iframe（ios/jscore，安卓/v8）
-
 - 只有一个逻辑层来维护一个App实例（多个Page实例维护在一个App实例中）
-
 - 更新视图层数据：setData
 
 ### 渲染层：页面的基本结构、样式
 
+- 单独的线程: webkit(iframe)
 - wxml：视图内容 => html
 - wxss: 视图样式 => css
-- 单独的线程: webkit(iframe)
 - 多个视图层（一个 wxml => html 就是一个视图层）
+- wxs：
 
 ## 运行时流程
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/jfosae.png)
 [图片来源](https://juejin.cn/post/6900329244950609928)
-
-### 组件系统
 
 ### 逻辑层
 
@@ -191,8 +185,6 @@
 
 ### 参考
 
-[浅谈小程序性能优化](https://juejin.cn/post/6844903877041471502#heading-6https://juejin.cn/post/6844903877041471502)
-
-[小程序底层实现原理](https://mp.weixin.qq.com/s/o5MJHozQqCcwUl4yVgUGPA)
-
-[小程序架构原理](https://juejin.cn/post/6900329244950609928)
+- [浅谈小程序性能优化](https://juejin.cn/post/6844903877041471502#heading-6https://juejin.cn/post/6844903877041471502)
+- [小程序底层实现原理](https://mp.weixin.qq.com/s/o5MJHozQqCcwUl4yVgUGPA)
+- [小程序架构原理](https://juejin.cn/post/6900329244950609928)

@@ -1,6 +1,6 @@
 # diff过程
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/iklAlG.png)
+![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/KHYAuV.png)
 
 两个框架都是同层比较，深度优先，可以参考树的前序遍历
 

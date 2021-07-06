@@ -198,3 +198,51 @@ http2.0还是会存在一些问题的
 比如：
 
 哈夫曼编码，哈夫曼树来确认他的编码。
+
+## http1.1的长连接和http2.0的多路复用的本质区别？
+
+### 长连接
+
+同一个域名访问同一个文件的多个请求都可以复用一个tcp连接（不用像1.0一样 每次请求都需要重新建立连接）
+1.多个请求只能被串行处理（数据基于文本，只能按顺序传输）；
+2.访问多个不同的文件依然会建立多个请求。
+
+### 多路复用
+
+同一个域名访问多个文件的请求也可以复用一个tcp连接，且多个请求可以被并行处理。
+
+## nginx缓存配置
+
+### 强缓存配置
+
+```nginx
+server {
+  location ~* \.(html)$ {
+    access_log off;
+    add_header  Cache-Control  max-age=no-cache;
+  }
+
+  location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
+    # 同上，通配所有以.css/.js/...结尾的请求
+    access_log off;
+    add_header    Cache-Control  max-age=360000;
+  }
+}
+```
+
+### 协商缓存配置
+
+```nginx
+server {
+  location ~* \.(html)$ {
+    access_log off;
+    add_header  Cache-Control  max-age=no-cache;
+  }
+
+  location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
+    # 同上，通配所有以.css/.js/...结尾的请求
+    access_log off;
+    add_header Cache-Control max-age=360000;
+  }
+}
+```

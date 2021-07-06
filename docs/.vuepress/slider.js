@@ -63,8 +63,7 @@ exports.getFontEndBar = () => {
 				'optimize/overview',
 				'optimize/base',
 				'optimize/engineering',
-				'optimize/indicators',
-				'optimize/whiteScreen',
+				'optimize/indicators'
 			]
 		},
 		{
@@ -81,6 +80,7 @@ exports.getFontEndBar = () => {
 				'html/html',
 				'html/load',
 				'html/css',
+				'html/bem',
 			]
 		},
 	]
@@ -179,6 +179,7 @@ exports.getArticlesBar = () => {
 				'fe/eventLoop',
 				'fe/mobile-adapter',
 				'fe/AJAX',
+				'fe/OOM'
 			]
 		},
 		{

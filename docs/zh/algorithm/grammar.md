@@ -1,4 +1,4 @@
-# 一些小技巧
+# 杂七杂八
 
 ## 尾递归调用
 
@@ -172,5 +172,21 @@ const multiply = (num1, num2) => {
     arr.shift()
   }
   return arr.join('')
+}
+```
+
+### [进制转换](https://leetcode-cn.com/problems/multiply-strings/)
+
+🌟
+
+```js
+// 10进制转n进制
+function ten2x(num, n){
+  var res = [];
+  while(num > 0){
+    res.push(num % n);
+    x = Math.floor(num / n);
+  }
+  return res.reverse().join('');
 }
 ```

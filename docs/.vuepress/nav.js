@@ -1,22 +1,22 @@
 exports.cnNav = [{
 		text: '前端',
-		link: '/zh/fontend/'
+		link: '/fontend/'
 	},
 	{
 		text: '算法',
-		link: '/zh/algorithm/'
+		link: '/algorithm/'
 	},
 	{
 		text: '后端',
-		link: '/zh/backend/'
+		link: '/backend/'
 	},
 	{
 		text: '网络',
-		link: '/zh/network/'
+		link: '/network/'
 	},
 	{
 		text: '总结',
-		link: '/zh/conclusion/'
+		link: '/conclusion/'
 	},
 	// {
 	// 	text: 'GitHub',

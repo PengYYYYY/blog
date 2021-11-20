@@ -10,8 +10,8 @@ module.exports = {
       selectText: '选择语言',
       ariaLabel: '选择语言',
       lang: 'zh-CN',
-      title: 'Super-YUE Blog',
-      description: '日常学习和技术积累'
+      title: 'PengYYY',
+      description: 'Happy Life 🏀,  Working Smooth 💻'
     },
   },
   markdown: {

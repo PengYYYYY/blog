@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /logo.png
-actionText: let's go →
-actionLink: /zh/fontend/
+heroImage: /PY.png
+actionText: 🚀 Coding
+actionLink: /fontend/
 ---

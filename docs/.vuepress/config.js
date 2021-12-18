@@ -2,7 +2,7 @@ const { getFontEndBar, getBackendBar, getNetWorkBar, getAlgorithmBar, getArticle
 const { cnNav } = require('./nav')
 
 module.exports = {
-  base: '/my-blog/',
+  base: '/blog/',
   dest: 'dist',
   locales: {
     '/': {

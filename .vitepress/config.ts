@@ -10,20 +10,37 @@ const nav = [
     link: '/blog/'
   },
   {
+    text: '图形',
+    activeMatch: `^/graph/`,
+    link: '/graph/svg/index'
+  },
+  {
     text: '学习记录',
-    activeMatch: `^/(font-end|font-end-framework|algo-data-str|backend|basics|work)/`,
+    activeMatch: `^/(font-end|font-end-framework|algo-data-str|backend|basics)/`,
     items: [
       { text: '前端基础', link: '/font-end/js/core' },
       { text: '前端框架', link: '/font-end-framework/vue/core' },
       { text: '数据结构与算法', link: '/algo-data-str/index' },
       { text: '后端与运维', link: '/backend/index' },
       { text: '基础知识', link: '/basics/network/http' },
-      { text: '工作', link: '/work/course/tencent' },
     ]
-  }
+  },
+  {
+    text: '工作',
+    activeMatch: `^/work/`,
+    link: '/work/tencent/'
+  },
 ]
 
 export const sidebar = {
+  'graph':[
+    {
+      text: 'svg',
+      items: [
+        { text: 'svg入门', link: '/graph/svg/index.md' },
+      ]
+    },
+  ],
   '/work/': [
     {
       text: '腾讯',
@@ -41,12 +58,6 @@ export const sidebar = {
         { text: 'siskin样式包', link: '/work/tc-travel/siskin/style' },
         { text: 'siskin单元测试', link: '/work/tc-travel/siskin/unit-test' },
         { text: 'siskin文件上传组件', link: '/work/tc-travel/siskin/upload' },
-      ]
-    },
-    {
-      text: '猿辅导-粉笔',
-      items: [
-        { text: '工作记录', link: '/work/fenbi/index.md' },
       ]
     },
   ],

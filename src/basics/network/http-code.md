@@ -23,7 +23,7 @@
 
 表示服务器应客户端升级协议的请求（Upgrade请求头）正在进行协议切换。 例:
 
-```http
+```text
 HTTP/1.1 101 Switching Protocols
 Upgrade: websocket 
 Connection: Upgrade

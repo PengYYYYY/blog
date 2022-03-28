@@ -61,8 +61,8 @@ Cgroup 是 Control Groups 的缩写，是Linux 内核提供的一种可以限制
 
 chroot(change root file system)命令的功能是改变进程的根目录到指定的位置。比如我们现在有一个$HOME/test目录，想要把它作为一个 /bin/bash 进程的根目录。
 
-1. 首先，创建一个 HOME/test/{bin,lib64,lib}
-2. 把bash命令拷贝到test目录对应的bin路径下 cp -v /bin/{bash,ls} $HOME/test/bin
+1. 首先，创建一个 HOME/test/bin,lib64,lib
+2. 把bash命令拷贝到test目录对应的bin路径下 cp -v /bin/bash,ls $HOME/test/bin
 3. 把bash命令需要的所有so文件，也拷贝到test目录对应的lib路径下
 4. 执行chroot命令，告诉操作系统，我们将使用HOME/test /bin/bash
 

@@ -40,7 +40,7 @@ GET方法:在浏览器的地址栏中输入网址的方式访问网页时，浏�
 eg: GET /form.html HTTP/1.1 (CRLF)
 POST方法要求被请求服务器接受附在请求后面的数据，常用于提交表单。eg:
 
-```http
+```text
 POST /reg HTTP/ (CRLF)
 Accept:image/gif,image/x-xbit,... (CRLF)
 ...
@@ -110,7 +110,7 @@ Host:www.kaikeba.com 此处使用缺省端口号80，若指定了端口号，则
 我们上网登陆论坛的时候，往往会看到一些欢迎信息，其中列出了你的操作系统的名称和版本，你所使 用的浏览器的名称和版本，这往往让很多人感到很神奇，实际上，服务器应用程序就是从User-Agent这 个请求报头域中获取到这些信息。User-Agent请求报头域允许客户端将它的操作系统、浏览器和其它属 性告诉服务器。不过，这个报头域不是必需的，如果我们自己编写一个浏览器，不使用User-Agent请求 报头域，那么服务器端就无法得知我们的信息了。
 请求报头举例:
 
-```http
+```text
 GET /form.html HTTP/1.1 (CRLF)
 Accept:image/gif,image/x-xbitmap,image/jpeg,application/x-shockwave- flash,application/vnd.ms-excel,application/vnd.ms- powerpoint,application/msword,*/* (CRLF)
 Accept-Language:zh-cn (CRLF)
@@ -130,7 +130,7 @@ Location响应报头域用于重定向接受者到一个新的位置。Location�
 Server
 Server响应报头域包含了服务器用来处理请求的软件信息。与User-Agent请求报头域是相对应的。下面 是
 
-```htttp
+```text
 GET /form.html HTTP/1.1 (CRLF)
 Accept:image/gif,image/x-xbitmap,image/jpeg,application/x-shockwave- flash,application/vnd.ms-excel,application/vnd.ms- powerpoint,application/msword,*/* (CRLF)
 Accept-Language:zh-cn (CRLF)

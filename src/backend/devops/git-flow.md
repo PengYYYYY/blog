@@ -36,7 +36,7 @@
 
 新功能开始开发前，需准备好开发分支。
 
-```ssh
+```bash
 git flow feature start feature-name
 ```
 
@@ -44,7 +44,7 @@ git flow feature start feature-name
 而且无论你当前处于哪个分支，它都会基于本地develop分支创建的。
 上述命令相当于执行了下面的Git操作。
 
-```ssh
+```bash
 git checkout -b feature/feature-name develop
 ```
 
@@ -80,7 +80,7 @@ git push
 
 当功能开发完毕后就将进入测试阶段，此时需要将该分支合并到 `develop` 分支。
 
-```ssh
+```bash
 git flow feature finish feature-name
 ```
 

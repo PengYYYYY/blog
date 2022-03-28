@@ -65,4 +65,6 @@ z：修订号：当你做了向下兼容的问题修正
 
 如何修改版本
 
-`npm version [<newVersion> | major | minor | patch | premajor | preminor | prepatch | prerelease [custom version] ]`
+```bash
+npm version [<newVersion> | major | minor | patch | premajor | preminor | prepatch | prerelease [custom version] ]
+```

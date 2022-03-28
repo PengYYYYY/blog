@@ -1,4 +1,4 @@
-# 安全
+# 浏览器安全
 
 ![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/iD0vJG.png)
 
@@ -83,7 +83,7 @@ XSS(Cross-Site Scripting)跨站脚本攻击，黑客通过“HTML注入”篡改
 - 0:禁止XSS过滤
 - 1:启用XSS过滤（通常浏览器是默认的）。 如果检测到跨站脚本攻击，浏览器将清除页面（删除不安全的部分）。
 - 1;mode=block: 启用xss过滤。如果检测到攻击，浏览器不会清除页面，而是阻止页面加载
-- 1; report=<reporting-URI>  (Chromium only): 启用XSS过滤。 如果检测到跨站脚本攻击，浏览器将清除页面并使用CSP report-uri (en-US)指令的功能发送违规报告。
+- 1; report=<reporting-URI />  (Chromium only): 启用XSS过滤。 如果检测到跨站脚本攻击，浏览器将清除页面并使用CSP report-uri (en-US)指令的功能发送违规报告。
 
 > csp
 
@@ -340,11 +340,35 @@ XSS 攻击是指黑客往 HTML 文件中或者 DOM 中注入恶意脚本，从�
 
 ### CSP常用设置
 
-- 内容均来自同一站点：`Content-Security-Policy: default-src 'self'`
-- 允许内容来自信任的域名及其子域名: `Content-Security-Policy: default-src 'self' *.trusted.com`
-- 允许网页应用的用户在他们自己的内容中包含来自任何源的图片：`Content-Security-Policy: default-src 'self'; img-src *; media-src media1.com media2.com; script-src userscripts.example.com`
-- 一个线上银行网站的管理者想要确保网站的所有内容都要通过SSL方式获取，以避免攻击者窃听用户发出的请求：`Content-Security-Policy: default-src https://onlinebanking.jumbobank.com`
-- 一个在线邮箱的管理者想要允许在邮件里包含HTML，同样图片允许从任何地方加载，但不允许JavaScript或者其他潜在的危险内容(从任意位置加载):`Content-Security-Policy: default-src 'self' *.mailsite.com; img-src *`
+- 内容均来自同一站点：
+
+```text
+Content-Security-Policy: default-src 'self'
+```
+
+- 允许内容来自信任的域名及其子域名:
+
+```text
+Content-Security-Policy: default-src 'self' *.trusted.com
+```
+
+- 允许网页应用的用户在他们自己的内容中包含来自任何源的图片：
+
+```text
+Content-Security-Policy: default-src 'self'; img-src *; media-src media1.com media2.com; script-src userscripts.example.com`
+```
+
+- 一个线上银行网站的管理者想要确保网站的所有内容都要通过SSL方式获取，以避免攻击者窃听用户发出的请求：
+
+```text
+Content-Security-Policy: default-src https://onlinebanking.jumbobank.com
+```
+
+- 一个在线邮箱的管理者想要允许在邮件里包含HTML，同样图片允许从任何地方加载，但不允许JavaScript或者其他潜在的危险内容(从任意位置加载):
+
+```text
+Content-Security-Policy: default-src 'self' *.mailsite.com; img-src *
+```
 
 >对策略进行测试
 

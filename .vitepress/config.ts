@@ -37,7 +37,20 @@ export const sidebar = {
     {
       text: 'svg',
       items: [
-        { text: 'svg入门', link: '/graph/svg/index.md' },
+        { text: 'svg基础', link: '/graph/svg/index.md' },
+      ]
+    },
+    {
+      text: 'webgl',
+      items: [
+        { text: 'webgl基础', link: '/graph/webgl/index.md' },
+      ]
+    },
+    {
+      text: '图形学知识',
+      items: [
+        { text: '贝塞尔曲线', link: '/graph/basics/bessel.md' },
+        { text: '矩阵', link: '/graph/basics/matrix.md' },
       ]
     },
   ],

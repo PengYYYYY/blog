@@ -64,7 +64,7 @@ RN是运行时的编译，通过jscore,在运行时将js代码映射到原生代
 
 ## 从前端发布角度上来看工程化
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/uTPTd4.png)
+![img](../images/uTPTd4.png)
 
 ### 最早的发布
 

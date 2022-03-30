@@ -4,4 +4,4 @@
 
 ## 数据结构脑图
 
-![img](../images/oCK9vq.png)
+![img](./images/oCK9vq.png)

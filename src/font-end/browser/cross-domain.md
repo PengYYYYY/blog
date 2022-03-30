@@ -49,7 +49,7 @@ A: 同源策略限制了从同一个源加载的文档或脚本如何与来自�
   - multipart/form-data
   - application/x-www-form-urlencoded
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/OHAfqO.png)
+![img](../images/OHAfqO.png)
 
 #### 非简单请求
 
@@ -82,7 +82,7 @@ Content-Type 的值不属于下列之一
 
 发送真正请求前会先发送预检请求，如图所示：
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/aQnMed.png)
+![img](../images/aQnMed.png)
 
 1.第一条OPTIONS为预检请求，中同时携带了下面两个首部字段：
 

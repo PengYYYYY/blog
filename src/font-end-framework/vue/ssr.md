@@ -1,10 +1,10 @@
 # SSR
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/lZoGn3.png)
+![img](../images/lZoGn3.png)
 
 ## ssr的架构图
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/YdVByD.png)
+![img](../images/YdVByD.png)
 
 > 流程
 

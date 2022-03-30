@@ -1,6 +1,6 @@
 # 浏览器安全
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/iD0vJG.png)
+![img](../images/iD0vJG.png)
 
 ## 浏览器安全
 
@@ -29,7 +29,7 @@ Google Chrome 是第一个采取多进程架构的浏览器，其主要进程分
 
 Sandbox 目的：让不可信任的代码运行在一定的环境中，限制其访问隔离区外的资源，如果一定要跨域边界产生数据交换，则只能通过指定的数据通道，比如经过封装的 API 来完成，在这些 API 中会严格检查请求的合法性。
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/pPbQaA.png)
+![img](../images/pPbQaA.png)
 
 ## 跨站脚本攻击（XSS）
 
@@ -260,7 +260,7 @@ X-FRAME-OPTIONS 是⼀个 HTTP 响应头，在现代浏览器有⼀个很好的�
 
 - 针对爬虫机器，首先对应用加上防爬工具，比如利用debug
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/3wgpMw.png)
+![img](../images/3wgpMw.png)
 
 - 针对黄牛
 

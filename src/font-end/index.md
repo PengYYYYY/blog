@@ -1,3 +1,3 @@
-# 前端知识脑图
+# 前端知识大纲
 
-![img](../images/XWScXK.png)
+![img](./images/XWScXK.png)

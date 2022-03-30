@@ -16,7 +16,7 @@
 
 ### 线程模型
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/GjVvTD.png)
+![img](../images/GjVvTD.png)
 
 1. 添加一个消息队列;
 2. IO 线程中产生的新任务添加进消息队列尾部;
@@ -62,11 +62,11 @@ class {
 因为所有的任务都是在单线程中执行的，所以每次只能执行一个任务，而其他任务就都处于
 等待状态。
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/hhZMFq.png)
+![img](../images/hhZMFq.png)
 
 ## 浏览器中的 Event Loop
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/Lgi6hI.png)
+![img](../images/Lgi6hI.png)
 
 Event Loop 执行顺序:
 
@@ -83,7 +83,7 @@ Event Loop 执行顺序:
 
 > node.js运行流程
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/Xqlyuu.png)
+![img](../images/Xqlyuu.png)
 
 Node.js的运行机制如下:
 
@@ -94,7 +94,7 @@ Node.js的运行机制如下:
 
 > 六个阶段
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/OIprvT.png)
+![img](../images/OIprvT.png)
 
 Node 中的 Event Loop 和浏览器中的是完全不相同的东西。
 Node 的 Event Loop 分为 6 个阶段，它们会按照顺序反复运行。每当进入一个阶段的时候，都会从对应的回调队列中取出函数去执行。当队列为空或者执行的回调函数数量达到系统的阀值，就会进入下一个阶段。

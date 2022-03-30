@@ -56,7 +56,7 @@
 
 最终得到的产物
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/7tMW11.png)
+![img](../images/7tMW11.png)
 
 首先分各渠道，`fullsize`和`vwsize`分别对应二倍屏和`vw`单位的样式包，`hybrid`包用于使用方使用`class`来区分渠道的包。
 
@@ -430,4 +430,4 @@ module.exports = cssWrap;
 
 - cssParse 解析css
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/wph1Jq.png)
+![img](../images/wph1Jq.png)

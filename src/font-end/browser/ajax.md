@@ -25,21 +25,21 @@ AJAX的工作原理相当于在用户和服务器之间加了—个中间层(AJA
 
 ### 传统方式
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/NMjfj8.png)
+![img](../images/NMjfj8.png)
 
 ### AJAX
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/ztYeU3.png)
+![img](../images/ztYeU3.png)
 
 ## 交互方式
 
 ### 浏览器的普通交互方式
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/X6GfM7.png)
+![img](../images/X6GfM7.png)
 
 ### 浏览器的Ajax交互方式
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/VWoS3R.png)
+![img](../images/VWoS3R.png)
 
 可以从上图看出，通过AJAX的方式进行交互可以不需要等到页面上一步操作完毕即可做新的动作。局部刷新页面即可。AJAX提升了用户体验。
 

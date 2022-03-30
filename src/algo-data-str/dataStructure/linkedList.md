@@ -161,7 +161,7 @@ const hasCycle = function(head) {
 
 ## [环形链表2](https://leetcode-cn.com/problems/linked-list-cycle-ii/submissions/)
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/D81eMw.png)
+![img](../images/D81eMw.png)
 
 以相遇点为基准
 

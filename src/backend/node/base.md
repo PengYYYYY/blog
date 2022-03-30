@@ -8,7 +8,7 @@ node 作为一个后端JavaScript的运行平台，保留了js的语法，基于
 
 ### 异步IO模型
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/O4PNgw.png)
+![img](../images/O4PNgw.png)
 
 ### 事件与回调函数
 
@@ -105,7 +105,7 @@ function Module(id, parent) {
 
 ## 异步IO
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/MPtFEE.png)
+![img](../images/MPtFEE.png)
 
 1. 利用单线程，远离多线程死锁，状态同步等问题。
 2. 利用异步I/O，让单线程远离阻塞，可以更好的使用CPU
@@ -116,7 +116,7 @@ function Module(id, parent) {
 
 阻塞I/O的特点是调用之后一定要等到系统内核层面完成所有操作后，调用才结束。
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/qEcHIB.png)
+![img](../images/qEcHIB.png)
 
 > 非阻塞I/O
 
@@ -124,15 +124,15 @@ function Module(id, parent) {
 
 - read：通过重复调用来检查I/O的状态来完成完整数据的读取。在得到最终数据之前，CPU一直耗用在等待上。
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/wHAQo9.png)
+![img](../images/wHAQo9.png)
 
 - select: 它是在read的基础上改进的一种方案，通过对文件描述符上的事件状态来进行判断。
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/Ow2JID.png)
+![img](../images/Ow2JID.png)
 
 - epoll：该方案是Linux下效率最高的I/O事件通知机制，在进入轮询的时候如果没有检查到I/O事件，将会进行休眠，直到事件发生将其唤醒。它真实的利用了事件通知、执行回调的方式。
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/4zSGA0.png)
+![img](../images/4zSGA0.png)
 
 <!-- ## 内存控制
 

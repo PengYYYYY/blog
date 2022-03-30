@@ -100,7 +100,7 @@ QUIC在握手过程中使用Diffie-Hellman算法协商初始密钥，初始密�
 
 ### 重复握手
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/iRBZBM.png)
+![img](../images/iRBZBM.png)
 
 客户端和服务端就都有了对方的短期公钥（ephemeral Diffie-Hellman public value）。
 

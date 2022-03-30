@@ -13,7 +13,7 @@ Docker的理念是让开发人员可以简单地把应用程序及依赖装载�
 
 ### Docker 基本组成
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/Y3b6oi.png)
+![img](../images/Y3b6oi.png)
 
 - 镜像（image）：
 
@@ -29,7 +29,7 @@ Docker 利用容器技术，独立运行一个或者一组应用，容器是通�
 
 ### VM 跟 Docker
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/9OfiAF.png)
+![img](../images/9OfiAF.png)
 
 - 虚拟机
 
@@ -45,7 +45,7 @@ Docker只提供一个运行环境，是不需要运行一个独立的 OS，容�
 
 ### namespace 进程隔离
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/IuoDmS.png)
+![img](../images/IuoDmS.png)
 
 Linux Namespaces 机制提供一种进程资源隔离方案。PID、IPC、Network 等系统资源不再是全局性的，而是属于某个特定的Namespace。每个namespace下的资源对于其他 namespace 下的资源都是透明，不可见的。系统中可以同时存在两个进程号为0、1、2的进程，由于属于不同的namespace，所以它们之间并不冲突。
 
@@ -53,7 +53,7 @@ Linux Namespaces 机制提供一种进程资源隔离方案。PID、IPC、Networ
 
 Docker 通过 Cgroup 来控制容器使用的资源配额，一旦超过这个配额就发出OOM。配额主要包括 CPU、内存、磁盘三大方面， 基本覆盖了常见的资源配额和使用量控制。
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/PxFy1k.png)
+![img](../images/PxFy1k.png)
 
 Cgroup 是 Control Groups 的缩写，是Linux 内核提供的一种可以限制、记录、隔离进程组所使用的物理资源(如 CPU、内存、磁盘 IO 等等)的机制，被 LXC(Linux container)、Docker 等很多项目用于实现进程资源控制。Cgroup 本身是提供将进程进行分组化管理的功能和接口的基础结构，I/O 或内存的分配控制等具体的资源管理是通过该功能来实现的，这些具体的资源 管理功能称为 Cgroup 子系统。
 
@@ -91,7 +91,7 @@ chroot(change root file system)命令的功能是改变进程的根目录到指�
 
 ## docker命令
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/O8bw3R.png)
+![img](../images/O8bw3R.png)
 
 - FROM
 

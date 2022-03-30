@@ -148,7 +148,7 @@ a库：a表，b库：b表，c库：c表
 
 ### 主备架构
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/F2xnjq.png)
+![img](../images/F2xnjq.png)
 
 只有主库提供读写服务，备库冗余作故障转移用
 
@@ -160,7 +160,7 @@ a库：a表，b库：b表，c库：c表
 
 ### 双主架构
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/wFmpwu.png)
+![img](../images/wFmpwu.png)
 
 两个主库同时提供服务，负载均衡
 
@@ -172,7 +172,7 @@ a库：a表，b库：b表，c库：c表
 
 ### 主从架构
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/y4ju8Y.png)
+![img](../images/y4ju8Y.png)
 
 一主多从，读写分离
 
@@ -184,7 +184,7 @@ a库：a表，b库：b表，c库：c表
 
 ### 双主双从架构
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/IB13D5.png)
+![img](../images/IB13D5.png)
 
 - 高可用分析：高可用。
 - 高性能分析：高性能。
@@ -198,7 +198,7 @@ a库：a表，b库：b表，c库：c表
 数据不一致性产生的原因：
 
 数据同步（从库从主库拉取binlog日志，再执行一遍）是需要时间的，这个同步时间内主库和从库的数据会存在不一致的情况。如果同步过程中有读请求，那么读到的就是从库中的老数据。
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/I4vkpM.png)
+![img](../images/I4vkpM.png)
 
 #### 如何解决
 

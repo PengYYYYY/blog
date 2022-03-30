@@ -364,7 +364,7 @@ define(function(require, exports, module) {
 
 ```
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/0j9VhW.png)
+![img](../images/0j9VhW.png)
 
 ## 命令模式
 
@@ -399,7 +399,7 @@ var command = function() {
 }
 ```
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/8io64n.png)
+![img](../images/8io64n.png)
 
 <!-- ## 组合模式
 

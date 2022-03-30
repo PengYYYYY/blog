@@ -4,4 +4,4 @@
 
 ## 数据结构脑图
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/oCK9vq.png)
+![img](../images/oCK9vq.png)

@@ -46,7 +46,7 @@ HTTPS 采用共享密钥加密和公开密钥加密两者并用的混合加密�
 
 ### https的通信机制
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/QpC7V4.png)
+![img](../images/QpC7V4.png)
 
 1. 客户端通过发送 Client Hello 报文开始 SSL 通信。报文中包含客户端支持的 SSL 的指定版本、加密组件(Cipher Suite)列表(所使用的加密算法及密钥长度等)。
 2. 服务器可进行 SSL 通信时，会以 Server Hello 报文作为应答。和客户端一样，在报文中包含 SSL 版本以及加密组件。服务器的加密组件内容是从接收到的客户端加密组件内筛选出来的。
@@ -68,7 +68,7 @@ IETF 以 SSL3.0 为基准，后又制定了 TLS1.0、TLS1.1 和 TLS1.2。TSL 是
 
 ### HTTPS比HTTP要慢2到100倍
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/sPakpp.png)
+![img](../images/sPakpp.png)
 
 - 通信慢
 - 消耗大量CPU 及内存等资源，导致处理速度变慢。

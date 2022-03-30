@@ -37,7 +37,7 @@
 
 对发送方发送速率的控制，我们称之为流量控制。
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/59Z6Ih.png)
+![img](../images/59Z6Ih.png)
 
 #### 如何控制
 
@@ -51,7 +51,7 @@
 
 当发送方收到接受窗口 win = 0 时，这时发送方停止发送报文，并且同时开启一个定时器，每隔一段时间就发个测试报文去询问接收方，打听是否可以继续发送数据了，如果可以，接收方就告诉他此时接受窗口的大小；如果接受窗口大小还是为0，则发送方再次刷新启动定时器。
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/EKxDK8.png)
+![img](../images/EKxDK8.png)
 
 ## TCP三次握手和四次挥手的全过程
 
@@ -67,7 +67,7 @@
 
 ### 三次握手
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/zaEK2M.png)
+![img](../images/zaEK2M.png)
 
 第一次握手：客户端发送syn包(syn=x)到服务器，并进入SYN_SEND状态，等待服务器确认；
 第二次握手：服务器收到syn包，必须确认客户的SYN（ack=x+1），同时自己也发送一个SYN包（syn=y），即SYN+ACK包，此时服务器进入SYN_RECV状态；
@@ -76,7 +76,7 @@
 
 ### 四次挥手
 
-![img](https://gitee.com/PENG_YUE/myImg/raw/master/uPic/YMqJpu.png)
+![img](../images/YMqJpu.png)
 
 第一次挥手：客户端 的应用进程先向其 TCP 发出连接释放报文段，并停止在发送数据，主动关闭 TCP 连接。客户端把连接释放报文段首部的终止控制位 FIN 置 1，其序号 seq = u ,它等于前面已传过的数据的最后一个字节的序号加 1 。这时 客户端 进入 FIN-WAIT-1 (终止等待1) 状态，等待 服务器 的确认。
 

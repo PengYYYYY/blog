@@ -255,10 +255,10 @@ export const sidebar = {
 
 export default defineConfigWithTheme<ThemeConfig>({
   extends: baseConfig,
-
+  base: '/blog/',
   lang: 'zh-CN',
   title: 'PY',
-  description: 'PY Blog',
+  description: 'Blog',
   srcDir: 'src',
   srcExclude: ['tutorial/**/description.md'],
   scrollOffset: 'header',
@@ -268,7 +268,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       'link',
       {
         rel: 'icon',
-        href: 'https://pengyyyyy.github.io/blog/PY.png'
+        href: 'https://github.githubassets.com/favicons/favicon-dark.svg'
       }
     ]
   ],

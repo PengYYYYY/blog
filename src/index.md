@@ -1,6 +1,6 @@
 ---
 page: true
-title: PY Blog
+title: Coding 🚀
 ---
 
 <script setup>

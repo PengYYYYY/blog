@@ -53,7 +53,10 @@ export const sidebar = {
   '/work/': [
     {
       text: '腾讯',
-      items: [{ text: '工作记录', link: '/work/tencent/index.md' }]
+      items: [
+        { text: '工作记录', link: '/work/tencent/index.md' },
+        { text: 'Palette 工程优化', link: '/work/tencent/vite-build.md' }
+      ]
     },
     {
       text: '同程',
@@ -227,7 +230,10 @@ export const sidebar = {
         { text: 'JavaScript核心', link: '/font-end/js/core' },
         { text: 'TypeScript', link: '/font-end/js/typeScript' },
         { text: '闭包', link: '/font-end/js/closure' },
-        { text: 'JavaScript的原型与继承', link: '/font-end/js/inheritance' },
+        {
+          text: 'JavaScript的原型与继承',
+          link: '/font-end/js/inheritance'
+        },
         { text: 'JavaScript的事件循环', link: '/font-end/js/event-loop' },
         { text: '应用内存分析', link: '/font-end/js/oom' },
         { text: '浏览器存储', link: '/font-end/js/storage' },

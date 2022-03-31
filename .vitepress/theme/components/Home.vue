@@ -1,55 +1,46 @@
 <script setup lang="ts"></script>
 
 <template>
-  <section id="hero">
-    <h1 class="tagline">
-      <span class="accent">渐进式</span>
-      <br />JavaScript 框架
-    </h1>
-    <p class="description">
-      一款用于构建 Web 界面，易学易用，性能出色且功能丰富的框架。
-    </p>
-    <p class="actions">
-      <a class="get-started" href="/guide/introduction.html">
-        快速开始
-        <svg
-          class="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="10"
-          height="10"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
-          />
-        </svg>
-      </a>
-      <a class="setup" href="/guide/quick-start.html">安装</a>
-    </p>
-  </section>
+  <section class="content">
+    <section id="hero">
+      <h1 class="tagline">
+        <span class="accent">PY</span>
+      </h1>
+      <p class="description">Happy Life 🏀, Working Smooth 💻</p>
+      <p class="actions">
+        <a class="get-started" href="/guide/introduction.html">
+          🚀
+          <svg class="icon" width="10" height="10" viewBox="0 0 24 24">
+            <path
+              d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+            />
+          </svg>
+        </a>
+      </p>
+    </section>
 
-  <section id="highlights" class="vt-box-container">
-    <div class="vt-box">
-      <h2>易学易用</h2>
-      <p>
-        基于标准 HTML、CSS 和 JavaScript 构建，拥有直观的 API
-        和世界一流的文档。
-      </p>
-    </div>
-    <div class="vt-box">
-      <h2>性能出色</h2>
-      <p>经过编译器优化、完全响应式的渲染系统，几乎不需要手动优化。</p>
-    </div>
-    <div class="vt-box">
-      <h2>功能丰富</h2>
-      <p>
-        拥有丰富的、可渐进式集成的生态系统，可以根据规模在仅使用一个库和使用整套框架间切换自如。
-      </p>
-    </div>
+    <section id="highlights" class="vt-box-container">
+      <div class="vt-box">
+        <h2>文章</h2>
+        <p>总结文章</p>
+      </div>
+      <div class="vt-box">
+        <h2>学习记录</h2>
+        <p>学习笔记，前后端，图形学，算法，基础知识</p>
+      </div>
+      <div class="vt-box">
+        <h2>工作</h2>
+        <p>工作日志，工作日常记录，职业生涯回顾</p>
+      </div>
+    </section>
   </section>
 </template>
 
 <style scoped>
+.content {
+  padding: 0;
+  min-height: calc(100vh - 55px - 88px);
+}
 section {
   padding: 42px 32px;
 }
@@ -179,21 +170,6 @@ html:not(.dark) .accent,
 
 #highlights .vt-box {
   background-color: transparent;
-}
-
-#sponsors {
-  max-width: 900px;
-  margin: 0px auto;
-}
-
-#sponsors h2 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 1em;
-}
-
-#sponsors .sponsor-container {
-  margin-bottom: 3em;
 }
 
 @media (max-width: 960px) {

@@ -22,57 +22,60 @@ const nav = [
       { text: '前端框架', link: '/font-end-framework/index' },
       { text: '数据结构与算法', link: '/algo-data-str/index' },
       { text: '后端与运维', link: '/backend/index' },
-      { text: '基础知识', link: '/basics/network/http' },
+      { text: '基础知识', link: '/basics/network/http' }
     ]
   },
   {
     text: '工作',
     activeMatch: `^/work/`,
     link: '/work/tencent/'
-  },
+  }
 ]
 
 export const sidebar = {
-  'graph':[
+  graph: [
     {
       text: 'svg',
-      items: [
-        { text: 'svg基础', link: '/graph/svg/index.md' },
-      ]
+      items: [{ text: 'svg基础', link: '/graph/svg/index.md' }]
     },
     {
       text: 'webgl',
-      items: [
-        { text: 'webgl基础', link: '/graph/webgl/index.md' },
-      ]
+      items: [{ text: 'webgl基础', link: '/graph/webgl/index.md' }]
     },
     {
       text: '图形学知识',
       items: [
         { text: '贝塞尔曲线', link: '/graph/basics/bessel.md' },
-        { text: '矩阵', link: '/graph/basics/matrix.md' },
+        { text: '矩阵', link: '/graph/basics/matrix.md' }
       ]
-    },
+    }
   ],
   '/work/': [
     {
       text: '腾讯',
-      items: [
-        { text: '工作记录', link: '/work/tencent/index.md' },
-      ]
+      items: [{ text: '工作记录', link: '/work/tencent/index.md' }]
     },
     {
       text: '同程',
       items: [
         { text: '工作记录', link: '/work/tc-travel/index' },
-        { text: '页面搭建系统', link: '/work/tc-travel/business/low-code' },
+        {
+          text: '页面搭建系统',
+          link: '/work/tc-travel/business/low-code'
+        },
         { text: '产品增长', link: '/work/tc-travel/business/growth' },
         { text: 'siskin按需加载', link: '/work/tc-travel/siskin/import' },
         { text: 'siskin样式包', link: '/work/tc-travel/siskin/style' },
-        { text: 'siskin单元测试', link: '/work/tc-travel/siskin/unit-test' },
-        { text: 'siskin文件上传组件', link: '/work/tc-travel/siskin/upload' },
+        {
+          text: 'siskin单元测试',
+          link: '/work/tc-travel/siskin/unit-test'
+        },
+        {
+          text: 'siskin文件上传组件',
+          link: '/work/tc-travel/siskin/upload'
+        }
       ]
-    },
+    }
   ],
   '/basics/': [
     {
@@ -83,30 +86,36 @@ export const sidebar = {
         { text: 'https', link: '/basics/network/https' },
         { text: 'http-next', link: '/basics/network/http-next' },
         { text: '网络缓存', link: '/basics/network/cache' },
-        { text: '网络连接过程', link: '/basics/network/connectionProcess' },
+        { text: '网络连接过程', link: '/basics/network/connectionProcess' }
       ]
     },
     {
       text: '计算机基础',
       items: [
-        { text: '计算机是怎样跑起来的', link: '/basics/computer/howComputerRun' },
-        { text: '线程和进程的区别', link: '/basics/computer/threadsAndProcesses' },
+        {
+          text: '计算机是怎样跑起来的',
+          link: '/basics/computer/howComputerRun'
+        },
+        {
+          text: '线程和进程的区别',
+          link: '/basics/computer/threadsAndProcesses'
+        }
       ]
     },
     {
       text: '思维',
       items: [
         { text: '设计模式', link: '/basics/thought/design-mode' },
-        { text: '函数式编程', link: '/basics/thought/functional' },
+        { text: '函数式编程', link: '/basics/thought/functional' }
       ]
-    },
+    }
   ],
   '/backend/': [
     {
       text: '数据库',
       items: [
         { text: 'mysql', link: '/backend/db/mysql' },
-        { text: 'redis', link: '/backend/db/redis' },
+        { text: 'redis', link: '/backend/db/redis' }
       ]
     },
     {
@@ -116,14 +125,14 @@ export const sidebar = {
         { text: 'docker', link: '/backend/devops/docker' },
         { text: 'git-flow', link: '/backend/devops/git-flow' },
         { text: 'linux环境搭建', link: '/backend/devops/linux' },
-        { text: 'nginx', link: '/backend/devops/nginx' },
+        { text: 'nginx', link: '/backend/devops/nginx' }
       ]
     },
     {
       text: 'node',
       items: [
         { text: 'node基础', link: '/backend/node/base' },
-        { text: 'koa', link: '/backend/node/koa' },
+        { text: 'koa', link: '/backend/node/koa' }
       ]
     }
   ],
@@ -133,22 +142,25 @@ export const sidebar = {
       items: [
         { text: '数据结构', link: '/algo-data-str/dataStructure/index' },
         { text: '链表', link: '/algo-data-str/dataStructure/linkedList' },
-        { text: '树', link: '/algo-data-str/dataStructure/tree' },
+        { text: '树', link: '/algo-data-str/dataStructure/tree' }
       ]
     },
     {
       text: '算法',
       items: [
-        { text: '二分查找', link: '/algo-data-str/algorithm/binarySearch' },
+        {
+          text: '二分查找',
+          link: '/algo-data-str/algorithm/binarySearch'
+        },
         { text: '排序', link: '/algo-data-str/algorithm/sort' },
         { text: '双指针', link: '/algo-data-str/algorithm/doublePointer' },
         { text: '动态规划', link: '/algo-data-str/algorithm/dynamicPlan' },
         { text: '杂七杂八', link: '/algo-data-str/algorithm/grammar' },
         { text: '算法思想', link: '/algo-data-str/algorithm/mind' },
         { text: '复杂度', link: '/algo-data-str/complexity' },
-        { text: '限流算法', link: '/algo-data-str/currentLimiting' },
+        { text: '限流算法', link: '/algo-data-str/currentLimiting' }
       ]
-    },
+    }
   ],
   '/font-end-framework/': [
     {
@@ -161,7 +173,7 @@ export const sidebar = {
         { text: 'vue-loader', link: '/font-end-framework/vue/vue-loader' },
         { text: 'vue-ssr', link: '/font-end-framework/vue/ssr' },
         { text: 'vue 通信', link: '/font-end-framework/vue/vue-protocol' },
-        { text: '常见问题', link: '/font-end-framework/vue/question' },
+        { text: '常见问题', link: '/font-end-framework/vue/question' }
       ]
     },
     {
@@ -176,13 +188,34 @@ export const sidebar = {
     {
       text: '主流UI框架对比',
       items: [
-        { text: '生命周期', link: '/font-end-framework/architecture/lifeCycle' },
-        { text: '逻辑复用', link: '/font-end-framework/architecture/logic-reuse' },
-        { text: '组件数据流', link: '/font-end-framework/architecture/data' },
-        { text: 'Diff过程', link: '/font-end-framework/architecture/diff' },
-        { text: '组件化', link: '/font-end-framework/architecture/component' },
-        { text: '事件机制', link: '/font-end-framework/architecture/event' },
-        { text: '状态管理', link: '/font-end-framework/architecture/state' },
+        {
+          text: '生命周期',
+          link: '/font-end-framework/architecture/lifeCycle'
+        },
+        {
+          text: '逻辑复用',
+          link: '/font-end-framework/architecture/logic-reuse'
+        },
+        {
+          text: '组件数据流',
+          link: '/font-end-framework/architecture/data'
+        },
+        {
+          text: 'Diff过程',
+          link: '/font-end-framework/architecture/diff'
+        },
+        {
+          text: '组件化',
+          link: '/font-end-framework/architecture/component'
+        },
+        {
+          text: '事件机制',
+          link: '/font-end-framework/architecture/event'
+        },
+        {
+          text: '状态管理',
+          link: '/font-end-framework/architecture/state'
+        },
         { text: '小程序原理', link: '/font-end-framework/architecture/mp' }
       ]
     }
@@ -200,7 +233,7 @@ export const sidebar = {
         { text: '浏览器存储', link: '/font-end/js/storage' },
         { text: '数组操作', link: '/font-end/js/array' },
         { text: '字符操作', link: '/font-end/js/string' },
-        { text: '源码实现', link: '/font-end/js/handwritten' },
+        { text: '源码实现', link: '/font-end/js/handwritten' }
       ]
     },
     {
@@ -212,7 +245,7 @@ export const sidebar = {
         { text: '跨域', link: '/font-end/browser/cross-domain' },
         { text: '安全', link: '/font-end/browser/security' },
         { text: 'AJAX', link: '/font-end/browser/ajax' },
-        { text: 'JWT', link: '/font-end/browser/jwt' },
+        { text: 'JWT', link: '/font-end/browser/jwt' }
       ]
     },
     {
@@ -225,7 +258,7 @@ export const sidebar = {
         { text: '包管理', link: '/font-end/engineering/npm' },
         { text: 'JSBridge', link: '/font-end/engineering/bridge' },
         { text: '工程化演进', link: '/font-end/engineering/evolution' },
-        { text: '前端监控', link: '/font-end/engineering/monitoring' },
+        { text: '前端监控', link: '/font-end/engineering/monitoring' }
       ]
     },
     {
@@ -268,7 +301,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       'link',
       {
         rel: 'icon',
-        href: 'https://github.githubassets.com/favicons/favicon-dark.svg'
+        href: '/favicon.png'
       }
     ]
   ],
@@ -292,7 +325,7 @@ export default defineConfigWithTheme<ThemeConfig>({
         text: 'MIT License',
         link: 'https://opensource.org/licenses/MIT'
       },
-      copyright: `Copyright © 2018-${new Date().getFullYear()} PY`
+      copyright: `Powered By vitepress && @vue/theme`
     }
   },
 

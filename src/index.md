@@ -1,6 +1,6 @@
 ---
 page: true
-title: Coding 🚀
+title: 🚀
 ---
 
 <script setup>

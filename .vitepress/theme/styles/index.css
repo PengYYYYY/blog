@@ -1,6 +1,71 @@
-@import "./pages.css";
-@import "./badges.css";
-@import "./options-boxes.css";
-@import "./inline-demo.css";
-@import "./utilities.css";
-@import "./style-guide.css";
+.vt-badge.wip:before {
+  content: 'WIP';
+}
+
+.vt-badge.ts {
+  background-color: #3178c6;
+}
+.vt-badge.ts:before {
+  content: 'TS';
+}
+
+.vt-badge.dev-only,
+.vt-badge.experimental {
+  color: var(--vt-c-text-light-1);
+  background-color: var(--vt-c-yellow);
+}
+
+.vt-badge.dev-only:before {
+  content: 'Dev only';
+}
+
+.vt-badge.experimental:before {
+  content: 'Experimental';
+}
+
+.vt-badge[data-text]:before {
+  content: attr(data-text);
+}
+
+.next-steps {
+  margin-top: 3rem;
+}
+
+.next-steps .vt-box {
+  border: 1px solid var(--vt-c-bg-soft);
+}
+
+.next-steps .vt-box:hover {
+  border-color: var(--vt-c-green-light);
+  transition: border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.vt-doc .next-steps-link {
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75em;
+  display: block;
+  color: var(--vt-c-green);
+}
+
+.vt-doc .next-steps-caption {
+  margin-bottom: 0;
+  color: var(--vt-c-text-2);
+  transition: color 0.5s;
+}
+
+.vt-doc.api h2 .header-anchor,
+.vt-doc.style-guide h2 .header-anchor {
+  opacity: 1;
+}
+
+.vt-doc.sponsor h3 {
+  text-align: center;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--vt-c-divider-light);
+}
+
+.vt-doc.sponsor h3 .header-anchor {
+  display: none;
+}

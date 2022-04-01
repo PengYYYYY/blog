@@ -288,7 +288,7 @@ function reconcileChildren(workInProgress, children) {
   let prevSibling = null;
   for (let i = 0; i < children.length; i++) {
     let child = children[i];
-    // 今天先写初次渲染
+    // 先写初次渲染
     let newFiber = {
       type: child.type,
       props: child.props,

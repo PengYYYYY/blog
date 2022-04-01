@@ -5,19 +5,15 @@ import { headerPlugin } from './headerMdPlugin'
 
 const nav = [
   {
-    text: '博客',
-    activeMatch: `^/blog/`,
-    link: '/blog/'
-  },
-  {
-    text: '图形',
-    activeMatch: `^/graph/`,
-    link: '/graph/svg/index'
+    text: '水文',
+    activeMatch: `^/article/`,
+    link: '/article/'
   },
   {
     text: '学习记录',
-    activeMatch: `^/(font-end|font-end-framework|algo-data-str|backend|basics)/`,
+    activeMatch: `^/(graphics｜font-end|font-end-framework|algo-data-str|backend|basics)/`,
     items: [
+      { text: '图形学', link: '/graphics/index' },
       { text: '前端基础', link: '/font-end/index' },
       { text: '前端框架', link: '/font-end-framework/index' },
       { text: '数据结构与算法', link: '/algo-data-str/index' },
@@ -33,20 +29,20 @@ const nav = [
 ]
 
 export const sidebar = {
-  graph: [
+  '/graphics/': [
     {
       text: 'svg',
-      items: [{ text: 'svg基础', link: '/graph/svg/index.md' }]
+      items: [{ text: 'svg基础', link: '/graphics/svg/index.md' }]
     },
     {
       text: 'webgl',
-      items: [{ text: 'webgl基础', link: '/graph/webgl/index.md' }]
+      items: [{ text: 'webgl基础', link: '/graphics/webgl/index.md' }]
     },
     {
       text: '图形学知识',
       items: [
-        { text: '贝塞尔曲线', link: '/graph/basics/bessel.md' },
-        { text: '矩阵', link: '/graph/basics/matrix.md' }
+        { text: '贝塞尔曲线', link: '/graphics/basics/bessel.md' },
+        { text: '矩阵', link: '/graphics/basics/matrix.md' }
       ]
     }
   ],

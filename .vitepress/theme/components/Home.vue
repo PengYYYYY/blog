@@ -4,11 +4,11 @@
   <section class="content">
     <section id="hero">
       <h1 class="tagline">
-        <span class="accent">PY</span>
+        <span class="accent">P Y</span>
       </h1>
       <p class="description">Happy Life 🏀, Working Smooth 💻</p>
       <p class="actions">
-        <a class="get-started" href="/guide/introduction.html">
+        <a class="get-started" href="/article/">
           🚀
           <svg class="icon" width="10" height="10" viewBox="0 0 24 24">
             <path
@@ -21,16 +21,16 @@
 
     <section id="highlights" class="vt-box-container">
       <div class="vt-box">
-        <h2>文章</h2>
-        <p>总结文章</p>
+        <h2>水文</h2>
+        <p>形形色色的水文，想到哪儿就写到哪儿</p>
       </div>
       <div class="vt-box">
         <h2>学习记录</h2>
-        <p>学习笔记，前后端，图形学，算法，基础知识</p>
+        <p>前后端，图形学，算法与数据结构，计算机基础</p>
       </div>
       <div class="vt-box">
         <h2>工作</h2>
-        <p>工作日志，工作日常记录，职业生涯回顾</p>
+        <p>日常工作，职业生涯轨迹，退休后可追溯</p>
       </div>
     </section>
   </section>

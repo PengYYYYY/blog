@@ -1,7 +1,10 @@
+---
+page: true
+title: 水文
+---
+
 <script setup>
-import ArticleNav from './components/index.vue'
+import ArticlePage from './components/ArticlePage.vue'
 </script>
 
-# 一些水文
-
-<ArticleNav />
+<ArticlePage />

@@ -333,11 +333,11 @@ describe('utils-test', () => {
 
 > 覆盖率报告
 
-![img](../images/riM06e.png)
+![img](../../images/riM06e.png)
 
 > 测试报告
 
-![img](../images/R7TxH8.png)
+![img](../../images/R7TxH8.png)
 
 ## 结论
 

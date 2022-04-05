@@ -29,7 +29,7 @@ function factorial(n, total) {
 
 ### 交换两个数
 
-```javascript
+```js
 // 常规
 int tmp = x;
 x = y;
@@ -43,7 +43,7 @@ x = x ^ y   // （3）
 
 ### 判断奇偶数
 
-```javascript
+```js
 // 普通判断
 if(n % 2 == 1) {
  // n 是个奇数。
@@ -60,7 +60,7 @@ if(n & 1 == 1){
 
 4 ^= 5
 
-```javascript
+```js
 100 //4
 101 //5
 001 //异或后得到
@@ -85,7 +85,7 @@ let ans = 0
 
 通过寻找二分的中间点
 
-```javascript
+```js
 const mid = (start + end) >> 1
 ```
 

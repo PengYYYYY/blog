@@ -40,7 +40,7 @@ iOS 中内置了 JavaScriptCore 这个框架，可以实现执行 JS 以及注�
 
 #### iOS UIWebView
 
-```oc
+```objc
 // 获取 JS 上下文
 JSContext *context = [webview valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
 // 注入 Block
@@ -65,7 +65,7 @@ window.callHandler({
 WKWebView 里面通过 addScriptMessageHandler 来注入对象到 JS 上下文，可以在 WebView 销毁的时候调用 removeScriptMessageHandler 来销毁这个对象。
 前端调用注入的原生方法之后，可以通过 didReceiveScriptMessage 来接收前端传过来的参数。
 
-```oc
+```objc
 WKWebView *wkWebView = [[WKWebView alloc] init];
 WKWebViewConfiguration *configuration = wkWebView.configuration;
 WKUserContentController *userCC = configuration.userContentController;

@@ -57,7 +57,7 @@ import 'antd/es/button/style';
 
 babel-plubin-import 会在 ImportDeclaration 里将所有的 specifier 收集起来。大致的AST如下:
 
-![img](../images/fB0ZEQ.png)
+![img](../../images/fB0ZEQ.png)
 
 可以从这个 ImportDeclaration 语句中提取几个关键点：
 

@@ -13,7 +13,7 @@
 
 所谓的变量提升，指在 `JavaScript` 代码执行过程中，`javaScript`引擎把变量的声明部分和函数的声明部分提升到代码开头行为。变量提升后，会给变量设置一个默认值，这个值就是 `undefined`
 
-```javascript
+```js
 var myName = 'pengYue'
 // 上面的变量可以拆解为两部分
 var myName
@@ -22,7 +22,7 @@ myName = "pengYue"
 
 #### 函数声明
 
-```javascript
+```js
 // 具名函数
 function foo() {
  console.log('foo)

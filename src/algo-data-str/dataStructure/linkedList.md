@@ -277,7 +277,7 @@ class myLinkedList{
 
 ### [合并K个排序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists/description/)
 
-```javascript
+```js
 var mergeKLists = function(lists) {
     if(!lists || lists.length == 0) return null;
     let arr = [];

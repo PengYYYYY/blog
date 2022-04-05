@@ -8,7 +8,7 @@
 
 ### 同源策略
 
-[跨域](/network/crossDomain)
+[跨域](./cross-domain.html)
 
 如果两个 `URL` 的协议、域名和端口都相同，我们就称这两个 `URL` 同源。
 

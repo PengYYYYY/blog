@@ -65,7 +65,7 @@ function observe(obj) {
 }
 ```
 
-```javascript
+```js
 
 // 第一步初始化
 class PYVue {
@@ -88,7 +88,7 @@ class PYVue {
 
 ### 数据响应式原理
 
-```javascript
+```js
 
 // 响应式
 function defineReactive(obj, key, val) {
@@ -159,9 +159,9 @@ class Observe {
 
 ### 依赖收集过程
 
-![img](../images/uPic/5JEIym.png)
+![img](../images/5JEIym.png)
 
-```javascript
+```js
 // 监听者
 class Watcher {
   constructor(vm ,key, updaterFn) {
@@ -201,7 +201,7 @@ class Dep {
 
 ![img](../images/gukPCa.png)
 
-```JavaScript
+```js
 class Compile {
   constructor(el, vm) {
     this.$el = document.querySelector(el)

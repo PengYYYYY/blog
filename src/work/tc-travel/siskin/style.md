@@ -56,7 +56,7 @@
 
 最终得到的产物
 
-![img](../images/7tMW11.png)
+![img](../../images/7tMW11.png)
 
 首先分各渠道，`fullsize`和`vwsize`分别对应二倍屏和`vw`单位的样式包，`hybrid`包用于使用方使用`class`来区分渠道的包。
 
@@ -242,7 +242,7 @@ task('build', done => {
   <div id="app" :class="channel"></div>
   ```
 
- ```javascript
+ ```js
   //全量引入混合样式
   import 'tc-flight-siskin/lib/hybrid/index.css'
 
@@ -275,7 +275,7 @@ task('build', done => {
   import 'tc-flight-siskin-theme/button.css'
   ```
 
-  ```javascript
+  ```js
   //app样式
   import 'tc-flight-siskin/lib/app/index.css'
   //touch站样式
@@ -292,7 +292,7 @@ task('build', done => {
 
 基于`750px`，全量引用样式与混合引用规则同上
 
-  ```javascript
+  ```js
   //全尺寸混合样式
   import 'tc-flight-siskin/lib/fullsize/hybrid/index.css'
   //全尺寸app样式
@@ -314,7 +314,7 @@ task('build', done => {
 
 基于`375px`，全量引用样式与混合引用规则同上
 
-```javascript
+```js
 //VW包混合样式
 import 'tc-flight-siskin/lib/vwsize/hybrid/index.css'
 //VW包app样式
@@ -430,4 +430,4 @@ module.exports = cssWrap;
 
 - cssParse 解析css
 
-![img](../images/wph1Jq.png)
+![img](../../images/wph1Jq.png)

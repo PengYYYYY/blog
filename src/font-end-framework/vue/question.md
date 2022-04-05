@@ -265,7 +265,7 @@ watch实现过程：
 
 ### 数组数据的响应化过程
 
-```javascript
+```js
 const originalProto = Array.prototype
 const arrProto = Object.create(originalProto)
 const methodsToPatch = [

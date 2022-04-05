@@ -65,7 +65,7 @@
 - 无副作用
 - 可读性强
 
-```javascript
+```js
 let double = value => value * 2
 
 test("double 2 等于 4", () => {
@@ -77,7 +77,7 @@ test("double 2 等于 4", () => {
 
 解决js的引用数据问题。
 
-```javascript
+```js
 const obj = {
   name: "A男"
 }
@@ -94,7 +94,7 @@ obj.name = "B男"
 
 - 浅冻结
 
-```javascript
+```js
 Object.freeze(obj)
 obj.myname = "b男"
 //  error
@@ -102,7 +102,7 @@ obj.myname = "b男"
 
 - 深冻结
 
-```javascript
+```js
 function deepFreeze(obj) {
   Object.freeze(obj)
   for (let i in obj) {
@@ -120,7 +120,7 @@ obj.hobby.one = "足球"
 
 以函数作为输入或者输出的函数被称为高阶函数
 
-```javascript
+```js
 function test(b) {
   cb && cb()
 }
@@ -138,7 +138,7 @@ test(function() => {
 
 强调如何做
 
-```javascript
+```js
 let arr = [1,2,3];
 for (let i = 0; i < arr.length; i++) {
   console.log(arr[i])
@@ -149,7 +149,7 @@ for (let i = 0; i < arr.length; i++) {
 
 强调做什么,把如何做抽象,增强了拓展性
 
-```javascript
+```js
 const forEach = function(arr, fn) {
   for (let i = 0; i < arr.lengthl; i++) {
     fn(arr[i]);
@@ -162,7 +162,7 @@ const forEach = function(arr, fn) {
 
 ### 缓存特性
 
-```javascript
+```js
 let arr=  [true, false, true];
 
 const every = (arr, fn) => {
@@ -174,7 +174,7 @@ const every = (arr, fn) => {
 }
 ```
 
-```javascript
+```js
 const once = fn => {
   let done = false;
   return function() {
@@ -193,7 +193,7 @@ const once = fn => {
 - 纯函数，让纯函数变得更纯;
 - 把多元函数转化成一元函数;
 
-```javascript
+```js
 function add(x, y) {
   return x + y
 }
@@ -204,7 +204,7 @@ function add(y) {
 }
 ```
 
-```javascript
+```js
 let arr = [{
   name: "张三",
   age: 20
@@ -223,7 +223,7 @@ console.log(res)
 
 ## 单一原则,组合函数
 
-```javascript
+```js
 function afn(a) {
   return a * 2;
 }
@@ -237,7 +237,7 @@ console.log(res)
 
 函数式组合
 
-```javascript
+```js
 function afn(a) {
   return a * 2;
 }
@@ -252,7 +252,7 @@ myFn(2)
 
 多个函数组合
 
-```javascript
+```js
 const pipe = function(...fns) {
   return function(val) {
     return fn.reduce((total, fn) => {

@@ -21,7 +21,7 @@ JavaScript 中的字符操作
 
 - substr(a,b) 截取字符串，从a索引开始，截取b个字符，将截取的字符返回，不改变原来的字符串。
 
-```javascript
+```js
 let str = "abcdefg";
 console.log(str.substr(2,3));
 //cde
@@ -29,7 +29,7 @@ console.log(str.substr(2,3));
 
 - substring(a,b)截取字符串，从索引a开始，到索引b结束，不包括索引b的字符。返回截取字符。
 
-```javascript
+```js
 let str = "abcdefg";
 console.log(2,4);
 //cd
@@ -37,7 +37,7 @@ console.log(2,4);
 
 - slice() 截取字符串，类似substring(),slice(),可以接受参数为负数，从后往前截取。
 
-```javascript
+```js
 let str = "abcdefg";
 console.log(str.slice(-3,-1));
 //ef
@@ -45,7 +45,7 @@ console.log(str.slice(-3,-1));
 
 - split() 用指定的字符分割字符串，返回一个数组，对原来的字符串没有改变。
 
-```javascript
+```js
 let str = "123456@qq.com";
 console.log(str.split('@'));
 //ef
@@ -55,7 +55,7 @@ console.log(str.split('@'));
 
 - trim(),去除开头和结尾处的空白字符，返回一个字符串副本，不改变原字符串本身。
 
-```javascript
+```js
 let str = " 123 @qq.com ";
 console.log(str.trim());
 //ef

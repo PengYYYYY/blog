@@ -8,7 +8,7 @@ React中，组件是代码复用的基本单元，基于组合的组件复用机
 
 - 简单的mixin功能
 
-```javascript
+```js
 {
   const mixin = function(target,mixins) {
     const newObj = target;
@@ -25,7 +25,7 @@ React中，组件是代码复用的基本单元，基于组合的组件复用机
 
 - React中的mixin
 
-```javascript
+```js
 {
   var Mixin1 = {
   getMessage() {
@@ -75,7 +75,7 @@ HOC是React中用于逻辑复用的一种高级技巧。HOC自身不是React API
 
 高阶组件可以看作是React对装饰者模式的一种实现，具体来说。高阶组件是参数为组件，返回值为新组件的函数。
 
-```javascript
+```js
 export default (WrappedComponent) => {
   class NewComponent extends React.Component {
     // 可以做很多自定义逻辑
@@ -97,7 +97,7 @@ es7中的语法糖decorator就是用来实现装饰者模式的。
 
 > Props Proxy
 
-```javascript
+```js
 function proxyHOC(WrappedComponent) {
   return class PP extends React.Component {
     render() {
@@ -111,7 +111,7 @@ function proxyHOC(WrappedComponent) {
 
 反向继承是HOC去继承 WrappedComponent，这样我们获得了这个组件之后，能够从内部对它进行装饰和修改
 
-```javascript
+```js
 function inheritHOC(WrappedComponent) {
   return class extends WrappedComponent {
     render() {
@@ -126,7 +126,7 @@ function inheritHOC(WrappedComponent) {
 在HOC中可以读取、添加、编辑、删除传给 WrappedComponent 的 props(属性)。
 在删除或者编辑重要的props时，应该通过命名空间确保高阶组件的 props 不会破坏 WrappedComponent。
 
-```javascript
+```js
 function proxyHOC(WrappedComponent) {
   return class PP extends React.Component {
     render() {
@@ -141,7 +141,7 @@ function proxyHOC(WrappedComponent) {
 
 - 通过refs访问到组件实例
 
-```javascript
+```js
 function refsHOC(WrappedComponent) {
   return class RefsHOC extends React.Component {
     proc(wrappedComponentInstance) {
@@ -163,7 +163,7 @@ Ref 的回调函数会在 WrappedComponent 渲染时执行，你就可以得到W
 
 可以通过传入 props 和回调函数把 state 提取出来，
 
-```javascript
+```js
 function proxyHOC(WrappedComponent) {
   return class PP extends React.Component {
     constructor(props) {
@@ -193,7 +193,7 @@ function proxyHOC(WrappedComponent) {
 
 使用时
 
-```javascript
+```js
 @proxyHOC
 class Test extends React.Component {
   render() {
@@ -207,7 +207,7 @@ export default proxyHOC(Test);
 
 就是将WrappedComponent组件外面包一层需要的嵌套结构
 
-```javascript
+```js
 function proxyHOC(WrappedComponent) {
   return class PP extends React.Component {
     render() {
@@ -232,7 +232,7 @@ HOC 控制了 WrappedComponent 的渲染输出，并且可以用它做各种各�
 3. 有条件地渲染元素树
 4. 把样式包裹进元素树（就像在 Props Proxy(属性代理) 中的那样）
 
-```javascript
+```js
 function inheritHOC(WrappedComponent) {
   return class Enhancer extends WrappedComponent {
     render() {
@@ -254,7 +254,7 @@ function inheritHOC(WrappedComponent) {
 
 - 组合compose
 
-```javascript
+```js
 function compose(...args) {
   return args.reduce((a, b) => (...args) => a(b(...args)))
 }
@@ -264,7 +264,7 @@ compose(fn1, fn2, fn3)(...args) 相当于 fn1(fn2(fn3(...args)))
 
 - 装饰器
 
-```javascript
+```js
 @proxyHOC
 class Test extends React.Component {
   render() {
@@ -282,7 +282,7 @@ class Test extends React.Component {
 React 的 diff 算法使用组件标识来确定它是应该更新现有子树还是将其丢弃并挂载新子树。 如果从 render 返回的组件与前一个渲染中的组件相同（===），则 React 通过将子树与新子树进行区分来递归更新子树。 如果它们不相等，则完全卸载前一个子树。
 :::
 
-```javascript
+```js
 render() {  
   // 每次调用 render 函数都会创建一个新的 EnhancedComponent  
   // EnhancedComponent1 !== EnhancedComponent2  

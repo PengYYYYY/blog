@@ -82,7 +82,7 @@ HTTP1.1如果同时发起多个请求，就得建立多个TCP连接，因为一�
 HTTP2提供来首部压缩功能
 例如有如下两个请求：
 
-```tcp
+```text
 // 请求1
 :authority: unpkg.zhimg.com
 :method: GET
@@ -120,7 +120,7 @@ user-agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, 
 
 HTTP/2 在客户端和服务器端使用“首部表”来跟踪和存储之前发送的键－值对，对于相同的数据，不再通过每次请求和响应发送。
 
-```http
+```text
 Header1:foo
 Header2:bar
 Header3:bat

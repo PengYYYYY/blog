@@ -30,7 +30,7 @@ const binary = (arr) => {
 
 ## 实现indexOf
 
-```javascript
+```js
 // 非递归实现，利用指针
 var search = function(nums, target) {
  let left = 0
@@ -114,7 +114,7 @@ var search = function(nums, target) {
 
 ## [搜索插入位置](https://leetcode-cn.com/problems/search-insert-position/description/)
 
-```javascript
+```js
 function searchInsert(nums, target) {
   const len = nums.length
   if (!len || target < nums[0]) {

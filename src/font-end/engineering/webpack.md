@@ -87,7 +87,7 @@ css内连：
 
 利用glob.sync
 
-```javascript
+```js
 entry: glob.sync(path.join(__dirname,'./src/*/index.js'))
 ```
 

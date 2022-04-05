@@ -8,7 +8,7 @@ babel相关的知识点，包括babel配置和写个小插件.
 
 Babel 是一个编译器（输入源码 => 输出编译后的代码）;编译过程分为：解析、转换、和打印输出。这些插件用于转换你的代码。
 
-```javascript
+```js
 {
  "plugins": [
   "array-includes"

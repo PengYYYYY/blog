@@ -205,7 +205,7 @@ export default {
 
 > provide
 
-```javascript
+```js
 export default {
     provide() {
         return {
@@ -231,7 +231,7 @@ export default {
 
 > inject
 
-```javascript
+```js
 export default {
     inject: ['py']
 }
@@ -250,7 +250,7 @@ export default {
 
 在 `Vue 1.0` 中主要用来实现基于组件树结构的事件流通信 —— 通过向上或向下以冒泡的形式传递事件流，以实现嵌套父子组件的通信。在 `Vue 2.0` 中就被移除了官方推荐使用`vueX`,但是这个特性在UI库中还是可以带来一些作用的。下面是`dispatch`和`broadcast` 的实现。
 
-```javascript
+```js
 dispatch(componentName, eventName, params) {
     var parent = this.$parent || this.$root;
     var name = parent.$options.componentName;
@@ -283,7 +283,7 @@ broadcast(componentName, eventName, params) {
 
 发布订阅者模式的实践，通常我们会直接创建一个`vue`实例来作为`event bus`,下面是原理实现。
 
-```javascript
+```js
 class EventBus {
     constructor() {
         this.callbacks = {}

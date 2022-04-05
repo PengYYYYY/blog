@@ -507,7 +507,7 @@ class Observe {
 
 ### 依赖收集过程
 
-![img](../images/uPic/5JEIym.png)
+![img](../images//5JEIym.png)
 
 ```js
 // 监听者

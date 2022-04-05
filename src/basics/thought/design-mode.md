@@ -6,7 +6,7 @@
 
 单例在编程实战中存在大量的应用，比如说弹窗。
 
-```javascript
+```js
 {
   const Singleton = function(name) {
     this.name = name
@@ -30,7 +30,7 @@
 
 一个计算工资的例子
 
-```javascript
+```js
 var performanceS = function(){};
 performanceS.prototype.calculate = function(salary) {
   return salary * 4
@@ -61,7 +61,7 @@ Bonus.prototype.getBonus = function(){
 
 适用于JavaScript的策略模式
 
-```javascript
+```js
 var strategies = {
   "S": function(salary) {
     return salary * 4;
@@ -84,7 +84,7 @@ console.log(calculateBonus("A", 1000)) // 3000
 
 - 虚拟代理
 
-```javascript
+```js
 var myImage = (function(){
   var imgNode = document.createElement('img')
   document.body.appendChild(imgNode)

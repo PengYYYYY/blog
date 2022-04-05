@@ -13,7 +13,7 @@ JavaScript 的内存模型，其主要由堆、栈、队列三方面组成：
 
 ## 垃圾回收
 
-[垃圾回收介绍](/zh/conclusion/fe/closure.html#垃圾回收)
+[垃圾回收介绍](./closure.html#垃圾回收))
 
 ## 内存泄漏
 

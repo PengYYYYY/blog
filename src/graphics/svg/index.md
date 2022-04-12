@@ -1,9 +1,5 @@
 # svg 基础
 
-<script setup>
-import CustomComponent from '../components/svg.vue'
-</script>
-
 可缩放矢量图形（Scalable Vector Graphics，SVG），是一种用于描述二维的矢量图形。
 
 ## 坐标定位
@@ -306,13 +302,208 @@ S命令可以用来创建与前面一样的贝塞尔曲线，但是，如果S命
 
 ## Fill 和 Stroke 属性
 
-大多数基本的涂色可以通过在元素上设置两个属性来搞定：fill属性和stroke属性。
+大多数基本的涂色可以通过在元素上设置两个属性来搞定：`fill` 属性和 `stroke` 属性。
 
-- fill属性设置对象内部的颜色
-- stroke属性设置绘制对象的线条的颜色
+- `fill` 属性设置对象内部的颜色
+- `stroke` 属性设置绘制对象的线条的颜色
+
+```html
+<svg width="190px" height="160px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="100" height="100" stroke="black" fill="red" fill-opacity="0.5" stroke-opacity="0.9"/>
+</svg>
+```
+
+<svg width="190px" height="160px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="100" height="100" stroke="black" fill="red" fill-opacity="0.5" stroke-width="1" stroke-opacity="0.9"/>
+</svg>
+
+### Fill
+
+`fill-opacity` 控制填充色的不透明度，属性 `stroke-opacity` 控制描边的不透明度。
+
+### Stroke
+
+- `stroke-width` 属性定义了描边的宽度.
+
+#### stroke-linecap
+
+属性控制边框终点的形状,有三个值：
+
+- `butt` 用直边结束线段，它是常规做法，线段边界90度垂直于描边的方向、贯穿它的终点。
+- `square` 的效果差不多，但是会稍微超出实际路径的范围，超出的大小由stroke-width控制。
+- `round` 表示边框的终点是圆角，圆角的半径也是由stroke-width控制的。
+
+```html
+<svg width="160" height="140" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <line x1="40" x2="120" y1="20" y2="20" stroke="black" fill="red" stroke-width="10" stroke-linecap="butt"/>
+  <line x1="40" x2="120" y1="60" y2="60" stroke="black" stroke-width="10" stroke-linecap="square"/>
+  <line x1="40" x2="120" y1="100" y2="100" stroke="black" stroke-width="10" stroke-linecap="round"/>
+</svg>
+```
+
+<svg width="160" height="140" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <line x1="40" x2="120" y1="20" y2="20" stroke="black" stroke-width="10" stroke-linecap="butt"/>
+  <line x1="40" x2="120" y1="60" y2="60" stroke="black" stroke-width="10" stroke-linecap="square"/>
+  <line x1="40" x2="120" y1="100" y2="100" stroke="black" stroke-width="10" stroke-linecap="round"/>
+</svg>
+
+#### stroke-linejoin
+
+用来控制两条描边线段之间，用什么方式连接。每条折线都是由两个线段连接起来的，连接处的样式由 `stroke-linejoin` 属性控制，它有三个可用的值:
+
+- miter是默认值，表示用方形画笔在连接处形成尖角
+- round表示用圆角连接，实现平滑效果。
+- bevel，连接处会形成一个斜接。
+
+```html
+<svg width="160" height="280" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <polyline points="40 60 80 20 120 60" stroke="black" stroke-width="20" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+
+  <polyline points="40 140 80 100 120 140" stroke="black" stroke-width="20" stroke-linecap="round" fill="none" stroke-linejoin="round"/>
+
+  <polyline points="40 220 80 180 120 220" stroke="black" stroke-width="20" stroke-linecap="square" fill="none" stroke-linejoin="bevel"/>
+</svg>
+```
+
+<svg width="160" height="280" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <polyline points="40 60 80 20 120 60" stroke="black" stroke-width="20" stroke-linecap="butt" fill="none" stroke-linejoin="miter"/>
+
+  <polyline points="40 140 80 100 120 140" stroke="black" stroke-width="20" stroke-linecap="round" fill="none" stroke-linejoin="round"/>
+
+  <polyline points="40 220 80 180 120 220" stroke="black" stroke-width="20" stroke-linecap="square" fill="none" stroke-linejoin="bevel"/>
+</svg>
+
+
+##### stroke-dasharray
+
+通过指定 `stroke-dasharray` 属性，将虚线类型应用在描边上。`stroke-dasharray` 是一组用逗号分割的数字组成的数列, 和path不一样，这里的数字必须用逗号分割（空格会被忽略）。每一组数字，第一个用来表示填色区域的长度，第二个用来表示非填色区域的长度。第二个路径会先做5个像素单位的填色，紧接着是5个空白单位，然后又是5个单位的填色。如果你想要更复杂的虚线模式，你可以定义更多的数字。第一个例子指定了3个数字，这种情况下，数字会循环两次，形成一个偶数的虚线模式（奇数个循环两次变偶数个）。所以该路径首先渲染5个填色单位，10个空白单位，5个填色单位，然后回头以这3个数字做一次循环，但是这次是创建5个空白单位，10个填色单位，5个空白单位。通过这两次循环得到偶数模式，并将这个偶数模式不断重复。
+
+```html
+<svg width="200" height="150" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <path d="M 10 75 Q 50 10 100 75 T 190 75" stroke="black" stroke-linecap="round" stroke-dasharray="5,10,5" fill="none"/>
+  <path d="M 10 75 L 190 75" stroke="red" stroke-linecap="round" stroke-width="1" stroke-dasharray="5,5" fill="none"/>
+</svg>
+```
+
+<svg width="200" height="150" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <path d="M 10 75 Q 50 10 100 75 T 190 75" stroke="black" stroke-linecap="round" stroke-dasharray="5,10,5" fill="none"/>
+  <path d="M 10 75 L 190 75" stroke="red" stroke-linecap="round" stroke-width="1" stroke-dasharray="5,5" fill="none"/>
+</svg>
 
 ## 渐变
 
-## Patterns 图案
+### 线性渐变
 
-## Texts 文字
+线性渐变沿着直线改变颜色，要插入一个线性渐变，你需要在 `SVG` 文件的 `defs` 元素内部，创建一个 `<linearGradient>` 节点。
+
+#### 基础示例
+
+下面是一个应用了线性渐变的 `<rect>` 元素的示例。线性渐变内部有几个 `<stop>` 结点，这些结点通过指定位置的 `offset`（偏移）属性和 `stop-color`（颜色中值）属性来说明在渐变的特定位置上应该是什么颜色；可以直接指定这两个属性值，该示例中指明了渐变开始颜色为红色，到中间位置时变成半透明的黑色，最后变成蓝色。渐变的方向可以通过两个点来控制，它们分别是属性 `x1、x2、y1、y2`，这些属性定义了渐变路线走向。
+
+```html
+<svg width="120" height="120" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="red"/>
+      <stop offset="50%" stop-color="black" stop-opacity="0"/>
+      <stop offset="100%" stop-color="blue"/>
+    </linearGradient>
+  </defs>
+
+  <rect id="rect1" x="10" y="10" rx="15" ry="15" width="100" height="100" fill="url(#Gradient1)"/>
+</svg>
+```
+
+<svg width="120" height="120" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="red"/>
+      <stop offset="50%" stop-color="yellow" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="blue"/>
+    </linearGradient>
+  </defs>
+
+  <rect id="rect1" x="10" y="10" rx="15" ry="15" width="100" height="100" fill="url(#Gradient1)"/>
+</svg>
+
+### 径向渐变
+
+径向渐变与线性渐变相似，只是它是从一个点开始发散绘制渐变。创建径向渐变需要在文档的 `defs` 中添加一个 `<radialGradient>` 元素, 中值（stops）的使用方法与之前一致，但是现在这个对象的颜色是中间是红色的，且向着边缘的方向渐渐的变成蓝色。跟线性渐变一样，`<radialGradient>` 节点可以有多个属性来描述其位置和方向，但是它更加复杂。径向渐变也是通过两个点来定义其边缘位置，两点中的第一个点定义了渐变结束所围绕的圆环，它需要一个中心点，由 `cx` 和 `cy` 属性及半径 `r` 来定义，通过设置这些点我们可以移动渐变范围并改变它的大小。
+
+```html
+<svg width="120" height="240" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="RadialGradient1">
+      <stop offset="0%" stop-color="red"/>
+      <stop offset="100%" stop-color="blue"/>
+    </radialGradient>
+    <radialGradient id="RadialGradient2" cx="0.25" cy="0.25" r="0.25">
+      <stop offset="0%" stop-color="red"/>
+      <stop offset="100%" stop-color="blue"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="10" y="10" rx="15" ry="15" width="100" height="100" fill="url(#RadialGradient1)"/>
+  <rect x="10" y="120" rx="15" ry="15" width="100" height="100" fill="url(#RadialGradient2)"/>
+</svg>
+
+```
+
+<svg width="120" height="240" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="RadialGradient1">
+      <stop offset="0%" stop-color="red"/>
+      <stop offset="100%" stop-color="blue"/>
+    </radialGradient>
+    <radialGradient id="RadialGradient2" cx="0.25" cy="0.25" r="0.25">
+      <stop offset="0%" stop-color="red"/>
+      <stop offset="100%" stop-color="blue"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="10" y="10" rx="15" ry="15" width="100" height="100" fill="url(#RadialGradient1)"/>
+  <rect x="10" y="120" rx="15" ry="15" width="100" height="100" fill="url(#RadialGradient2)"/>
+</svg>
+
+### 中心和焦点
+
+```html
+<svg width="120" height="120" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+      <radialGradient id="Gradient" cx="0.5" cy="0.5" r="0.5" fx="0.25" fy="0.25">
+        <stop offset="0%" stop-color="red"/>
+        <stop offset="100%" stop-color="blue"/>
+      </radialGradient>
+  </defs>
+
+  <rect x="10" y="10" rx="15" ry="15" width="100" height="100" fill="url(#Gradient)" stroke="black" stroke-width="2"/>
+
+  <circle cx="60" cy="60" r="50" fill="transparent" stroke="white" stroke-width="2"/>
+  <circle cx="35" cy="35" r="2" fill="white" stroke="white"/>
+  <circle cx="60" cy="60" r="2" fill="white" stroke="white"/>
+  <text x="38" y="40" fill="white" font-family="sans-serif" font-size="10pt">(fx,fy)</text>
+  <text x="63" y="63" fill="white" font-family="sans-serif" font-size="10pt">(cx,cy)</text>
+
+</svg>
+```
+
+<svg width="120" height="120" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+      <radialGradient id="Gradient" cx="0.5" cy="0.5" r="0.5" fx="0.25" fy="0.25">
+        <stop offset="0%" stop-color="red"/>
+        <stop offset="100%" stop-color="blue"/>
+      </radialGradient>
+  </defs>
+
+  <rect x="10" y="10" rx="15" ry="15" width="100" height="100" fill="url(#Gradient)" stroke="black" stroke-width="2"/>
+
+  <circle cx="60" cy="60" r="50" fill="transparent" stroke="white" stroke-width="2"/>
+  <circle cx="35" cy="35" r="2" fill="white" stroke="white"/>
+  <circle cx="60" cy="60" r="2" fill="white" stroke="white"/>
+  <text x="38" y="40" fill="white" font-family="sans-serif" font-size="10pt">(fx,fy)</text>
+  <text x="63" y="63" fill="white" font-family="sans-serif" font-size="10pt">(cx,cy)</text>
+</svg>
+
+<!-- ## Patterns 图案
+
+## Texts 文字 -->

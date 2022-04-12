@@ -35,6 +35,10 @@ export const sidebar = {
       items: [{ text: 'svg基础', link: '/graphics/svg/index.md' }]
     },
     {
+      text: 'canvas',
+      items: [{ text: 'canvas基础', link: '/graphics/canvas/index.md' }]
+    },
+    {
       text: 'webgl',
       items: [{ text: 'webgl基础', link: '/graphics/webgl/index.md' }]
     },

@@ -1,12 +1,3 @@
-<script setup lang="ts">
-import type { Member } from './interface'
-import TeamMember from './ArticleItem.vue'
-
-defineProps<{
-  members: Member[]
-}>()
-</script>
-
 <template>
   <section class="TeamList">
     <div class="container">
@@ -27,6 +18,14 @@ defineProps<{
     </div>
   </section>
 </template>
+<script setup lang="ts">
+import type { Member } from './interface'
+import TeamMember from './ArticleItem.vue'
+
+defineProps<{
+  members: Member[]
+}>()
+</script>
 
 <style scoped>
 @media (min-width: 768px) {

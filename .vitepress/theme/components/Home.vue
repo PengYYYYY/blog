@@ -8,7 +8,7 @@
       </h1>
       <p class="description">Happy Life 🏀, Working Smooth 💻</p>
       <p class="actions">
-        <a class="get-started" href="/article/">
+        <a class="get-started" href="./article/">
           🚀
           <svg class="icon" width="10" height="10" viewBox="0 0 24 24">
             <path

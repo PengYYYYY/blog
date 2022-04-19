@@ -299,8 +299,8 @@ export default defineConfigWithTheme<ThemeConfig>({
   title: 'PY',
   description: 'Blog',
   srcDir: 'src',
-  srcExclude: ['tutorial/**/description.md'],
   scrollOffset: 'header',
+  dist: '../dist',
 
   head: [
     [

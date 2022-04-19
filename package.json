@@ -6,15 +6,14 @@
     "dev": "vitepress",
     "build": "vitepress build",
     "serve": "vitepress serve",
-    "zhlint": "zhlint 'src/guide/**/*.md'",
     "clean": "rm -rf .vitepress/dist",
-    "sync": "node scripts/sync.js",
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@vue/repl": "^1.0.0",
     "@vue/theme": "^1.0.1",
     "dynamics.js": "^1.1.5",
+    "express": "^4.17.3",
     "gsap": "^3.9.0",
     "vitepress": "^0.22.2",
     "vue": "^3.2.31"

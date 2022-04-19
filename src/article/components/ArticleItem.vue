@@ -1,28 +1,3 @@
-<script setup lang="ts">
-import { computed } from 'vue'
-import {
-  VTIconCode,
-  VTIconCodePen,
-  VTIconGitHub,
-  VTIconGlobe,
-  VTIconHeart,
-  VTIconLink,
-  VTIconLinkedIn,
-  VTIconMapPin,
-  VTIconTwitter,
-  VTLink
-} from '@vue/theme'
-const props = defineProps<{
-  member: any
-}>()
-const avatarUrl = computed(() => {
-  return (
-    props.member.avatarPic ??
-    `https://www.github.com/${props.member.socials.github}.png`
-  )
-})
-</script>
-
 <template>
   <article class="TeamMember">
     <VTLink
@@ -169,7 +144,30 @@ const avatarUrl = computed(() => {
     </div>
   </article>
 </template>
-
+<script setup lang="ts">
+import { computed } from 'vue'
+import {
+  VTIconCode,
+  VTIconCodePen,
+  VTIconGitHub,
+  VTIconGlobe,
+  VTIconHeart,
+  VTIconLink,
+  VTIconLinkedIn,
+  VTIconMapPin,
+  VTIconTwitter,
+  VTLink
+} from '@vue/theme'
+const props = defineProps<{
+  member: any
+}>()
+const avatarUrl = computed(() => {
+  return (
+    props.member.avatarPic ??
+    `https://www.github.com/${props.member.socials.github}.png`
+  )
+})
+</script>
 <style scoped>
 .TeamMember {
   position: relative;

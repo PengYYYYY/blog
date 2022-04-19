@@ -83,7 +83,7 @@ XSS(Cross-Site Scripting)跨站脚本攻击，黑客通过“HTML注入”篡改
 - 0:禁止XSS过滤
 - 1:启用XSS过滤（通常浏览器是默认的）。 如果检测到跨站脚本攻击，浏览器将清除页面（删除不安全的部分）。
 - 1;mode=block: 启用xss过滤。如果检测到攻击，浏览器不会清除页面，而是阻止页面加载
-- 1; report=<reporting-URI />  (Chromium only): 启用XSS过滤。 如果检测到跨站脚本攻击，浏览器将清除页面并使用CSP report-uri (en-US)指令的功能发送违规报告。
+- 1; report= `<reporting-URI />`  (Chromium only): 启用XSS过滤。 如果检测到跨站脚本攻击，浏览器将清除页面并使用CSP report-uri (en-US)指令的功能发送违规报告。
 
 > csp
 

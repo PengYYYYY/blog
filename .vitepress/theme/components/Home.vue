@@ -21,16 +21,16 @@
 
     <section id="highlights" class="vt-box-container">
       <div class="vt-box">
-        <h2>水文</h2>
-        <p>形形色色的水文，想到哪儿就写到哪儿</p>
+        <h2>文章</h2>
+        <p>🧑‍💻 各个方向的水文，程序员总得写点什么</p>
       </div>
       <div class="vt-box">
         <h2>学习记录</h2>
-        <p>前后端，图形学，算法与数据结构，计算机基础</p>
+        <p>🧱 前后端知识，图形学，算法与数据结构，计算机基础</p>
       </div>
       <div class="vt-box">
         <h2>工作</h2>
-        <p>日常工作，职业生涯轨迹，退休后可追溯</p>
+        <p>📈 日常工作记录，职业生涯轨迹，职场思考</p>
       </div>
     </section>
   </section>

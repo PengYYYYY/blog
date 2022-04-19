@@ -11,7 +11,7 @@ const nav = [
   },
   {
     text: '学习记录',
-    activeMatch: `^/(graphics｜font-end|font-end-framework|algo-data-str|backend|basics)/`,
+    activeMatch: `^/(graphics|font-end|font-end-framework|algo-data-str|backend|basics)/`,
     items: [
       { text: '图形学', link: '/graphics/index' },
       { text: '前端基础', link: '/font-end/index' },
@@ -307,7 +307,7 @@ export default defineConfigWithTheme<ThemeConfig>({
       'link',
       {
         rel: 'icon',
-        href: '/favicon.png'
+        href: './favicon.png'
       }
     ]
   ],

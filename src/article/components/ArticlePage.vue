@@ -8,16 +8,16 @@
     </ArticleHero>
 
     <ArticleList :members="data">
-      <template #title>Core Team Members</template>
-      <template #lead>
+      <template #title>待建设 🚧</template>
+      <!-- <template #lead>
       Core team members are those who are actively involved in the
         maintenance of one or more core projects. They have made significant
         contributions to the Vue ecosystem, with a long term commitment to the
         success of the project and its users.
-      </template>
+      </template> -->
     </ArticleList>
 
-    <ArticleList :members="data">
+    <!-- <ArticleList :members="data">
       <template #title>Core Team Emeriti</template>
       <template #lead
         >Here we honor some no-longer-active core team members who have made
@@ -33,7 +33,7 @@
         with these key partners, often coordinating with them on upcoming
         features and news.</template
       >
-    </ArticleList>
+    </ArticleList> -->
   </div>
 </template>
 <script setup lang="ts">

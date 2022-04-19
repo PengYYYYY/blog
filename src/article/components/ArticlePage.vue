@@ -71,6 +71,7 @@ const data = [
 <style scoped>
 .TeamPage {
   padding-bottom: 16px;
+  min-height: calc(100vh - 144px);
 }
 
 @media (min-width: 768px) {

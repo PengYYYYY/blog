@@ -10,15 +10,19 @@ const nav = [
     link: '/article/'
   },
   {
+    text: '图形学',
+    activeMatch: `^/graphics/`,
+    link: '/graphics/index'
+  },
+  {
     text: '学习记录',
-    activeMatch: `^/(graphics|font-end|font-end-framework|algo-data-str|backend|basics)/`,
+    activeMatch: `^/(font-end|font-end-framework|algo-data-str|backend|basics)/`,
     items: [
-      { text: '图形学', link: '/graphics/index' },
       { text: '前端基础', link: '/font-end/index' },
       { text: '前端框架', link: '/font-end-framework/index' },
       { text: '数据结构与算法', link: '/algo-data-str/index' },
       { text: '后端与运维', link: '/backend/index' },
-      { text: '基础知识', link: '/basics/network/http' }
+      { text: '基础知识', link: '/basics/index' }
     ]
   },
   {
@@ -239,7 +243,7 @@ export const sidebar = {
         { text: '浏览器存储', link: '/font-end/js/storage' },
         { text: '数组操作', link: '/font-end/js/array' },
         { text: '字符操作', link: '/font-end/js/string' },
-        { text: '源码实现', link: '/font-end/js/handwritten' }
+        { text: '工具类实现', link: '/font-end/js/handwritten' }
       ]
     },
     {

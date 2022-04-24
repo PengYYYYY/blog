@@ -1,25 +1,7 @@
-export interface Member {
+export interface Article {
+  bannerUrl: string
+  tip?: string
   name: string
-  avatarPic?: string
-  title: string
-  company?: string
-  companyLink?: string
-  projects: Link[]
-  location: string
-  languages: string[]
-  website?: Link
-  socials: Socials
-  sponsor?: boolean | string
-  reposPersonal?: string[]
-}
-
-export interface Link {
-  label: string
-  url: string
-}
-
-export interface Socials {
-  github: string
-  twitter?: string
-  codepen?: string
+  desc?: string
+  linkUrl: string
 }

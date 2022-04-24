@@ -1,6 +1,6 @@
 ---
 page: true
-title: 水文
+title: 文章
 ---
 
 <script setup>

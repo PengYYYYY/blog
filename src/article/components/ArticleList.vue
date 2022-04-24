@@ -1,5 +1,5 @@
 <template>
-  <section class="TeamList">
+  <section class="ArticleList">
     <div class="container">
       <div class="info">
         <h2 class="title">
@@ -10,26 +10,36 @@
         </p>
       </div>
 
-      <div class="members">
-        <div v-for="member in members" :key="member.name" class="member">
-          <TeamMember :member="member" />
+      <div class="articles">
+        <div
+          v-for="article in articles"
+          :key="article.name"
+          class="article"
+        >
+          <ArticleItem :article="article" />
+        </div>
+        <div class="building" v-if="articles.length === 0">
+          🚧 建设中 🏗️
         </div>
       </div>
     </div>
   </section>
 </template>
 <script setup lang="ts">
-import type { Member } from './interface'
-import TeamMember from './ArticleItem.vue'
+import type { Article } from './interface'
+import ArticleItem from './ArticleItem.vue'
 
 defineProps<{
-  members: Member[]
+  articles: Article[]
 }>()
 </script>
 
 <style scoped>
+.ArticleList {
+  padding-bottom: 32px;
+}
 @media (min-width: 768px) {
-  .TeamList {
+  .ArticleList {
     padding: 0 32px;
   }
 }
@@ -51,7 +61,7 @@ defineProps<{
 .info {
   flex-shrink: 0;
   padding: 0 24px;
-  max-width: 512px;
+  max-width: 300px;
 }
 
 @media (min-width: 768px) {
@@ -85,32 +95,37 @@ defineProps<{
   color: var(--vt-c-text-2);
 }
 
-.members {
+.articles {
   padding-top: 24px;
 }
 
 @media (min-width: 768px) {
-  .members {
+  .articles {
     flex-grow: 1;
     padding-top: 0;
   }
 }
 
-.member + .member {
+.article + .article {
   padding-top: 16px;
 }
 
 @media (min-width: 640px) {
-  .member {
+  .article {
     margin: 0 auto;
     max-width: 592px;
   }
 }
 
 @media (min-width: 768px) {
-  .member {
+  .article {
     margin: 0;
     max-width: 100%;
   }
+}
+.building {
+  font-size: 30px;
+  min-height: 200px;
+  line-height: 100px;
 }
 </style>

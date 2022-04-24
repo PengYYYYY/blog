@@ -5,7 +5,7 @@ import { headerPlugin } from './headerMdPlugin'
 
 const nav = [
   {
-    text: '水文',
+    text: '文章',
     activeMatch: `^/article/`,
     link: '/article/'
   },

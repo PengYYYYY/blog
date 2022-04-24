@@ -2,7 +2,7 @@
 
 最近开始了 `Palette` 项目的开发, 在 `TDesign` 中的 `vite` 开发环境还是非常丝滑的。`Palette` 的构建工具使用的是 `sand-build`，一个 `webpack` 和 `roll-up` 的集大成者。但是确实在项目上手之初遇到了很烦恼的热更新编译问题。真的太慢了🐢。
 
-<!-- ![img](../images/Apr-01-2022%2002-25-53.gif) -->
+![img](../images/vite-build-gif1.gif)
 
 上图应该可以感受到这种开发时候热更新的绝望了。一次热更新的时间在 `25` 秒左右。宝贵的时间当然不能用来等热更新了。碎片时间的摸鱼是浪费生命。
 
@@ -12,11 +12,11 @@
 
 ### 启动阶段
 
-<!-- ![img](../images/Apr-01-2022%2002-22-33.gif) -->
+![img](../images/vite-build-gif2.gif)
 
 中间还有两张30秒的图久不放了，下面这张是gif动图喔。
 
-<!-- ![img](../images/Apr-01-2022%2002-20-43.gif) -->
+![img](../images/vite-build-gif3.gif)
 
 实测启动过程 2 分钟，启动过程大致如下：
 
@@ -260,10 +260,10 @@ module.exports = {
 
 ### 启动
 
-<!-- ![img](../images/Apr-01-2022%2003-35-20.gif) -->
+![img](../images/vite-build-gif4.gif)
 
 ### 热更新
 
-<!-- ![img](../images/Apr-01-2022%2003-35-52.gif) -->
+![img](../images/vite-build-gif5.gif)
 
 美滋滋， `coding` 起飞，🚀 🚀 🚀

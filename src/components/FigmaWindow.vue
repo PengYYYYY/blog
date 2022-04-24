@@ -9,7 +9,7 @@ const props = defineProps({
 
 const fileSrc = computed(() => {
   return `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(
-    props.url
+    props.url as string
   )}`
 })
 </script>

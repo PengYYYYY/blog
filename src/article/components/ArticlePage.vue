@@ -1,86 +1,63 @@
 <template>
-  <div class="TeamPage">
+  <div class="ArticlePage">
     <ArticleHero>
-      <template #title>写的一些水文</template>
-      <template #lead>
-        涵盖各个知识面的文章
-      </template>
+      <template #title>写的一些东西</template>
+      <template #lead
+        >涵盖各个知识面的文章，有个人感悟也有比较专业的，还有一些杂事儿</template
+      >
     </ArticleHero>
 
-    <ArticleList :members="data">
-      <template #title>待建设 🚧</template>
-      <!-- <template #lead>
-      Core team members are those who are actively involved in the
-        maintenance of one or more core projects. They have made significant
-        contributions to the Vue ecosystem, with a long term commitment to the
-        success of the project and its users.
-      </template> -->
-    </ArticleList>
-
-    <!-- <ArticleList :members="data">
-      <template #title>Core Team Emeriti</template>
+    <ArticleList :articles="data.article">
+      <template #title>🔖 专业文章</template>
       <template #lead
-        >Here we honor some no-longer-active core team members who have made
-        valuable contributions in the past.</template
+        >写的一些专业文章，理论总结。花了点心思的东西。</template
       >
     </ArticleList>
 
-    <ArticleList :members="data">
-      <template #title>Community Partners</template>
-      <template #lead
-        >Some members of the Vue community have so enriched it, that they
-        deserve special mention. We've developed a more intimate relationship
-        with these key partners, often coordinating with them on upcoming
-        features and news.</template
-      >
-    </ArticleList> -->
+    <ArticleList :articles="data.project">
+      <template #title>👷 搬砖记录</template>
+      <template #lead>在日常工作中遇到的一些坑，主要是实战记录。</template>
+    </ArticleList>
+
+    <ArticleList :articles="data.personal">
+      <template #title>👽️ 个人感悟</template>
+      <template #lead>在日常工作中遇到的一些坑，主要是实战记录。</template>
+    </ArticleList>
   </div>
 </template>
 <script setup lang="ts">
 import ArticleHero from './ArticleHero.vue'
 import ArticleList from './ArticleList.vue'
 
-const data = [
-  // {
-  //   name: 'Evan You',
-  //   title: 'Creator',
-  //   company: 'Vue.js',
-  //   projects: [
-  //     {
-  //       label: 'vuejs/*',
-  //       url: 'https://www.github.com/vuejs'
-  //     },
-  //     {
-  //       label: 'vitejs/*',
-  //       url: 'https://www.github.com/vitejs'
-  //     }
-  //   ],
-  //   website: {
-  //     label: 'evanyou.me',
-  //     url: 'https://evanyou.me'
-  //   },
-  //   socials: {
-  //     github: 'yyx990803',
-  //     twitter: 'youyuxi'
-  //   },
-  //   sponsor: true
-  // }
-]
+const data = {
+  article: [],
+  project: [
+    {
+      bannerUrl:
+        'https://blog.slashgear.dev/static/c20149934693e773dc7e6cf7619d7b04/99238/vitejs.webp',
+      tip: 'vite',
+      name: 'vite 工程优化',
+      desc: '项目中切换vite的记录,对于webpack来说，vite是个实打实的杀手',
+      linkUrl: '../work/tencent/vite-build'
+    }
+  ],
+  personal: []
+}
 </script>
 
 <style scoped>
-.TeamPage {
+.ArticlePage {
   padding-bottom: 16px;
   min-height: calc(100vh - 144px);
 }
 
 @media (min-width: 768px) {
-  .TeamPage {
+  .ArticlePage {
     padding-bottom: 96px;
   }
 }
 
-.TeamList + .TeamList {
+.ArticleList + .ArticleList {
   padding-top: 64px;
 }
 </style>

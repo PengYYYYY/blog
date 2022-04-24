@@ -12,7 +12,7 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
-          npx pnpm install
+          npx pnpm install --no-frozen-lockfile
           npm run build
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.3

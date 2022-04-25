@@ -47,7 +47,7 @@ export const sidebar = {
       items: [{ text: 'webgl基础', link: '/graphics/webgl/index.md' }]
     },
     {
-      text: '图形学知识',
+      text: '细分知识',
       items: [
         { text: '贝塞尔曲线', link: '/graphics/basics/bessel.md' },
         { text: '矩阵', link: '/graphics/basics/matrix.md' }

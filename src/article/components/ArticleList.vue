@@ -12,26 +12,57 @@
 
       <div class="articles">
         <div
-          v-for="article in articles"
+          v-for="article in showList"
           :key="article.name"
           class="article"
         >
           <ArticleItem :article="article" />
         </div>
-        <div class="building" v-if="articles.length === 0">
+        <div class="building" v-if="showList.length === 0">
           🚧 建设中 🏗️
+        </div>
+        <div class="pagination">
+          <div @click="handlePaginationChange(2)">
+            <div class="item" v-show="current > 1">
+              <VTIconChevronLeft class="icon" />
+              上一页
+            </div>
+          </div>
+          <div @click="handlePaginationChange(1)">
+            <div class="item" v-show="isNextShow">
+              下一页
+              <VTIconChevronRight class="icon" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </template>
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+import { VTIconChevronLeft, VTIconChevronRight } from '@vue/theme'
 import type { Article } from './interface'
 import ArticleItem from './ArticleItem.vue'
 
-defineProps<{
+const pageSize = 5
+const props = defineProps<{
   articles: Article[]
 }>()
+
+const current = ref(1)
+const showList = computed(() => {
+  const begin = (current.value - 1) * pageSize
+  return props.articles.slice(begin, begin + pageSize)
+})
+
+const isNextShow = computed(() => {
+  return current.value * pageSize < props.articles.length
+})
+
+const handlePaginationChange = (type: number) => {
+  current.value = current.value + (type === 1 ? 1 : -1)
+}
 </script>
 
 <style scoped>
@@ -127,5 +158,37 @@ defineProps<{
   font-size: 30px;
   min-height: 200px;
   line-height: 100px;
+  text-align: center;
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  padding: 0 8px;
+}
+.pagination .item {
+  width: 50px;
+  font-size: 11px;
+  color: var(--vt-c-text-2);
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pagination .icon {
+  width: 11px;
+  height: 11px;
+  fill: var(--vt-c-text-3);
+  transition: fill 0.25s;
+}
+.pagination:hover .item {
+  cursor: pointer;
+  color: var(--vt-c-brand);
+  font-weight: bold;
+}
+.pagination:hover .icon {
+  cursor: pointer;
+  fill: var(--vt-c-brand);
 }
 </style>

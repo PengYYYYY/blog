@@ -37,6 +37,7 @@ const handleClickNav = () => {
   background-color: var(--vt-c-bg-soft);
   transition: background-color 0.5s;
   padding: 32px;
+  margin: 0 16px;
 }
 .ArticleItem:hover {
   cursor: pointer;
@@ -59,6 +60,7 @@ const handleClickNav = () => {
 .banner-img {
   width: 200px;
   border-radius: 5px;
+  margin-right: 32px;
 }
 .banner-tip {
   width: 200px;
@@ -70,10 +72,6 @@ const handleClickNav = () => {
   font-weight: bold;
   height: 100px;
 }
-
-.info {
-  padding-left: 32px;
-}
 .name {
   font-size: 20px;
   font-weight: 500;
@@ -81,5 +79,12 @@ const handleClickNav = () => {
 .desc {
   display: flex;
   margin-top: 12px;
+}
+@media (max-width: 512px) {
+  .banner-img {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 24px;
+  }
 }
 </style>

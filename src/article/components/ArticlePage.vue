@@ -3,7 +3,7 @@
     <ArticleHero>
       <template #title>写的一些东西</template>
       <template #lead
-        >涵盖各个知识面的文章，有个人感悟也有比较专业的，还有一些杂事儿</template
+        >涵盖各个知识面的文章，有专业内入也有工作记录的，还有一些杂事儿</template
       >
     </ArticleHero>
 
@@ -20,7 +20,7 @@
     </ArticleList>
 
     <ArticleList :articles="data.personal">
-      <template #title>👽️ 个人感悟</template>
+      <template #title>👽️ 杂七杂八</template>
       <template #lead>在日常工作中遇到的一些坑，主要是实战记录。</template>
     </ArticleList>
   </div>
@@ -33,9 +33,8 @@ const data = {
   article: [],
   project: [
     {
-      bannerUrl:
-        'https://blog.slashgear.dev/static/c20149934693e773dc7e6cf7619d7b04/99238/vitejs.webp',
-      tip: 'vite',
+      bannerUrl: '/article/images/vitejs.webp',
+      tip: '',
       name: 'vite 工程优化',
       desc: '项目中切换vite的记录,对于webpack来说，vite是个实打实的杀手',
       linkUrl: '../work/tencent/vite-build'

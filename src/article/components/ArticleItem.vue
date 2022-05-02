@@ -28,7 +28,7 @@ const props = defineProps<{
 }>()
 
 const handleClickNav = () => {
-  location.href = props.article.linkUrl
+  window.location.href = props.article.linkUrl
 }
 </script>
 <style scoped>

@@ -18,18 +18,18 @@
         >
           <ArticleItem :article="article" />
         </div>
-        <div class="building" v-if="showList.length === 0">
+        <div v-if="showList.length === 0" class="building">
           🚧 建设中 🏗️
         </div>
         <div class="pagination">
           <div @click="handlePaginationChange(2)">
-            <div class="item" v-show="current > 1">
+            <div v-show="current > 1" class="item">
               <VTIconChevronLeft class="icon" />
               上一页
             </div>
           </div>
           <div @click="handlePaginationChange(1)">
-            <div class="item" v-show="isNextShow">
+            <div v-show="isNextShow" class="item">
               下一页
               <VTIconChevronRight class="icon" />
             </div>
@@ -61,7 +61,7 @@ const isNextShow = computed(() => {
 })
 
 const handlePaginationChange = (type: number) => {
-  current.value = current.value + (type === 1 ? 1 : -1)
+  current.value += type === 1 ? 1 : -1
 }
 </script>
 

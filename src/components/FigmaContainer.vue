@@ -3,8 +3,9 @@
 </template>
 <script setup lang="ts">
 import { defineProps, computed } from 'vue'
+
 const props = defineProps({
-  url: String,
+  url: String
 })
 
 const fileSrc = computed(() => {

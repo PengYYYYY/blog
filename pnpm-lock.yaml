@@ -12,6 +12,7 @@ specifiers:
   chalk: ^4.1.2
   commitizen: ^4.2.4
   cz-conventional-changelog: ^3.3.0
+  dynamics.js: ^1.1.5
   eslint: ^7.32.0
   eslint-config-airbnb-base: ^15.0.0
   eslint-config-prettier: ^8.3.0
@@ -21,6 +22,7 @@ specifiers:
   eslint-plugin-vue-scoped-css: ^2.2.0
   express: ^4.17.3
   gray-matter: ^4.0.3
+  gsap: ^3.10.4
   husky: ^7.0.4
   lint-staged: ^12.1.2
   lodash: ^4.17.21
@@ -33,7 +35,9 @@ specifiers:
 dependencies:
   '@vue/repl': 1.0.0_vue@3.2.31
   '@vue/theme': 1.0.1_vue@3.2.31
+  dynamics.js: 1.1.5
   express: 4.17.3
+  gsap: 3.10.4
   vitepress: 0.22.2
   vue: 3.2.31
 
@@ -1545,6 +1549,10 @@ packages:
       is-obj: 2.0.0
     dev: true
 
+  /dynamics.js/1.1.5:
+    resolution: {integrity: sha1-uQvcM2Bc7+ZSuEFucB95v27vzjI=}
+    dev: false
+
   /eastasianwidth/0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
@@ -2465,6 +2473,10 @@ packages:
       section-matter: 1.0.0
       strip-bom-string: 1.0.0
     dev: true
+
+  /gsap/3.10.4:
+    resolution: {integrity: sha512-6QatdkKxXCMfvCW4rM++0RqyLQAzFX5nwl3yHS0XPgkZBkiSEY3VZVbMltrdtsbER/xZonLtyHt684wRp4erlQ==}
+    dev: false
 
   /hard-rejection/2.1.0:
     resolution: {integrity: sha512-VIZB+ibDhx7ObhAe7OVtoEbuP4h/MuOTHJ+J8h/eBXotJYl0fBgR72xDFCKgIh22OJZIOVNxBMWuhAr10r8HdA==}

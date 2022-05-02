@@ -1,10 +1,17 @@
 # SSR
 
-![img](../images/lZoGn3.png)
+<script setup>
+import FigmaContainer from '/components/FigmaContainer.vue'
+</script>
+
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/vue?node-id=0%3A1"/>
 
 ## ssr的架构图
 
 ![img](../images/YdVByD.png)
+
+![img](../images/lZoGn3.png)
+
 
 > 流程
 

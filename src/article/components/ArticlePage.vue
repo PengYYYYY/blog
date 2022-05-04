@@ -33,16 +33,16 @@ const data = {
   article: [],
   project: [
     {
-      bannerUrl: '/article/images/vite.webp',
+      bannerUrl: 'article/vite.webp',
       tip: '',
       name: 'Vite 工程优化',
       desc: '项目中切换vite的记录,对于webpack来说，vite是个实打实的杀手',
-      linkUrl: '../work/tencent/vite-build'
+      linkUrl: '../work/tencent/P'
     }
   ],
   personal: [
     {
-      bannerUrl: '/article/images/vite-press.webp',
+      bannerUrl: 'article/vite-press.webp',
       tip: '',
       name: 'Blog 翻新记录',
       desc: '利用工作之余翻新了我的blog, 翻新的也差不多了,记录一下整个流程',

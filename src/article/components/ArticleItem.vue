@@ -4,7 +4,7 @@
       <img
         v-if="article.bannerUrl"
         class="banner-img"
-        :src="article.bannerUrl"
+        :src="withBase(article.bannerUrl)"
       />
       <div v-else class="banner-tip">
         {{ article.tip }}
@@ -21,6 +21,7 @@
   </article>
 </template>
 <script setup lang="ts">
+import { withBase } from 'vitepress'
 import type { Article } from './interface'
 
 const props = defineProps<{

@@ -165,7 +165,10 @@ export const sidebar = {
         { text: '杂七杂八', link: '/algo-data-str/algorithm/grammar' },
         { text: '算法思想', link: '/algo-data-str/algorithm/mind' },
         { text: '复杂度', link: '/algo-data-str/complexity' },
-        { text: '限流算法', link: '/algo-data-str/algorithm/currentLimiting' }
+        {
+          text: '限流算法',
+          link: '/algo-data-str/algorithm/currentLimiting'
+        }
       ]
     }
   ],
@@ -352,10 +355,6 @@ export default defineConfigWithTheme<ThemeConfig>({
     optimizeDeps: {
       include: ['gsap', 'dynamics.js'],
       exclude: ['@vue/repl']
-    },
-    // @ts-ignore
-    ssr: {
-      external: ['@vue/repl']
     },
     server: {
       host: true,

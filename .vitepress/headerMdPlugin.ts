@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * A markdown-it plugin to support custom header metadata
  * Headers that end with * are Options API only

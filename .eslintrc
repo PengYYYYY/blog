@@ -25,6 +25,7 @@
       "jsx": true
     }
   },
+  "ignorePatterns": ["!.vitepress"],
   "settings": {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"]
   },
@@ -55,7 +56,7 @@
         "vue/multi-word-component-names": 0,
         "vue/no-reserved-props": 0,
         "vue/no-v-html": 0,
-        "vue-scoped-css/enforce-style-type": ["error", { "allows": ["scoped"] }]
+        "vue/valid-template-root": 0
       }
     }
   ]

@@ -1,14 +1,15 @@
 <template>
-  <article class="ArticleItem" @click="handleClickNav">
+  <article
+    :class="[
+      'ArticleItem',
+      {
+        disabled: !article.linkUrl
+      }
+    ]"
+    @click="handleClickNav"
+  >
     <figure class="banner">
-      <img
-        v-if="article.bannerUrl"
-        class="banner-img"
-        :src="withBase(article.bannerUrl)"
-      />
-      <div v-else class="banner-tip">
-        {{ article.tip }}
-      </div>
+      <img class="banner-img" :src="withBase(article.bannerUrl)" />
     </figure>
 
     <div class="info">
@@ -29,6 +30,7 @@ const props = defineProps<{
 }>()
 
 const handleClickNav = () => {
+  if (!props.article.linkUrl) return
   window.location.href = props.article.linkUrl
 }
 </script>
@@ -40,9 +42,18 @@ const handleClickNav = () => {
   padding: 32px;
   margin: 0 16px;
 }
+
 .ArticleItem:hover {
   cursor: pointer;
 }
+.ArticleItem.disabled {
+  opacity: 0.8;
+}
+
+.ArticleItem.disabled:hover {
+  cursor: not-allowed;
+}
+
 @media (min-width: 512px) {
   .ArticleItem {
     display: flex;
@@ -63,23 +74,13 @@ const handleClickNav = () => {
   border-radius: 5px;
   margin-right: 32px;
 }
-.banner-tip {
-  width: 200px;
-  background: #42b883;
-  color: white;
-  font-size: 25px;
-  text-align: center;
-  line-height: 100px;
-  font-weight: bold;
-  height: 100px;
-}
+
 .name {
   font-size: 20px;
-  font-weight: 500;
+  font-weight: bold;
 }
 .desc {
-  display: flex;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 @media (max-width: 512px) {
   .banner-img {

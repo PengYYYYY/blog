@@ -30,20 +30,39 @@ import ArticleHero from './ArticleHero.vue'
 import ArticleList from './ArticleList.vue'
 
 const data = {
-  article: [],
+  article: [
+    {
+      bannerUrl: 'article/figma.png',
+      name: '🚧 从 Figma api 到设计软件',
+      desc: '从 figma 数据结构为起点剖析设计软件基础图形的原理，图形学基础入门'
+    },
+    {
+      bannerUrl: 'article/composition-api.jpeg',
+      name: '🚧 TDesign CompositionAPI 重构',
+      desc: '记录了 TDesign 在 CompositionAPI 组件重构的开始，过程与收获'
+    },
+    {
+      bannerUrl: 'article/vitest-td.png',
+      name: '🚧 TDesign Vitest 测试方案',
+      desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，建设组件库工程化测试方案'
+    }
+  ],
   project: [
     {
       bannerUrl: 'article/vite.webp',
-      tip: '',
-      name: 'Vite 工程优化',
-      desc: '项目中切换vite的记录,对于webpack来说，vite是个实打实的杀手',
-      linkUrl: '../work/tencent/P'
+      name: 'webpack 迁移 Vite 实践',
+      desc: '项目中切换vite的记录，对于webpack来说，vite是个实打实的杀手',
+      linkUrl: '../work/tencent/vite-build'
+    },
+    {
+      bannerUrl: 'article/td-cascader.png',
+      name: '🚧 TDesign Cascader 组件的演进',
+      desc: 'TDesign Cascader 的演进，vue2，vue3，react的维护总结'
     }
   ],
   personal: [
     {
       bannerUrl: 'article/vite-press.webp',
-      tip: '',
       name: 'Blog 翻新记录',
       desc: '利用工作之余翻新了我的blog, 翻新的也差不多了,记录一下整个流程',
       linkUrl: '../article/record/blog-refactor'

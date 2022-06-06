@@ -53,12 +53,12 @@ const data = {
       name: 'webpack 迁移 Vite 实践',
       desc: '项目中切换vite的记录，对于webpack来说，vite是个实打实的杀手',
       linkUrl: '../work/tencent/vite-build'
-    },
-    {
-      bannerUrl: 'article/td-cascader.png',
-      name: '🚧 TDesign Cascader 组件的演进',
-      desc: 'TDesign Cascader 的演进，vue2，vue3，react的维护总结'
     }
+    // {
+    //   bannerUrl: 'article/td-cascader.png',
+    //   name: '🚧 TDesign Cascader 组件的演进',
+    //   desc: 'TDesign Cascader 的演进，vue2，vue3，react的维护总结'
+    // }
   ],
   personal: [
     {

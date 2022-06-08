@@ -66,6 +66,12 @@ const data = {
       name: 'Blog 翻新记录',
       desc: '利用工作之余翻新了我的blog, 翻新的也差不多了,记录一下整个流程',
       linkUrl: '../article/record/blog-refactor'
+    },
+    {
+      bannerUrl: 'article/deploy.jpeg',
+      name: '开源网站部署工具',
+      desc: '用过 vercel, github pages, surge, 腾讯云serverless 等部署工具，简单总结一下',
+      linkUrl: '../article/record/deploy'
     }
   ]
 }

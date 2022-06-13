@@ -1,4 +1,4 @@
-# Palette 工程优化
+# webpack 项目迁移 vite 实践
 
 最近开始了 `Palette` 项目的开发, 在 `TDesign` 中的 `vite` 开发环境还是非常丝滑的。`Palette` 的构建工具使用的是 `sand-build`，一个 `webpack` 和 `roll-up` 的集大成者。但是确实在项目上手之初遇到了很烦恼的热更新编译问题。真的太慢了🐢。
 

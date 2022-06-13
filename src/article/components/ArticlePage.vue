@@ -53,12 +53,12 @@ const data = {
       name: 'webpack 项目迁移 vite 实践',
       desc: '项目中切换vite的记录，对于webpack来说，vite是个实打实的杀手',
       linkUrl: '../work/tencent/vite-build'
-    },
-    {
-      bannerUrl: 'article/td-cascader.png',
-      name: '🚧 TDesign Cascader 组件的演进',
-      desc: 'TDesign Cascader 的演进，vue2，vue3，react的维护总结'
     }
+    // {
+    //   bannerUrl: 'article/td-cascader.png',
+    //   name: '🚧 TDesign Cascader 组件的演进',
+    //   desc: 'TDesign Cascader 的演进，vue2，vue3，react的维护总结'
+    // }
   ],
   personal: [
     {
@@ -66,6 +66,12 @@ const data = {
       name: 'Blog 翻新记录',
       desc: '利用工作之余翻新了我的blog, 翻新的也差不多了,记录一下整个流程',
       linkUrl: '../article/record/blog-refactor'
+    },
+    {
+      bannerUrl: 'article/deploy.jpeg',
+      name: '开源网站部署工具',
+      desc: '用过 vercel, github pages, surge, 腾讯云serverless 等部署工具，简单总结一下',
+      linkUrl: '../article/record/deploy'
     }
   ]
 }

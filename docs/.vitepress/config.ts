@@ -21,13 +21,13 @@ export default defineConfig({
       'link',
       {
         rel: 'icon',
-        href: '/favicon.png'
+        href: './favicon.png'
       }
     ]
   ],
 
   themeConfig: {
-    logo: '/logo.svg',
+    logo: './logo.svg',
     nav: navList(),
     sidebar: {
       '/graphics/': sidebarGraphics(),

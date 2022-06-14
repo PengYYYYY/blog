@@ -49,5 +49,14 @@
       "npm run lint --fix",
       "git add ."
     ]
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "react",
+        "react-dom",
+        "@types/react"
+      ]
+    }
   }
 }

@@ -1,5 +1,6 @@
 ---
 page: true
+layout: page
 title: 文章
 ---
 

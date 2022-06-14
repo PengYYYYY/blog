@@ -37,7 +37,7 @@ const handleClickNav = () => {
 <style scoped>
 .ArticleItem {
   position: relative;
-  background-color: var(--vt-c-bg-soft);
+  background-color: var(--vp-c-bg-soft);
   transition: background-color 0.5s;
   padding: 32px;
   margin: 0 16px;

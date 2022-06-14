@@ -24,14 +24,36 @@
         <div class="pagination">
           <div @click="handlePaginationChange(2)">
             <div v-show="current > 1" class="item">
-              <VTIconChevronLeft class="icon" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                class="icon"
+                data-v-b57a953c=""
+              >
+                <path
+                  d="M15,19c-0.3,0-0.5-0.1-0.7-0.3l-6-6c-0.4-0.4-0.4-1,0-1.4l6-6c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4L10.4,12l5.3,5.3c0.4,0.4,0.4,1,0,1.4C15.5,18.9,15.3,19,15,19z"
+                ></path>
+              </svg>
               上一页
             </div>
           </div>
           <div @click="handlePaginationChange(1)">
             <div v-show="isNextShow" class="item">
               下一页
-              <VTIconChevronRight class="icon" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                focusable="false"
+                viewBox="0 0 24 24"
+                class="icon"
+                data-v-b57a953c=""
+              >
+                <path
+                  d="M9,19c-0.3,0-0.5-0.1-0.7-0.3c-0.4-0.4-0.4-1,0-1.4l5.3-5.3L8.3,6.7c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l6,6c0.4,0.4,0.4,1,0,1.4l-6,6C9.5,18.9,9.3,19,9,19z"
+                ></path>
+              </svg>
             </div>
           </div>
         </div>
@@ -41,7 +63,6 @@
 </template>
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { VTIconChevronLeft, VTIconChevronRight } from '@vue/theme'
 import type { Article } from './interface'
 import ArticleItem from './ArticleItem.vue'
 
@@ -76,7 +97,7 @@ const handlePaginationChange = (type: number) => {
 }
 
 .container {
-  border-top: 1px solid var(--vt-c-divider-light);
+  border-top: 1px solid var(--vp-c-divider-light);
   padding-top: 24px;
 }
 
@@ -123,7 +144,7 @@ const handlePaginationChange = (type: number) => {
   line-height: 24px;
   font-size: 14px;
   font-weight: 500;
-  color: var(--vt-c-text-2);
+  color: var(--vp-c-text-2);
 }
 
 .articles {
@@ -169,7 +190,7 @@ const handlePaginationChange = (type: number) => {
 .pagination .item {
   width: 50px;
   font-size: 11px;
-  color: var(--vt-c-text-2);
+  color: var(--vp-c-text-2);
   display: block;
   display: flex;
   align-items: center;
@@ -179,16 +200,16 @@ const handlePaginationChange = (type: number) => {
 .pagination .icon {
   width: 11px;
   height: 11px;
-  fill: var(--vt-c-text-3);
+  fill: var(--vp-c-text-3);
   transition: fill 0.25s;
 }
 .pagination:hover .item {
   cursor: pointer;
-  color: var(--vt-c-brand);
+  color: var(--vp-c-brand);
   font-weight: bold;
 }
 .pagination:hover .icon {
   cursor: pointer;
-  fill: var(--vt-c-brand);
+  fill: var(--vp-c-brand);
 }
 </style>

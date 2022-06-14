@@ -50,7 +50,7 @@ const data = {
   project: [
     {
       bannerUrl: 'article/vite.webp',
-      name: 'webpack 项目迁移 vite 实践',
+      name: 'webpack 迁移 Vite 实践',
       desc: '项目中切换vite的记录，对于webpack来说，vite是个实打实的杀手',
       linkUrl: '../work/tencent/vite-build'
     }

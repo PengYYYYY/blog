@@ -3,21 +3,17 @@
     "node": ">= 16"
   },
   "scripts": {
-    "dev": "vitepress",
-    "build": "vitepress build",
-    "serve": "vitepress serve",
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "serve": "vitepress serve docs",
     "clean": "rm -rf .vitepress/dist",
     "lint": "eslint --ext .vue,.js,.jsx,.ts,.tsx ./ --max-warnings 0",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install"
   },
   "dependencies": {
-    "@vue/repl": "^1.0.0",
-    "@vue/theme": "^1.0.2",
-    "dynamics.js": "^1.1.5",
     "express": "^4.17.3",
-    "gsap": "^3.10.4",
-    "vitepress": "^0.22.4",
+    "vitepress": "^1.0.0-alpha.1",
     "vue": "^3.2.33"
   },
   "devDependencies": {
@@ -27,7 +23,6 @@
     "@types/node": "^16.9.1",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
-    "chalk": "^4.1.2",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.32.0",
@@ -37,11 +32,9 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^7.16.0",
     "eslint-plugin-vue-scoped-css": "^2.2.0",
-    "gray-matter": "^4.0.3",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "lodash": "^4.17.21",
-    "patch-vue-directive-ssr": "^0.0.1",
     "prettier": "^2.4.1",
     "typescript": "^4.4.3",
     "vue-eslint-parser": "^9.0.1"

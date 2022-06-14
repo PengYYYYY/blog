@@ -53,7 +53,7 @@
   font-size: 16px;
   font-weight: 500;
   max-width: 512px;
-  color: var(--vt-c-text-2);
+  color: var(--vp-c-text-2);
 }
 
 .action {
@@ -65,11 +65,11 @@
   line-height: 20px;
   font-size: 14px;
   font-weight: 500;
-  color: var(--vt-c-brand);
+  color: var(--vp-c-brand);
   transition: color 0.25s;
 }
 
 .action :deep(a:hover) {
-  color: var(--vt-c-brand-dark);
+  color: var(--vp-c-brand-dark);
 }
 </style>

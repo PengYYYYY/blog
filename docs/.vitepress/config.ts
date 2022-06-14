@@ -15,6 +15,7 @@ export default defineConfig({
   title: 'PY',
   description: 'Vite & Vue powered static site generator.',
   lastUpdated: true,
+  base: '/blog/',
   head: [
     [
       'link',

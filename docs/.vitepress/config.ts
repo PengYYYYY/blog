@@ -39,7 +39,7 @@ export default defineConfig({
       '/font-end-framework/': sidebarFeFramework()
     },
     editLink: {
-      repo: 'https://github.com/vuejs/vitepress/edit/main/docs/:path',
+      repo: 'https://github.com/pengYYYYY/blog/docs',
       text: 'Edit this page on GitHub'
     },
 

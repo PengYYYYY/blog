@@ -1,7 +1,5 @@
 # JavaScript核心
 
-![img](../images/aaQ65d.png)
-
 js的几大核心问题
 
 ## 解释执行

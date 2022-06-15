@@ -6,7 +6,7 @@ export const navList = () => [
   },
   {
     text: '图形学',
-    activeMatch: `/graphics/`,
+    activeMatch: '/graphics/',
     link: '/graphics/index'
   },
   {
@@ -293,7 +293,6 @@ export const sidebarFontEnd = () => [
     text: '性能优化',
     collapsible: true,
     items: [
-      { text: '概览', link: '/font-end/optimize/overview' },
       { text: '静态资源优化', link: '/font-end/optimize/base' },
       {
         text: '工程中的相关优化',

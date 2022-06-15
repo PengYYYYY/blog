@@ -1,7 +1,5 @@
 # TypeScript
 
-![img](../images/BHRhfr.png)
-
 ## 基础类型
 
 - Boolean

@@ -1,9 +1,5 @@
 # 包管理
 
-## 脑图
-
-![img](../images/TrpMno.png)
-
 ## yarn
 
 ### 和npm区别

@@ -1,7 +1,5 @@
 # webpack
 
-![img](../images/6tEBVl.png)
-
 ## webpack的文件监听以及热更新
 
 文件监听原理，轮询判断文件的最后编辑时间是否发生变化

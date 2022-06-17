@@ -39,7 +39,7 @@ export default defineConfig({
       '/font-end-framework/': sidebarFeFramework()
     },
     editLink: {
-      repo: 'https://github.com/pengYYYYY/blog/docs',
+      pattern: 'https://github.com/pengYYYYY/blog/edit/master/docs/:path',
       text: 'Edit this page on GitHub'
     },
 
@@ -53,9 +53,13 @@ export default defineConfig({
     },
 
     algolia: {
-      appId: 'test',
-      apiKey: 'test',
-      indexName: 'py'
+      appId: 'PXUFXUCGYX',
+      apiKey: '6d89b3d444ae8c86906e4db79b61cdcb',
+      indexName: 'blog'
     }
+  },
+  markdown: {
+    theme: 'material-palenight',
+    lineNumbers: true
   }
 })

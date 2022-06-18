@@ -35,7 +35,7 @@ const data = {
       bannerUrl: 'article/vitest-td.png',
       name: ' TDesign 在 vitest 的实践',
       desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，建设组件库工程化测试方案',
-      linkUrl: '../article/record/vitest'
+      linkUrl: '../article/record/vitest-refactor'
     },
     {
       bannerUrl: 'article/figma.png',

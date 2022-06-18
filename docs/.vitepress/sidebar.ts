@@ -54,12 +54,16 @@ export const sidebarWork = () => [
     text: '腾讯',
     items: [
       { text: '工作记录', link: '/work/tencent/index.md' },
-      { text: 'Palette 工程优化', link: '/work/tencent/vite-build.md' }
+      {
+        text: 'webpack 项目迁移 vite 实践',
+        link: '/work/tencent/vite-build.md'
+      }
     ]
   },
   {
-    text: '同程',
+    text: '同程旅行',
     collapsible: true,
+    collapsed: true,
     items: [
       { text: '工作记录', link: '/work/tc-travel/index' },
       {

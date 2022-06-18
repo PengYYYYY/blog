@@ -32,19 +32,20 @@ import ArticleList from './ArticleList.vue'
 const data = {
   article: [
     {
+      bannerUrl: 'article/vitest-td.png',
+      name: ' TDesign 在 vitest 的实践',
+      desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，建设组件库工程化测试方案',
+      linkUrl: '../article/record/vitest'
+    },
+    {
       bannerUrl: 'article/figma.png',
       name: '🚧 从 Figma api 到设计软件',
-      desc: '从 figma 数据结构为起点剖析设计软件基础图形的原理，图形学基础入门'
+      desc: '从 figma 数据结构为起点，剖设计软件基础图形的原理'
     },
     {
       bannerUrl: 'article/composition-api.jpeg',
       name: '🚧 TDesign CompositionAPI 重构',
       desc: '记录了 TDesign 在 CompositionAPI 组件重构的开始，过程与收获'
-    },
-    {
-      bannerUrl: 'article/vitest-td.png',
-      name: '🚧 TDesign Vitest 测试方案',
-      desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，建设组件库工程化测试方案'
     }
   ],
   project: [

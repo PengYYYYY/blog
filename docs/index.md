@@ -5,9 +5,9 @@ title: PY
 titleTemplate: web developer
 
 hero:
-  name: PY
+  name: PY's blog
   text: Happy Life 🏀 Working Smooth 💻 
-  tagline: Humble, Curiosity, Effort
+  tagline: Humble，Curiosity，Effort
   actions:
     - theme: alt
       text: 🚀

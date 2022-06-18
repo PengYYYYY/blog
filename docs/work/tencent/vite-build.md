@@ -1,4 +1,4 @@
-# Palette 工程优化
+# webpack 项目迁移 vite 实践
 
 最近开始了 `Palette` 项目的开发, 在 `TDesign` 中的 `vite` 开发环境还是非常丝滑的。`Palette` 的构建工具使用的是 `sand-build`，一个 `webpack` 和 `roll-up` 的集大成者。但是确实在项目上手之初遇到了很烦恼的热更新编译问题。真的太慢了🐢。
 
@@ -50,7 +50,7 @@
 
 ### 终极解决方案vite
 
-`vite` 真香, 大概是每个用过的开发者第一想法，当前最佳的开发体验 `vite` 可以提供，在 `vite` 面前，`webpack` 可能让人感觉是上世纪的产物。
+`vite` 真香, 大概是每个用过的开发者第一想法，当前最佳的开发体验 `vite` 可以提供，且生态日渐强大。在 `vite` 面前，`webpack` 可能让人感觉是上世纪的产物。
 
 优点：
 
@@ -64,7 +64,7 @@
 
 ### 一步到位
 
-本着一步到位的原则，选择走 `vite` 的路。追求的就是一个极致的丝滑。
+本着长期主义，一步到位的原则，选择走 `vite` 的路线。
 
 ## webWorker 文件处理
 
@@ -75,6 +75,8 @@
 这就导致了我们会在开发环境和生产环境会有不同的表现。
 
 ### rollup-plugin-web-worker-loader
+
+第一种方案是 `rollup` 兼容 `vite`
 
 `rollup-plugin-web-worker-loader` 在源码中提供了 `pattern` 参数，但是在配置为 `vite` 所需要的 `/(.+)\?worker/` 格式后，转换链路无法追溯。尝试了很久以后，决定转向编写 `vite` 插件进行处理。
 
@@ -108,7 +110,7 @@ export function webWorkerPathTransformPlugin(): Plugin {
 }
 ```
 
-以上这种处理方式其实就是源码处理内容的一个参数替换版本。但是却非常麻烦，很多处理函数 `vite` 都没有暴露出来。于是换一种思路，在读取文件的时候，将路径 `id` 换成 `vite` 认识的不就可以了。
+以上这种处理方式其实就是源码处理内容的一个参数替换版本。但是却非常麻烦，很多处理函数 `vite` 都没有暴露出来。于是换一种思路，在读取文件的时候，将路径 `id` 换成 `vite` 认识的文件资源就可以了。
 
 ```js
 import path from 'path';
@@ -143,9 +145,9 @@ https://unpkg.com/browse/react-virtualized@9.22.3/dist/es/WindowScroller/utils/o
 
 有趣的和尤雨溪遇到了同一个问题，在这个 [issue](https://github.com/bvaughn/react-virtualized/issues/1632) 里面社区也给到了很多解决方式。
 
-常见的解决方案可能是将包提取出来，删掉代码，但是我们的工程是 `react-tiny-virtual-list` 依赖了 `react-virtualized` ，属于影子依赖。无法通过这种方式解决。
+最常见的解决方案可能是将包提取出来，删掉代码，但是我们的工程是 `react-tiny-virtual-list` 依赖了 `react-virtualized` ，属于影子依赖。无法通过这种方式解决。
 
-### 补丁包
+### 补丁包路径替换
 
 可以在 `package.json` 中增加 `resolutions` 来描述加载远端 `patch` 库的资源。
 
@@ -173,18 +175,22 @@ https://unpkg.com/browse/react-virtualized@9.22.3/dist/es/WindowScroller/utils/o
 
 ## 依赖包类型问题
 
-部分依赖包是 `commonjs` 规范,在 `vite` 的字典里确实找不到和他相似的问题。解决这个问题找到相关依赖包，然后替换掉。在同事的帮助下也很快顺利的解决了。确实是一件比较费时的事情，也得多升级依赖。
+部分依赖包是 `commonjs` 规范,在 `vite` 的字典里确实找不到和他相似的问题。解决这个问题：
+
+1. 根据报错路径找到相关依赖包，然后替换掉。
+2. 我们发现在一些对 `antd` 对依赖会导致相关问题。在同事的帮助下也很快顺利的解决了。
+3. 替换很久不更新的包，替换为现代包。
 
 ## 两套模式
 
-同事提出，我们现在作为包开发时 `vite` 的热更确实很舒服，但是加载的资源却并不是正式发布的资源。可能会存在一些偏差。于是需要模拟一套标准模式下的开发环境。
+同事提出，我们现在作为包开发时 `vite` 的热更确实很舒服，但是加载的资源却并不是正式发布的资源。可能会存在一些偏差。于是需要模拟一套标准发布模式下的开发环境。
 
 ### 处理方案
 
 所以需要构建两种开发环境：
 
-1. vite会作为devServer，依赖的资源是rollup构建后的环境下的资源es资源，热更新rollup会先打包packages资源,然后热更新。保证开发调试的代码为发布时的代码
-2. vite会作为devServer，直接加载源码。极速热更。
+1. `vite` 会作为 `devServer`，依赖的资源是 `rollup` 构建后的环境下的资源 `es` 资源，热更新 `rollup` 会先打包 `packages` 资源,然后热更新。保证开发调试的代码为发布时的代码。在这套环境中使用 `wait-on` 来解决资源未构建时，`devServer` 需等待后再启动。
+2. `vite` 会作为 `devServer`，直接加载源码。极速热更。
 
 ```js
 // vite.config.js 配置
@@ -260,10 +266,14 @@ module.exports = {
 
 ### 启动
 
+秒级启动
+
 ![img](../images/vite-build-gif4.gif)
 
 ### 热更新
 
+极速热更新
+
 ![img](../images/vite-build-gif5.gif)
 
-美滋滋， `coding` 起飞，🚀 🚀 🚀
+`coding` 速度起飞，🚀 🚀 🚀

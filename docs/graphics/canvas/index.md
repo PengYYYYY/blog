@@ -4,9 +4,9 @@ import canvasDemo from '../components/canvas.vue'
 
 # canvas 基础
 
-`Canvas` 提供了一个通过 `JavaScript` 和 `HTML` 的 `<canvas>` 元素来绘制图形的方式。它可以用于动画、游戏画面、数据可视化、图片编辑以及实时视频处理等方面。
+`Canvas` 提供了一个通过 `JavaScript` 和 `HTML` 的 `<canvas>` 元素来绘制图形的方式。它可以用于动画、游戏画面、数据可视化、图片编辑以及实时视频处理等方面。应用领域相当广泛。
 
-基础示例
+## 基础示例
 
 ```html
 <canvas id="canvas"></canvas>

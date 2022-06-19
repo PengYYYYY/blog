@@ -45,6 +45,18 @@ monorepo 最主要的好处是统一的工作流和Code Sharing。使用统一�
 
 [基于lerna和yarn workspace的monorepo工作流](https://zhuanlan.zhihu.com/p/71385053)
 
+## pnpm
+
+`pnpm` 是新晋的包管理工具，目前很多开源项目都使用了 `pnpm`, 其名字为 `performance npm`。其特性如下：
+
+- 快速： `pnpm` 是同类工具速度的将近 2 倍
+- 高效：`node_modules` 中的所有文件均链接自单一存储位置
+- 支持 `monorepo` 仓库：自带 `workspance`, `pnpm` 内置了对单个源码仓库中包含多个软件包的支持
+
+### pnpm 原理
+
+todo
+
 ## 版本规范
 
 - beta:内部测试版本

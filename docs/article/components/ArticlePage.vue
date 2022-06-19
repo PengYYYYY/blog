@@ -3,7 +3,7 @@
     <ArticleHero>
       <template #title>写的一些东西</template>
       <template #lead
-        >涵盖各个知识面的文章，有专业内入也有工作记录的，还有一些杂事儿</template
+        >涵盖各个知识面的文章，有专业内入也有工作记录的，还有一些杂事</template
       >
     </ArticleHero>
 
@@ -38,20 +38,21 @@ const data = {
       linkUrl: '../article/record/vca-refactor'
     },
     {
+      bannerUrl: 'article/td-component.png',
+      name: 'TDesign 组件开发范式',
+      desc: '记录了 TDesign 的组件开发范式，在开源协同的过程中形成较为统一的开发规范',
+      linkUrl: '../article/record/dev-paradigm'
+    },
+    {
       bannerUrl: 'article/figma.png',
       name: '🚧 从 Figma api 到设计软件',
       desc: '从 figma 数据结构为起点，剖设计软件基础图形的原理'
-    },
-    {
-      bannerUrl: 'article/td-component.png',
-      name: '🚧 TDesign 组件开发范式',
-      desc: 'TDesign Cascader 的演进，vue2，vue3，react的维护总结'
     }
   ],
   project: [
     {
       bannerUrl: 'article/vite.webp',
-      name: 'webpack 迁移 Vite 实践',
+      name: 'webpack 迁移 vite 实践',
       desc: '项目中切换vite的记录，对于webpack来说，vite是个实打实的杀手',
       linkUrl: '../work/tencent/vite-build'
     },
@@ -66,20 +67,20 @@ const data = {
     {
       bannerUrl: 'article/vite-press.webp',
       name: 'Blog 翻新记录',
-      desc: '利用工作之余翻新了我的blog, 翻新的也差不多了,记录一下整个流程',
+      desc: '利用工作之余翻新了我的 blog, 使用了 vitepress 和 algolia, 记录一下整个流程',
       linkUrl: '../article/record/blog-refactor'
     },
     {
       bannerUrl: 'article/deploy.jpeg',
       name: '开源网站部署工具',
-      desc: '用过 vercel, github pages, surge, 腾讯云serverless 等部署工具，简单总结一下',
+      desc: '用过 vercel, github pages, 腾讯云serverless, 微信云托管等部署工具，简单总结一下',
       linkUrl: '../article/record/deploy'
     },
     {
       bannerUrl: 'article/nat.jpeg',
       name: '几种内网穿透姿势',
       tip: '内网穿透',
-      desc: 'frp与ngrok内网穿透的实践与对比',
+      desc: 'liyong frp 与 ngrok 进行内网穿透的实践记录及对比',
       linkUrl: '../article/record/nat'
     }
   ]

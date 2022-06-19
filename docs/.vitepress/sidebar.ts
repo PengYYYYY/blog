@@ -30,7 +30,10 @@ export const navList = () => [
 export const sidebarGraphics = () => [
   {
     text: 'svg',
-    items: [{ text: 'svg基础', link: '/graphics/svg/index.md' }]
+    items: [
+      { text: 'svg基础', link: '/graphics/svg/index.md' },
+      { text: 'path解析', link: '/graphics/svg/path-parser.md' }
+    ]
   },
   {
     text: 'canvas',
@@ -146,8 +149,8 @@ export const sidebarBackend = () => [
     text: 'node',
     collapsible: true,
     items: [
-      { text: 'node基础', link: '/backend/node/base' },
-      { text: 'koa', link: '/backend/node/koa' }
+      { text: 'koa', link: '/backend/node/koa' },
+      { text: 'node基础', link: '/backend/node/base' }
     ]
   }
 ]
@@ -210,7 +213,7 @@ export const sidebarFeFramework = () => [
     ]
   },
   {
-    text: '主流UI框架对比',
+    text: 'UI框架对比',
     collapsible: true,
     items: [
       {
@@ -263,7 +266,7 @@ export const sidebarFontEnd = () => [
       { text: '浏览器存储', link: '/font-end/js/storage' },
       { text: '数组操作', link: '/font-end/js/array' },
       { text: '字符操作', link: '/font-end/js/string' },
-      { text: '工具类实现', link: '/font-end/js/handwritten' }
+      { text: '工具类源码', link: '/font-end/js/handwritten' }
     ]
   },
   {

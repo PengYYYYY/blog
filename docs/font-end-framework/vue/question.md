@@ -1,7 +1,5 @@
 # vue常见问题
 
-![img](../images/Jli5sw.png)
-
 ## 生命周期相关
 
 ### vue的生命周期

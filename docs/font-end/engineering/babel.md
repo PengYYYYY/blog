@@ -1,6 +1,6 @@
 # babel
 
-babel相关的知识点，包括babel配置和写个小插件.
+babel相关的知识点，babel配置等.
 
 ## 常用的配置
 

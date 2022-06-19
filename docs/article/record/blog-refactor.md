@@ -125,3 +125,20 @@ docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json)" algolia/docsearc
 ![img](../images/algolia-search-list.png)
 
 接下来可以在面板中看到所有爬取上来的数据词条。如果内容不够好，可以删除，然后重新配置再爬取就好了。
+
+### vitepess 配置
+
+```js
+// .vitepress/config.ts
+import { defineConfig } from 'vitepress'
+
+export default defineConfig({
+  themeConfig: {
+    algolia: {
+      appId: 'xxx',
+      apiKey: 'xxx', // 一定要使用 Search-Only API Key
+      indexName: 'blog'
+    }
+  }
+})
+```

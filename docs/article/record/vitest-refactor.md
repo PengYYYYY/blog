@@ -10,9 +10,9 @@
 
 ## 痛点与现状
 
-单元测试执行效率太低，上面已经讲到了，这个速度是无法忍受。
-单元测试规范不明确，开发者没有对应的单测规范可以遵循，不知道怎么写。
-单元测试中 `snapshot` 占据了大多数，每个组件的单元测试中其所有 `demo` 都做了一次 `snapshot`。这部分的代码由脚本输出。在一定程度上属于集成测试，但执行过程融合在人工写的单元测试当中，需要做集成测试的整合。
+- 单元测试执行效率太低，上面已经讲到了，这个速度是无法忍受。
+- 单元测试规范不明确，开发者没有对应的单测规范可以遵循，不知道怎么写。
+- 单元测试中 `snapshot` 占据了大多数，每个组件的单元测试中其所有 `demo` 都做了一次 `snapshot`。这部分的代码由脚本输出。在一定程度上属于集成测试，但执行过程融合在人工写的单元测试当中，需要做集成测试的整合。
 
 ## vitest
 
@@ -31,11 +31,11 @@
 
 ## 迁移
 
-配置文件改造#
+### 配置文件改造
+
 依赖，上面说到，`vitest` 的配置文件和 `vite` 的配置文件共用，且插件也是共用，所以不需要像配置 `jest` 一样去配置 `babel-jest`, `vue-jest`, `jest-serializer-vue` 这些插件。
 
-开发环境#
-`vitest` 中开发环境的执行命令
+### 开发环境#境的执行命令
 
 ```shell
 vitest --config site/vite.config.js 
@@ -227,4 +227,4 @@ const fn = vi.fn();
 `jest` 这一部分的 `log` 只是单个组件的日志，而整个 `log` 记下来是非常长的，导致我们在开发中会忽略掉很多日志的告警。因为本地的 `terminal` 输出的长度是有限制的。
 
 - [源码传送门](https://github.com/Tencent/tdesign-vue-next/)
-- [单元测试规范](https://github.com/Tencent/tdesign-vue-next/wiki/TDesign-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E8%A7%84%E8%8C%83)
+- [TDesign单元测试规范](https://github.com/Tencent/tdesign-vue-next/wiki/TDesign-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E8%A7%84%E8%8C%83)

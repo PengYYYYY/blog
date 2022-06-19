@@ -30,4 +30,98 @@
 
 ## Summarize
 
-总结下来，整个流程没有很大的难点，但是也花了一些时间在这上面，博客站点确实可以很快去搭建，还是想提升一下可玩性。个人把博客当作一个记录的载体，重要的还是坚持写点东西。另外还有 `alogia` 没有去弄，对面上的翻新只是一个起点，后面还有很多可玩儿的地方，之前的站点确实让自己没有欲望去更新和写东西，投入一些时间在新 `blog` 里面，让自己更有动力去做这件事情。
+总结下来，整个流程没有很大的难点，但是也花了一些时间在这上面，博客站点确实可以很快去搭建，还是想提升一下可玩性。个人把博客当作一个记录的载体，重要的还是坚持写点东西。另外还有 `algolia` 没有去弄，对面上的翻新只是一个起点，后面还有很多可玩儿的地方，之前的站点确实让自己没有欲望去更新和写东西，投入一些时间在新 `blog` 里面，让自己更有动力去做这件事情。
+
+## 续
+
+最近发现 `vitepress` 发布 `1.0` 了，而且 `ui` 和 `@vue/theme` 差不多，甚至更适合一点，最近 `vitest` `vite` 这些库的官网也都换了新装。决定放弃 `@vue/theme` 这一套，直接改到简单的模式的 `vitepress`，之前那一套有过多的定制化的东西，包括 `logo` 都是魔改的。接入 `vitepress` 的过程很简单，基本上就是复制，然后删掉一些没用的包。发现一个 `logo` 点击跳转的 `bug`, 官方也很快就解决了。然后解决了麻烦的 `algolia` 配置问题。
+
+## algolia
+
+Algolia 是一个数据库实时搜索服务，能够提供毫秒级的数据库搜索服务，并且其服务能以 API 的形式方便地布局到网页、客户端、APP 等多种场景。
+
+### 申请
+
+algolia 也提供了一个专门用于文档搜索服务的 `docsearch`，需要进行申请。
+
+[搜索服务申请地址](https://docsearch.algolia.com/apply/)
+
+申请完以后发现需要花很长时间等待审批，于是直接用标准化的服务了。
+
+### 设置 apikey
+
+![img](../images/algolia-dashboard.png)
+
+
+进入主界面，点击 API Keys。
+
+这时候API Keys默认提供了四个，分别对应不同的权限，我们只需要用到两个即可:
+
+- Search-Only API Key: 只能用于搜索，在生产中使用。
+- Admin API Key: 管理员API，可用作所有事情，在爬取数据的时候使用。
+
+![img](../images/algolia-api-keys.png)
+
+### 爬取数据
+
+新建文件夹和对应文件目录如下：
+
+```text
+- algoliaConfig
+-- .env
+-- config.js
+```
+
+#### .env文件配置
+
+ `appid` 和 `api-key`,这里使用的是 `admin api key`.切记不要泄漏，也不要传到 `github` 上面，本地跑完即可。
+
+```shell
+APPLICATION_ID=PXUFXUCGYX
+API_KEY=xxx
+```
+
+#### config.json 配置问题
+
+
+```json
+{
+  "index_name": "blog",
+  "start_urls": [
+    "https://pengyyyyy.github.io/blog" //线上地址
+  ],
+  "stop_urls": [],
+  "selectors": { //词条级别,对应的HTML标签
+    "lvl0": {
+      "selector": "sidebar-links sidebar-group-items",
+      "global": true,
+      "default_value": "Documentation"
+    },
+    "lvl1": "h1", 
+    "lvl2": "h2" 
+  },
+  "strip_chars": " .,;:#",
+  "custom_settings": {
+    "attributesForFaceting" : ["language", "version"]
+  },
+  "conversation_id": [
+    "809666386"
+  ],
+  "scrap_start_urls": false,
+  "nb_hits": "OUTPUT OF THE CRAWL"
+}
+```
+
+#### 利用 algolia/docsearch-scraper 爬去线上页面
+
+使用 `docker` 爬取数据。进入文件夹下运行如下命令即可，爬去的数据会自动上传到 `algolia` 的服务器
+
+```shell
+docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json)" algolia/docsearch-scraper 
+```
+
+### 数据列表
+
+![img](../images/algolia-search-list.png)
+
+接下来可以在面板中看到所有爬取上来的数据词条。如果内容不够好，可以删除，然后重新配置再爬取就好了。

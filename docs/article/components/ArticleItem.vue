@@ -9,7 +9,14 @@
     @click="handleClickNav"
   >
     <figure class="banner">
-      <img class="banner-img" :src="withBase(article.bannerUrl)" />
+      <img
+        v-if="article.bannerUrl"
+        class="banner-img"
+        :src="withBase(article.bannerUrl)"
+      />
+      <div v-else class="banner-img banner-tip">
+        {{ article.tip }}
+      </div>
     </figure>
 
     <div class="info">
@@ -73,6 +80,18 @@ const handleClickNav = () => {
   width: 200px;
   border-radius: 5px;
   margin-right: 32px;
+}
+.banner-tip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  letter-spacing: 10px;
+  padding-bottom: 10px;
+  color: var(--vp-custom-block-tip-text);
+  background-color: var(--vp-custom-block-tip-bg);
+  font-weight: bold;
+  border: 1px solid var(--vp-custom-block-tip-border);
 }
 
 .name {

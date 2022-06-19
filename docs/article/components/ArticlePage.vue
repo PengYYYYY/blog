@@ -32,10 +32,10 @@ import ArticleList from './ArticleList.vue'
 const data = {
   article: [
     {
-      bannerUrl: 'article/vitest-td.png',
-      name: ' TDesign 在 vitest 的实践',
-      desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，建设组件库工程化测试方案',
-      linkUrl: '../article/record/vitest-refactor'
+      bannerUrl: 'article/composition-api.jpeg',
+      name: 'TDesign CompositionAPI 重构',
+      desc: '记录了 TDesign 在 CompositionAPI 组件重构的开始，过程与收获',
+      linkUrl: '../article/record/vca-refactor'
     },
     {
       bannerUrl: 'article/figma.png',
@@ -43,9 +43,9 @@ const data = {
       desc: '从 figma 数据结构为起点，剖设计软件基础图形的原理'
     },
     {
-      bannerUrl: 'article/composition-api.jpeg',
-      name: '🚧 TDesign CompositionAPI 重构',
-      desc: '记录了 TDesign 在 CompositionAPI 组件重构的开始，过程与收获'
+      bannerUrl: 'article/td-component.png',
+      name: '🚧 TDesign 组件开发范式',
+      desc: 'TDesign Cascader 的演进，vue2，vue3，react的维护总结'
     }
   ],
   project: [
@@ -54,12 +54,13 @@ const data = {
       name: 'webpack 迁移 Vite 实践',
       desc: '项目中切换vite的记录，对于webpack来说，vite是个实打实的杀手',
       linkUrl: '../work/tencent/vite-build'
+    },
+    {
+      bannerUrl: 'article/vitest-td.png',
+      name: ' TDesign 在 vitest 的实践',
+      desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，执行效率提升60%。',
+      linkUrl: '../article/record/vitest-refactor'
     }
-    // {
-    //   bannerUrl: 'article/td-cascader.png',
-    //   name: '🚧 TDesign Cascader 组件的演进',
-    //   desc: 'TDesign Cascader 的演进，vue2，vue3，react的维护总结'
-    // }
   ],
   personal: [
     {
@@ -73,6 +74,13 @@ const data = {
       name: '开源网站部署工具',
       desc: '用过 vercel, github pages, surge, 腾讯云serverless 等部署工具，简单总结一下',
       linkUrl: '../article/record/deploy'
+    },
+    {
+      bannerUrl: 'article/nat.jpeg',
+      name: '几种内网穿透姿势',
+      tip: '内网穿透',
+      desc: 'frp与ngrok内网穿透的实践与对比',
+      linkUrl: '../article/record/nat'
     }
   ]
 }

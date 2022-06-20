@@ -33,7 +33,7 @@ const data = {
   article: [
     {
       bannerUrl: 'article/composition-api.jpeg',
-      name: 'TDesign CompositionAPI 重构',
+      name: 'TDesign CompositionAPI 重构之路',
       desc: '记录了 TDesign 在 CompositionAPI 组件重构的开始，过程与收获',
       linkUrl: '../article/record/vca-refactor'
     },
@@ -42,6 +42,11 @@ const data = {
       name: 'TDesign 组件开发范式',
       desc: '记录了 TDesign 的组件开发范式，在开源协同的过程中形成较为统一的开发规范',
       linkUrl: '../article/record/dev-paradigm'
+    },
+    {
+      bannerUrl: 'article/graph.png',
+      name: 'Canvas,Svg,Webgl,Webgpu 简介',
+      desc: '介绍 Canvas, Svg, Webgl, Webgpu 的不同点及各自的发展历史'
     },
     {
       bannerUrl: 'article/figma.png',

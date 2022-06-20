@@ -40,7 +40,7 @@
 
 ![img](../images/vca-refactor.png)
 
-上面是整个重构过程中的记录，每一个 `PR` 都非常有意义。感谢以上贡献者的付出。
+上面是整个重构过程中的记录，每一个 `PR` 都非常有意义。在这个过程中，有 `7` 位贡献者成为了我们的核心贡献者。感谢所有贡献者的付出。
 
 ### 重构的意义
 
@@ -59,9 +59,9 @@
 
 尤雨溪也在 1月20日 宣布：`Vue3` 将在2月7日成为新的默认版本, 也更加坚定大家了在 `vue3` 上面的投入。
 
-## 框架底座
+## 更好的框架基座
 
-随着重构的开始，主要从以下两个方面入手
+一个框架的基座会影响到整个上层的组件，随着重构的开始，主要从 `基础hook`, `组件内聚`, `组件开发规范`, `类型规范` 去入手
 
 ### 基础hook
 
@@ -78,25 +78,284 @@
 
 ### 组件内聚
 
-我们新输出了 `TagInput`，`SelectInput`, 并内聚了相关的组件： `cascader`, `select`, `tree-select` , `date-picker`, `time-picker`。
-
-对于已存在的组件，最大可能进行复用，整个组件库的内聚关系如下：
+我们新输出了 `TagInput`，`SelectInput`, 并内聚了相关的组件： `cascader`, `select`, `tree-select` , `date-picker`, `time-picker`。并借助这次迁移开始了 `compositionAPI` 的改造工作。
 
 ### 组件开发规范
 
-其中 **7** 名开发者成为了 `TD` 的核心开发者。
+在我们的老代码当中，组件代码混乱，存在各种开发范式。在组件重构过程中，我们编写了组件开发规范，在 `compositionAPI` 的基础上，协同贡献者能够在一个大致的标准下编写组件代码。形成组件开发代码上的统一。
+
+[TD组件开发规范](https://github.com/Tencent/tdesign-vue-next/wiki/%E4%BD%BF%E7%94%A8-CompositionAPI-%E5%BC%80%E5%8F%91-TDesign-%E7%BB%84%E4%BB%B6)
 
 ### 高阶函数的移除
 
+之前的代码有一个非常头疼的问题，就是高阶函数 `mapProps`，这个函数用来处理组件的受控和非受控，以及对组件的一些重写。
+
+[源码来源](https://github.com/Tencent/tdesign-vue-next/blob/0.6.4/src/utils/map-props.ts)，代码如下：
+
+```js
+import { ComponentOptions, defineComponent, ComponentPublicInstance, h } from 'vue';
+import kebabCase from 'lodash/kebabCase';
+
+function toCamel(str: string): string {
+  return str.replace(/-([a-z])/gi, (m, letter) => letter.toUpperCase());
+}
+
+type PropOption = {
+  name: string;
+  event?: string | string[];
+  alias?: string[];
+};
+
+type ParsedPropOption = {
+  defaultName: string;
+  dataName: string;
+  events: string[];
+  alias?: string[];
+  [propName: string]: any;
+};
+
+function getPropOptionMap(props: (string | PropOption)[]): { [name: string]: ParsedPropOption } {
+  const propOptionMap = {};
+
+  function parseProp(propOption: PropOption): ParsedPropOption {
+    const { name: propName, alias, ...others } = propOption;
+    const camelName = propName.replace(/^[a-z]/, (letter: string) => letter.toUpperCase());
+    const defaultName = `default${camelName}`;
+    const dataName = `data${camelName}`;
+
+    let events: string[] = [];
+    if (propOption.event) {
+      events = events.concat(propOption.event);
+    }
+    events.push(`update:${propName}`);
+    if (alias) {
+      events = events.concat(alias.map((item) => `update:${item}`));
+    }
+
+    return {
+      events,
+      defaultName,
+      dataName,
+      alias,
+      ...others,
+    };
+  }
+
+  props.forEach((prop: string | PropOption) => {
+    const defaultOption = {
+      alias: [] as string[],
+    };
+    let propOption: PropOption;
+    if (typeof prop === 'string') {
+      propOption = { ...defaultOption, name: prop };
+    } else {
+      propOption = { ...defaultOption, ...prop };
+    }
+
+    propOptionMap[propOption.name] = parseProp(propOption);
+  });
+
+  return propOptionMap;
+}
+
+export default function (props: (string | PropOption)[]): any {
+  function mapProps(componentConstructor: ComponentPublicInstance): any {
+    const component: ComponentOptions<ComponentPublicInstance> = componentConstructor;
+    const propOptionMap = getPropOptionMap(props);
+
+    const defineProps: Record<string, any> = { ...component.props };
+    const defineWatches = {};
+    let defineEvents: string[] = [];
+    const defineMethods = {};
+
+    const camelPropsKeys = Object.keys(component.props).map((key) => toCamel(key));
+
+    Object.keys(propOptionMap).forEach((propName) => {
+      const { events, alias, defaultName, dataName } = propOptionMap[propName];
+
+      defineProps[propName] = component.props[propName];
+      defineProps[defaultName] = component.props[defaultName];
+      if (alias) {
+        alias.forEach((prop: string) => {
+          defineProps[prop] = defineProps[propName];
+        });
+      }
+      defineEvents = defineEvents.concat(events);
+
+      // does not destroy the original defaultValue logic
+      const defaultList: string[] = [];
+
+      // watch default prop
+      defineWatches[defaultName] = {
+        handler(v: any): void {
+          if (defaultList.indexOf(defaultName + this.$.uid) > -1) return;
+          const { props } = this.$.vnode;
+          const hasDefault = props && (defaultName in props || kebabCase(defaultName) in props);
+          if (hasDefault && !(propName in props)) {
+            this.$data[dataName] = v;
+          }
+          defaultList.push(defaultName + this.$.uid);
+        },
+        immediate: true,
+      };
+
+      // 监听别名
+      alias.forEach((aliasItem) => {
+        defineWatches[aliasItem] = {
+          handler(v: any): void {
+            const { props } = this.$.vnode;
+            if (props && aliasItem in props && !(propName in props)) {
+              this.$data[dataName] = v;
+            }
+          },
+          immediate: true,
+        };
+      });
+
+      // 监听props变化，然后挂到data上去
+      defineWatches[propName] = {
+        handler(v: any): void {
+          const { props } = this.$.vnode;
+          if (props && (propName in props || kebabCase(propName) in props)) {
+            this.$data[dataName] = v;
+          }
+        },
+        immediate: true,
+      };
+    });
+    if (component.methods) {
+      Object.keys(component.methods).forEach((key) => {
+        defineMethods[key] = function (this: any, ...args: any[]): any {
+          if (this.$refs.component) {
+            return this.$refs.component[key](...args);
+          }
+        };
+      });
+    }
+
+    const { name } = component;
+    // 返回一个被包装代理的组件
+    return defineComponent({
+      name: `${name}-mapprops`,
+      inheritAttrs: false,
+      props: {
+        ...defineProps,
+      },
+      data() {
+        const data = {};
+        Object.keys(propOptionMap).forEach((propName: string): void => {
+          const { dataName } = propOptionMap[propName];
+          data[dataName] = undefined;
+        });
+        return { ...data };
+      },
+      computed: {
+        _listeners(): Record<string, any> {
+          const others = {};
+          Object.keys(this.$attrs).forEach((attr: string): void => {
+            const event = attr.startsWith('on') ? attr[2].toLowerCase() + attr.substr(2) : null;
+            if (event && defineEvents.indexOf(event) === -1) {
+              others[attr] = (...args: any[]): void => {
+                this.$emit(event, ...args);
+              };
+            }
+          });
+          return others;
+        },
+      },
+      watch: defineWatches,
+      methods: {
+        updateData(this: any, propName: string, v: any, ...args: any[]): any {
+          propOptionMap[propName].events.forEach((event) => {
+            this.$emit(event, v, ...args);
+          });
+          const { props } = this.$.vnode;
+          if (!props || !(propName in props)) {
+            this[propOptionMap[propName].dataName] = v;
+            return true;
+          }
+        },
+        ...defineMethods,
+      },
+      render() {
+        const propMap = {};
+        const handlerMap = {};
+
+        Object.keys(propOptionMap).forEach((propName: string): void => {
+          const { dataName, events } = propOptionMap[propName];
+          const eventName = `on${events[0].charAt(0).toUpperCase()}${events[0].substr(1)}`;
+          const { props } = this.$.vnode;
+          if ((props && propName in props) || typeof this[dataName] !== 'undefined') {
+            propMap[propName] = this[dataName];
+          }
+          handlerMap[eventName] = (v: any, ...args: any[]): any => this.updateData(propName, v, ...args);
+        });
+
+        const attrs = {};
+        Object.keys(this.$attrs).forEach((attrName) => {
+          const camelAttrKey = toCamel(attrName);
+          if (camelPropsKeys.indexOf(camelAttrKey) === -1) {
+            attrs[attrName] = this.$attrs[attrName];
+          }
+        });
+
+        return h(
+          componentConstructor,
+          {
+            ...this.$props,
+            ...propMap,
+            ...attrs,
+            ...(this._listeners as Record<string, any>),
+            ...handlerMap,
+            ref: 'component',
+          },
+          this.$slots,
+        );
+      },
+    });
+  }
+
+  return mapProps;
+}
+```
+
+在 `vue` 中使用高阶函数的弊端如下：
+
+1. 高阶函数的开发范式在 `vue` 并非主流做法，很多开发者无法理解。
+2. 这段代码难以维护，且又臭又长。
+3. 开发者使用组件的时候，`devTool` 调试时会存在一个 `xxxMapprops` 的包装组件，对于开发者调试是体验很差的。
+
+![img](../images/vca-mapprops.png)
+
 ### 更好的类型支持
+
+我们几乎抛弃了原型式的开发方式，组件的代码都写进 `setup` 里面，`setup` 只返回一个 `render` 函数。组件内的每一个变量的来源与用处都很清晰。且充分利用 `TS` 的类型推导，减少主动断言，增加代码可读性。避免下面这类代码的出现。
+
+```js
+export interface DatePickerComputed {
+  inputListeners: any;
+  startText: string;
+  endText: string;
+  formattedValue: string;
+  rangeText: string;
+  min: Date | null;
+  max: Date | null;
+  classes: any;
+  pickerStyles: any;
+  tDisabled: boolean;
+  popClass: (string | ClassName)[];
+  popupObject: PopupProps;
+}
+```
 
 ## 社区新动向
 
-### setup script
+我们也紧随了社区的新动向，包括以下几个方面：
 
-### pinia
-
-### vitest
+- 单元测试方面，接入了 `vitest`, 极大的提高了效率。
+- 组件兼容了 `nuxt`, 由社区贡献者提供了 `tdesign-nuxt-starter`。
+- `starter` 使用了最新的状态管理器 `pinia`
+- 开发者文档组件示例代码全部重写到 `setup script`
 
 ## 总结
 

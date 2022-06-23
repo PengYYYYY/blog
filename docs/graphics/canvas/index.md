@@ -9,7 +9,7 @@ import canvasDemo from '../components/canvas.vue'
 ## 基础示例
 
 ```html
-<canvas id="canvas"></canvas>
+<canvas id="canvas" />
 ```
 
 ```js

@@ -3,9 +3,9 @@
 ## egg集成版本
 
 ```bash
-# nodeinstall是一个替换node_modules中运行时的工具，只会替换项目本地的运行时。
+# nodeinstall 是一个替换node_modules中运行时的工具，只会替换项目本地的运行时。
 npm i nodeinstall -g
-# 安装对应版本的alinode
+# 安装对应版本的 alinode
 nodeinstall --install-alinode ^3
 # 对应表
 https://help.aliyun.com/document_detail/60811.html?spm=a2c4g.11186623.6.586.63792b17oYIVhc

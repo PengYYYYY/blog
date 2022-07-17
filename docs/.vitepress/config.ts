@@ -27,7 +27,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: '/blog//logo.svg',
+    logo: '/blog/logo.svg',
     nav: navList(),
     sidebar: {
       '/graphics/': sidebarGraphics(),

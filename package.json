@@ -55,7 +55,8 @@
       "ignoreMissing": [
         "react",
         "react-dom",
-        "@types/react"
+        "@types/react",
+        "auto-install-peers=true"
       ]
     }
   }

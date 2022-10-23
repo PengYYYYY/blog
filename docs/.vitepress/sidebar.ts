@@ -5,11 +5,6 @@ export const navList = () => [
     link: '/article/'
   },
   {
-    text: '图形学',
-    activeMatch: '/graphics/',
-    link: '/graphics/index'
-  },
-  {
     text: '学习记录',
     activeMatch: `^/(font-end|font-end-framework|algo-data-str|backend|basics)/`,
     items: [
@@ -17,7 +12,8 @@ export const navList = () => [
       { text: '前端框架', link: '/font-end-framework/index' },
       { text: '数据结构与算法', link: '/algo-data-str/index' },
       { text: '后端与运维', link: '/backend/index' },
-      { text: '基础知识', link: '/basics/index' }
+      { text: '基础知识', link: '/basics/index' },
+      { text: '图形学', link: '/graphics/index' }
     ]
   },
   {

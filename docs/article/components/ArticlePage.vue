@@ -44,15 +44,21 @@ const data = {
       linkUrl: '../article/record/dev-paradigm'
     },
     {
-      bannerUrl: 'article/graph.png',
-      name: 'Canvas,Svg,Webgl,Webgpu 简介',
-      desc: '介绍 Canvas, Svg, Webgl, Webgpu 的不同点及各自的发展历史'
-    },
-    {
-      bannerUrl: 'article/figma.png',
-      name: '🚧 从 Figma api 到设计软件',
-      desc: '从 figma 数据结构为起点，剖设计软件基础图形的原理'
+      bannerUrl: 'article/td-cd.png',
+      name: '基于TDesign搭建业务组件库',
+      desc: '记录如何基于TDesign低成本的搭建符合自身业务的高阶组件库',
+      linkUrl: '../article/record/td-cd'
     }
+    // {
+    //   bannerUrl: 'article/graph.png',
+    //   name: 'Canvas,Svg,Webgl,Webgpu 简介',
+    //   desc: '介绍 Canvas, Svg, Webgl, Webgpu 的不同点及各自的发展历史'
+    // },
+    // {
+    //   bannerUrl: 'article/figma.png',
+    //   name: '🚧 从 Figma api 到设计软件',
+    //   desc: '从 figma 数据结构为起点，剖设计软件基础图形的原理'
+    // }
   ],
   project: [
     {

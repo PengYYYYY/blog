@@ -42,12 +42,6 @@ const data = {
       name: 'TDesign 组件开发范式',
       desc: '记录了 TDesign 的组件开发范式，在开源协同的过程中形成较为统一的开发规范',
       linkUrl: '../article/record/dev-paradigm'
-    },
-    {
-      bannerUrl: 'article/td-cd.png',
-      name: '基于TDesign搭建业务组件库',
-      desc: '记录如何基于TDesign低成本的搭建符合自身业务的高阶组件库',
-      linkUrl: '../article/record/td-cd'
     }
     // {
     //   bannerUrl: 'article/graph.png',
@@ -72,6 +66,18 @@ const data = {
       name: ' TDesign 在 vitest 的实践',
       desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，执行效率提升60%。',
       linkUrl: '../article/record/vitest-refactor'
+    },
+    {
+      bannerUrl: 'article/td-cd.png',
+      name: '基于TDesign搭建业务组件库',
+      desc: '记录如何基于TDesign低成本的搭建符合自身业务的高阶组件库',
+      linkUrl: '../article/record/td-cd'
+    },
+    {
+      bannerUrl: 'article/td-cd.png',
+      name: 'Electron 自动更新',
+      desc: '记录在做 electron 客户端自动更新时遇到的问题与解决方案',
+      linkUrl: '../article/record/electron-updater'
     }
   ],
   personal: [

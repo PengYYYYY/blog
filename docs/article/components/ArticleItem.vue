@@ -29,12 +29,16 @@
   </article>
 </template>
 <script setup lang="ts">
+import { PropType } from 'vue'
 import { withBase } from 'vitepress'
 import type { Article } from './interface'
 
-const props = defineProps<{
-  article: Article
-}>()
+const props = defineProps({
+  article: {
+    type: Object as PropType<Article>,
+    required: true
+  }
+})
 
 const handleClickNav = () => {
   if (!props.article.linkUrl) return

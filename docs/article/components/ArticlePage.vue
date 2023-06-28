@@ -29,6 +29,30 @@
 import ArticleHero from './ArticleHero.vue'
 import ArticleList from './ArticleList.vue'
 
+const article = [
+  {
+    bannerUrl: 'article/composition-api.jpeg',
+    name: 'TDesign CompositionAPI 重构之路',
+    desc: '记录了 TDesign 在 CompositionAPI 组件重构的开始，过程与收获',
+    linkUrl: '../article/record/vca-refactor'
+  },
+  {
+    bannerUrl: 'article/td-component.png',
+    name: 'TDesign 组件开发范式',
+    desc: '记录了 TDesign 的组件开发范式，在开源协同的过程中形成较为统一的开发规范',
+    linkUrl: '../article/record/dev-paradigm'
+  }
+  // {
+  //   bannerUrl: 'article/graph.png',
+  //   name: 'Canvas,Svg,Webgl,Webgpu 简介',
+  //   desc: '介绍 Canvas, Svg, Webgl, Webgpu 的不同点及各自的发展历史'
+  // },
+  // {
+  //   bannerUrl: 'article/figma.png',
+  //   name: '🚧 从 Figma api 到设计软件',
+  //   desc: '从 figma 数据结构为起点，剖设计软件基础图形的原理'
+  // }
+]
 const data = {
   article: [
     {
@@ -66,19 +90,19 @@ const data = {
       name: ' TDesign 在 vitest 的实践',
       desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，执行效率提升60%。',
       linkUrl: '../article/record/vitest-refactor'
-    },
-    {
-      bannerUrl: 'article/td-cd.png',
-      name: '基于TDesign搭建业务组件库',
-      desc: '记录如何基于TDesign低成本的搭建符合自身业务的高阶组件库',
-      linkUrl: '../article/record/td-cd'
-    },
-    {
-      bannerUrl: 'article/td-cd.png',
-      name: 'Electron 自动更新',
-      desc: '记录在做 electron 客户端自动更新时遇到的问题与解决方案',
-      linkUrl: '../article/record/electron-updater'
     }
+    // {
+    //   bannerUrl: 'article/td-cd.png',
+    //   name: '基于TDesign搭建业务组件库',
+    //   desc: '记录如何基于TDesign低成本的搭建符合自身业务的高阶组件库',
+    //   linkUrl: '../article/record/td-cd'
+    // },
+    // {
+    //   bannerUrl: 'article/td-cd.png',
+    //   name: 'Electron 自动更新',
+    //   desc: '记录在做 electron 客户端自动更新时遇到的问题与解决方案',
+    //   linkUrl: '../article/record/electron-updater'
+    // }
   ],
   personal: [
     {

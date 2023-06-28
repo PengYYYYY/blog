@@ -62,14 +62,18 @@
   </section>
 </template>
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, PropType } from 'vue'
 import type { Article } from './interface'
 import ArticleItem from './ArticleItem.vue'
 
 const pageSize = 5
-const props = defineProps<{
-  articles: Article[]
-}>()
+
+const props = defineProps({
+  articles: {
+    type: Object as PropType<Article[]>,
+    required: true
+  }
+})
 
 const current = ref(1)
 const showList = computed(() => {

@@ -4,4 +4,4 @@
 import FigmaContainer from '/components/FigmaContainer.vue'
 </script>
 
-<FigmaContainer url="https://www.figma.com/file/MqInZ0fPb0paFi2WgG7BVN/study-map?node-id=2%3A2"/>
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=1205%3A50&t=gsJqbLErHW6H7VkX-1"/>

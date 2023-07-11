@@ -42,7 +42,11 @@ const props = defineProps({
 
 const handleClickNav = () => {
   if (!props.article.linkUrl) return
-  window.location.href = props.article.linkUrl
+  if (!props.article.isNew) {
+    window.open(props.article.linkUrl)
+  } else {
+    window.location.href = props.article.linkUrl
+  }
 }
 </script>
 <style scoped>

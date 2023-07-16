@@ -8,10 +8,8 @@
     </ArticleHero>
 
     <ArticleList :articles="data.article">
-      <template #title>🔖 专业文章</template>
-      <template #lead>
-        写的一些专业文章，理论总结。花了点心思的东西。
-      </template>
+      <template #title>🔖 文章</template>
+      <template #lead>写的一些文章，理论总结。花了点心思的东西。</template>
     </ArticleList>
 
     <ArticleList :articles="data.project">
@@ -34,22 +32,34 @@ import ArticleList from './ArticleList.vue'
 const data = {
   article: [
     {
+      bannerUrl: 'article/cd-board.svg',
+      name: '白板项目总结',
+      desc: '本文总结了在开发图形编辑器以及白板时的项目架构设计，遇到的困难点，以及对应的解决方案',
+      linkUrl: '../article/record/board'
+    },
+    {
       bannerUrl: 'article/ai-template.svg',
-      name: '面向AI编程：探索可视化分析模型',
-      desc: '本文总结了在开发ChatGPT相关需求时的功能拆解和实现思路，并分享了在利用ChatGPT生成结构化数据时遇到的问题及相应解决方案。',
+      name: '面向 AI 编程：探索可视化分析模型',
+      desc: '本文总结了在开发 LLM 相关需求时的功能拆解和实现思路，并分享了在利用ChatGPT生成结构化数据时遇到的问题及相应解决方案',
       linkUrl: 'https://mp.weixin.qq.com/s/HrxQtfc8j-zD9kMRGhTn6w',
       isNew: true
     },
     {
+      bannerUrl: 'article/cd-axure.svg',
+      name: 'CoDesign Axure 项目总结',
+      desc: '本文总结了在开发 CoDesign Axure 中的架构设计思路，安全加固、性能优化、Electron 插件开发，覆盖项目的整个开发周期',
+      linkUrl: '../article/record/axure'
+    },
+    {
       bannerUrl: 'article/td-custom.svg',
       name: '基于 TDesign 搭建一个业务组件库',
-      desc: '本文讲述了如何基于 TDesign 搭建一个业务组件库 TDesign Custom。内容贯穿整个组件库搭建的全流程。',
+      desc: '本文讲述了如何基于 TDesign 搭建一个业务组件库 TDesign Custom。内容贯穿整个组件库搭建的全流程',
       linkUrl: '../article/record/td-custom'
     },
     {
       bannerUrl: 'article/td-composition-api.svg',
       name: 'TDesign CompositionAPI 重构之路',
-      desc: '记录了 TDesign 在 CompositionAPI 组件重构的开始，过程与收获',
+      desc: '记录了 TDesign 在 CompositionAPI 组件重构的开始，推进过程与个人的的收获',
       linkUrl: '../article/record/vca-refactor'
     },
     {

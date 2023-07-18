@@ -49,16 +49,6 @@ const data = {
       desc: '记录了 TDesign 的组件开发范式，在开源协同的过程中形成较为统一的开发规范',
       linkUrl: '../article/record/dev-paradigm'
     }
-    // {
-    //   bannerUrl: 'article/graph.png',
-    //   name: 'Canvas,Svg,Webgl,Webgpu 简介',
-    //   desc: '介绍 Canvas, Svg, Webgl, Webgpu 的不同点及各自的发展历史'
-    // },
-    // {
-    //   bannerUrl: 'article/figma.png',
-    //   name: '🚧 从 Figma api 到设计软件',
-    //   desc: '从 figma 数据结构为起点，剖设计软件基础图形的原理'
-    // }
   ],
   project: [
     {
@@ -79,37 +69,25 @@ const data = {
       desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，执行效率提升60%。',
       linkUrl: '../article/record/vitest-refactor'
     }
-    // {
-    //   bannerUrl: 'article/td-cd.png',
-    //   name: '基于TDesign搭建业务组件库',
-    //   desc: '记录如何基于TDesign低成本的搭建符合自身业务的高阶组件库',
-    //   linkUrl: '../article/record/td-cd'
-    // },
-    // {
-    //   bannerUrl: 'article/td-cd.png',
-    //   name: 'Electron 自动更新',
-    //   desc: '记录在做 electron 客户端自动更新时遇到的问题与解决方案',
-    //   linkUrl: '../article/record/electron-updater'
-    // }
   ],
   personal: [
     {
-      bannerUrl: 'article/vite-press.webp',
+      bannerUrl: 'article/vite-press.svg',
       name: 'Blog 翻新记录',
       desc: '利用工作之余翻新了我的 blog, 使用了 vitepress 和 algolia, 记录一下整个流程',
       linkUrl: '../article/record/blog-refactor'
     },
     {
-      bannerUrl: 'article/deploy.jpeg',
+      bannerUrl: 'article/deploy.svg',
       name: '开源网站部署工具',
       desc: '用过 vercel, github pages, 腾讯云serverless, 微信云托管等部署工具，简单总结一下',
       linkUrl: '../article/record/deploy'
     },
     {
-      bannerUrl: 'article/nat.jpeg',
+      bannerUrl: 'article/nat.svg',
       name: '几种内网穿透姿势',
       tip: '内网穿透',
-      desc: 'liyong frp 与 ngrok 进行内网穿透的实践记录及对比',
+      desc: '利用 frp 与 ngrok 进行内网穿透的实践记录及对比',
       linkUrl: '../article/record/nat'
     }
   ]

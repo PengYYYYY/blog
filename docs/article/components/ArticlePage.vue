@@ -32,7 +32,7 @@ import ArticleList from './ArticleList.vue'
 const data = {
   article: [
     {
-      bannerUrl: 'article/ai-template.webp',
+      bannerUrl: 'article/ai-template.svg',
       name: '面向AI编程：探索可视化分析模型',
       desc: '本文总结了在开发ChatGPT相关需求时的功能拆解和实现思路，并分享了在利用ChatGPT生成结构化数据时遇到的问题及相应解决方案。',
       linkUrl: 'https://mp.weixin.qq.com/s/HrxQtfc8j-zD9kMRGhTn6w'

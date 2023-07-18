@@ -9,9 +9,9 @@
 
     <ArticleList :articles="data.article">
       <template #title>🔖 专业文章</template>
-      <template #lead
-        >写的一些专业文章，理论总结。花了点心思的东西。</template
-      >
+      <template #lead>
+        写的一些专业文章，理论总结。花了点心思的东西。
+      </template>
     </ArticleList>
 
     <ArticleList :articles="data.project">
@@ -38,13 +38,13 @@ const data = {
       linkUrl: 'https://mp.weixin.qq.com/s/HrxQtfc8j-zD9kMRGhTn6w'
     },
     {
-      bannerUrl: 'article/composition-api.jpeg',
+      bannerUrl: 'article/td-composition-api.svg',
       name: 'TDesign CompositionAPI 重构之路',
       desc: '记录了 TDesign 在 CompositionAPI 组件重构的开始，过程与收获',
       linkUrl: '../article/record/vca-refactor'
     },
     {
-      bannerUrl: 'article/td-component.png',
+      bannerUrl: 'article/td-component.svg',
       name: 'TDesign 组件开发范式',
       desc: '记录了 TDesign 的组件开发范式，在开源协同的过程中形成较为统一的开发规范',
       linkUrl: '../article/record/dev-paradigm'
@@ -62,13 +62,19 @@ const data = {
   ],
   project: [
     {
-      bannerUrl: 'article/vite.webp',
+      bannerUrl: 'article/td-custom.svg',
+      name: '基于 TDesign 搭建一个业务组件库',
+      desc: '本文讲述了如何基于 TDesign 搭建一个业务组件库 TDesign Custom。内容贯穿整个组件库搭建的全流程。',
+      linkUrl: '../article/record/td-custom'
+    },
+    {
+      bannerUrl: 'article/webpack-vite.svg',
       name: 'webpack 迁移 vite 实践',
       desc: '项目中切换vite的记录，对于webpack来说，vite是个实打实的杀手',
       linkUrl: '../work/tencent/vite-build'
     },
     {
-      bannerUrl: 'article/vitest-td.png',
+      bannerUrl: 'article/td-vitest.svg',
       name: ' TDesign 在 vitest 的实践',
       desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，执行效率提升60%。',
       linkUrl: '../article/record/vitest-refactor'

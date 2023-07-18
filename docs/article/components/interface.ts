@@ -4,4 +4,5 @@ export interface Article {
   desc?: string
   linkUrl?: string
   isNew?: boolean
+  tip?: string
 }

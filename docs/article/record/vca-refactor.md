@@ -4,7 +4,7 @@
 
 ## 先上线再优化
 
-[Tdesign-vue-next](https://github.com/Tencent/tdesign-vue-next) 仓库是从 [Tdesign-vue](https://github.com/Tencent/tdesign-vue) `fork` 过来，并开始做 `vue-next` 的适配（那时候叫`vue-next`,成为vue的正式版后叫`core`了），当时的首要工作就是是对 `options` 写法兼容，工具函数差异抹平、组件库构建兼容等，让它能最快的跑起来，能让用户用起来即可。
+[Tdesign-vue-next](https://github.com/Tencent/tdesign-vue-next) 仓库是从 [Tdesign-vue](https://github.com/Tencent/tdesign-vue) `fork` 过来，并开始做 `vue-next` 的适配（那时候叫 `vue-next`, 成为vue的正式版后叫 `core` 了），当时的首要工作就是是对 `options` 写法兼容，工具函数差异抹平、组件库构建兼容等，让它能最快的跑起来，能让用户用起来即可。
 
 ### 市面流行库对比
 

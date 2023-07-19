@@ -1,7 +1,5 @@
 # 数据结构与算法
 
-> Program design = data structure + algorithm
-
 <script setup>
 import FigmaContainer from '/components/FigmaContainer.vue'
 </script>

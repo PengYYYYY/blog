@@ -1,4 +1,4 @@
-# diff过程
+# diff 过程
 
 ![img](../images/KHYAuV.png)
 
@@ -17,7 +17,7 @@ function dsf(root) {
 }
 ```
 
-## vue的diff
+## vue 的 diff
 
 优势：
 
@@ -27,7 +27,7 @@ key的作用：
 
 复用节点
 
-## react的diff过程
+## react 的 diff 过程
 
 diff策略
 

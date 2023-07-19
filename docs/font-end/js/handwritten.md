@@ -400,7 +400,7 @@ const b = JSON.parse(JSON.stringify(a))
 - 不能解决循环引用的对象
 - 当遇到函数、 undefined 或者 symbol 的时候，会被自动过滤掉
 
-## 和this指向相关的
+## 和 this 指向相关的
 
 call 与 apply 的差别在于参数
 

@@ -400,6 +400,6 @@ vue3.0的 `compositionApi` 和 `options` 是共存的。
 
 ![img](../images/j5DPlP.png)
 
-### setup中的this指向
+### setup 中的 this 指向
 
 setup中的this就是它执行时的上下文，如果是esm方式打包，会是undefined；如果是单文件的方式运行，会是window；但是不管怎样都没有什么意义

@@ -62,13 +62,19 @@ const data = {
       bannerUrl: 'article/webpack-vite.svg',
       name: 'webpack 迁移 vite 实践',
       desc: '项目中切换vite的记录，对于webpack来说，vite是个实打实的杀手',
-      linkUrl: '../work/tencent/vite-build'
+      linkUrl: '../article/record/webpack-vite'
     },
     {
       bannerUrl: 'article/td-vitest.svg',
       name: ' TDesign 在 vitest 的实践',
-      desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，执行效率提升60%。',
+      desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，执行效率提升60%',
       linkUrl: '../article/record/vitest-refactor'
+    },
+    {
+      bannerUrl: 'article/vue-loader.svg',
+      name: 'Vue Loader 是怎么运行的',
+      desc: '本文描述了 vue 文件是如何被解析的，以及 vue-loader 在 webpack 工作流当中是如何运行的',
+      linkUrl: '../article/record/vue-loader'
     }
   ],
   personal: [

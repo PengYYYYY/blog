@@ -26,10 +26,7 @@ export const navList = () => [
 export const sidebarGraphics = () => [
   {
     text: 'svg',
-    items: [
-      { text: 'svg基础', link: '/graphics/svg/index.md' },
-      { text: 'path解析', link: '/graphics/svg/path-parser.md' }
-    ]
+    items: [{ text: 'svg基础', link: '/graphics/svg/index.md' }]
   },
   {
     text: 'canvas',
@@ -39,25 +36,12 @@ export const sidebarGraphics = () => [
     text: 'webgl',
     items: [{ text: 'webgl基础', link: '/graphics/webgl/index.md' }]
   }
-  // {
-  //   text: '细分知识',
-  //   items: [
-  //     { text: '贝塞尔曲线', link: '/graphics/basics/bessel.md' },
-  //     { text: '矩阵', link: '/graphics/basics/matrix.md' }
-  //   ]
-  // }
 ]
 
 export const sidebarWork = () => [
   {
     text: '腾讯',
-    items: [
-      { text: '工作记录', link: '/work/tencent/index.md' },
-      {
-        text: 'webpack 项目迁移 vite 实践',
-        link: '/work/tencent/vite-build.md'
-      }
-    ]
+    items: [{ text: '工作记录', link: '/work/tencent/index.md' }]
   },
   {
     text: '同程旅行',
@@ -102,7 +86,7 @@ export const sidebarBasics = () => [
     collapsible: true,
     items: [
       {
-        text: '计算机是怎样跑起来的',
+        text: '计算机是怎样跑起来的笔记',
         link: '/basics/computer/howComputerRun'
       },
       {
@@ -112,7 +96,7 @@ export const sidebarBasics = () => [
     ]
   },
   {
-    text: '思维',
+    text: '范式',
     collapsible: true,
     items: [
       { text: '设计模式', link: '/basics/thought/design-mode' },
@@ -134,10 +118,10 @@ export const sidebarBackend = () => [
     text: '运维',
     collapsible: true,
     items: [
-      { text: 'ali-node监控', link: '/backend/devops/ali-node' },
+      { text: 'ali-node 监控', link: '/backend/devops/ali-node' },
       { text: 'docker', link: '/backend/devops/docker' },
       { text: 'git-flow', link: '/backend/devops/git-flow' },
-      { text: 'linux环境搭建', link: '/backend/devops/linux' },
+      { text: 'linux 环境搭建', link: '/backend/devops/linux' },
       { text: 'nginx', link: '/backend/devops/nginx' }
     ]
   },
@@ -146,7 +130,7 @@ export const sidebarBackend = () => [
     collapsible: true,
     items: [
       { text: 'koa', link: '/backend/node/koa' },
-      { text: 'node基础', link: '/backend/node/base' }
+      { text: 'node 基础', link: '/backend/node/base' }
     ]
   }
 ]
@@ -192,7 +176,6 @@ export const sidebarFeFramework = () => [
       { text: 'vue3', link: '/font-end-framework/vue/vue3' },
       { text: 'vue-router', link: '/font-end-framework/vue/router' },
       { text: 'vuex', link: '/font-end-framework/vue/vuex' },
-      { text: 'vue-loader', link: '/font-end-framework/vue/vue-loader' },
       { text: 'vue-ssr', link: '/font-end-framework/vue/ssr' },
       { text: 'vue 通信', link: '/font-end-framework/vue/vue-protocol' },
       { text: '常见问题', link: '/font-end-framework/vue/question' }
@@ -225,7 +208,7 @@ export const sidebarFeFramework = () => [
         link: '/font-end-framework/architecture/data'
       },
       {
-        text: 'Diff过程',
+        text: 'Diff 过程',
         link: '/font-end-framework/architecture/diff'
       },
       {
@@ -239,8 +222,17 @@ export const sidebarFeFramework = () => [
       {
         text: '状态管理',
         link: '/font-end-framework/architecture/state'
-      },
-      { text: '小程序原理', link: '/font-end-framework/architecture/mp' }
+      }
+    ]
+  },
+  {
+    text: '小程序',
+    collapsible: true,
+    items: [
+      {
+        text: '小程序原理',
+        link: '/font-end-framework//mini-program/index'
+      }
     ]
   }
 ]
@@ -250,14 +242,14 @@ export const sidebarFontEnd = () => [
     text: 'Javascript',
     collapsible: true,
     items: [
-      { text: 'JavaScript核心', link: '/font-end/js/core' },
+      { text: 'JavaScript 核心', link: '/font-end/js/core' },
       { text: 'TypeScript', link: '/font-end/js/typeScript' },
       { text: '闭包', link: '/font-end/js/closure' },
       {
-        text: 'JavaScript的原型与继承',
+        text: 'JavaScript 的原型与继承',
         link: '/font-end/js/inheritance'
       },
-      { text: 'JavaScript的事件循环', link: '/font-end/js/event-loop' },
+      { text: 'JavaScript 的事件循环', link: '/font-end/js/event-loop' },
       { text: '应用内存分析', link: '/font-end/js/oom' },
       { text: '浏览器存储', link: '/font-end/js/storage' },
       { text: '数组操作', link: '/font-end/js/array' },
@@ -271,7 +263,7 @@ export const sidebarFontEnd = () => [
     items: [
       { text: '浏览器原理', link: '/font-end/browser/base' },
       { text: '浏览器页面加载过程', link: '/font-end/browser/process' },
-      { text: 'JS的执行机制', link: '/font-end/browser/js-execute' },
+      { text: 'JS 的执行机制', link: '/font-end/browser/js-execute' },
       { text: '跨域', link: '/font-end/browser/cross-domain' },
       { text: '安全', link: '/font-end/browser/security' },
       { text: 'AJAX', link: '/font-end/browser/ajax' },
@@ -308,10 +300,10 @@ export const sidebarFontEnd = () => [
     text: '表现层',
     collapsible: true,
     items: [
-      { text: 'HTML基础', link: '/font-end/html/html' },
-      { text: 'CSS基础', link: '/font-end/html/css' },
+      { text: 'HTML 基础', link: '/font-end/html/html' },
+      { text: 'CSS 基础', link: '/font-end/html/css' },
       { text: 'Load 与 DOMContentLoaded', link: '/font-end/html/load' },
-      { text: 'CSS中的BEM命名规范', link: '/font-end/html/bem' },
+      { text: 'CSS 中的 BEM 命名规范', link: '/font-end/html/bem' },
       { text: '移动端适配', link: '/font-end/html/mobile-adapter' }
     ]
   }

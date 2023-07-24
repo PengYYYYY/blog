@@ -1,4 +1,4 @@
-# 应用内存分析
+# JavaScript 中的应用内存分析
 
 ## 内存模型
 
@@ -11,9 +11,7 @@ JavaScript 的内存模型，其主要由堆、栈、队列三方面组成：
 
 ![img](../images/QN2SMk.png)
 
-## 垃圾回收
-
-[垃圾回收介绍](./closure.html#垃圾回收))
+## [垃圾回收](./closure.html#垃圾回收)
 
 ## 内存泄漏
 

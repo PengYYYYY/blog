@@ -21,7 +21,9 @@
 
     <ArticleList :articles="data.personal">
       <template #title>👽️ 杂七杂八</template>
-      <template #lead>在日常工作中遇到的一些坑，主要是实战记录。</template>
+      <template #lead>
+        一些杂七杂八的学习总结，踩坑记录等文字记录。
+      </template>
     </ArticleList>
   </div>
 </template>
@@ -39,6 +41,12 @@ const data = {
       isNew: true
     },
     {
+      bannerUrl: 'article/td-custom.svg',
+      name: '基于 TDesign 搭建一个业务组件库',
+      desc: '本文讲述了如何基于 TDesign 搭建一个业务组件库 TDesign Custom。内容贯穿整个组件库搭建的全流程。',
+      linkUrl: '../article/record/td-custom'
+    },
+    {
       bannerUrl: 'article/td-composition-api.svg',
       name: 'TDesign CompositionAPI 重构之路',
       desc: '记录了 TDesign 在 CompositionAPI 组件重构的开始，过程与收获',
@@ -52,12 +60,6 @@ const data = {
     }
   ],
   project: [
-    {
-      bannerUrl: 'article/td-custom.svg',
-      name: '基于 TDesign 搭建一个业务组件库',
-      desc: '本文讲述了如何基于 TDesign 搭建一个业务组件库 TDesign Custom。内容贯穿整个组件库搭建的全流程。',
-      linkUrl: '../article/record/td-custom'
-    },
     {
       bannerUrl: 'article/webpack-vite.svg',
       name: 'webpack 迁移 vite 实践',
@@ -96,6 +98,12 @@ const data = {
       tip: '内网穿透',
       desc: '利用 frp 与 ngrok 进行内网穿透的实践记录及对比',
       linkUrl: '../article/record/nat'
+    },
+    {
+      bannerUrl: 'article/js-prototype.svg',
+      name: 'JavaScript 的原型与继承',
+      desc: '读红宝书 JavaScript 中原型相关内容总结，简单讲讲 JavaScript 的原型、原型链和原型继承',
+      linkUrl: '../article/record/js-prototype'
     }
   ]
 }

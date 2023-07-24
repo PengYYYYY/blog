@@ -1,26 +1,26 @@
 # 浏览器存储
 
-cookie、localStorage、sessionStorage与IndexedDB的对比与特点
+cookie、localStorage、sessionStorage 与 IndexedDB 的对比与特点
 
-## cookie
+## Cookie
 
-第一次访问网站的时候，浏览器发出请求，服务器响应请求后，会在响应头里面添加一个Set-Cookie选项，将cookie放入到响应请求中，在浏览器第二次发请求的时候，会通过Cookie请求头部将Cookie信息发送给服务器，服务端会辨别用户身份，另外，Cookie的过期时间、域、路径、有效期、适用站点都可以根据需要来指定。
+第一次访问网站的时候，浏览器发出请求，服务器响应请求后，会在响应头里面添加一个 Set-Cookie 选项，将 cookie 放入到响应请求中，在浏览器第二次发请求的时候，会通过 Cookie 请求头部将 Cookie 信息发送给服务器，服务端会辨别用户身份，另外，Cookie 的过期时间、域、路径、有效期、适用站点都可以根据需要来指定。
 
-cookie的生成方式有两种：
+cookie的 生成方式有两种：
 
 - 生成方式一：
-  http response header中的set-cookie
+  http response header 中的 set-cookie
 
 - 生成方式二：
-  js中可以通过document.cookie可以读写cookie，以键值对的形式展示
+  js 中可以通过 document.cookie 可以读写 cookie，以键值对的形式展示
 
-### cookie的缺陷
+### cookie 的缺陷
 
-- Cookie 不够大
+- cookie 不够大
 
-Cookie的大小限制在4KB左右，对于复杂的存储需求来说是不够用的。当 Cookie 超过 4KB 时，它将面临被裁切的命运。这样看来，Cookie 只能用来存取少量的信息。此外很多浏览器对一个站点的cookie个数也是有限制的。
+cookie 的大小限制在4KB左右，对于复杂的存储需求来说是不够用的。当 cookie 超过 4KB 时，它将面临被裁切的命运。这样看来，cookie 只能用来存取少量的信息。此外很多浏览器对一个站点的 cookie 个数也是有限制的。
 
-每一个name=value的value值大概在4k，，所以4k并不是一个域名下所有的cookie共享的,而是一个name的大小。
+每一个 `name=value` 的 value 值大概在 4k，，所以 4k 并不是一个域名下所有的 cookie 共享的,而是一个 name 的大小。
 
 - 过多的 Cookie 会带来巨大的性能浪费
 
@@ -28,11 +28,11 @@ Cookie 是紧跟域名的。同一个域名下的所有请求，都会携带 Coo
 
 - cookie是用来维护用户信息的，而域名(domain)下所有请求都会携带cookie
 
-但对于静态文件的请求，携带cookie信息根本没有用，此时可以通过cdn（存储静态文件的）的域名和主站的域名分开来解决。
+但对于静态文件的请求，携带 cookie 信息根本没有用，此时可以通过cdn（存储静态文件的）的域名和主站的域名分开来解决。
 
-由于在HTTP请求中的Cookie是明文传递的，所以安全性成问题，除非用HTTPS。
+由于在 HTTP 请求中的 Cookie 是明文传递的，所以安全性成问题，除非用 HTTPS。
 
-### cookie安全
+### cookie 安全
 
 cookie安全性
 |属性|作用|
@@ -42,23 +42,23 @@ cookie安全性
 |secure|只能在协议为Https的请求携带|
 |same-site|规定浏览器不能在跨域请求携带Cookie,减少CSRF攻击|
 
-## webStorage
+## WebStorage
 
-### localStorage
+### LocalStorage
 
 - 保存的数据长期存在，下一次访问该网站的时候，网页可以直接读取以前保存的数据。
 - 大小为5M
 - 仅在客户端使用，不和服务端进行通信
 - 接口封装较好
 
-LocalStorage可以作为浏览器本地缓存方案，用来提升网页首屏渲染速度
+localStorage 可以作为浏览器本地缓存方案，用来提升网页首屏渲染速度
 
-### sessionStorage
+### SessionStorage
 
-sessionStorage保存的数据用于浏览器的一次会话，当会话结束（通常是该窗口关闭），数据被清空；相同域名下的两个页面，只要它们不在同一个浏览器窗口中打开，那么它们的 sessionStorage 内容便无法共享;localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的; SessionStorage 的属性和方法与 LocalStorage 完全一样。
+sessionStorage 保存的数据用于浏览器的一次会话，当会话结束（通常是该窗口关闭），数据被清空；相同域名下的两个页面，只要它们不在同一个浏览器窗口中打开，那么它们的 sessionStorage 内容便无法共享;localStorage 在所有同源窗口中都是共享的；cookie 也是在所有同源窗口中都是共享的; SessionStorage 的属性和方法与 LocalStorage 完全一样。
 
 - 会话级别的浏览器存储
-- 大小为5M左右
+- 大小为 5M 左右
 - 仅在客户端使用，不和服务端进行通信
 - 接口封装较好
 
@@ -70,14 +70,14 @@ sessionStorage 更适合用来存储生命周期和它同步的会话级别的�
 
 ### indexDB
 
-本地数据库，它可以被网页脚本创建和操作。IndexedDB 允许储存大量数据，提供查找接口，还能建立索引。接近 NoSQL 数据库。用于客户端存储大量结构化数据(包括文件和blobs)。该API使用索引来实现对该数据的高性能搜索。
+本地数据库，它可以被网页脚本创建和操作。IndexedDB 允许储存大量数据，提供查找接口，还能建立索引。接近 NoSQL 数据库。用于客户端存储大量结构化数据(包括文件和 blobs)。该API使用索引来实现对该数据的高性能搜索。
 
 ## 区别
 
 共同点：都是保存在浏览器端，且都遵循同源策略。
 不同点：在于生命周期与作用域的不同
 
-作用域：localStorage只要在相同的协议、相同的主机名、相同的端口下，就能读取/修改到同一份localStorage数据。sessionStorage比localStorage更严苛一点，除了协议、主机名、端口外，还要求在同一窗口（也就是浏览器的标签页）下。
+作用域：localStorage 只要在相同的协议、相同的主机名、相同的端口下，就能读取/修改到同一份 localStorage 数据。sessionStorage 比 localStorage 更严苛一点，除了协议、主机名、端口外，还要求在同一窗口（也就是浏览器的标签页）下。
 
 生命周期：localStorage 是持久化的本地存储，存储在其中的数据是永远不会过期的，使其消失的唯一办法是手动删除；而 sessionStorage 是临时性的本地存储，它是会话级别的存储，当会话结束（页面被关闭）时，存储内容也随之被释放。
 
@@ -91,7 +91,7 @@ Web Storage 是一个从定义到使用都非常简单的东西。它使用键�
 | 数据存储大小 | 4k | 5M | 5M | 无限 |
 | 与服务端通信 | header中对请求性能影响 | 无 | 无 | 无 |
 
-## 给localStorage加上过期时间
+## 给 localStorage 加上过期时间
 
 ```js
 class myStorage {

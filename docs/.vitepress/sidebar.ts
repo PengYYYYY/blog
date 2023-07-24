@@ -243,18 +243,14 @@ export const sidebarFontEnd = () => [
     collapsible: true,
     items: [
       { text: 'JavaScript 核心', link: '/font-end/js/core' },
-      { text: 'TypeScript', link: '/font-end/js/typeScript' },
-      { text: '闭包', link: '/font-end/js/closure' },
-      {
-        text: 'JavaScript 的原型与继承',
-        link: '/font-end/js/inheritance'
-      },
+      { text: 'TypeScript', link: '/font-end/js/type-script' },
+      { text: '作用域与垃圾回收', link: '/font-end/js/scope-gc' },
       { text: 'JavaScript 的事件循环', link: '/font-end/js/event-loop' },
-      { text: '应用内存分析', link: '/font-end/js/oom' },
+      { text: 'JavaScript 应用内存分析', link: '/font-end/js/oom' },
       { text: '浏览器存储', link: '/font-end/js/storage' },
       { text: '数组操作', link: '/font-end/js/array' },
       { text: '字符操作', link: '/font-end/js/string' },
-      { text: '工具类源码', link: '/font-end/js/handwritten' }
+      { text: '工具类源码', link: '/font-end/js/utils' }
     ]
   },
   {

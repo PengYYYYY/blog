@@ -1,10 +1,10 @@
 # 源码实现
 
-## 数组API
+## 数组 API
 
 ### 数组去重
 
-- 利用set
+- 利用 set
 
 ```js
 function unique(arr) {
@@ -12,7 +12,7 @@ function unique(arr) {
 }
 ```
 
-- 利用indexOf
+- 利用 indexOf
 
 ```js
 function unique(arr) {
@@ -26,7 +26,7 @@ function unique(arr) {
 }
 ```
 
-- 利用filter
+- 利用 filter
 
 ```js
 function unique(arr) {
@@ -36,7 +36,7 @@ function unique(arr) {
 }
 ```
 
-- 利用map
+- 利用 map
 
 ```js
 function unique(arr) {
@@ -52,9 +52,9 @@ function unique(arr) {
 }
 ```
 
-### flatten的实现
+### flatten 的实现
 
-- 利用reduce
+- 利用 reduce
 
 ```js
 function myFlatten(arr) {
@@ -80,7 +80,7 @@ function myFlatten2(arr) {
 }
 ```
 
-- 利用toString
+- 利用 toString
 
 ```js
 function myFlatten3(arr) {
@@ -88,7 +88,22 @@ function myFlatten3(arr) {
 }
 ```
 
-### reduce的实现
+### 实现 findX 函数
+
+```js
+Array.property.findIndex = function(callback) {
+  var arr = this;
+  for (var i = 0; i < arr.length; i++) {
+    if (callback(arr[i]), i) {
+      return i
+    }
+  }
+  return -1
+}
+
+```
+
+### reduce 的实现
 
 ```js
 Array.prototype.reduce = function(fn, value) {
@@ -109,7 +124,7 @@ Array.prototype.reduce = function(fn, value) {
 }
 ```
 
-### filter的实现
+### filter 的实现
 
 ```js
 Array.prototype.filter = function(cb) {
@@ -125,7 +140,7 @@ Array.prototype.filter = function(cb) {
 }
 ```
 
-### map的实现
+### map 的实现
 
 ```js
 Array.prototype.myMap = function(cb) {
@@ -140,7 +155,7 @@ Array.prototype.myMap = function(cb) {
 }
 ```
 
-### find的实现
+### find 的实现
 
 ```js
 Array.prototype.myFind = function(callback) {
@@ -155,7 +170,7 @@ Array.prototype.myFind = function(callback) {
 }
 ```
 
-### some的实现
+### some 的实现
 
 ```js
 Array.prototype.mySome = function(callback) {
@@ -185,9 +200,9 @@ Array.prototype.every = function(cb) {
 
 ### 类数组转换
 
-arguments和dom操作返回的结果都是类数组
+arguments 和 dom 操作返回的结果都是类数组
 
-- 利用`Array.from`
+- 利用 `Array.from`
 
 ```js
 Array.from(arguments)
@@ -199,13 +214,13 @@ Array.from(arguments)
 [...arguments]
 ```
 
-- 利用slice
+- 利用 slice
 
 ```js
 Array.prototype.slice.call(arguments)
 ```
 
-- 利用concat
+- 利用 concat
 
 ```js
 Array.prototype.concat.apply([], arguments)
@@ -213,7 +228,7 @@ Array.prototype.concat.apply([], arguments)
 
 ## 对象API
 
-- Object.assign原理
+- Object.assign 原理
 
 ```js
 if (typeof Object.assign != 'function' ) {
@@ -239,7 +254,7 @@ if (typeof Object.assign != 'function' ) {
 }
 ```
 
-- Object.create实现原理
+- Object.create 实现原理
 
 ```js
 Object.create = function(obj) {
@@ -265,7 +280,7 @@ function getType (data) {
 }
 ```
 
-### 实现parseInt
+### 实现 parseInt
 
 ```js
 function myParseInt(str) {
@@ -284,7 +299,7 @@ function myParseInt(str) {
 }
 ```
 
-### 利用raf实现setInterval
+### 利用 raf 实现 setInterval
 
 ```js
 function myInterval(fn, interval) {
@@ -676,7 +691,7 @@ function throttle(func, ms) {
 }
 ```
 
-### 解决0.2 + 0.1 !== 0.3的问题
+### 解决 0.2 + 0.1 !== 0.3 的问题
 
 ```js
 parseFloat(0.1 + 0.2).toFixed(10) == 0.3

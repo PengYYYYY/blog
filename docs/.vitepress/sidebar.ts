@@ -73,12 +73,13 @@ export const sidebarBasics = () => [
     text: '网络',
     collapsible: true,
     items: [
-      { text: 'http', link: '/basics/network/http' },
-      { text: 'http状态码', link: '/basics/network/http-code' },
-      { text: 'https', link: '/basics/network/https' },
-      { text: 'http-next', link: '/basics/network/http-next' },
+      { text: 'Http', link: '/basics/network/http' },
+      { text: 'Http状态码', link: '/basics/network/http-code' },
+      { text: 'Https', link: '/basics/network/https' },
+      { text: 'Http-next', link: '/basics/network/http-next' },
       { text: '网络缓存', link: '/basics/network/cache' },
-      { text: '网络连接过程', link: '/basics/network/connectionProcess' }
+      { text: '网络连接过程', link: '/basics/network/connectionProcess' },
+      { text: '常见的网络问题', link: '/basics/network/network-question' }
     ]
   },
   {

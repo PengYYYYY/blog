@@ -1,17 +1,17 @@
-# https
+# Https
 
-SSL(Secure Socket Layer)安全套接层
-TLS(Transport Layer Security)安全层传输协议
+SSL(Secure Socket Layer) 安全套接层
+TLS(Transport Layer Security) 安全层传输协议
 
 ## 为什么有https
 
-http的不足
+http 的不足
 
 - 通信使用明文(不加密)，内容可能会被窃听
 - 不验证通信方的身份，因此有可能遭遇伪装
 - 无法证明报文的完整性，所以有可能已遭篡改
 
-https 就是加了一层ssl的http。
+https 就是加了一层 ssl 的 http。
 
 报文首部不会被加密，报文主体会被加密。
 

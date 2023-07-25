@@ -163,6 +163,10 @@ export const sidebarAlgorithm = () => [
       {
         text: '限流算法',
         link: '/algo-data-str/algorithm/currentLimiting'
+      },
+      {
+        text: '工具算法',
+        link: '/algo-data-str/algorithm/utils'
       }
     ]
   }

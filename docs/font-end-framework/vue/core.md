@@ -8,8 +8,8 @@
 
 - beforeCreate：执行时组件还未创建，通常用于插件开发中执行一些未初始化任务
 - created：组件初始化完毕，各种数据可以使用，常用于异步数据获取
-- beforeMounted：未执行渲染，更新，dom未创建
-- mounted：初始化结束，dom创建，可用于获取访问数据和dom元素
+- beforeMounted：未执行渲染，更新，dom 未创建
+- mounted：初始化结束，dom 创建，可用于获取访问数据和 dom 元素
 - beforeUpdate：更新前，可用于获取更新前各种状态
 - updated：更新后，所有状态都是最新
 - beforeDestory：销毁前，用于定时器或订阅的取消
@@ -26,7 +26,7 @@
 ![img](../images/vue-instantiation.png)
 ![img](../images/vue-instantiation-process.png)
 
-源码入口文件，做了初始化工作，`/instance/index`为vue实例, `initGlobalAPI`中为初始化流程。
+源码入口文件，做了初始化工作，`/instance/index` 为vue实例, `initGlobalAPI` 中为初始化流程。
 
 ```js
 // src/core/index.js
@@ -82,7 +82,7 @@ renderMixin(Vue)
 export default Vue
 ```
 
-再来看全局API
+再来看全局 API
 
 ```js
 export function initGlobalAPI (Vue: GlobalAPI) {
@@ -356,9 +356,9 @@ initProvide(vm) // resolve provide after data/props
 
 - MyVue：框架构造函数
 - Observer：执⾏数据响应化（分辨数据是对象还是数组）
-- Compile：编译模板，初始化视图，收集依赖（更新函数、watcher创建）
+- Compile：编译模板，初始化视图，收集依赖（更新函数、watcher 创建）
 - Watcher：执⾏更新函数（更新dom）
-- Dep：依赖，管理多个Watcher，批量更新
+- Dep：依赖，管理多个 Watcher，批量更新
 
 ### 流程描述
 
@@ -664,15 +664,15 @@ class Compile {
 #### 副作用
 
 1. 副作用函数执行，执行过程中，先将副作用函数推入一个栈中
-2. 执行过程中，如果遇到响应式对象，会触发proxy中的get，get触发track
-3. tack过程中，会建立，响应式数据的key与副作用函数的关系，通过WeakMap,Map,Set三级关系
-4. weakMap管理的是总的依赖收集对应到traget,Map对应的是target中的key,set对应的是当前key对应的副作用列表，此时就建立了，target.key到effect的连接
+2. 执行过程中，如果遇到响应式对象，会触发 proxy 中的 get，get 触发 track
+3. tack 过程中，会建立，响应式数据的 key 与副作用函数的关系，通过 WeakMap,Map,Set 三级关系
+4. weakMap 管理的是总的依赖收集对应到 traget, Map 对应的是 target 中的 key,set 对应的是当前 key 对应的副作用列表，此时就建立了，target.key 到 effect 的连接
 5. 副作用函数第一次执行完毕，函数从副作用函数栈中弹出，结束收集过程
 
 #### 副作用触发过程
 
-- 修改响应式数据，触发proxy中的set，set触发trigger，
-- trigger获取对象target的depsMap，然后拿到依赖depsMap中key的副作用数组，全部执行一遍
+- 修改响应式数据，触发 proxy 中的 set，set 触发 trigger，
+- trigger 获取对象 target 的 depsMap，然后拿到依赖 depsMap 中 key 的副作用数组，全部执行一遍
 
 ### 核心代码
 

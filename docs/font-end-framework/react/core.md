@@ -43,7 +43,7 @@ export default { createElement };
 
 - react-dom
 
-`react-dom` 的render函数负责节点渲染。
+`react-dom` 的 `render` 函数负责节点渲染。
 
 ```js
 function render(vNode, container) {
@@ -115,20 +115,20 @@ function updateFunctionComponent(fiber) {
 export default {render}; 
 ```
 
-以上是react核心代码，未实现数据变化。
+以上是 react 核心代码，未实现数据变化。
 
-1. webpack+babel编译时，替换JSX为React.createElement(type,props,...children)
-2. 所有React.createElement()执行结束后得到一个JS对象即vdom，它能够完整描述dom结构
-3. ReactDOM.render(vdom, container)可以将vdom转换为dom并追加到container中
-4. 转换过程需要经过一个diff过程
+1. webpack+babel 编译时，替换 JSX 为 React.createElement(type,props,...children)
+2. 所有 React.createElement() 执行结束后得到一个 JS 对象即 vdom，它能够完整描述 dom 结构
+3. ReactDOM.render(vdom, container) 可以将 vdom 转换为 dom 并追加到 container 中
+4. 转换过程需要经过一个 diff 过程
 
-## diff算法
+## diff 算法
 
-### reconciliation协调
+### reconciliation 协调
 
-在某一时间节点调用 React 的 render() 方法，会创建一棵由 React 元素组成的树。在下一次 state 或 props 更新时，相同的 render() 方法会返回一棵不同的树。React 需要基于这两棵树之间的差别来判断如何有效率的更新 UI 以保证当前 UI 与最新的树保持同步。在某一时间节点调用 React 的 render() 方法，会创建一棵由 React 元素组成的树。在下一次 state 或 props 更新时，相同的 render() 方法会返回一棵不同的树。React 需要基于这两棵树之间的差别来判 断如何有效率的更新 UI 以保证当前 UI 与最新的树保持同步。就是更新UI
+在某一时间节点调用 React 的 render() 方法，会创建一棵由 React 元素组成的树。在下一次 state 或 props 更新时，相同的 render() 方法会返回一棵不同的树。React 需要基于这两棵树之间的差别来判断如何有效率的更新 UI 以保证当前 UI 与最新的树保持同步。在某一时间节点调用 React 的 render() 方法，会创建一棵由 React 元素组成的树。在下一次 state 或 props 更新时，相同的 render() 方法会返回一棵不同的树。React 需要基于这两棵树之间的差别来判断如何有效率的更新 UI 以保证当前 UI 与最新的树保持同步。就是更新UI
 
-react协调策略：
+react 协调策略：
 
 - 两个不同类型的元素会产生出不同的树;
 - 可以通过 key 来暗示哪些子元素在不同的渲染下能保持稳定;
@@ -141,27 +141,27 @@ react协调策略：
 
 ### diff过程
 
-- 删除:newVnode不存在时
-- 替换:vnode和newVnode类型不同或key不同时
-- 更新:有相同类型和key但vnode和newVnode不同时
+- 删除: newVNode 不存在时
+- 替换: vNode 和 newVNode 类型不同或 key 不同时
+- 更新:有相同类型和 key 但 vNode 和 newVNode 不同时
 
-## fiber
+## Fiber
 
-fiber在组件渲染时使用，fiber是指组件上将要完成或者已经完成的任务，每个组件可以一个或者多个.`fiber` 核心代码 `window.requestIdleCallback`。
+fiber 在组件渲染时使用，fiber 是指组件上将要完成或者已经完成的任务，每个组件可以一个或者多个. `fiber` 核心代码 `window.requestIdleCallback`。
 
 ### window.requestIdleCallback()
 
-window.requestIdleCallback()方法将在浏览器的空闲时段内调用的函数排队。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。函数一般会按先 进先调用的顺序执行，然而，如果回调函数指定了执行超时时间 timeout ，则有可能为了在超时前执行 函数而打乱执行顺序。
+window.requestIdleCallback() 方法将在浏览器的空闲时段内调用的函数排队。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。函数一般会按先 进先调用的顺序执行，然而，如果回调函数指定了执行超时时间 timeout ，则有可能为了在超时前执行 函数而打乱执行顺序。
 
 在空闲回调函数中调用 requestIdleCallback() ，以便在下一次通过事件循环之前调度另一个回调。
 
-### fiber架构
+### Fiber 架构
 
 ![img](../images/tCtcnb.png)
 
-### fiber核心代码
+### Fiber 核心代码
 
-fiber的数据结构如下：
+fiber 的数据结构如下：
 
 - type: 标记当前节点的类型;
 - props: 属性;
@@ -182,7 +182,7 @@ let newFiber = {
 };
 ```
 
-使用fiber重写render函数
+使用 fiber 重写 render 函数
 
 ```js
 // 下一个要执行的fiber，数据结构就是fiber
@@ -331,16 +331,16 @@ function commitWorker(fiber) {
 }
 ```
 
-## hook
+## Hook
 
-- 类组件，当把属性改变的时候state可以对组件进行更新，
-- 函数组件，在hook出现时候，无法进行视图的更新，且函数组件无生命周期，导致函数组件无更广的使用面。
+- 类组件，当把属性改变的时候 state 可以对组件进行更新，
+- 函数组件，在 hook 出现时候，无法进行视图的更新，且函数组件无生命周期，导致函数组件无更广的使用面。
 
-### hook解决的问题
+### hook 解决的问题
 
-- 组件之间复用状态逻辑问题，避免了像类组件那种侵入式的组件结构。一个hook只做一件事情，面向过程编程，
-- hook可以让颗粒度较小，比如`componentDidMount`中进行多个接口调用，在hook中可以拆分成多个`useEffect`，方便做逻辑拆分。
-- 在类组件中，修改数据是做对象的合并，而hook当中是做数据的覆盖。
+- 组件之间复用状态逻辑问题，避免了像类组件那种侵入式的组件结构。一个 hook 只做一件事情，面向过程编程，
+- hook 可以让颗粒度较小，比如 `componentDidMount` 中进行多个接口调用，在 hook 中可以拆分成多个 `useEffect`，方便做逻辑拆分。
+- 在类组件中，修改数据是做对象的合并，而 hook 当中是做数据的覆盖。
 
 ### hook类型
 
@@ -362,7 +362,7 @@ function commitWorker(fiber) {
 
 ### useEffect
 
-执行state中的副作用，在生命周期中类似于class组件里的，componentDidMount和componentDidUpdate。
+执行 state 中的副作用，在生命周期中类似于 class 组件里的，componentDidMount 和 componentDidUpdate。
 
 - 条件执行
 
@@ -392,9 +392,9 @@ useEffect(() => {
 },[])
 ```
 
-### 自定义hook
+### 自定义 Hook
 
-实现时钟hook,名称以`use`开头，函数内部可以调用其他Hook
+实现时钟 Hook,名称以`use`开头，函数内部可以调用其他Hook
 
 ```js
 function useClock() {
@@ -409,16 +409,16 @@ function useClock() {
 }
 ```
 
-- hook使用规则
+- Hook 使用规则
 
-1. Hook就是js函数，只能在最外层定义hook，不能在循环和嵌套函数里面去调用。
-2. 只能在react的函数组件中调用，在自定义hook里面也可以调用hook
+1. Hook 就是 js 函数，只能在最外层定义 hook，不能在循环和嵌套函数里面去调用。
+2. 只能在 react 的函数组件中调用，在自定义 hook 里面也可以调用 Hook
 
-### useMemo和useCallBack
+### useMemo 和 useCallBack
 
 #### useMemo
 
-类似于vue中的computed。只有依赖项改变的时候，函数体内容才会执行
+类似于 vue 中的 computed。只有依赖项改变的时候，函数体内容才会执行
 
 ```js
 const expensive = useMemo(() => {
@@ -442,7 +442,7 @@ const addClick = useCallback(() => {
 }, [xx])
 ```
 
-### useState的大概原理
+### useState 的大概原理
 
 ```js
 const stateArray = [] // 收集状态，这里用的是数组，实际上是链表,存在fiber节点里面

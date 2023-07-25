@@ -2,7 +2,7 @@
 
 ![img](../images/DrJG06.png)
 
-## vue3.0初始化流程
+## vue3.0 初始化流程
 
 ![img](../images/sYzDwc.png)
 
@@ -204,7 +204,7 @@ vue3.0带来的优化
 
 ### 代码组织
 
-- vue3.0代码结构
+- vue3.0 代码结构
 
 ![img](../images/tUoPsF.png)
 
@@ -223,23 +223,23 @@ monorepo 把这些模块拆分到不同的 package 中，每个 package 有各�
 
 ### 虚拟dom重写
 
-做了一些静态标记，针对不同类型对节点进行不同策略的处理，静态节点在diff过程中会直接跳过。
+做了一些静态标记，针对不同类型对节点进行不同策略的处理，静态节点在 diff 过程中会直接跳过。
 
 ### 性能提升
 
 1. 更好的初始性能
-2. tree-shaking支持，更小的文件大小
-3. composition Api新语法
-4. fragment,teleport,suspense新组件
-5. 更好的typescript支持
+2. tree-shaking 支持，更小的文件大小
+3. compositionAPI 新语法
+4. fragment, teleport, suspense 新组件
+5. 更好的 typescript 支持
 6. 自定义渲染器
 
-tree-shaking原理：依赖 ES2015 模块语法的静态结构（即 import 和 export），通过编译阶段的静态分析，找到没有引入的模块并打上标记。未被引入的 square 模块会被标记，然后压缩阶段会利用例如 uglify-js、terser 等压缩工具真正地删除这些没有用到的代码。
-利用 tree-shaking技术，如果在项目中没有引入Transition、KeepAlive 等组件, 那么它们对应的代码就不会打包，这样也就间接达到了减少项目引入的 Vue.js 包体积的目的。
+tree-shaking 原理：依赖 ES2015 模块语法的静态结构（即 import 和 export），通过编译阶段的静态分析，找到没有引入的模块并打上标记。未被引入的 square 模块会被标记，然后压缩阶段会利用例如 uglify-js、terser 等压缩工具真正地删除这些没有用到的代码。
+利用 tree-shaking 技术，如果在项目中没有引入 Transition、KeepAlive 等组件, 那么它们对应的代码就不会打包，这样也就间接达到了减少项目引入的 Vue.js 包体积的目的。
 
 ### 数据劫持优化
 
-- vue1x与vue2x是利用Object.defineProperty这个 API 去劫持数据的 getter 和 setter：
+- vue1.x 与 vue2.x 是利用 Object.defineProperty 这个 API 去劫持数据的 getter 和 setter：
 
 ```js
 Object.defineProperty(data, 'a',{
@@ -283,29 +283,29 @@ const observed = new Proxy(data, {
 })
 ```
 
-Proxy劫持的是整个对象，自然对于对象的属性的增加和删除都能检测到，Proxy API也不能监听到内部深层次的对象变化，因此 Vue.js 3.0 的处理方式是在 getter 中去递归响应式，这样的好处是真正访问到的内部对象才会变成响应式。
+Proxy 劫持的是整个对象，自然对于对象的属性的增加和删除都能检测到，Proxy API 也不能监听到内部深层次的对象变化，因此 Vue.js 3.0 的处理方式是在 getter 中去递归响应式，这样的好处是真正访问到的内部对象才会变成响应式。
 
-> Proxy的优势
+> Proxy 的优势
 
 - 可直接监听数组类型的数据变化
-- 监听的目标为对象本身，不需要像Object.defineProperty一样遍历每个属性，有一定的性能提升
-- 可拦截apply、ownKeys、has等13种对象方法，而Object.defineProperty不行
+- 监听的目标为对象本身，不需要像 Object.defineProperty 一样遍历每个属性，有一定的性能提升
+- 可拦截 apply、ownKeys、has 等13种对象方法，而 Object.defineProperty 不行
 - 直接实现对象属性的新增/删除
 
 ### 编译优化
 
-主要优化发生在patch阶段，也就是diff阶段。
+主要优化发生在 patch 阶段，也就是 diff 阶段。
 
-- vue2.0的diff算法与模版的节点数量正相关，会造成大量的性能浪费。
-- vue3.0的diff算法与模版的动态节点数正相关，避免了资源的浪费，其实现原理是通过Block tree，打补丁时将跳过这些属性不会改变的节点。
+- vue2.0 的 diff 算法与模版的节点数量正相关，会造成大量的性能浪费。
+- vue3.0 的 diff 算法与模版的动态节点数正相关，避免了资源的浪费，其实现原理是通过 Block tree，打补丁时将跳过这些属性不会改变的节点。
 
 ### 重构 Virtual DOM
 
 - 模板编译时的优化，将一些静态节点编译成常量
-- slot优化，将slot编译为lazy函数，将slot的渲染的决定权交给子组件
+- slot 优化，将 slot 编译为 lazy 函数，将 slot 的渲染的决定权交给子组件
 - 模板中内联事件的提取并重用（原本每次渲染都重新生成内联函数）
 
-### 语法 API 优化：Composition API
+### 语法 API 优化：CompositionAPI
 
 - 增强了逻辑复用
 - 增强了代码结构与可读性
@@ -329,24 +329,24 @@ Proxy劫持的是整个对象，自然对于对象的属性的增加和删除都
 </template>
 ```
 
-在做组件递归的时候可以减少`div`的生成
+在做组件递归的时候可以减少 `div` 的生成
 
 ## 新特性
 
 ### setup
 
-全局import
+全局 import
 
-vue2中的data,methods,computed都是挂载在this上面，两个明显的缺点
+vue2 中的 data, methods, computed 都是挂载在 this 上面，两个明显的缺点
 
 1. 不利于类型推导
-2. 没用到computed功能，代码也会被打包
+2. 没用到 computed 功能，代码也会被打包
 
-vue3的手动import更利于Tree-shaking
+vue3 的手动 import 更利于 Tree-shaking
 
 ### ref
 
-reactive负责复杂数据结构，ref可以把基本的数据结构包装成响应式
+reactive 负责复杂数据结构，ref 可以把基本的数据结构包装成响应式
 
 ```vue
 <template>
@@ -388,18 +388,18 @@ export default {
 </script>
 ```
 
-## Composition API原理
+## CompositionAPI 原理
 
-vue3.0的 `compositionApi` 和 `options` 是共存的。
+vue3.0 的 `compositionApi` 和 `options` 是共存的。
 
-### composition和options如何做到和谐共存？
+### composition 和 options 如何做到和谐共存？
 
 - 关键代码
 
-如果设置了setup就会先处理它，else逻辑在后面做。如果设置了setup则先调用它，随后再处理别的options。
+如果设置了 setup 就会先处理它，else 逻辑在后面做。如果设置了 setup 则先调用它，随后再处理别的 options。
 
 ![img](../images/j5DPlP.png)
 
 ### setup 中的 this 指向
 
-setup中的this就是它执行时的上下文，如果是esm方式打包，会是undefined；如果是单文件的方式运行，会是window；但是不管怎样都没有什么意义
+setup 中的 this 就是它执行时的上下文，如果是 esm 方式打包，会是 undefined；如果是单文件的方式运行，会是 window；但是不管怎样都没有什么意义

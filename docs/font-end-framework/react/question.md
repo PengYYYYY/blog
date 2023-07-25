@@ -94,10 +94,10 @@ shouldComponentUpdate 这个方法用来判断是否需要调用 render 方法�
 2. 两个不同类型的元素会产生出不同的树。如果元素由 div 变成 p，React 会销毁 div 及其子孙节点，并新建 p 及其子孙节点
 3. 开发者可以通过 key 来暗示哪些子元素在不同的渲染下能保持稳定
 
-### React中的key的作用
+### React 中的 key 的作用
 
-1. 和type值一起来标记同级节点，当前元素的唯一性。
-2. fiber架构的唯一性
+1. 和 type 值一起来标记同级节点，当前元素的唯一性。
+2. fiber 架构的唯一性
 
 ```html
 <!-- 更新前 -->
@@ -135,7 +135,7 @@ shouldComponentUpdate 这个方法用来判断是否需要调用 render 方法�
 
 经过调和过程，React 会以相对高效的方式根据新的状态构建 React 元素树并且着手重新渲染整个 UI 界面。在 React 得到元素树之后，React 会计算出新的树和老的树之间的差异，然后根据差异对界面进行最小化重新渲染。通过 diff 算法，React 能够精确制导哪些位置发生了改变以及应该如何改变，这就保证了按需更新，而不是全部重新渲染。
 
-### setState是同步还是异步
+### setState 是同步还是异步
 
 合成事件是批量异步执行的
 
@@ -143,29 +143,29 @@ shouldComponentUpdate 这个方法用来判断是否需要调用 render 方法�
 
 ## 开放性问题
 
-### 虚拟dom
+### 虚拟 dom
 
-#### 为什么要使用虚拟dom对象
+#### 为什么要使用虚拟 dom 对象
 
-DOM操作很慢，轻微的操作都可能导致页面重新排版，非常耗性能。相对于DOM对象，js对象 处理起来更快，而且更简单。通过diff算法对比新旧vdom之间的差异，可以批量的、最小化的执行 dom操作，从而提高性能。
+DOM 操作很慢，轻微的操作都可能导致页面重新排版，非常耗性能。相对于 DOM 对象，js 对象 处理起来更快，而且更简单。通过 diff 算法对比新旧 VDom 之间的差异，可以批量的、最小化的执行 dom 操作，从而提高性能。
 
-在获取原生的dom节点后，dom节点的属性极多，diff后的成本较高。在使用虚拟dom后，只需要对我们用到的属性做diff即可。
+在获取原生的 dom 节点后，dom 节点的属性极多，diff 后的成本较高。在使用虚拟 dom 后，只需要对我们用到的属性做 dif f即可。
 
-#### dom的使用
+#### dom 的使用
 
-React中用JSX语法描述视图，通过babel-loader转译后它们变为React.createElement(...)形 式，该函数将生成vdom来描述真实dom。将来如果状态变化，vdom将作出相应变化，再通过diff算法，对比新老vdom区别从而做出最终dom操作。
+React中 用 JSX 语法描述视图，通过 babel-loader 转译后它们变为 React.createElement(...) 形 式，该函数将生成 VDom 来描述真实 dom。将来如果状态变化，VDom 将作出相应变化，再通过 diff 算法，对比新老 VDom 区别从而做出最终 dom 操作。
 
 #### jsx
 
 React 使用 JSX 来替代常规的 JavaScript。JSX 是一个看起来很像 XML 的 JavaScript 语法扩展。使用 JSX 编写模板简单快速。JSX编译为 JavaScript 代码后进行了优化，执行更快。
 
-#### 虚拟dom的缺点
+#### 虚拟 dom 的缺点
 
-在首次渲染的情况下，需要多一层计算，然后渲染页面。会比组装原生dom节点然后直接innerHtml的性能差一下
+在首次渲染的情况下，需要多一层计算，然后渲染页面。会比组装原生 dom 节点然后直接 innerHtml 的性能差一下
 
 ## 常见组件优化技术
 
-### 使用shouldComponentUpdate
+### 使用 shouldComponentUpdate
 
 通过对比新老参数，来达到优化效果
 

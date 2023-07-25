@@ -25,7 +25,7 @@ Vuex 与 redux 都是 Flux 架构的一种实现。Flux 清晰确立了数据管
 
 ### 核心概念
 
-vuex的几大核心概念：
+vuex 的几大核心概念：
 
 - state
 - getters
@@ -37,7 +37,7 @@ vuex的几大核心概念：
 
 单一状态树，也可以理解为单例
 
-- 组件中获取vuex的数据
+- 组件中获取 vuex 的数据
 
 ```js
 const Counter = {
@@ -50,7 +50,7 @@ const Counter = {
 }
 ```
 
-- mapState辅助函数
+- mapState 辅助函数
 
 ```js
 import { mapState } from 'vuex'
@@ -83,7 +83,7 @@ computed: mapState([
 
 ### getter
 
-Vuex 允许我们在 store 中定义“getter”（可以认为是 store 的计算属性）。getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。
+Vuex 允许我们在 store 中定义 “getter”（可以认为是 store 的计算属性）。getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。
 
 ```js
 const store = new Vuex.Store({
@@ -101,7 +101,7 @@ const store = new Vuex.Store({
 })
 ```
 
-### mapGetters辅助函数
+### mapGetters 辅助函数
 
 mapGetters 辅助函数仅仅是将 store 中的 getter 映射到局部计算属性：
 
@@ -182,7 +182,7 @@ store.dispatch('increment')
 
 模块化：通过模块化让每个模块都拥有自己的 state、mutation、action、getter、甚至是嵌套子模块。
 
-命名空间：`namespaced: true`之后，它的所有 getter、action 及 mutation 都会自动根据模块注册的路径调整命名。
+命名空间：`namespaced: true` 之后，它的所有 getter、action 及 mutation 都会自动根据模块注册的路径调整命名。
 
 ### 简易的vuex
 

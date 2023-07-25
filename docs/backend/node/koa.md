@@ -1,13 +1,13 @@
 # koa
 
-koa本质上是对node的一层简单封装
+koa 本质上是对 node 的一层简单封装
 
-## 为什么诞生koa
+## 为什么诞生 koa
 
-1. 包装http,优雅封装，response.end和request。
+1. 包装 http,优雅封装，response.end 和 request。
 2. 添加中间件，AOP
 3. 增强错误处理
-4. API设计更优雅
+4. API 设计更优雅
 
 ## 业务场景
 
@@ -15,14 +15,14 @@ koa本质上是对node的一层简单封装
 
 处理前需要做的事情，处理后需要做的事情，衍生出了洋葱圈模型。
 
-## koa与koa2
+## koa 与 koa2
 
-- 1代为generator语法诞生
-- 2代为es7语法诞生
+- 1代为 generator 语法诞生
+- 2代为 es7 语法诞生
 
 ## context
 
-封装原生的request和response，再把request和response集中挂挂载到上下文
+封装原生的 request 和 response，再把 request 和 response 集中挂挂载到上下文
 
 ```js
 // context.js
@@ -101,7 +101,7 @@ compose(middlewares) {
 }
 ```
 
-## koa路由
+## koa 路由
 
 ```js
 class Router {

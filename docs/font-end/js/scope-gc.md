@@ -158,7 +158,7 @@ for (var i = 1; i <= 3; i++){
 
 ## 垃圾回收
 
-<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=1628-1131&t=ZWbsTxMVXqt1MgsM-4"/>
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=1664-2980&t=zfM8G0KnIXVdoA3s-4"/>
 
 - 在调用栈中，有一个记录 当前执行状态的指针(称为 ESP)，函数的执行上下文一旦被执行后，JavaScript 引擎会通过向下移动 ESP 来销毁该函数保存在栈中的执行上下文。在调用另外的函数时，这块内容会被直接覆盖掉，用来存放另外一个函数的执行上下文。
 

@@ -15,13 +15,13 @@
 
 ## CommonJS规范
 
-Node.js是commonJS规范的主要应用者
+`Node.js` 是 `commonJS` 规范的主要应用者
 
-module、exports、require、global是它的关键字
+module、exports、require、global 是它的关键字
 
 ### 用法
 
-通过 require方法来同步加载所要依赖的其他模块，然后通过 exports 或者 module.exports 来导出需要暴露的接口
+通过 `require` 方法来同步加载所要依赖的其他模块，然后通过 `exports` 或者 `module.exports` 来导出需要暴露的接口
 
 - a.js
 
@@ -52,8 +52,8 @@ console.log(example.add(1)); // 6
 })
 ```
 
-这样我们便可以访问这些传入的arguments以及隔离了彼此的作用域。
-CommonJS 的一个模块，就是一个脚本文件。require命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象。
+这样我们便可以访问这些传入的 arguments 以及隔离了彼此的作用域。
+CommonJS 的一个模块，就是一个脚本文件。require 命令第一次加载该脚本，就会执行整个脚本，然后在内存生成一个对象。
 
 ```js
 {
@@ -64,11 +64,10 @@ CommonJS 的一个模块，就是一个脚本文件。require命令第一次加�
 }
 ```
 
-以后需要用到这个模块的时候，就会到exports属性上面取值。即使再次执行require命令，也不会再次执行该模块，而是到缓存之中取值。commonJS用同步的方式加载模块，只有在代码执行到require的时候，才回去执行加载。在服务端，模块文件都存在本地磁盘，读取非常快.
+以后需要用到这个模块的时候，就会到 exports 属性上面取值。即使再次执行 require 命令，也不会再次执行该模块，而是到缓存之中取值。commonJS 用同步的方式加载模块，只有在代码执行到 require 的时候，才回去执行加载。在服务端，模块文件都存在本地磁盘，读取非常快.
 
-优点：CommonJS规范完成了JavaScript的模块化，解决了依赖、全局变量污染的问题
-
-缺点：在浏览器端，限于网络原因，更合理的方案是使用异步加载。这就是AMD规范诞生的背景。
+优点：CommonJS 规范完成了 JavaScript的 模块化，解决了依赖、全局变量污染的问题
+缺点：在浏览器端，限于网络原因，更合理的方案是使用异步加载。这就是 AMD 规范诞生的背景。
 
 ## AMD
 
@@ -76,7 +75,7 @@ CommonJS 的一个模块，就是一个脚本文件。require命令第一次加�
 
 ### AMD用法
 
-define()定义模块，用require()加载模块
+define() 定义模块，用 require() 加载模块
 
 - define(id, [depends], callback)
 - require([module], callback)
@@ -99,7 +98,7 @@ require(['./moduleA'], function(moduleA) {
 
 缺点：不能按需加载，而是必须提前加载所有的依赖。
 
-## CMD规范
+## CMD 规范
 
 按需加载，依赖就近，延迟执行
 

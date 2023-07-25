@@ -247,6 +247,7 @@ export const sidebarFontEnd = () => [
       { text: '作用域与垃圾回收', link: '/font-end/js/scope-gc' },
       { text: 'JavaScript 的事件循环', link: '/font-end/js/event-loop' },
       { text: 'JavaScript 应用内存分析', link: '/font-end/js/oom' },
+      { text: 'JavaScript 的执行机制', link: '/font-end/js/execute' },
       { text: '浏览器存储', link: '/font-end/js/storage' },
       { text: '数组操作', link: '/font-end/js/array' },
       { text: '字符操作', link: '/font-end/js/string' },
@@ -259,11 +260,10 @@ export const sidebarFontEnd = () => [
     items: [
       { text: '浏览器原理', link: '/font-end/browser/base' },
       { text: '浏览器页面加载过程', link: '/font-end/browser/process' },
-      { text: 'JS 的执行机制', link: '/font-end/browser/js-execute' },
       { text: '跨域', link: '/font-end/browser/cross-domain' },
       { text: '安全', link: '/font-end/browser/security' },
       { text: 'AJAX', link: '/font-end/browser/ajax' },
-      { text: 'JWT', link: '/font-end/browser/jwt' }
+      { text: 'Auth', link: '/font-end/browser/auth' }
     ]
   },
   {

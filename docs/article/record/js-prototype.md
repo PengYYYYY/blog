@@ -113,7 +113,7 @@ console.log(car2 instanceof Object); //true
 console.log(car2 instanceof Car);    //true
 ```
 
-![img](../images/9P66Ik.png)
+![img](../images/js-prototype-9P66Ik.png)
 
 从打印中可以看到 `car1` 与 `car` 的区别。
 

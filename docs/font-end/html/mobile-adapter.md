@@ -1,14 +1,14 @@
 # 移动端适配
 
-## 视口ViewPort
+## 视口 ViewPort
 
 ### 在移动端中有三种类型
 
-1. layoutviewport: 大于实际屏幕，元素的宽度继承于 `layoutviewport`,用于保证网站的外观特性与桌面浏览器一样。`layoutviewport` 每个浏览器不同。可以通过 `document.documentElement.clientWidth` 去获取
+1. layoutviewport: 大于实际屏幕，元素的宽度继承于 `layoutviewport`, 用于保证网站的外观特性与桌面浏览器一样。`layoutviewport` 每个浏览器不同。可以通过 `document.documentElement.clientWidth` 去获取
 2. visualviewport：当前显示在屏幕上的页面，即浏览器可视区域的宽度。
 3. idealviewport：浏览器定义的可完美适配移动端的理想 viewport，固定不变，可以认为是设备视口宽度。
 
-### 设置viewport
+### 设置 viewport
 
 通过对几种 `viewport` 设置可以对网页的展示进行有效的控制，在移动端我们经常会在 `head` 标签中看到这段代码：
 
@@ -51,7 +51,7 @@
 
 设备像素比(dpr) = 物理像素/设备独立像素。iPhone 6、7、8 的 dpr 为 2,一个设备独立像素便为 4 个物理像素, 因此在 css 上设置的 1px 在其屏幕上占据的是 2 个物理像素,0.5px 对应的才是其所能展示的最小单位。
 
-### 1px的物理像素的解决方案
+### 1px 的物理像素的解决方案
 
 对于 dpr=2 的屏幕，1px压缩一半便可与1px的设备像素比匹配，可以通过将缩放比 initial-scale 设置为 0.5=1/2 而实现。dpr=3的屏幕可以将 initial-scale设置为 0.33=1/3 来实现。
 

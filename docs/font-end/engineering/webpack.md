@@ -1,30 +1,29 @@
 # webpack
 
-## webpack的文件监听以及热更新
+## webpack 的文件监听以及热更新
 
 文件监听原理，轮询判断文件的最后编辑时间是否发生变化
 
-某个文件发生了变化，并不会立即告诉监听者，而是先缓存起来，等aggregateTimeout
+某个文件发生了变化，并不会立即告诉监听者，而是先缓存起来，等 aggregateTimeout
 
 ### 热更新
 
 - webpack-dev-server + HotModuleReplacementPlugin插件: 热跟新不输出文件，直接放在内存中。
 
-- webpack-dev-middleware:将webpack输出等文件传输给服务器：较为灵活。
+- webpack-dev-middleware: 将 webpack 输出等文件传输给服务器：较为灵活。
 
 ### 热更新原理
 
-[从零实现webpack热更新HMR](https://juejin.cn/post/6844904020528594957)
+[从零实现 webpack 热更新HMR](https://juejin.cn/post/6844904020528594957)
 
 ## 文件指纹
 
 通常用于文件的版本管理
 
-- Hash:和整个项目的构建目录有关，只要项目文件有修改，整个项目构建的hash值就会变。
-- chunkHash: 和webpack打包的chunk有关，不同的entry会生成不同的chunkHash值。
-- contentHash: 根据文件内容来定义hash,文件内容不变，则contentHash不变
-
-- css指纹设置：通过miniCssExtractPlugin来做
+- Hash: 和整个项目的构建目录有关，只要项目文件有修改，整个项目构建的 hash 值就会变。
+- ChunkHash: 和 webpack 打包的 chunk 有关，不同的 entry 会生成不同的 chunkHash 值。
+- ContentHash: 根据文件内容来定义 hash,文件内容不变，则 contentHash 不变
+- Css 指纹设置：通过 miniCssExtractPlugin 来做
 
 ## 代码压缩
 
@@ -32,12 +31,12 @@
 
 ### js压缩
 
-js内置了`uglifyjs-webpack-plugin`进行压缩
+js内置了 `uglifyjs-webpack-plugin` 进行压缩
 
 ### css压缩
 
-使用`optimize-css-assets-webpack-plugin`
-同时使用`cssnano`
+使用 `optimize-css-assets-webpack-plugin`
+同时使用 `cssnano`
 
 ```js
 plugins:[
@@ -60,30 +59,30 @@ plugins:[
 
 - 页面框架的初始化脚本
 - 上报相关的打点
-- css内连避免页面的闪动
+- `css` 内连避免页面的闪动
 
 ### 请求层面
 
-减少http请求
+减少 `http` 请求
 
 - 小图片或者字体内嵌
 
 ### 如何内连
 
-raw-loader内连html，js
+raw-loader 内连 html，js
 
 css内连：
 
-- 借助：style-loader,设置选项options
+- 借助：style-loader,设置选项 options
 - 借助：html-inline-css-webpack-plugin
 
 ## 多页面应用打包（MPA）
 
 多页面通用打包方案
 
-动态获取entry和设置html-webpack-plugin数量
+动态获取 `entry` 和设置 `html-webpack-plugin` 数量
 
-利用glob.sync
+利用 `glob.sync`
 
 ```js
 entry: glob.sync(path.join(__dirname,'./src/*/index.js'))
@@ -103,18 +102,18 @@ entry: glob.sync(path.join(__dirname,'./src/*/index.js'))
 
 引入 yargs，对命令行进行定制，分析命令行参数，对各个参数进行转换，组成编译配置项，引用webpack，根据配置项进行编译和构建
 
-webpack-cli对配置文件和命令行参数进行转换最终生成配置选项参数 options最终会根据配置参数实例化 webpack 对象，然后执行构建流程。
+webpack-cli 对配置文件和命令行参数进行转换最终生成配置选项参数 options 最终会根据配置参数实例化 webpack 对象，然后执行构建流程。
 
-webpack的编译都按照下面的钩子调用顺序执行：
+webpack 的编译都按照下面的钩子调用顺序执行：
 
 entry-option(初始化option) -> run(开始编译) -> make(从entry开始递归的 分析依赖，对每个 依赖模块进行build) -> before-resolve(对模块位置进行解析) -> build-module(开始构建某个模块) -> normal-module-loader(将loader加载完成的 module进行编译，生成 AST树) -> program(遍历AST，当遇到 require等一些调用表 达式时，收集依赖) -> seal(所有依赖build完 成，开始优化) -> emit(输出到dist目录)
 
-## compiler和compilation
+## compiler 和 compilation
 
 - Compiler:
 
-Compiler 也是我们所说的 Tapable 实例，他就是webpack的整体环境。通过这种实现机制，我们可以理解为，它混合(mix)了 Tapable类，来使实例也具备注册和调用插件功能。
-插件机制事实上就是通过注册在Complier上，在运行时Compier会根据各种事件钩子，从而触发插件的注册函数。
+Compiler 也是我们所说的 Tapable 实例，他就是 webpack 的整体环境。通过这种实现机制，我们可以理解为，它混合(mix)了 Tapable类，来使实例也具备注册和调用插件功能。
+插件机制事实上就是通过注册在 Complier上，在运行时 Compier 会根据各种事件钩子，从而触发插件的注册函数。
 
 - Compilation:
 
@@ -124,12 +123,12 @@ Compilation 实例继承于 compiler。例如，compiler.compilation 是对所�
 
 两者之间的区别：
 
-compiler 对象代表的是不变的webpack环境，是针对webpack的
-compilation 对象针对的是随时可变的项目文件，只要文件有改动，compilation就会被重新创建。
+compiler 对象代表的是不变的 webpack 环境，是针对 webpack 的
+compilation 对象针对的是随时可变的项目文件，只要文件有改动，compilation 就会被重新创建。
 
 ## Tapable
 
-其核心对象继承自Tapable，Tapable 是一个类似于 Node.js 的 EventEmitter 的库, 主要是控制钩子函数的发布 与订阅,控制着 webpack 的插件系统。Tapable库暴露了很多 Hook(钩子)类，为插件提供挂载的钩子。
+其核心对象继承自 Tapable，Tapable 是一个类似于 Node.js 的 EventEmitter 的库, 主要是控制钩子函数的发布 与订阅,控制着 webpack 的插件系统。Tapable 库暴露了很多 Hook(钩子)类，为插件提供挂载的钩子。
 
 ```js
 const {
@@ -152,7 +151,7 @@ const hook1 = new SyncHook(["arg1", "arg2", "arg3"]);
 hook1.tap('hook1', (arg1, arg2, arg3) => console.log(arg1, arg2, arg3)) //1,2,3
 ```
 
-tabable提供了同步&异步钩子的方法，并且他们都有绑定事件和执行事件对应的方法。
+tabable 提供了同步&异步钩子的方法，并且他们都有绑定事件和执行事件对应的方法。
 
 ## webpackHooks
 

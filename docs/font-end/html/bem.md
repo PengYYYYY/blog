@@ -1,6 +1,6 @@
 # CSS中的BEM命名规范
 
-Bem是块（block）、元素（element）、修饰符（modifier）的简写，由Yandex团队提出的一种前端CSS命名方法论。
+Bem是块（block）、元素（element）、修饰符（modifier）的简写，由 Yandex 团队提出的一种前端CSS命名方法论。
 
 ## 划线
 
@@ -22,10 +22,10 @@ BEM是一个简单又非常有用的命名约定。让你的前端代码更容�
 
 BEM命名约定的模式是：
 
-```js
-.block{}
-.block__element{}
-.block--modifier{}
+```css
+.block {}
+.block__element {}
+.block--modifier {}
 ```
 
 每一个块(block)名应该有一个命名空间（前缀）：
@@ -36,7 +36,7 @@ BEM命名约定的模式是：
 
 使用两个连字符和下划线而不是一个，是为了让你自己的块可以用单个连字符来界定。如：
 
-```js
+```css
 .sub-block__element {}
 .sub-block--modifier {}
 ```
@@ -49,7 +49,7 @@ BEM命名约定的模式是：
 - 并不是每个地方都应该使用 BEM 命名方式。当需要明确关联性的模块关系时，应当使用 BEM 格式。
 - 比如只是一条公共的单独的样式，就没有使用 BEM 格式的意义：
 
-```js
+```css
 .hide {
     display: none !important;
 }

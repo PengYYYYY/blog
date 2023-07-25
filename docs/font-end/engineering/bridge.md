@@ -1,13 +1,13 @@
 # JSBridge
 
-JSBridge应用在混合开发中，他所实现的是H5和Native的双向通信。就是JavaScript(H5)与Native通信的桥梁。一般分为 JS 调用 Native 和 Native 主动调用 JS 两种形式。
+JSBridge 应用在混合开发中，他所实现的是 H5 和 Native 的双向通信。就是 JavaScript(H5) 与 Native 通信的桥梁。一般分为 JS 调用 Native 和 Native 主动调用 JS 两种形式。
 
-## JSBridge与Native间通信原理
+## JSBridge 与 Native 间通信原理
 
-在H5中JavaScript调用Native的方式主要用两种：
+在 H5 中 JavaScript 调用 Native 的方式主要用两种：
 
-- 注入API，注入Native对象或方法到JavaScript的window对象中（可以类比于RPC调用）。
-- 拦截URL Schema，客户端拦截WebView的请求并做相应的操作（可以类比于JSONP）。
+- 注入 API，注入 Native 对象或方法到 JavaScript 的 window对 象中（可以类比于 RPC 调用）。
+- 拦截 URL Schema，客户端拦截WebView的请求并做相应的操作（可以类比于 JSONP）。
 
 ## URL Scheme
 

@@ -242,12 +242,11 @@ export const sidebarFontEnd = () => [
     text: 'Javascript',
     collapsible: true,
     items: [
-      { text: 'JavaScript 核心', link: '/font-end/js/core' },
-      { text: 'TypeScript', link: '/font-end/js/type-script' },
-      { text: '作用域与垃圾回收', link: '/font-end/js/scope-gc' },
       { text: 'JavaScript 的事件循环', link: '/font-end/js/event-loop' },
       { text: 'JavaScript 应用内存分析', link: '/font-end/js/oom' },
       { text: 'JavaScript 的执行机制', link: '/font-end/js/execute' },
+      { text: '作用域与垃圾回收', link: '/font-end/js/scope-gc' },
+      { text: 'TypeScript', link: '/font-end/js/type-script' },
       { text: '浏览器存储', link: '/font-end/js/storage' },
       { text: '数组操作', link: '/font-end/js/array' },
       { text: '字符操作', link: '/font-end/js/string' },
@@ -272,8 +271,8 @@ export const sidebarFontEnd = () => [
     items: [
       { text: '模块化', link: '/font-end/engineering/modular' },
       { text: 'Babel', link: '/font-end/engineering/babel' },
-      { text: 'webpack', link: '/font-end/engineering/webpack' },
-      { text: 'vite', link: '/font-end/engineering/vite' },
+      { text: 'Webpack', link: '/font-end/engineering/webpack' },
+      { text: 'Vite', link: '/font-end/engineering/vite' },
       { text: '包管理', link: '/font-end/engineering/npm' },
       { text: 'JSBridge', link: '/font-end/engineering/bridge' },
       { text: '工程化演进', link: '/font-end/engineering/evolution' },
@@ -285,10 +284,7 @@ export const sidebarFontEnd = () => [
     collapsible: true,
     items: [
       { text: '静态资源优化', link: '/font-end/optimize/base' },
-      {
-        text: '工程中的相关优化',
-        link: '/font-end/optimize/engineering'
-      },
+      { text: '工程中的相关优化', link: '/font-end/optimize/engineering' },
       { text: '性能指标', link: '/font-end/optimize/indicators' }
     ]
   },

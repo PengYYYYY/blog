@@ -4,10 +4,10 @@
 
 ### 渲染流程
 
-- 生成dom-tree,
-- 生成css-tree
-- 合成css-dom-tree，也就是render-tree
-- 计算布局（layout）:根据生成的render-tree,进行回流，以计算每个节点的几何信息（位置，大小，字体样式）。
+- 生成 dom-tree,
+- 生成 css-tree
+- 合成 css-dom-tree，也就是 render-tree
+- 计算布局（layout）:根据生成的 render-tree,进行回流，以计算每个节点的几何信息（位置，大小，字体样式）。
 - 绘制（painting）：根据渲染树和回流得到的几何信息，得到每个节点的绝对像素
 - 展示（display）：将像素发送给图形处理器（GPU）,展示到页面上
 
@@ -19,7 +19,7 @@
 
 #### 客户端渲染
 
-- js渲染：静态化、前后端分离、单页应用
+- js 渲染：静态化、前后端分离、单页应用
 - web app：ang, vue, react
 
 ### lazy-load实现
@@ -59,9 +59,9 @@ function watchScroll() {
 
 实现方式
 
-1. html标签
-2. image对象
-3. 使用preload,prefetch,preconnect
+1. html 标签
+2. image对 象
+3. 使用 preload,prefetch,preconnect
 
 ```js
 <link rel="preload" href="xxx.css">
@@ -79,45 +79,45 @@ function watchScroll() {
 1. 内存泄露
 2. 极高内存峰值
 3. Touch Delay(300ms延迟)
-4. JavaScript的运行性能还有通信限制
+4. JavaScript 的运行性能还有通信限制
 
 ### ios wkWebview
 
 > 优势
 
-1. 苹果在wwdc 2014上推出的新一代webview组件
+1. 苹果在 wwdc 2014 上推出的新一代 webview 组件
 2. 内存开销变低
 3. 在性能，稳定性，占有内存方面有很大的提升
-4. 高达60fps的刷新率
+4. 高达 60fps 的刷新率
 5. 支持右滑返回
-6. 更多的html属性
+6. 更多的 html 属性
 
 ## 监控
 
 ### h5质量即时检测
 
 - 页面错误
-  - js报错
+  - js 报错
   - 接口报错
   - 线上环境检测
   - 页面白屏
 
 - 页面性能
   - 页面加载时间检测
-  - 前端html，css, js压缩检测
-  - js，css个数检测
-  - 服务器gzip检测
+  - 前端 html，css, js 压缩检测
+  - js，css 个数检测
+  - 服务器 gzip 检测
   - 服务器缓存设置检测
 
 - 页面安全
-  - http和https检测
-  - xss检测
+  - http 和 https 检测
+  - xss 检测
 
 ### 上线后h5性能和错误监控
 
 - 页面性能监控
-  - js错误监控
-  - API接口监控
+  - js 错误监控
+  - API 接口监控
   - 日志详情
   - 用户轨迹
 
@@ -135,34 +135,34 @@ function watchScroll() {
 
 ### treeShaking
 
-treeShaking会在静态解析过程中将代码中的冗余代码去除。在`production`环境中默认开启。该功能借鉴自`rollup`
+treeShaking 会在静态解析过程中将代码中的冗余代码去除。在 `production` 环境中默认开启。该功能借鉴自 `rollup`
 
 ### ScopeHoisting
 
-scopeHoisting主要用于处理构建过程中由于模块处理导致出现的大量匿名闭包函数，在`ES6-`中,通常会通过使用匿名闭包函数来构造模块。
+scopeHoisting 主要用于处理构建过程中由于模块处理导致出现的大量匿名闭包函数，在 `ES6-` 中,通常会通过使用匿名闭包函数来构造模块。
 
-`scopeHoisting`的原理是通过分析代码中的模块执行顺序，替换变量名称来达到减少闭包产生的效果。闭包会形成大量的块级作用域，增加内存损耗。
+`scopeHoisting` 的原理是通过分析代码中的模块执行顺序，替换变量名称来达到减少闭包产生的效果。闭包会形成大量的块级作用域，增加内存损耗。
 
 ### split chunk
 
 对于大的应用来讲，将所有代码都放到一个文件中不够显示，需要对代码进行分割和懒加载(用到的时候才加载)。
 
-懒加载js脚本的方式
+懒加载 js 脚本的方式
 
-- commonJS:require.ensure
-- ES6:动态import(目前原生未支持，需要babel转换) `@babel/plugin-syntax-dynamic-import`
+- commonJS: require.ensure
+- ES6:动态 import(目前原生未支持，需要babel转换) `@babel/plugin-syntax-dynamic-import`
 
 ### terser
 
-压缩工具，uglify在遇到es6时会报错。terser可以进行处理。
+压缩工具，uglify 在遇到 es6 时会报错，terser 可以进行处理。
 
 ## eslint
 
-eslint代码检查工具
+eslint 代码检查工具
 
-### eslint的落地
+### eslint 的落地
 
-安装husky，增加npm script,通过lint-staged增量检查修改方式
+安装 husky，增加 npm script, 通过 lint-staged 增量检查修改方式
 
 ```json
 "scripts": {
@@ -175,9 +175,9 @@ eslint代码检查工具
 }
 ```
 
-## webpack打包基础库
+## webpack 打包基础库
 
-webpack打包基础库,满足以下条件
+webpack 打包基础库,满足以下条件
 
 - 需要打包压缩版和非压缩版
 - 支持AMD/CJS/ESM模块引入
@@ -217,7 +217,7 @@ webpack.config.js
 可维护性
 
 - 构建配置合理拆分
-- README文档
+- README 文档
 
 质量
 
@@ -226,7 +226,7 @@ webpack.config.js
 
 ## webpack优化
 
-webpack的优化分两块
+webpack 的优化分两块
 
 - 速度优化
 - 体积优化
@@ -235,7 +235,7 @@ webpack的优化分两块
 
 - 速度分析
 
-分析整个打包总耗时,每个插件和loader的耗时情况
+分析整个打包总耗时,每个插件和 loader 的耗时情况
 
 ```js
 const  speedMeasureWebpackPlugin = require("speed-measure-webpack-plugin")
@@ -263,7 +263,7 @@ module.exports = {
 
 ### 速度优化
 
-- HappyPack解析资源
+- HappyPack 解析资源
 
 每次 webpack 解析一个模块，HappyPack 会将它及它的依赖分配给 worker 线程中
 
@@ -274,8 +274,8 @@ module.exports = {
 - 并行压缩
 
 方法一:使用 parallel-uglify-plugin 插件
-方法二:uglifyjs-webpack-plugin 开启 parallel 参数
-方法三:terser-webpack-plugin 开启 parallel 参数
+方法二: uglifyjs-webpack-plugin 开启 parallel 参数
+方法三: terser-webpack-plugin 开启 parallel 参数
 
 ### 分包:设置 Externals
 
@@ -325,18 +325,18 @@ uncss: HTML 需要通过 jsdom 加载，所有的样式通过PostCSS解析，通
 
 - 动态 Polyfill
 
-Polyfill Service原理:
+Polyfill Service 原理:
 识别 User Agent，下发不同的 Polyfill
 
-### loader和plugin
+### loader 和 plugin
 
 - loader
-loader是文件加载器，能够加载资源文件，并对这些文件进行一些处理，诸如编译、压缩等，最终一起打包到指定的文件中
+loader 是文件加载器，能够加载资源文件，并对这些文件进行一些处理，诸如编译、压缩等，最终一起打包到指定的文件中
 
-  - 处理一个文件可以使用多个loader，loader的执行顺序是和本身的顺序是相反的，即最后一个loader最先执行，第一个loader最后执行。
-  - 第一个执行的loader接收源文件内容作为参数，其他loader接收前一个执行的loader的返回值作为参数。最后执行的loader会返回此模块的JavaScript源码
+  - 处理一个文件可以使用多个 loader，loader 的执行顺序是和本身的顺序是相反的，即最后一个 loader 最先执行，第一个 loader 最后执行。
+  - 第一个执行的 loader 接收源文件内容作为参数，其他loader接收前一个执行的 loader 的返回值作为参数。最后执行的 loader 会返回此模块的 JavaScript 源码
 
-loader接收一个参数，并且return一个内容就ok了。
+loader 接收一个参数，并且 return 一个内容就 ok 了。
 
 - plugin
 

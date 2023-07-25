@@ -1,6 +1,6 @@
-# babel
+# Babel
 
-babel相关的知识点，babel配置等.
+Babel 相关的知识点，Babel 配置等.
 
 ## 常用的配置
 
@@ -10,9 +10,9 @@ Babel 是一个编译器（输入源码 => 输出编译后的代码）;编译过
 
 ```js
 {
- "plugins": [
-  "array-includes"
- ]
+  "plugins": [
+    "array-includes"
+  ]
 }
 ```
 

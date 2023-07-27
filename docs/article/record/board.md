@@ -19,36 +19,102 @@ import FigmaContainer from '/components/FigmaContainer.vue'
 - palette-utils: 应用中所有的工具函数。
 - palette-vector: 几何相关的逻辑，用于钢笔工具等基础点，线逻辑。
 
+:::tip
+To be continued
+::::
+
 ## skia 与 canvaskit
 
-## 渲染层
+简单描述 skia 与 canvaskit 的关系，以及他们可以做的事情
 
-### 基础图形渲染
+### canvas 与 webgl
 
-## 编辑层
+...
 
-### 平移与变换
+### skia 到 canvaskit
 
-### 辅助线
+...
 
-### 四叉树
+## 项目架构设计
 
-## 架构层面
+...
 
 ### 数据结构设计
 
-### 事件通信设计
+...
 
-### 
+#### sketch 数据结构
+
+...
+
+
+#### figma 数据结构
+
+...
+
+### 核心模块间关系
+
+...
+
+## 渲染层
+
+白板渲染流程
+
+### 渲染流程
+
+...
+
+### 基础图形渲染
+
+...
+
+### 图形表现渲染
+
+边框、填充、模糊 等渲染
+
+
+### 服务器
+
+## 编辑层
+
+...
+
+### 平移与变换
+
+...
+
+### 辅助线
+
+...
+
+### 四叉树
+
+...
+
+### 撤销重做
+
+...
+
+## 应用层
+
+### 应用搭建与产品接入
+
+### ToolBar 与 EditorBar
+
+### [AI模版](https://mp.weixin.qq.com/s/HrxQtfc8j-zD9kMRGhTn6w)
 
 ## TODO
 
 ### 协同编辑
 
+...
+
 #### OT(Operational Transformation) 算法
+
+...
 
 #### CRDT(Conflict-Free Replicated Data Type) 算法
 
-#### 辅助线算法重构
+...
 
-#### 文本 path 渲染
+### 基于 path 的文本渲染

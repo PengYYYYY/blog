@@ -100,6 +100,14 @@ export const sidebarBasics = () => [
     ]
   },
   {
+    text: '数学',
+    collapsible: true,
+    items: [
+      { text: '数学应用', link: '/basics/math/math-application' },
+      { text: '线性代数', link: '/basics/math/linear-algebra' }
+    ]
+  },
+  {
     text: '计算机基础',
     collapsible: true,
     items: [

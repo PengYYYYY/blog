@@ -41,7 +41,11 @@ export const sidebarGraphics = () => [
 export const sidebarWork = () => [
   {
     text: '腾讯',
-    items: [{ text: '工作记录', link: '/work/tencent/index.md' }]
+    items: [
+      { text: '2023 年', link: '/work/tencent/2023.md' },
+      { text: '2022 年', link: '/work/tencent/2022.md' },
+      { text: '2021 年', link: '/work/tencent/2021.md' }
+    ]
   },
   {
     text: '同程旅行',

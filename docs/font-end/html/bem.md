@@ -1,6 +1,6 @@
 # CSS中的BEM命名规范
 
-Bem是块（block）、元素（element）、修饰符（modifier）的简写，由 Yandex 团队提出的一种前端CSS命名方法论。
+Bem 是块（block）、元素（element）、修饰符（modifier）的简写，由 Yandex 团队提出的一种前端 CSS 命名方法论。
 
 ## 划线
 
@@ -73,6 +73,10 @@ BEM命名约定的模式是：
     }
 }
 ```
+
+## PBEM
+
+PBEM 和 BEM 的区别在于使用了前缀 prefix，以 TDesign 为例，常见的 class 为 `t-header` 之类。
 
 ## 总结
 

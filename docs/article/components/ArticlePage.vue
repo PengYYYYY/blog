@@ -31,12 +31,12 @@ import ArticleList from './ArticleList.vue'
 
 const data = {
   article: [
-    {
-      bannerUrl: 'article/cd-board.svg',
-      name: '白板项目总结',
-      desc: '本文总结了在开发图形编辑器以及白板时的项目架构设计，遇到的困难点，以及对应的解决方案',
-      linkUrl: '../article/record/board'
-    },
+    // {
+    //   bannerUrl: 'article/cd-board.svg',
+    //   name: '白板项目总结',
+    //   desc: '本文总结了在开发图形编辑器以及白板时的项目架构设计，遇到的困难点，以及对应的解决方案',
+    //   linkUrl: '../article/record/board'
+    // },
     {
       bannerUrl: 'article/ai-template.svg',
       name: '面向 AI 编程：探索可视化分析模型',
@@ -44,12 +44,12 @@ const data = {
       linkUrl: 'https://mp.weixin.qq.com/s/HrxQtfc8j-zD9kMRGhTn6w',
       isNew: true
     },
-    {
-      bannerUrl: 'article/cd-axure.svg',
-      name: 'CoDesign Axure 项目总结',
-      desc: '本文总结了在开发 CoDesign Axure 中的架构设计思路，安全加固、性能优化、Electron 插件开发，覆盖项目的整个开发周期',
-      linkUrl: '../article/record/axure'
-    },
+    // {
+    //   bannerUrl: 'article/cd-axure.svg',
+    //   name: 'CoDesign Axure 项目总结',
+    //   desc: '本文总结了在开发 CoDesign Axure 中的架构设计思路，安全加固、性能优化、Electron 插件开发，覆盖项目的整个开发周期',
+    //   linkUrl: '../article/record/axure'
+    // },
     {
       bannerUrl: 'article/td-custom.svg',
       name: '基于 TDesign 搭建一个业务组件库',

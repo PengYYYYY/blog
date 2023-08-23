@@ -44,7 +44,8 @@ export const sidebarWork = () => [
     items: [
       { text: '2023 年', link: '/work/tencent/2023.md' },
       { text: '2022 年', link: '/work/tencent/2022.md' },
-      { text: '2021 年', link: '/work/tencent/2021.md' }
+      { text: '2021 年', link: '/work/tencent/2021.md' },
+      { text: '广告业务', link: '/work/tencent/business.md' }
     ]
   },
   {

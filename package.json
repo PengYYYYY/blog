@@ -13,7 +13,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "vitepress": "1.0.0-alpha.35",
+    "vitepress": "1.0.0-rc.35",
     "vue": "^3.3.4"
   },
   "devDependencies": {

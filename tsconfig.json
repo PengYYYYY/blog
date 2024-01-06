@@ -18,9 +18,6 @@
         "src/*"
       ]
     },
-    "types": [
-      "vite/client"
-    ],
   },
   "include": [
     "**/*.ts",

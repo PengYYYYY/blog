@@ -31,39 +31,39 @@ import ArticleList from './ArticleList.vue'
 
 const data = {
   article: [
-    // {
-    //   bannerUrl: 'article/cd-board.svg',
-    //   name: '白板项目总结',
-    //   desc: '本文总结了在开发图形编辑器以及白板时的项目架构设计，遇到的困难点，以及对应的解决方案',
-    //   linkUrl: '../article/record/board'
-    // },
     {
-      bannerUrl: 'article/ai-template.svg',
+      bannerUrl: '/article/ai-template.svg',
       name: '面向 AI 编程：探索可视化分析模型',
       desc: '本文总结了在开发 LLM 相关需求时的功能拆解和实现思路，并分享了在利用ChatGPT生成结构化数据时遇到的问题及相应解决方案',
       linkUrl: 'https://mp.weixin.qq.com/s/HrxQtfc8j-zD9kMRGhTn6w',
       isNew: true
     },
     // {
-    //   bannerUrl: 'article/cd-axure.svg',
+    //   bannerUrl: '/article/cd-board.svg',
+    //   name: '白板项目总结',
+    //   desc: '本文总结了在开发图形编辑器以及白板时的项目架构设计，遇到的困难点，以及对应的解决方案',
+    //   linkUrl: '../article/record/board'
+    // },
+    // {
+    //   bannerUrl: '/article/cd-axure.svg',
     //   name: 'CoDesign Axure 项目总结',
     //   desc: '本文总结了在开发 CoDesign Axure 中的架构设计思路，安全加固、性能优化、Electron 插件开发，覆盖项目的整个开发周期',
     //   linkUrl: '../article/record/axure'
     // },
     {
-      bannerUrl: 'article/td-custom.svg',
+      bannerUrl: '/article/td-custom.svg',
       name: '基于 TDesign 搭建一个业务组件库',
       desc: '本文讲述了如何基于 TDesign 搭建一个业务组件库 TDesign Custom。内容贯穿整个组件库搭建的全流程',
       linkUrl: '../article/record/td-custom'
     },
     {
-      bannerUrl: 'article/td-composition-api.svg',
+      bannerUrl: '/article/td-composition-api.svg',
       name: 'TDesign CompositionAPI 重构之路',
       desc: '记录了 TDesign 在 CompositionAPI 组件重构的开始，推进过程与个人的的收获',
       linkUrl: '../article/record/vca-refactor'
     },
     {
-      bannerUrl: 'article/td-component.svg',
+      bannerUrl: '/article/td-component.svg',
       name: 'TDesign 组件开发范式',
       desc: '记录了 TDesign 的组件开发范式，在开源协同的过程中形成较为统一的开发规范',
       linkUrl: '../article/record/dev-paradigm'
@@ -71,19 +71,19 @@ const data = {
   ],
   project: [
     {
-      bannerUrl: 'article/webpack-vite.svg',
+      bannerUrl: '/article/webpack-vite.svg',
       name: 'webpack 迁移 vite 实践',
       desc: '项目中切换vite的记录，对于webpack来说，vite是个实打实的杀手',
       linkUrl: '../article/record/webpack-vite'
     },
     {
-      bannerUrl: 'article/td-vitest.svg',
+      bannerUrl: '/article/td-vitest.svg',
       name: ' TDesign 在 vitest 的实践',
       desc: 'TDesign 从 Jest 套件迁移至 Vitest 的过程，执行效率提升60%',
       linkUrl: '../article/record/vitest-refactor'
     },
     {
-      bannerUrl: 'article/vue-loader.svg',
+      bannerUrl: '/article/vue-loader.svg',
       name: 'Vue Loader 是怎么运行的',
       desc: '本文描述了 vue 文件是如何被解析的，以及 vue-loader 在 webpack 工作流当中是如何运行的',
       linkUrl: '../article/record/vue-loader'
@@ -91,26 +91,26 @@ const data = {
   ],
   personal: [
     {
-      bannerUrl: 'article/vite-press.svg',
+      bannerUrl: '/article/vite-press.svg',
       name: 'Blog 翻新记录',
       desc: '利用工作之余翻新了我的 blog, 使用了 vitepress 和 algolia, 记录一下整个流程',
       linkUrl: '../article/record/blog-refactor'
     },
     {
-      bannerUrl: 'article/deploy.svg',
+      bannerUrl: '/article/deploy.svg',
       name: '开源网站部署工具',
       desc: '用过 vercel, github pages, 腾讯云serverless, 微信云托管等部署工具，简单总结一下',
       linkUrl: '../article/record/deploy'
     },
     {
-      bannerUrl: 'article/nat.svg',
+      bannerUrl: '/article/nat.svg',
       name: '几种内网穿透姿势',
       tip: '内网穿透',
       desc: '利用 frp 与 ngrok 进行内网穿透的实践记录及对比',
       linkUrl: '../article/record/nat'
     },
     {
-      bannerUrl: 'article/js-prototype.svg',
+      bannerUrl: '/article/js-prototype.svg',
       name: 'JavaScript 的原型与继承',
       desc: '读红宝书 JavaScript 中原型相关内容总结，简单讲讲 JavaScript 的原型、原型链和原型继承',
       linkUrl: '../article/record/js-prototype'

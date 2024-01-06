@@ -59,7 +59,7 @@ export default defineConfig({
     }
   },
   markdown: {
-    theme: 'material-palenight',
+    theme: 'material-theme-palenight',
     lineNumbers: true
   }
 })

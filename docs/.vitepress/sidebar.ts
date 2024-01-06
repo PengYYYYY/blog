@@ -42,11 +42,15 @@ export const sidebarWork = () => [
   {
     text: '腾讯',
     items: [
+      { text: '2024 年', link: '/work/tencent/2024.md' },
       { text: '2023 年', link: '/work/tencent/2023.md' },
       { text: '2022 年', link: '/work/tencent/2022.md' },
-      { text: '2021 年', link: '/work/tencent/2021.md' },
-      { text: '广告业务', link: '/work/tencent/business.md' }
+      { text: '2021 年', link: '/work/tencent/2021.md' }
     ]
+  },
+  {
+    text: '广告业务',
+    items: [{ text: '广告业务名词', link: '/work/ams/noun-business.md' }]
   },
   {
     text: '同程旅行',

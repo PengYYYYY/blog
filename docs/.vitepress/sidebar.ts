@@ -5,6 +5,11 @@ export const navList = () => [
     link: '/article/'
   },
   {
+    text: '图形学',
+    activeMatch: '/graphics/',
+    link: '/graphics/'
+  },
+  {
     text: '学习记录',
     activeMatch: `^/(font-end|font-end-framework|algo-data-str|backend|basics)/`,
     items: [
@@ -12,8 +17,7 @@ export const navList = () => [
       { text: '前端框架', link: '/font-end-framework/index' },
       { text: '数据结构与算法', link: '/algo-data-str/index' },
       { text: '后端与运维', link: '/backend/index' },
-      { text: '基础知识', link: '/basics/index' },
-      { text: '图形学', link: '/graphics/index' }
+      { text: '基础知识', link: '/basics/index' }
     ]
   },
   {
@@ -35,6 +39,10 @@ export const sidebarGraphics = () => [
   {
     text: 'webgl',
     items: [{ text: 'webgl基础', link: '/graphics/webgl/index.md' }]
+  },
+  {
+    text: '数学',
+    items: [{ text: '线性代数', link: '/graphics/math/linear-algebra.md' }]
   }
 ]
 
@@ -79,7 +87,7 @@ export const sidebarWork = () => [
 
 export const sidebarBasics = () => [
   {
-    text: '网络',
+    text: '计算机网络',
     collapsible: true,
     items: [
       { text: 'Http', link: '/basics/network/http' },

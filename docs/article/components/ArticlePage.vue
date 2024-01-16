@@ -2,14 +2,16 @@
   <div class="ArticlePage">
     <ArticleHero>
       <template #title>写的一些东西</template>
-      <template #lead
-        >涵盖各个知识面的文章，有专业内入也有工作记录的，还有一些杂事</template
-      >
+      <template #lead>
+        涵盖各个知识面的文章，有专业内容，也有工作记录。
+      </template>
     </ArticleHero>
 
     <ArticleList :articles="data.article">
       <template #title>🔖 文章</template>
-      <template #lead>写的一些文章，理论总结。花了点心思的东西。</template>
+      <template #lead>
+        写的一些文章，项目和知识总结，花了点心思的东西。
+      </template>
     </ArticleList>
 
     <ArticleList :articles="data.project">

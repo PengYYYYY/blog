@@ -54,7 +54,7 @@ export default defineConfig({
 
     algolia: {
       appId: 'PXUFXUCGYX',
-      apiKey: '6d89b3d444ae8c86906e4db79b61cdcb',
+      apiKey: '8d01cc8eefc39c46b7940eaf926091a0',
       indexName: 'blog'
     }
   },

@@ -1,5 +1,12 @@
 <template>
-  <img v-if="!isLoaded" class="figmaLogo" src="/figma.svg" alt="" />
+  <Vue3Lottie
+    v-if="!isLoaded"
+    :animation-data="AstronautJSON"
+    :speed="1.5"
+    :height="400"
+    :width="200"
+  />
+
   <iframe
     v-show="isLoaded"
     class="figmaFile"
@@ -10,6 +17,8 @@
 </template>
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { Vue3Lottie } from 'vue3-lottie'
+import AstronautJSON from './figma-lottie.json'
 
 const isLoaded = ref(false)
 

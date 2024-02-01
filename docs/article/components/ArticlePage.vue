@@ -35,36 +35,46 @@
 <script setup lang="ts">
 import ArticleHero from './ArticleHero.vue'
 import ArticleList from './ArticleList.vue'
+import { Article } from './interface'
 
-const data = {
+const data: {
+  [list: string]: Article[]
+} = {
   top: [
     {
       bannerUrl: '/article/ai-template.svg',
       name: '面向 AI 编程：探索可视化分析模型',
-      desc: '本文总结了在开发 LLM 相关需求时的功能拆解和实现思路，并分享了在利用ChatGPT生成结构化数据时遇到的问题及相应解决方案',
+      desc: '本文总结了在开发 LLM 相关需求时的功能拆解和实现思路，并分享了在利用 ChatGPT 生成结构化数据时遇到的问题及相应解决方案',
       linkUrl: 'https://mp.weixin.qq.com/s/HrxQtfc8j-zD9kMRGhTn6w',
-      isNew: true
+      external: true,
+      tip: '本文被鹅厂技术工程转发，腾讯 KM 头条文章'
     }
   ],
   article: [
-    {
-      bannerUrl: '/article/qualified-engineer.svg',
-      name: '如何做一名合格的工程师',
-      desc: '总结做一名合格的工程师需要具备哪些素质，对职业生涯的思考和展望',
-      linkUrl: '../article/record/qualified-engineer'
-    },
-    {
-      bannerUrl: '/article/cd-board.svg',
-      name: '图形编辑器架构设计',
-      desc: '总结了在开发图形编辑器（白板）时的项目架构设计，遇到的困难点，以及对应的解决方案',
-      linkUrl: '../article/record/board'
-    },
-    {
-      bannerUrl: '/article/cd-axure.svg',
-      name: 'CoDesign Axure 项目总结',
-      desc: '总结了在开发 CoDesign Axure 中的架构设计思路，安全加固、性能优化、Electron 插件开发，覆盖项目的整个开发周期',
-      linkUrl: '../article/record/axure'
-    },
+    // {
+    //   bannerUrl: '/article/fe-monitor.svg',
+    //   name: '前端监控体系',
+    //   desc: '在业务中，搭建前端的监控的总结，以及监控体系上下游的梳理',
+    //   linkUrl: '../article/record/fe-monitor'
+    // },
+    // {
+    //   bannerUrl: '/article/qualified-engineer.svg',
+    //   name: '如何做一名合格的工程师',
+    //   desc: '总结做一名合格的工程师需要具备哪些素质，对职业生涯的思考和展望',
+    //   linkUrl: '../article/record/qualified-engineer'
+    // },
+    // {
+    //   bannerUrl: '/article/cd-board.svg',
+    //   name: '图形编辑器架构设计',
+    //   desc: '总结了在开发图形编辑器（白板）时的项目架构设计，遇到的困难点，以及对应的解决方案',
+    //   linkUrl: '../article/record/board'
+    // },
+    // {
+    //   bannerUrl: '/article/cd-axure.svg',
+    //   name: 'CoDesign Axure 项目总结',
+    //   desc: '总结了在开发 CoDesign Axure 中的架构设计思路，安全加固、性能优化、Electron 插件开发，覆盖项目的整个开发周期',
+    //   linkUrl: '../article/record/axure'
+    // },
     {
       bannerUrl: '/article/td-custom.svg',
       name: '基于 TDesign 搭建一个业务组件库',

@@ -1,32 +1,34 @@
 <template>
-  <article
-    :class="[
-      'ArticleItem',
-      {
-        disabled: !article.linkUrl
-      }
-    ]"
-    @click="handleClickNav"
-  >
-    <figure class="banner">
-      <img
-        v-if="article.bannerUrl"
-        class="banner-img"
-        :src="withBase(article.bannerUrl)"
-      />
-      <div v-else class="banner-img banner-tip">
-        {{ article.tip }}
-      </div>
-    </figure>
-
-    <div class="info">
-      <h1 class="name">{{ article.name }}</h1>
-
-      <section class="desc">
-        {{ article.desc }}
-      </section>
+  <div class="article-wrapper">
+    <div v-if="article.tip" class="banner-tip">
+      {{ article.tip }}
     </div>
-  </article>
+    <article
+      :class="[
+        'ArticleItem',
+        {
+          disabled: !article.linkUrl
+        }
+      ]"
+      @click="handleClickNav"
+    >
+      <figure class="banner">
+        <img
+          v-if="article.bannerUrl"
+          class="banner-img"
+          :src="withBase(article.bannerUrl)"
+        />
+      </figure>
+
+      <div class="info">
+        <h1 class="name">{{ article.name }}</h1>
+
+        <section class="desc">
+          {{ article.desc }}
+        </section>
+      </div>
+    </article>
+  </div>
 </template>
 <script setup lang="ts">
 import { PropType } from 'vue'
@@ -42,7 +44,7 @@ const props = defineProps({
 
 const handleClickNav = () => {
   if (!props.article.linkUrl) return
-  if (props.article.isNew) {
+  if (props.article.external) {
     window.open(props.article.linkUrl)
   } else {
     window.location.href = props.article.linkUrl
@@ -52,10 +54,8 @@ const handleClickNav = () => {
 <style scoped>
 .ArticleItem {
   position: relative;
-  background-color: var(--vp-c-bg-soft);
   transition: background-color 0.5s;
   padding: 32px;
-  margin: 0 16px;
 }
 
 .ArticleItem:hover {
@@ -80,6 +80,12 @@ const handleClickNav = () => {
   }
 }
 
+.article-wrapper {
+  background-color: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
 .banner {
   flex-shrink: 0;
 }
@@ -90,16 +96,13 @@ const handleClickNav = () => {
   margin-right: 32px;
 }
 .banner-tip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100px;
-  letter-spacing: 10px;
-  padding-bottom: 10px;
+  width: 100%;
   color: var(--vp-custom-block-tip-text);
   background-color: var(--vp-custom-block-tip-bg);
   font-weight: bold;
   border: 1px solid var(--vp-custom-block-tip-border);
+  padding: 8px;
+  font-size: 14px;
 }
 
 .name {

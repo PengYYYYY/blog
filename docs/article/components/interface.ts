@@ -3,6 +3,6 @@ export interface Article {
   name: string
   desc?: string
   linkUrl?: string
-  isNew?: boolean
+  external?: boolean
   tip?: string
 }

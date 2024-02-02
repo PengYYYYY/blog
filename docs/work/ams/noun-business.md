@@ -1,4 +1,4 @@
-# 广告相关名词
+# 广告业务名词
 
 ## CPM (Cost Per Mille)
 

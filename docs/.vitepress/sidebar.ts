@@ -21,9 +21,9 @@ export const navList = () => [
     ]
   },
   {
-    text: '工作',
+    text: '成长',
     activeMatch: '/work/',
-    link: '/work/tencent/'
+    link: '/work/me'
   }
 ]
 
@@ -47,6 +47,7 @@ export const sidebarGraphics = () => [
 ]
 
 export const sidebarWork = () => [
+  { text: 'About Me', link: '/work/me.md' },
   {
     text: '腾讯',
     items: [
@@ -58,7 +59,10 @@ export const sidebarWork = () => [
   },
   {
     text: '广告业务',
-    items: [{ text: '广告业务名词', link: '/work/ams/noun-business.md' }]
+    items: [
+      { text: '广告系统总览', link: '/work/ams/ads-system.md' },
+      { text: '广告业务名词', link: '/work/ams/noun-business.md' }
+    ]
   },
   {
     text: '同程旅行',

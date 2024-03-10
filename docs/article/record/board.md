@@ -39,22 +39,23 @@ To be continued
 
 ...
 
-### 数据结构设计
-
-...
-
-#### sketch 数据结构
-
-...
-
-
-#### figma 数据结构
-
-...
-
 ### 核心模块间关系
 
 ...
+
+## 数据结构设计
+
+### Figma 数据结构
+
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=2658-1361&t=lro20nPzgjXTpsNK-4"/>
+
+Figma 的数据结构比较复杂，图形间关系如上图，不做太多赘述，需要注意的有以下几点：
+
+- Figma [REST API](https://www.figma.com/developers/api) 与 [PLUGIN API](https://www.figma.com/plugin-docs/api/api-reference/) 数据结构存在差异
+- 如何拿到 Figma 源数据，有以下几个方式
+  - 可以使用下面这个服务：[figma-api-live](https://pengyyyyy.github.io/figma-api-live/#/figma)，原理是通过 rest api。
+  - 通过 figma 插件，拿到画布上下文，
+  - 直接解析 figma 的 fig 文件，开发者写的[figma-to-json](https://github.com/yagudaev/figma-to-json)，Figma CTO 写的 [fig-file-parser](https://madebyevan.com/figma/fig-file-parser/)
 
 ## 渲染层
 

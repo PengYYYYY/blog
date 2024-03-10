@@ -130,7 +130,6 @@ const data: {
     {
       bannerUrl: '/article/nat.svg',
       name: '几种内网穿透姿势',
-      tip: '内网穿透',
       desc: '利用 frp 与 ngrok 进行内网穿透的实践记录及对比',
       linkUrl: '../article/record/nat'
     },

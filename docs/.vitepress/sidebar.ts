@@ -43,7 +43,7 @@ export const sidebarGraphics = () => [
 ]
 
 export const sidebarWork = () => [
-  { text: 'About Me', link: '/work/me.md' },
+  { text: '关于我', link: '/work/me.md' },
   {
     text: '腾讯',
     items: [

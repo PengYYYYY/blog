@@ -1,3 +1,6 @@
+<script setup>
+import FigmaContainer from '/components/FigmaContainer.vue'
+</script>
 # 工程化
 
 思考一下前端工程化，记录一些自己的见解
@@ -64,7 +67,7 @@ RN是运行时的编译，通过jscore,在运行时将js代码映射到原生代
 
 ## 从前端发布角度上来看工程化
 
-![img](../images/uTPTd4.png)
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=2902-2353&t=etTZ3dzajSasZUJz-4"/>
 
 ### 最早的发布
 

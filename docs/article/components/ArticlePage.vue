@@ -58,23 +58,17 @@ const data: {
     //   linkUrl: '../article/record/fe-monitor'
     // },
     // {
-    //   bannerUrl: '/article/qualified-engineer.svg',
-    //   name: '如何做一名合格的工程师',
-    //   desc: '总结做一名合格的工程师需要具备哪些素质，对职业生涯的思考和展望',
-    //   linkUrl: '../article/record/qualified-engineer'
-    // },
-    // {
-    //   bannerUrl: '/article/cd-board.svg',
-    //   name: '图形编辑器架构设计',
-    //   desc: '总结了在开发图形编辑器（白板）时的项目架构设计，遇到的困难点，以及对应的解决方案',
-    //   linkUrl: '../article/record/board'
-    // },
-    // {
     //   bannerUrl: '/article/cd-axure.svg',
     //   name: 'CoDesign Axure 项目总结',
     //   desc: '总结了在开发 CoDesign Axure 中的架构设计思路，安全加固、性能优化、Electron 插件开发，覆盖项目的整个开发周期',
     //   linkUrl: '../article/record/axure'
     // },
+    {
+      bannerUrl: '/article/cd-board.svg',
+      name: '白板项目总结',
+      desc: '总结了在开发图形编辑器（白板）时的项目架构设计，相关模块介绍，性能优化',
+      linkUrl: '../article/record/board'
+    },
     {
       bannerUrl: '/article/td-custom.svg',
       name: '基于 TDesign 搭建一个业务组件库',

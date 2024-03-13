@@ -175,7 +175,7 @@ const multiply = (num1, num2) => {
 }
 ```
 
-### [进制转换](https://leetcode-cn.com/problems/multiply-strings/)
+## 进制转换方程
 
 🌟
 
@@ -189,4 +189,25 @@ function ten2x(num, n){
   }
   return res.reverse().join('');
 }
+```
+
+## [七进制](https://leetcode.cn/problems/base-7/submissions/511414313/)
+
+```js
+var convertToBase7 = function(num) {
+    if (num === 0) {
+        return "0"
+    }
+    let negative = num < 0;
+    num = Math.abs(num);
+    const digits = []
+    while(num > 0) {
+        digits.push(num % 7);
+        num = Math.floor(num / 7);
+    }
+    if(negative) {
+        digits.push('-')
+    }
+    return digits.reverse().join('')
+};
 ```

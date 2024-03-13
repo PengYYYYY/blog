@@ -182,6 +182,10 @@ export const sidebarAlgorithm = () => [
       { text: '排序', link: '/algo-data-str/algorithm/sort' },
       { text: '双指针', link: '/algo-data-str/algorithm/doublePointer' },
       { text: '动态规划', link: '/algo-data-str/algorithm/dynamicPlan' },
+      {
+        text: '分治',
+        link: '/algo-data-str/algorithm/separateGovernment'
+      },
       { text: '杂七杂八', link: '/algo-data-str/algorithm/grammar' },
       { text: '算法思想', link: '/algo-data-str/algorithm/mind' },
       { text: '复杂度', link: '/algo-data-str/complexity' },

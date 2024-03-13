@@ -99,3 +99,37 @@ async asyncPool(poolLimit, array, iteratorFn) {
   return Promise.all(tasks);
 }
 ```
+
+## Event Bus
+
+```js
+class EventBus {
+  constructor() {
+    this.events = {};
+  }
+
+  on(eventName, callback) {
+    if (!this.events[eventName]) {
+      this.events[eventName] = []
+    }
+    this.events[eventName].push(callback);
+  }
+
+  off(eventName, callback) {
+    if (this.events[eventName]) {
+      const index = this.events[eventName].indexOf(callback);
+      if (index !== -1) {
+        this.events[eventName].splice(index, 1);
+      }
+    }
+  }
+
+  emit(eventName, ...args){
+    if (this.events[eventName]) {
+      this.events[eventName].forEach(callback => {
+        callback(...args);
+      })
+    }
+  }
+}
+```

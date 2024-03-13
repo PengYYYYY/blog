@@ -43,8 +43,8 @@ Skia 是一个维护了近 20 年的方案，也存在很多的历史包袱，�
 
 ##### 布尔运算问题
 
-- 目前市面上存在的布尔运算算法库主要是基于svg的，例如 `paper.js`（Paper.js — Boolean Operations）。
-- 布尔元算实现算法「Vatti clipping algorithm」和一篇92年发表在ACM上的论文，也叫「瓦蒂裁切算法」（https://dl.acm.org/doi/10.1145/129902.129906）。
+- 目前市面上存在的布尔运算算法库主要是基于svg的，例如 [`paper.js`](https://paperjs.org/)（Paper.js — Boolean Operations）。
+- 布尔元算实现算法「Vatti clipping algorithm」和一篇92年发表在ACM上的论文，也叫 [瓦蒂裁切算法](https://dl.acm.org/doi/10.1145/129902.129906)。
 
 #### 背景模糊（毛玻璃）问题
 
@@ -126,7 +126,7 @@ Figma 的数据结构比较复杂，图形间关系如上图，不做太多赘�
 
 在白板落地了 `AI模版` 的功能，从 `idea` 到上线仅用时 `10` 天，具体实现可以参考 [探索可视化分析模型](https://mp.weixin.qq.com/s/HrxQtfc8j-zD9kMRGhTn6w)
 
-## 功能细节的实现
+## 辅助线和历史记录
 
 ### 辅助线
 
@@ -173,6 +173,10 @@ Figma 的数据结构比较复杂，图形间关系如上图，不做太多赘�
 ### 四叉树
 
 TODO
+
+### 局部重绘
+
+### 分层渲染
 
 ## 协同编辑
 

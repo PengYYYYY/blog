@@ -51,18 +51,12 @@ const data: {
     }
   ],
   article: [
-    // {
-    //   bannerUrl: '/article/fe-monitor.svg',
-    //   name: '前端监控体系',
-    //   desc: '在业务中，搭建前端的监控的总结，以及监控体系上下游的梳理',
-    //   linkUrl: '../article/record/fe-monitor'
-    // },
-    // {
-    //   bannerUrl: '/article/cd-axure.svg',
-    //   name: 'CoDesign Axure 项目总结',
-    //   desc: '总结了在开发 CoDesign Axure 中的架构设计思路，安全加固、性能优化、Electron 插件开发，覆盖项目的整个开发周期',
-    //   linkUrl: '../article/record/axure'
-    // },
+    {
+      bannerUrl: '/article/cd-axure.svg',
+      name: 'CoDesign Axure 项目总结',
+      desc: '总结了在开发 CoDesign Axure 中的架构设计思路，安全加固、性能优化、Electron 插件开发，覆盖项目的整个开发周期',
+      linkUrl: '../article/record/axure'
+    },
     {
       bannerUrl: '/article/cd-board.svg',
       name: '白板项目总结',

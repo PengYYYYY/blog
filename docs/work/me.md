@@ -18,7 +18,7 @@ import FigmaContainer from '/components/FigmaContainer.vue'
 
 🍳：聚会型厨师
 
-💡：保持好奇心、做长期主义者
+💡：保持好奇心、做长期主义者、实践派
 
 ## 能力模型
 

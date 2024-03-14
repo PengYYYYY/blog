@@ -86,15 +86,10 @@ py-test
 └── start_with_pages.html
 ```
 
-### 源数据混淆
-
-```txt
-
-```
 
 ## CoDesign 接入 Axure 模块
 
-Axure 这个模块在 CoDesign 中如何接入，如何做这一块的设计。
+Axure 这个模块在 CoDesign 中如何接入，如何做这一块的设计。用流程架构图的形式来展示，代码细节不做演示：
 
 ### web 端通信流程
 
@@ -108,11 +103,11 @@ Axure 这个模块在 CoDesign 中如何接入，如何做这一块的设计。
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=1598-1006&t=oyHf5qQSFlbfnhzh-4"/>
 
-### 如何运行
+<!-- ### 如何运行
 
-在 CoDesign 怎么跑起来
+在 CoDesign 怎么跑起来 -->
 
-## Axure SDK
+<!-- ## Axure SDK
 
 描述 Axure SDK 的作用，已经开发过程中遇到的问题
 
@@ -150,32 +145,24 @@ Axure 内置功能在 web 端很多都需要重新实现
 
 ### Axure 8，9，10 兼容性如何处理
 
-...
+... -->
 
 ## 基于 Electron 的客户端上传插件
 
-<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=5341-3526&t=XYqh81JwF7tzbA93-4"/>
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=6050-2207&t=i3Z2mSJ07cOBb7GA-4"/>
 
+## 插件更新机制
 
-## 上传算法设计
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=6050-2291&t=i3Z2mSJ07cOBb7GA-4"/>
 
-...
+- 整理了客户端插件更新流程，流程如上图，是一个基于版本号的更新机制
+- electron 客户端的自动更新基于 electron-updater，具体的使用流程可以参考 [官方文档](https://www.electron.build/auto-update.html)
+- 更新遇到的坑：Windows 签名后，exe 文件的内容会发生变化，而 yml 描述文件使用的是老版本的文件 hash，在做文件 hash 对比时会抛出异常。在签名后需要更新 yml 文件的 hash，这一部分在流水线已经处理。
 
-#### 老的上传算法
+## 上传模块
 
-...
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=5341-3119&t=i3Z2mSJ07cOBb7GA-4"/>
 
-#### 新的上传算法
-
-...
-
-### 插件自动更新流程
-
-...
-
-### 插件打包与签名
-
-...
 
 ## 内容安全加固
 
@@ -235,4 +222,4 @@ async proxyImage() {
 
 ## 总结
 
-以上是在开发 axure 产品原型功能时遇到的各种问题，以及对应的解决办法。新版的 axure 产品原型上线后，得到了用户良好的反馈，成为了 CoDesign 第二大使用的模块。
+以上是在开发 axure 产品原型功能时遇到的各种问题，以及对应的解决办法，整体来说，这个项目是一个可以称为魔法的项目，因为很多东西都不是标准化的，在遇到问题是快速找到解决办法是最大的收获。新版的 axure 产品原型上线后，得到了用户良好的反馈，成为了 CoDesign 第二大使用的模块。

@@ -1,15 +1,19 @@
+<script setup>
+import FigmaContainer from '/components/FigmaContainer.vue'
+</script>
+
 # JavaScript 中的应用内存分析
 
 ## 内存模型
 
 JavaScript 的内存模型，其主要由堆、栈、队列三方面组成：
 
-![img](../images/zhu7Hi.png)
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=6430-3378&t=mB5ZHa6vGkN4Sukx-4"/>
 
-- 队列指的是消息队列
-- 栈就是函数执行栈
+- 队列指的是消息队列，在 EvenLLoop 里面有消息队列
+- 栈，存储基本类型，函数的调用上下午，函数执行栈
+- 用于存储分配引用对象
 
-![img](../images/QN2SMk.png)
 
 ## [垃圾回收](./scope-gc.html#垃圾回收)
 

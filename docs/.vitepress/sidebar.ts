@@ -199,10 +199,6 @@ export const sidebarAlgorithm = () => [
       {
         text: '限流算法',
         link: '/algo-data-str/algorithm/currentLimiting'
-      },
-      {
-        text: '工具算法',
-        link: '/algo-data-str/algorithm/utils'
       }
     ]
   }
@@ -287,7 +283,7 @@ export const sidebarFontEnd = () => [
       { text: 'JavaScript 应用内存分析', link: '/font-end/js/oom' },
       { text: 'JavaScript 的执行机制', link: '/font-end/js/execute' },
       { text: '作用域与垃圾回收', link: '/font-end/js/scope-gc' },
-      { text: 'TypeScript', link: '/font-end/js/type-script' },
+      { text: 'TypeScript', link: '/font-end/js/typescript' },
       { text: '浏览器存储', link: '/font-end/js/storage' },
       { text: '数组操作', link: '/font-end/js/array' },
       { text: '字符操作', link: '/font-end/js/string' },

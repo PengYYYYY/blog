@@ -4,7 +4,7 @@
 
 ### `for of` 循环
 
-可以使用break随时停止循环
+可以使用 `break` 随时停止循环
 
 ```js
 const colors = ['blue', 'green', 'white'];
@@ -19,7 +19,7 @@ for (const color of colors) {
 
 ### `for` 循环
 
-可以使用break随时停止循环,需要维护 `index` 指针
+可以使用 `break` 随时停止循环,需要维护 `index` 指针
 
 ```js
 const colors = ['blue', 'green', 'white'];
@@ -34,10 +34,10 @@ for (let index = 0; index < colors.length; index++) {
 
 ```
 
-### array.forEach
+### Array.forEach
 
-`array.forEach(callback)`方法通过在每个数组项上调用`callback`函数来遍历数组项。
-在每次遍历中，都使用以下参数调用`callback(item [, index [, array]])`：当前遍历项，当前遍历索引和数组本身。
+`array.forEach(callback)` 方法通过在每个数组项上调用 `callback` 函数来遍历数组项。
+在每次遍历中，都使用以下参数调用 `callback(item [, index [, array]])`：当前遍历项，当前遍历索引和数组本身。
 
 ```js
 const colors = ['blue', 'green', 'white'];
@@ -50,9 +50,9 @@ colors.forEach((e, index) => {
 
 ### Array.map
 
-`array.map(callback)`方法通过方法通过在每个数组项上使用`callback`调用结果来创建一个新数组。在每个遍历中的`callback(item[, index[, array]])`使用参数调用:当前项、索引和数组本身，并应该返回新项。
+`array.map(callback)` 方法通过方法通过在每个数组项上使用 `callback` 调用结果来创建一个新数组。在每个遍历中的 `callback(item[, index[, array]])` 使用参数调用:当前项、索引和数组本身，并应该返回新项。
 
-- `array.map`创建一个新的映射数组，而不改变原始数组。
+- `array.map` 创建一个新的映射数组，而不改变原始数组。
 
 ```js
 const numbers = [0, 2, 4];
@@ -187,7 +187,7 @@ numbers.includes(2);  // => true
 numbers.includes(99); // => false
 ```
 
-#### Array.find
+### Array.find
 
 如下所示，找到数组中的第一个偶数：
 

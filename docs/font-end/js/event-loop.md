@@ -1,3 +1,7 @@
+<script setup>
+import FigmaContainer from '/components/FigmaContainer.vue'
+</script>
+
 # JavaScript 中的事件循环
 
 `JavaScript` 中的事件循环机制
@@ -16,7 +20,7 @@
 
 ### 线程模型
 
-![img](../images/GjVvTD.png)
+![img](../images/EventLoop-线程模型.png)
 
 1. 添加一个消息队列;
 2. IO 线程中产生的新任务添加进消息队列尾部;
@@ -48,7 +52,7 @@ class {
 
 除此之外，消息队列中还包含了很多与页面相关的事件，如 JavaScript 执行、解析 DOM、样式计算、布局计算、CSS 动画等。
 
-以上这些事件都是在主线程中执行的，所以在编写 Web 应用时，你还需要衡量这些事件所 占用的时长，并想办法解决单个任务占用主线程过久的问题。
+以上这些事件都是在主线程中执行的，所以在编写 Web 应用时，你还需要衡量这些事件所占用的时长，并想办法解决单个任务占用主线程过久的问题。
 
 ### 任务优先级问题
 
@@ -62,11 +66,11 @@ class {
 
 因为所有的任务都是在单线程中执行的，所以每次只能执行一个任务，而其他任务就都处于等待状态。
 
-![img](../images/hhZMFq.png)
+![img](../images/EventLoop-单个任务执行时长.png)
 
 ## 浏览器中的 Event Loop
 
-![img](../images/Lgi6hI.png)
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=6430-2562&t=mB5ZHa6vGkN4Sukx-4"/>
 
 Event Loop 执行顺序:
 
@@ -84,7 +88,7 @@ Event Loop 执行顺序:
 
 > node.js 运行流程
 
-![img](../images/Xqlyuu.png)
+![img](../images/EventLoop-Node.jpg)
 
 Node.js 的运行机制如下:
 
@@ -95,7 +99,7 @@ Node.js 的运行机制如下:
 
 > 六个阶段
 
-![img](../images/OIprvT.png)
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=6430-2289&t=mB5ZHa6vGkN4Sukx-4"/>
 
 Node 中的 Event Loop 和浏览器中的是完全不相同的东西。
 Node 的 Event Loop 分为 6 个阶段，它们会按照顺序反复运行。每当进入一个阶段的时候，都会从对应的回调队列中取出函数去执行。当队列为空或者执行的回调函数数量达到系统的阀值，就会进入下一个阶段。

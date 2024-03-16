@@ -25,21 +25,28 @@ export const navList = () => [
 
 export const sidebarGraphics = () => [
   {
-    text: 'svg',
-    items: [{ text: 'svg基础', link: '/graphics/svg/index.md' }]
+    text: '渲染方式',
+    items: [
+      { text: 'svg 基础', link: '/graphics/render/svg.md' },
+      { text: 'canvas 基础', link: '/graphics/render/canvas.md' },
+      { text: 'webgl 基础', link: '/graphics/render/webgl.md' }
+    ]
   },
   {
-    text: 'canvas',
-    items: [{ text: 'canvas基础', link: '/graphics/canvas/index.md' }]
-  },
-  {
-    text: 'webgl',
-    items: [{ text: 'webgl基础', link: '/graphics/webgl/index.md' }]
-  },
-  {
-    text: '数学',
-    items: [{ text: '线性代数', link: '/graphics/math/linear-algebra.md' }]
+    text: '引擎',
+    items: [
+      // { text: 'pixi', link: '/graphics/engine/pixi.md' },
+      { text: 'skia', link: '/graphics/engine/skia.md' },
+      { text: '物理引擎', link: '/graphics/engine/physics.md' }
+    ]
   }
+  // {
+  //   text: '数学',
+  //   items: [
+  //     { text: '向量', link: '/graphics/math/vector.md' },
+  //     { text: '矩阵运算', link: '/graphics/math/matrix.md' }
+  //   ]
+  // }
 ]
 
 export const sidebarWork = () => [

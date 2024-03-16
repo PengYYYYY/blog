@@ -72,9 +72,9 @@ svg 有不同的形状，并且使用不同的属性来定义图形的大小和�
   <rect x="10" y="10" width="30" height="30" fill="#42b883"/>
   <rect x="60" y="10" rx="10" ry="10" width="30" height="30" fill="#42b883"/>
 </svg>
-```
-<svg width="100" height="100">
 
+```html
+<svg width="100" height="100">
   <rect x="10" y="10" width="30" height="30" fill="#42b883"/>
   <rect x="60" y="10" rx="10" ry="10" width="30" height="30" fill="#42b883"/>
 </svg>

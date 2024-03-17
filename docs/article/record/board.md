@@ -126,9 +126,7 @@ Figma 的数据结构比较复杂，图形间关系如上图，不做太多赘�
 
 在白板落地了 `AI模版` 的功能，从 `idea` 到上线仅用时 `10` 天，具体实现可以参考 [探索可视化分析模型](https://mp.weixin.qq.com/s/HrxQtfc8j-zD9kMRGhTn6w)
 
-## 辅助线和历史记录
-
-### 辅助线
+## 辅助线
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=3865-1786&t=oyHf5qQSFlbfnhzh-4"/>
 
@@ -136,11 +134,18 @@ Figma 的数据结构比较复杂，图形间关系如上图，不做太多赘�
 - 第二步：元素对比策略，如 Step 2 所示
 - 第三步：绘制辅助线，绘制模式如 Step 3 所示
 
-### 历史记录模块
+## 连线
+
+<FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=6656-2399&t=vx1kuKVAtuu5eXjb-4"/>
+
+- 构建网格
+- 寻路
+
+## 历史记录
 
 也就是 `undo` 和 `redo`
 
-#### 指令模式
+### 指令模式
 
 场景如下:
 
@@ -154,7 +159,7 @@ Figma 的数据结构比较复杂，图形间关系如上图，不做太多赘�
 2. 新增B
 3. 新增A
 
-#### 快照模式
+### 快照模式
 
 核心就是保留现场，然后恢复现场。场景如下：
 
@@ -167,16 +172,6 @@ Figma 的数据结构比较复杂，图形间关系如上图，不做太多赘�
 撤销时：
 
 1. 从栈顶拿出快照，恢复现场即可
-
-## 性能优化
-
-### 四叉树
-
-TODO
-
-### 局部重绘
-
-### 分层渲染
 
 ## 协同编辑
 
@@ -192,7 +187,6 @@ TODO
 
 冲突无关数据类型 CRDT（Conflict-Free Replicated Data Type）是一种解决分布式系统中数据同步问题的数据结构。CRDT的核心思想是确保所有副本之间的数据一致性，而无需进行复杂的操作转换。CRDT有两种主要类型：状态同步CRDT（State-based CRDT）和操作同步CRDT（Operation-based CRDT）。
 
-
 ### CRDT Like
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=3865-1889&t=oyHf5qQSFlbfnhzh-4"/>
@@ -200,7 +194,3 @@ TODO
 Figma 协同方案，细节协同可以参考这篇文章：https://www.figma.com/blog/how-figmas-multiplayer-technology-works/
 
 核心原则：最后写入者胜利（树形引用特殊处理）
-
-## 基于 path 的文本渲染
-
-TODO

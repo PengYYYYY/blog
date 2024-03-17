@@ -100,7 +100,7 @@ addEventListener('error', e => {
 }, true)
 ```
 
-- js 执行错误
+- `js` 执行错误
 
 ```js
 window.onerror = function(msg, url, row, col, error) {
@@ -108,7 +108,7 @@ window.onerror = function(msg, url, row, col, error) {
 }
 ```
 
-- promise 错误
+- `promise` 错误
 
 ```js
 addEventListener('unhandledrejection', e => {
@@ -121,9 +121,9 @@ addEventListener('unhandledrejection', e => {
 })
 ```
 
-- script error
+- `script error`
 
-script error不是一种具体的错误，而是浏览器对跨域错误出于安全机制考虑对一种处理方式
+`script error` 不是一种具体的错误，而是浏览器对跨域错误出于安全机制考虑对一种处理方式
 
 - try...catch
 
@@ -137,27 +137,27 @@ try {
 }
 ```
 
-- AJAX 请求异常
+- `AJAX` 请求异常
 
 > 方法一
 
-window.addEventListener, 监控 AJAX 失败请求
+`window.addEventListener`, 监控 `AJAX` 失败请求
 
 > 方法二
 
-重写XMLHttpRequest, 监控所有 AJAX 请求
+重写 `XMLHttpRequest`, 监控所有 `AJAX` 请求
 
 - UV/PV
 
-PV/UV 日志采集相对简单，关键点在于采集时机，通常选择在 head 执行或者 onload 事件回调，从前端监控的角度我们通常选择 onload 时机；另外，需要考虑SPA页面的支持。
+`PV/UV` 日志采集相对简单，关键点在于采集时机，通常选择在 `head` 执行或者 `onload` 事件回调，从前端监控的角度我们通常选择 `onload` 时机；另外，需要考虑 `SPA` 页面的支持。
 
 - 其他
 
-除了上述指标日志的采集，通常我们还会上报更多的环境信息，有利于更快速的定位问题。具体字段有 网络环境，设备型号，操作系统版本，客户端版本，前端版本，API接口版本等。
+除了上述指标日志的采集，通常我们还会上报更多的环境信息，有利于更快速的定位问题。具体字段有：网络环境，设备型号，操作系统版本，客户端版本，前端版本，API接口版本等。
 
 ## 日志上报
 
-最简单粗暴的做法可能是直接写一个 AJAX 请求上报，但这种方式成功率不稳定，极易在页面切换时丢失日志；
+最简单粗暴的做法可能是直接写一个 `AJAX` 请求上报，但这种方式成功率不稳定，极易在页面切换时丢失日志；
 并且，对于大流量站点还需要考虑 带宽节流等诉求。完整考虑，一个相对完善的上报逻辑需要包括 数据过滤、采样、合并以及加密压缩等大量细节设计。
 
 处理方法：
@@ -165,17 +165,17 @@ PV/UV 日志采集相对简单，关键点在于采集时机，通常选择在 h
 - 过滤：按需过滤和截断，如果有多个业务方使用，考虑提供回调函数给调用分放。
 - 采样：通过 `Math.radom()` 方法，对命中采样率对数据上报
 - 合并：维护前端请求队列，进行定时上报
-- 上报请求：通过 AJAX，Img 等方式容易丢失日志，结合 sendbeacon 简洁、异步、非阻塞，可以使用 sendbeacon 向下兼容。
+- 上报请求：通过 `AJAX`，`Img` 等方式容易丢失日志，结合 `sendbeacon` 简洁、异步、非阻塞，可以使用 `sendbeacon` 向下兼容。
 - 数据压缩
-- 网络请求协议：加https
+- 网络请求协议：加 `https`
 
-## sendBeacon
+## SendBeacon
 
 ```js
 navigator.sendBeacon(url, data);
 ```
 
-- url: url 参数表明 data 将要被发送到的网络地址。
+- url: `url` 参数表明 `data` 将要被发送到的网络地址。
 - data: 数据
 
 ### 描述
@@ -186,9 +186,9 @@ navigator.sendBeacon(url, data);
 
 有一些技术被用来保证数据的发送。其中一种是通过在卸载事件处理器中创建一个图片元素并设置它的 src 属性的方法来延迟卸载以保证数据的发送。因为绝大多数用户代理会延迟卸载以保证图片的载入，所以数据可以在卸载事件中发送。另一种技术是通过创建一个几秒钟的 no-op 循环来延迟卸载并向服务器发送数据。
 
-在卸载事件处理器中尝试通过一个同步的 XMLHttpRequest 向服务器发送数据。这导致了页面卸载被延迟。
+在卸载事件处理器中尝试通过一个同步的 `XMLHttpRequest` 向服务器发送数据。这导致了页面卸载被延迟。
 
-使用 sendBeacon() 方法会使用户代理在有机会时异步地向服务器发送数据，同时不会延迟页面的卸载或影响下一导航的载入性能。这就解决了提交分析数据时的所有的问题：数据可靠，传输异步并且不会影响下一页面的加载。
+使用 `sendBeacon()` 方法会使用户代理在有机会时异步地向服务器发送数据，同时不会延迟页面的卸载或影响下一导航的载入性能。这就解决了提交分析数据时的所有的问题：数据可靠，传输异步并且不会影响下一页面的加载。
 
 ```js
 window.addEventListener('unload', logData, false);

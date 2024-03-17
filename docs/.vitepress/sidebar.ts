@@ -326,14 +326,14 @@ export const sidebarFontEnd = () => [
     ]
   },
   {
-    text: '表现层',
+    text: '基础知识',
     collapsible: true,
     items: [
-      { text: 'HTML 基础', link: '/font-end/html/html' },
-      { text: 'CSS 基础', link: '/font-end/html/css' },
-      { text: 'Load 与 DOMContentLoaded', link: '/font-end/html/load' },
-      { text: 'CSS 中的 BEM 命名规范', link: '/font-end/html/bem' },
-      { text: '移动端适配', link: '/font-end/html/mobile-adapter' }
+      { text: 'HTML 基础', link: '/font-end/base/html' },
+      { text: 'CSS 基础', link: '/font-end/base/css' },
+      { text: 'Load 与 DOMContentLoaded', link: '/font-end/base/load' },
+      { text: 'CSS 中的 BEM 命名规范', link: '/font-end/base/bem' },
+      { text: '移动端适配', link: '/font-end/base/mobile-adapter' }
     ]
   }
 ]

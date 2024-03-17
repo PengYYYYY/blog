@@ -133,17 +133,17 @@ function watchScroll() {
 
 ## 打包优化手段
 
-### treeShaking
+### TreeShaking
 
-treeShaking 会在静态解析过程中将代码中的冗余代码去除。在 `production` 环境中默认开启。该功能借鉴自 `rollup`
+`TreeShaking` 会在静态解析过程中将代码中的冗余代码去除。在 `production` 环境中默认开启。该功能借鉴自 `rollup`
 
 ### ScopeHoisting
 
-scopeHoisting 主要用于处理构建过程中由于模块处理导致出现的大量匿名闭包函数，在 `ES6-` 中,通常会通过使用匿名闭包函数来构造模块。
+`ScopeHoisting` 主要用于处理构建过程中由于模块处理导致出现的大量匿名闭包函数，在 `ES6-` 中,通常会通过使用匿名闭包函数来构造模块。
 
-`scopeHoisting` 的原理是通过分析代码中的模块执行顺序，替换变量名称来达到减少闭包产生的效果。闭包会形成大量的块级作用域，增加内存损耗。
+`ScopeHoisting` 的原理是通过分析代码中的模块执行顺序，替换变量名称来达到减少闭包产生的效果。闭包会形成大量的块级作用域，增加内存损耗。
 
-### split chunk
+### SplitChunk
 
 对于大的应用来讲，将所有代码都放到一个文件中不够显示，需要对代码进行分割和懒加载(用到的时候才加载)。
 
@@ -152,15 +152,15 @@ scopeHoisting 主要用于处理构建过程中由于模块处理导致出现的
 - commonJS: require.ensure
 - ES6:动态 import(目前原生未支持，需要babel转换) `@babel/plugin-syntax-dynamic-import`
 
-### terser
+### Terser
 
 压缩工具，uglify 在遇到 es6 时会报错，terser 可以进行处理。
 
-## eslint
+## Eslint
 
-eslint 代码检查工具
+Eslint 代码检查工具
 
-### eslint 的落地
+### eslint 的使用
 
 安装 husky，增加 npm script, 通过 lint-staged 增量检查修改方式
 
@@ -180,13 +180,13 @@ eslint 代码检查工具
 webpack 打包基础库,满足以下条件
 
 - 需要打包压缩版和非压缩版
-- 支持AMD/CJS/ESM模块引入
+- 支持 `AMD/CJS/ESM` 模块引入
 
 webpack.config.js
 
 ### 服务端渲染
 
-渲染：HTML+CSS+JS+Data->渲染后的HTML
+渲染：HTML+CSS+JS+Data->渲染后的 `HTML`
 服务端：
 
 - 所有模板等资源都储存在服务端

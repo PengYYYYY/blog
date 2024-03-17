@@ -46,9 +46,9 @@
 
 项目默认沿主轴排列。单个项目占据的主轴空间叫做`main size`，占据的交叉轴空间叫做`cross size`。
 
-### flex-direction属性
+### flex-direction 属性
 
-flex-direction属性决定主轴的方向
+flex-direction 属性决定主轴的方向
 
 ```css
 .box {
@@ -61,7 +61,7 @@ flex-direction属性决定主轴的方向
 - column: 主轴为垂直方向，起点顶端。
 - column-reverse: 主轴为垂直方向，起点为底端。
 
-### flex-wrap属性
+### flex-wrap 属性
 
 项目下，子项目都排在一条线（又称"轴线"）上
 
@@ -79,7 +79,7 @@ flex-direction属性决定主轴的方向
 
 `flex-direction` 和 `flex-flow` 的集合
 
-### justify-content属性
+### justify-content 属性
 
 定义了项目在主轴上的对齐方式
 
@@ -95,7 +95,7 @@ flex-direction属性决定主轴的方向
 - space-between：两端对齐，项目之间的间隔都相等。
 - space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
 
-### align-items属性
+### align-items 属性
 
 定义项目在交叉轴上如何对齐。
 
@@ -113,7 +113,7 @@ flex-direction属性决定主轴的方向
 
 > 项目的属性
 
-### order属性
+### order 属性
 
 数值越小，排列越靠前，默认为0。
 
@@ -123,7 +123,7 @@ flex-direction属性决定主轴的方向
 }
 ```
 
-### flex-grow属性
+### flex-grow 属性
 
 属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。
 
@@ -135,25 +135,25 @@ flex-direction属性决定主轴的方向
 
 如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
 
-### flex-shrink属性
+### flex-shrink 属性
 
 定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小,flex 元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值。设置为0时不缩小。
 
-### flex-basis属性
+### flex-basis 属性
 
 定义了在分配多余空间之前，项目占据的主轴空间（main size）。
 
-### flex属性
+### flex 属性
 
 flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。
 
 该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。
 
-### align-self属性
+### align-self 属性
 
 允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性
 
-## Grid布局
+## Grid 布局
 
 ### display 属性
 
@@ -351,7 +351,7 @@ minmax(100px, 1fr)表示列宽不小于100px，不大于1fr
 </style>
 ```
 
-### absolute + 负margin
+### absolute + 负 margin
 
 需要知道元素高度
 
@@ -473,7 +473,7 @@ minmax(100px, 1fr)表示列宽不小于100px，不大于1fr
 
 ## 圣杯布局/双飞翼布局
 
-## CSS盒子模型
+## CSS 盒子模型
 
 ### 基本概念
 
@@ -491,7 +491,7 @@ box-sizing: content-box;
 box-sizing: border-box;
 ```
 
-### js获取盒模型的宽和高
+### js 获取盒模型的宽和高
 
 ```js
 //只能获取内联样式设置的宽高
@@ -509,7 +509,7 @@ dom.getBoundingClientRect().width/height;
 
 ### BFC(Block Formatting Context)
 
-#### BOX：css布局的基本单位
+#### BOX：css 布局的基本单位
 
 Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页面是由很多个 Box 组成的。元素的类型和 display 属性，决定了这个 Box 的类型。不同类型的 Box， 会参与不同的 Formatting Context（一个决定如何渲染文档的容器），因此Box内的元素会以不同的方式渲染。
 
@@ -543,7 +543,7 @@ Box 是 CSS 布局的对象和基本单位， 直观点来说，就是一个页�
 - 自适应两栏布局
 - 清除浮动
 
-## 平时积累
+## 常用的样式
 
 ### 省略号
 
@@ -610,7 +610,7 @@ scroll:auto 时，内容超出时滑动条会自动呈现。
 -webkit-scrollbar { width: 0; height: 0;  }
 ```
 
-### 让div的宽度和高度相等
+### 让 div 的宽度和高度相等
 
 ```css
 .box {
@@ -655,7 +655,7 @@ scroll:auto 时，内容超出时滑动条会自动呈现。
 }
 ```
 
-## css动画
+## CSS 动画
 
 ### animation
 
@@ -675,3 +675,19 @@ scroll:auto 时，内容超出时滑动条会自动呈现。
 - 还可以用逗号分隔两个不同属性： transition：left 200ms，top 300ms。
 - 也可以用all来代表所有属性： transition：all 1s；
 - 过渡方式： linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier | step-start | step-end | steps
+
+## Tailwind
+
+`TailwindCss` 组成部分：
+
+- 原子类
+- 自定义配置
+- 响应式
+- JIT 配置
+
+### 基于 Tailwind 的组件库
+
+- tailwindui
+- headlessui
+- shadcnUI
+- 

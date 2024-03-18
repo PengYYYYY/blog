@@ -1,4 +1,4 @@
-# vite
+# Vite
 
 ## 基本原理
 
@@ -9,7 +9,7 @@
 
 ## modules 模块
 
-这边牵扯到了模块化，`cmd`, `amd`, `umd`, `commonjs`, `es module` 。
+这边牵扯到了模块化，`cmd`、`amd`、`umd`、`commonjs`、`es module` 。
 
 ```js
 <script type="module">

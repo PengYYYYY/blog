@@ -179,6 +179,10 @@ export const sidebarAlgorithm = () => [
         text: '二分查找',
         link: '/algo-data-str/algorithm/binarySearch'
       },
+      {
+        text: '回溯',
+        link: '/algo-data-str/algorithm/backtrack'
+      },
       { text: '排序', link: '/algo-data-str/algorithm/sort' },
       { text: '双指针', link: '/algo-data-str/algorithm/doublePointer' },
       { text: '动态规划', link: '/algo-data-str/algorithm/dynamicPlan' },

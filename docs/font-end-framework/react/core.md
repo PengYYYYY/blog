@@ -126,34 +126,34 @@ export default {render};
 
 ### reconciliation 协调
 
-在某一时间节点调用 React 的 render() 方法，会创建一棵由 React 元素组成的树。在下一次 state 或 props 更新时，相同的 render() 方法会返回一棵不同的树。React 需要基于这两棵树之间的差别来判断如何有效率的更新 UI 以保证当前 UI 与最新的树保持同步。在某一时间节点调用 React 的 render() 方法，会创建一棵由 React 元素组成的树。在下一次 state 或 props 更新时，相同的 render() 方法会返回一棵不同的树。React 需要基于这两棵树之间的差别来判断如何有效率的更新 UI 以保证当前 UI 与最新的树保持同步。就是更新UI
+在某一时间节点调用 `React` 的 `render()` 方法，会创建一棵由 `React` 元素组成的树。在下一次 `state` 或 `props` 更新时，相同的 `render()` 方法会返回一棵不同的树。`React` 需要基于这两棵树之间的差别来判断如何有效率的更新 `UI` 以保证当前 `UI` 与最新的树保持同步。在某一时间节点调用 `React` 的 `render()` 方法，会创建一棵由 `React` 元素组成的树。在下一次 `state` 或 `props` 更新时，相同的 `render()` 方法会返回一棵不同的树。`React` 需要基于这两棵树之间的差别来判断如何有效率的更新 `UI` 以保证当前 `UI` 与最新的树保持同步。就是更新 `UI`
 
-react 协调策略：
+`react` 协调策略：
 
 - 两个不同类型的元素会产生出不同的树;
-- 可以通过 key 来暗示哪些子元素在不同的渲染下能保持稳定;
+- 可以通过 `key` 来暗示哪些子元素在不同的渲染下能保持稳定;
 
 ### diff 策略
 
-1. 同级比较，Web UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计。
+1. 同级比较，`Web UI` 中 `DOM` 节点跨层级的移动操作特别少，可以忽略不计。
 2. 拥有不同类型的两个组件将会生成不同的树形结构。
-3. 可以通过 key 来暗示哪些子元素在不同的渲染下能保持稳定。
+3. 可以通过 `key` 来暗示哪些子元素在不同的渲染下能保持稳定。
 
 ### diff过程
 
-- 删除: newVNode 不存在时
-- 替换: vNode 和 newVNode 类型不同或 key 不同时
-- 更新:有相同类型和 key 但 vNode 和 newVNode 不同时
+- 删除: `newVNode` 不存在时
+- 替换: `vNode` 和 `newVNode` 类型不同或 `key` 不同时
+- 更新:有相同类型和 `key` 但 `vNode` 和 `newVNode` 不同时
 
 ## Fiber
 
-fiber 在组件渲染时使用，fiber 是指组件上将要完成或者已经完成的任务，每个组件可以一个或者多个. `fiber` 核心代码 `window.requestIdleCallback`。
+`fiber` 在组件渲染时使用，`fiber` 是指组件上将要完成或者已经完成的任务，每个组件可以一个或者多个. `fiber` 核心代码 `window.requestIdleCallback`。
 
 ### window.requestIdleCallback()
 
-window.requestIdleCallback() 方法将在浏览器的空闲时段内调用的函数排队。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。函数一般会按先 进先调用的顺序执行，然而，如果回调函数指定了执行超时时间 timeout ，则有可能为了在超时前执行 函数而打乱执行顺序。
+`window.requestIdleCallback()` 方法将在浏览器的空闲时段内调用的函数排队。这使开发者能够在主事件循环上执行后台和低优先级工作，而不会影响延迟关键事件，如动画和输入响应。函数一般会按先 进先调用的顺序执行，然而，如果回调函数指定了执行超时时间 `timeout` ，则有可能为了在超时前执行 函数而打乱执行顺序。
 
-在空闲回调函数中调用 requestIdleCallback() ，以便在下一次通过事件循环之前调度另一个回调。
+在空闲回调函数中调用 `requestIdleCallback()` ，以便在下一次通过事件循环之前调度另一个回调。
 
 ### Fiber 架构
 

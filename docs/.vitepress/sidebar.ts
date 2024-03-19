@@ -40,13 +40,6 @@ export const sidebarGraphics = () => [
       { text: '物理引擎', link: '/graphics/engine/physics.md' }
     ]
   }
-  // {
-  //   text: '数学',
-  //   items: [
-  //     { text: '向量', link: '/graphics/math/vector.md' },
-  //     { text: '矩阵运算', link: '/graphics/math/matrix.md' }
-  //   ]
-  // }
 ]
 
 export const sidebarWork = () => [
@@ -100,7 +93,7 @@ export const sidebarBasics = () => [
       { text: 'Http', link: '/basics/network/http' },
       { text: 'Http状态码', link: '/basics/network/http-code' },
       { text: 'Https', link: '/basics/network/https' },
-      { text: 'Http-next', link: '/basics/network/http-next' },
+      { text: 'HttpNext', link: '/basics/network/http-next' },
       { text: '网络缓存', link: '/basics/network/cache' },
       { text: '网络连接过程', link: '/basics/network/connectionProcess' },
       { text: '常见的网络问题', link: '/basics/network/network-question' }
@@ -225,7 +218,8 @@ export const sidebarFeFramework = () => [
       { text: '核心原理与概念', link: '/font-end-framework/react/core' },
       { text: 'redux', link: '/font-end-framework/react/redux' },
       { text: 'react-router', link: '/font-end-framework/react/router' },
-      { text: '常见问题', link: '/font-end-framework/react/question' }
+      { text: '常见问题', link: '/font-end-framework/react/question' },
+      { text: '深度好文', link: '/font-end-framework/react/article' }
     ]
   },
   {

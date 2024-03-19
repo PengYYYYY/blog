@@ -14,26 +14,26 @@ HTTP 协议的主要特点可概括如下:
 
 HTTP URL (URL是一种特殊类型的URI，包含了用于查找某个资源的足够的信息)的格式如下:
 <http://host:port/abs_path>
-http表示要通过HTTP协议来定位网络资源;
-host表示合法的Internet主机域名或者IP地址;
-port指定一个端口号，为空则使用缺省端口80;
-abs_path指定请求资源的URI;如果URL中没有给出abs_path，那么当它作为请求URI时，必须以“/”的 形式给出，通常这个工作浏览器自动帮我们完成。
-eg: 1、输入:www.kaikeba.com浏览器自动转换成:<http://www.guet.edu.cn/> 2、<http://192.168.0.116:8080/index>
+http 表示要通过 HTTP 协议来定位网络资源;
+host 表示合法的 Internet 主机域名或者IP地址;
+port 指定一个端口号，为空则使用缺省端口80;
+abs_path 指定请求资源的 URI;如果 URL 中没有给出 abs_path，那么当它作为请求URI时，必须以“/”的 形式给出，通常这个工作浏览器自动帮我们完成。
+eg: 1、输入:www.kaikeba.com 浏览器自动转换成:<http://www.guet.edu.cn/> 2、<http://192.168.0.116:8080/index>
 
-## HTTP协议详解之请求
+## HTTP 协议详解之请求
 
-http请求由三部分组成，分别是:请求行、消息报头、请求正文
+http 请求由三部分组成，分别是：请求行、消息报头、请求正文
 
 1、请求行以一个方法符号开头，以空格分开，后面跟着请求的URI和协议的版本，格式如下:
 `Method Request-URI HTTP-Version CRLF`
-其中 Method表示请求方法;Request-URI是一个统一资源标识符;HTTP-Version表示请求的HTTP协
-议版本;CRLF表示回车和换行(除了作为结尾的CRLF外，不允许出现单独的CR或LF字符)。
+其中 `Method` 表示请求方法; `Request-URI` 是一个统一资源标识符; `HTTP-Version` 表示请求的 `HTTP` 协
+议版本; `CRLF` 表示回车和换行(除了作为结尾的 `CRLF` 外，不允许出现单独的 `CR` 或 `LF` 字符)。
 
-请求方法(所有方法全为大写)有多种，各个方法的解释如下: GET 请求获取Request-URI所标识的资源
-POST 在Request-URI所标识的资源后附加新的数据
-HEAD 请求获取由Request-URI所标识的资源的响应消息报头 PUT 请求服务器存储一个资源，并用Request-URI作为其标识 DELETE 请求服务器删除Request-URI所标识的资源
-TRACE 请求服务器回送收到的请求信息，主要用于测试或诊断 CONNECT 保留将来使用
-OPTIONS 请求查询服务器的性能，或者查询与资源相关的选项和需求
+请求方法(所有方法全为大写)有多种，各个方法的解释如下: `GET` 请求获取 `Request-URI` 所标识的资源
+`POST` 在 `Request-URI` 所标识的资源后附加新的数据
+`HEAD` 请求获取由 `Request-URI` 所标识的资源的响应消息报头 `PUT` 请求服务器存储一个资源，并用 `Request-URI` 作为其标识 `DELETE` 请求服务器删除 `Request-URI` 所标识的资源
+`TRACE` 请求服务器回送收到的请求信息，主要用于测试或诊断 `CONNECT` 保留将来使用
+`OPTIONS` 请求查询服务器的性能，或者查询与资源相关的选项和需求
 
 eg:
 GET方法:在浏览器的地址栏中输入网址的方式访问网页时，浏览器采用GET方法向服务器获取资源，
@@ -51,11 +51,11 @@ Cache-Control:no-cache (CRLF)
 (CRLF) //该CRLF表示消息报头已经结束，在此之前为消息报头 user=jeffrey&pwd=1234 //此行以下为提交的数据
 ```
 
-HEAD方法与GET方法几乎是一样的，对于HEAD请求的回应部分来说，它的HTTP头部中包含的信息与 通过GET请求所得到的信息是相同的。利用这个方法，不必传输整个资源内容，就可以得到Request- URI所标识的资源的信息。该方法常用于测试超链接的有效性，是否可以访问，以及最近是否更新。
+`HEAD` 方法与 `GET` 方法几乎是一样的，对于HEAD请求的回应部分来说，它的 `HTTP` 头部中包含的信息与 通过 `GET` 请求所得到的信息是相同的。利用这个方法，不必传输整个资源内容，就可以得到 `Request-URI` 所标识的资源的信息。该方法常用于测试超链接的有效性，是否可以访问，以及最近是否更新。
 
-## HTTP协议详解之响应
+## HTTP 协议详解之响应
 
-在接收和解释请求消息后，服务器返回一个HTTP响应消息。 HTTP响应也是由三个部分组成，分别是:状态行、消息报头、响应正文
+在接收和解释请求消息后，服务器返回一个 `HTTP` 响应消息。 `HTTP` 响应也是由三个部分组成，分别是：状态行、消息报头、响应正文
 
 1. 状态行格式如下:
 HTTP-Version Status-Code Reason-Phrase CRLF 其中，HTTP-Version表示服务器HTTP协议的版本;Status-Code表示服务器发回的响应状态代码;
@@ -69,7 +69,7 @@ Reason-Phrase表示状态代码的文本描述。 状态代码有三位数字组
 2. 响应报头后述
 3. 响应正文就是服务器返回的资源的内容
 
-## HTTP协议详解之消息报头
+## HTTP 协议详解之消息报头
 
 HTTP消息由客户端到服务器的请求和服务器到客户端的响应组成。请求消息和响应消息都是由开始行 (对于请求消息，开始行就是请求行，对于响应消息，开始行就是状态行)，消息报头(可选)，空行 (只有CRLF的行)，消息正文(可选)组成。
 

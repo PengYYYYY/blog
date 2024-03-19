@@ -1,9 +1,9 @@
-# Https
+# HTTPS
 
 SSL(Secure Socket Layer) 安全套接层
 TLS(Transport Layer Security) 安全层传输协议
 
-## 为什么有https
+## 为什么有 HTTPS
 
 `http` 的不足
 

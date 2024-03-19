@@ -6,7 +6,7 @@ Q: 为什么会出现跨域问题？
 
 A: 同源策略限制了从同一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的重要安全机制。同源指：协议、域名、端口号必须一致。
 
-同源策略控制了不同源之间的交互，例如在使用 XMLHttpRequest 或标签时则会受到同源策略的约束。这些交互通常分为三类：
+同源策略控制了不同源之间的交互，例如在使用 `XMLHttpRequest` 或标签时则会受到同源策略的约束。这些交互通常分为三类：
 
 - 通常浏览器允许进行跨域写操作（Cross-origin writes），如链接（links），重定向以及表单提交。特定少数的HTTP请求需要添加 preflight。
 - 通常浏览器允许跨域资源嵌入（Cross-origin embedding），如 img、script 标签;
@@ -21,7 +21,7 @@ A: 同源策略限制了从同一个源加载的文档或脚本如何与来自�
 - `@font-face` 引入的字体。一些浏览器允许跨域字体（ cross-origin fonts），一些需要同源字体（same-origin fonts）。
 - `<frame>和<iframe>` 载入的任何资源。站点可以使用 X-Frame-Options 消息头来阻止这种形式的跨域交互。
 
-## cors跨域
+## cors 跨域
 
 跨域资源共享
 
@@ -34,17 +34,17 @@ A: 同源策略限制了从同一个源加载的文档或脚本如何与来自�
 
 一般浏览器都是第二种方式限制跨域请求，那就是说请求已到达服务器，并有可能对数据库里的数据进行了操作，但是返回的结果被浏览器拦截了，那么我们就获取不到返回结果，这是一次失败的请求，但是可能对数据库里的数据产生了影响。
 
-对这种可能对服务器数据产生副作用的 HTTP 请求方法，浏览器必须先使用 OPTIONS 方法发起一个预检请求，从而获知服务器是否允许该跨域请求：如果允许，就发送带数据的真实请求；如果不允许，则阻止发送带数据的真实请求。
+对这种可能对服务器数据产生副作用的 `HTTP` 请求方法，浏览器必须先使用 `OPTIONS` 方法发起一个预检请求，从而获知服务器是否允许该跨域请求：如果允许，就发送带数据的真实请求；如果不允许，则阻止发送带数据的真实请求。
 
 #### 简单请求
 
-使用下列方法之一且没有人为设置对 CORS 安全的首部字段集合之外的其他首部字段：
+使用下列方法之一且没有人为设置对 `CORS` 安全的首部字段集合之外的其他首部字段：
 
 - GET
 - HEAD
 - POST
 
-- 仅当POST方法的Content-Type值等于下列之一才算作简单请求
+- 仅当 `POST` 方法的 `Content-Type` 值等于下列之一才算作简单请求
   - text/plain
   - multipart/form-data
   - application/x-www-form-urlencoded
@@ -53,7 +53,7 @@ A: 同源策略限制了从同一个源加载的文档或脚本如何与来自�
 
 #### 非简单请求
 
-使用了下面任一 HTTP 方法：
+使用了下面任一 `HTTP` 方法：
 
 - PUT
 - DELETE
@@ -62,7 +62,7 @@ A: 同源策略限制了从同一个源加载的文档或脚本如何与来自�
 - TRACE
 - PATCH
 
-人为设置了对 CORS 安全的首部字段集合之外的其他首部字段
+人为设置了对 `CORS` 安全的首部字段集合之外的其他首部字段
 
 - Accept
 - Accept-Language
@@ -74,7 +74,7 @@ A: 同源策略限制了从同一个源加载的文档或脚本如何与来自�
 - Viewport-Width
 - Width
 
-Content-Type 的值不属于下列之一
+`Content-Type` 的值不属于下列之一
 
 - application/x-www-form-urlencoded
 - multipart/form-data
@@ -84,19 +84,19 @@ Content-Type 的值不属于下列之一
 
 ![img](../images/aQnMed.png)
 
-1.第一条 OPTIONS 为预检请求，中同时携带了下面两个首部字段：
+1.第一条 `OPTIONS` 为预检请求，中同时携带了下面两个首部字段：
 
 ```js
 Access-Control-Request-Method: POST
 Access-Control-Request-Headers: X-PINGOTHER
 ```
 
-- 预检请求的 Request 中的 Access-Control-Request-Method: POST，是告诉服务器，之后的实际请求将使用POST方式。
+- 预检请求的 `Request` 中的 `Access-Control-Request-Method: POST`，是告诉服务器，之后的实际请求将使用 `POST` 方式。
 - Access-Control-Request-Headers 是告诉服务器，实际请求将携带两个自定义请求首部字段：X-PINGOTHER 与 Content-Type。服务器据此决定，该实际请求是否被允许
 
 ### 附带身份凭证的请求
 
-一般而言，对于跨域 XMLHttpRequest 或 Fetch 请求，浏览器不会发送身份凭证信息。
+一般而言，对于跨域 `XMLHttpRequest` 或 `Fetch` 请求，浏览器不会发送身份凭证信息。
 
 ```js
 var xhr = new XMLHttpRequest();
@@ -108,19 +108,19 @@ xhr.onreadystatechange = () => {};
 xhr.send();
 ```
 
-将 XMLHttpRequest 的 withCredentials 标志设置为 true，从而向服务器发送 Cookies。因为这是一个简单 GET 请求，所以浏览器不会对其发起“预检请求”。但是，如果服务器端的响应中未携带 Access-Control-Allow-Credentials: true ，浏览器将不会把响应内容返回给请求的发送者。
+将 `XMLHttpRequest` 的 `withCredentials` 标志设置为 `true`，从而向服务器发送 `Cookies`。因为这是一个简单 `GET` 请求，所以浏览器不会对其发起“预检请求”。但是，如果服务器端的响应中未携带 `Access-Control-Allow-Credentials: true` ，浏览器将不会把响应内容返回给请求的发送者。
 
 #### 附带身份凭证的请求与通配符
 
-对于附带身份凭证的请求，服务器不得设置 Access-Control-Allow-Origin 的值为“*”。
+对于附带身份凭证的请求，服务器不得设置 `Access-Control-Allow-Origin` 的值为“*”。
 
-因为请求的首部中携带了 Cookie 信息。如果 Access-Control-Allow-Origin 的值为“*”，请求将会失败。而将 Access-Control-Allow-Origin 的值设置为 <http://foo.example>，则请求将成功执行。
+因为请求的首部中携带了 `Cookie` 信息。如果 `Access-Control-Allow-Origin` 的值为“*”，请求将会失败。而将 `Access-Control-Allow-Origin` 的值设置为 <http://foo.example>，则请求将成功执行。
 
 ### HTTP 响应首部字段
 
 #### Access-Control-Allow-Origin
 
-origin 参数的值指定了允许访问该资源的外域 URI.对于不需要携带身份凭证的请求，服务器可以指定该字段的值为通配符，表示允许来自所有域的请求。
+`origin` 参数的值指定了允许访问该资源的外域 `URI`.对于不需要携带身份凭证的请求，服务器可以指定该字段的值为通配符，表示允许来自所有域的请求。
 
 ```js
 Access-Control-Allow-Origin: <origin> | *
@@ -128,7 +128,7 @@ Access-Control-Allow-Origin: <origin> | *
 
 #### Access-Control-Expose-Headers
 
-在跨域访问时，XMLHttpRequest 对象的 getResponseHeader() 方法只能拿到一些最基本的响应头，Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma，如果要访问其他头，则需要服务器设置本响应头。
+在跨域访问时，`XMLHttpRequest` 对象的 `getResponseHeader()` 方法只能拿到一些最基本的响应头，Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma，如果要访问其他头，则需要服务器设置本响应头。
 Access-Control-Expose-Headers 头让服务器把允许浏览器访问的头放入白名单，例如：
 
 ```js
@@ -167,10 +167,10 @@ Access-Control-Max-Age: <delta-seconds>
 
 用于预检请求。其作用是，将实际请求所携带的首部字段告诉服务器。
 
-## Node中间件代理
+## Node 中间件代理
 
 从服务器向服务器请求，无需遵循同源策略。
-node中间件，需要做以下几个步骤：
+node 中间件，需要做以下几个步骤：
 
 - 接受客户端请求 。
 - 将请求转发给服务器。
@@ -195,11 +195,11 @@ app.use(
 )
 ```
 
-上面方式适用于以 node 作为 web 服务器的场景，比如 SSR 应用，这样会非常方便的去做各种服务的转发。
+上面方式适用于以 `node` 作为 `web` 服务器的场景，比如 `SSR` 应用，这样会非常方便的去做各种服务的转发。
 
 ## Nginx反向代理
 
-使用 Nginx 服务器的反向代理功能来实现跨域请求，非常简单且，只需要修改 Nginx 的配置即可解决跨域问题，支持所有浏览器，支持 session，不需要修改任何代码，并且不会影响服务器性能。
+使用 `Nginx` 服务器的反向代理功能来实现跨域请求，非常简单且，只需要修改 `Nginx` 的配置即可解决跨域问题，支持所有浏览器，支持 `session`，不需要修改任何代码，并且不会影响服务器性能。
 
 ```shell
 // proxy服务器
@@ -219,7 +219,7 @@ server {
 
 ## JSONP
 
-利用 script 标签不受跨域限制而形成的一种方案。
+利用 `script` 标签不受跨域限制而形成的一种方案。
 
 ```js
 function jsonpRequest({url, params}){

@@ -393,3 +393,22 @@ var increasingBST = function(root) {
   return dummyNode.right;
 };
 ```
+
+## [求根节点到叶节点数字之和](https://leetcode.cn/problems/3Etpl5/description/)
+
+```js
+var sumNumbers = function(root) {
+  const dfs = (root, preSum) => {
+    if(root === null) {
+      return 0;
+    }
+    const sum = preSum * 10 + root.val;
+    if (!root.left && !root.right) {
+      return sum;
+    }
+    return dfs(root.left) + dfs(root.right);
+  }
+
+  return dfs(root, 0);
+}
+```

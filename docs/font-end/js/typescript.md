@@ -206,3 +206,44 @@ const staff: IStaff = {
  companyId: 'EFT'
 };
 ```
+
+## 工具类型的实现
+
+```ts
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+};
+
+type Required<T> = {
+  [P in keyof T]-?: T[P];
+};
+
+type Readonly<T> = {
+  readonly [P in keyof T]: T[P];
+};
+
+type Pick<T, K extends keyof T> = {
+  [P in K]: T[P];
+};
+
+type Record<K extends keyof any, T> = {
+  [P in K]: T;
+};
+
+type Exclude<T, U> = T extends U ? never : T;
+
+type Extract<T, U> = T extends U ? T : never;
+
+type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+
+type NonNullable<T> = T & {};
+
+type Parameters<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never;
+```
+
+## any, unknow, never，void
+
+- any：用于描述任意的类型
+- unknow：表示未知类型的值的类型
+- never：表示一个永远不会出现的值的类型
+- void：表示没有返回值的函数的返回类型

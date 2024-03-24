@@ -22,7 +22,7 @@ function climbStairs (n) {
 }
 ```
 
-## 打家劫舍
+## [打家劫舍](https://leetcode.cn/problems/house-robber/description/)
 
 状态转换方程 `dp[n] = Max(dp[n-1], dp[n-2] + nums[n])`
 

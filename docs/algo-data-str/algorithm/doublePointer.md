@@ -2,18 +2,36 @@
 
 ## [删除有序数组中的重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)
 
-快慢指针
-
 ```js
 const removeRepeat = function(arr) {
-  let j = 0
-  for(let i = 0; i < arr.length; i++) {
-    if(arr[j] !== arr[i]) {
-      arr[++j] = arr[i]
-    }
+  let first = 0;
+  let slow = 0;
+  while(first < nums.length) {
+      if(nums[first] !== nums[first - 1]) {
+          nums[slow] = nums[first]
+          slow++
+      }
+      first++
   }
-  return arr.slice(0, j+1)
+  return slow;
 }
+```
+
+## [删除有序数组中的重复项 II](https://leetcode.cn/problems/remove-duplicates-from-sorted-array-ii/description/)
+
+```js
+var removeDuplicates = function(nums) {
+    let slow = 2;
+    let fast = 2;
+    while(fast < nums.length) {
+        if(nums[slow - 2] != nums[fast]){
+            nums[slow] = nums[fast];
+            slow++
+        }
+        fast++
+    }
+    return slow
+};
 ```
 
 ## [移动零](https://leetcode-cn.com/problems/move-zeroes/)
@@ -51,63 +69,76 @@ const maxArea = function(arr) {
 }
 ```
 
-## [字符串相加](https://leetcode-cn.com/problems/add-strings/)
+## [三数之和](https://leetcode.cn/problems/3sum/description/)
 
 ```js
-var addStrings = function(num1, num2) {
-  const ans = []
-  let i = num1.length -1, j = num2.length - 1, add = 0
-  while(i >= 0 || j >= 0 || add != 0) {
-    const x = i >= 0 ? (num1.charAt(j) - '0') : 0
-    const y = j >= 0 ? (num2.charAt(j) - '0') : 0;
-    const result = x + y + add;
-    ans.push(result % 10);
-    add = Math.floor(result / 10)
-    i--
-    j--
-  }
-  return ans.reverse().join('')
-}
-```
+var threeSum = function(nums) {
+  const len = nums.length;
+  let res = [];
+  if(len < 3) return res
+  nums.sort((a, b) => a - b);
 
-## [字符串相乘](https://leetcode-cn.com/problems/multiply-strings/)
+  for(let i = 0; i < nums.length; i++) {
+    if(nums[i] > 0) break;
+    if(i > 0 && nums[i] === nums[i - 1]) continue;
+    let left = i + 1;
+    let right = len - 1;
+    while(left < right) {
+      const sum = nums[left] + nums[right] + nums[i];
+      if(sum === 0) {
+        res.push([nums[i], nums[left], nums[right]])
 
-```js
-var multiply = function(num1, num2) {
-  if (num1 === '0' || num2 === '0') {
-    return '0'
+        while(left < right && nums[left] === nums[left + 1]) {
+          left++
+        }
+        while(left < right && nums[right] === nums[right - 1]) {
+          right--
+        }
+        left++
+        right--
+      } else if(sum < 0) {
+        left++
+      } else {
+        right--
+      }
+    }
   }
-  var l1 = num1.length, l2 = num2.length, p = new Array(l1 + l2).fill(0)
-  for (var i = l1; i--;) {
-    for (var j = l2; j--;) {
-      var tmp = num1[i] * num2[j] + p[i + j + 1]
-      p[i + j + 1] = tmp % 10
-      p[i + j] += 0 | tmp / 10
-    } 
-  }
-  while(p[0] === 0) {
-    p.shift()
-  }
-  return p.join('')
+  return res
 };
 ```
 
+## [验证回文串](https://leetcode.cn/problems/valid-palindrome/description/)
+
 ```js
-const multiply = function(num1, num2) {
-  if (num1 == '0' || num2 == '0') {
-    return '0'
-  }
-  var l1 = num1.length, l2 = num2.length, p = new Array(l1 + l2).fill(0)
-  for(var i = l1; i--;) {
-    for(var j = l2; j--;) {
-      var tmp = num1[i] * num2[j] + p[i + j + 1]
-      p[i + j + 1] = tmp % 10
-      p[i + j] += 0 | tmp / 10
+var isPalindrome = function(s) {
+  s = s.replace(/([^a-zA-Z0-9])/g, '');
+  s = s.toLocaleLowerCase();
+  let l = 0;
+  let r = s.length - 1;
+  while(l < r) {
+    if(s[l] !== s[r]) {
+      return false
     }
+    l++
+    r--
   }
-  while(p[0] == 0) {
-    p.shift()
-  }
-  return p.join('')
-}
+  return true;
+};
+```
+
+## [判断子序列](https://leetcode.cn/problems/is-subsequence/description/)
+
+```js
+var isSubsequence = function(s, t) {
+  let slow = 0;
+  let first = 0;
+  while(first < t.length) {
+    if(s[slow] === t[first]) {
+      slow++
+    }
+    if(slow >= s.length) return true 
+    first++
+  } 
+  return slow >= s.length
+};
 ```

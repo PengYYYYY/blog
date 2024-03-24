@@ -158,6 +158,11 @@ export const sidebarBackend = () => [
       { text: 'koa', link: '/backend/node/koa' },
       { text: 'node 基础', link: '/backend/node/base' }
     ]
+  },
+  {
+    text: '场景',
+    collapsible: true,
+    items: [{ text: '限流算法', link: '/backend/scene/currentLimiting' }]
   }
 ]
 
@@ -175,6 +180,8 @@ export const sidebarAlgorithm = () => [
     text: '算法',
     collapsible: true,
     items: [
+      { text: '算法思想', link: '/algo-data-str/algorithm/mind' },
+      { text: '复杂度', link: '/algo-data-str/complexity' },
       {
         text: '二分查找',
         link: '/algo-data-str/algorithm/binarySearch'
@@ -184,18 +191,15 @@ export const sidebarAlgorithm = () => [
         link: '/algo-data-str/algorithm/backtrack'
       },
       { text: '排序', link: '/algo-data-str/algorithm/sort' },
+      { text: '哈希表', link: '/algo-data-str/algorithm/hash' },
+      { text: '栈', link: '/algo-data-str/algorithm/stack' },
+      { text: '树', link: '/algo-data-str/algorithm/tree' },
+      { text: '链表', link: '/algo-data-str/algorithm/linkedlist' },
       { text: '双指针', link: '/algo-data-str/algorithm/doublePointer' },
       { text: '动态规划', link: '/algo-data-str/algorithm/dynamicPlan' },
       {
-        text: '分治',
-        link: '/algo-data-str/algorithm/separateGovernment'
-      },
-      { text: '杂七杂八', link: '/algo-data-str/algorithm/grammar' },
-      { text: '算法思想', link: '/algo-data-str/algorithm/mind' },
-      { text: '复杂度', link: '/algo-data-str/complexity' },
-      {
-        text: '限流算法',
-        link: '/algo-data-str/algorithm/currentLimiting'
+        text: '数学',
+        link: '/algo-data-str/algorithm/math'
       }
     ]
   }

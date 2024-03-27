@@ -269,3 +269,59 @@ var sumNumbers = function(root) {
   return dfs(root, 0);
 }
 ```
+
+## [二叉树的层平均值](https://leetcode.cn/problems/average-of-levels-in-binary-tree/description/)
+
+```js
+var averageOfLevels = function(root) {
+    const stack = [];
+  const res = [];
+  if(root){
+    stack.push(root)
+  }
+  while(stack.length) {
+    const len = stack.length;
+    let sum = 0;
+    for(let i = 0; i < len; i++) {
+      const node = stack.shift();
+      sum += node.val;
+      if(node.left) {
+        stack.push(node.left)
+      }
+      if(node.right) {
+        stack.push(node.right)
+      }
+    }
+    res.push(sum / len);
+  }
+  return res
+};
+```
+
+## [二叉树的右视图](https://leetcode.cn/problems/average-of-levels-in-binary-tree/description/)
+
+```js
+var averageOfLevels = function(root) {
+    const stack = [];
+  const res = [];
+  if(root){
+    stack.push(root)
+  }
+  while(stack.length) {
+    const len = stack.length;
+    let sum = 0;
+    for(let i = 0; i < len; i++) {
+      const node = stack.shift();
+      sum += node.val;
+      if(node.left) {
+        stack.push(node.left)
+      }
+      if(node.right) {
+        stack.push(node.right)
+      }
+    }
+    res.push(sum / len);
+  }
+  return res
+};
+```

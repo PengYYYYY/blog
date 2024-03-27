@@ -33,6 +33,23 @@ var twoSum = function(nums, target) {
 };
 ```
 
+## [存在重复元素 II](https://leetcode.cn/problems/contains-duplicate-ii/solutions/1218075/cun-zai-zhong-fu-yuan-su-ii-by-leetcode-kluvk)
+
+```js
+var containsNearbyDuplicate = function(nums, k) {
+  const map = new Map();
+  const length = nums.length;
+  for(let i = 0; i < length; i++) {
+    const num = nums[i];
+    if(map.has(num) && i - map.get(num) <= k) {
+      return true;
+    }
+    map.set(num, i);
+  }
+  return false
+};
+```
+
 ## [快乐数](https://leetcode.cn/problems/happy-number)
 
 ```js

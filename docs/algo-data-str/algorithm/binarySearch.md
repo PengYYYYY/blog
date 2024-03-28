@@ -9,7 +9,7 @@
 const binary = (arr) => {
   const left = 0, right = arr.length - 1
   where(left < right) {
-    const mid = left + right) >> 2
+    const mid = left + (right - left) >> 1
     if (arr[mid] < arr[left]) {
       // condition1 
     } else if(arr[right] < arr[mid]) {

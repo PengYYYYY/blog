@@ -193,3 +193,15 @@ var multiply = function(num1, num2) {
   return p.join('')
 };
 ```
+
+## [只出现一次的数字（位运算）](https://leetcode.cn/problems/single-number/solutions/10261/hua-jie-suan-fa-136-zhi-chu-xian-yi-ci-de-shu-zi-b/)
+
+```js
+var singleNumber = function(nums) {
+  let ans = 0;
+  for(let i = 0; i < nums.length; i++) {
+    ans ^= nums[i];
+  }
+  return ans;
+};
+```

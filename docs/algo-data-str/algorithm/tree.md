@@ -18,7 +18,9 @@ const traverse = (root: TreeNode) => {
 }
 ```
 
-## [相同的树](https://leetcode.cn/problems/same-tree/description)
+## 树的对比
+
+### [相同的树](https://leetcode.cn/problems/same-tree/description)
 
 ```js
 var isSameTree = function(p, q) {
@@ -33,7 +35,7 @@ var isSameTree = function(p, q) {
 };
 ```
 
-## [对称二叉树](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/)
+### [对称二叉树](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/)
 
 ```js
 var isSymmetric = function(root) {
@@ -50,7 +52,7 @@ var isSymmetric = function(root) {
 }
 ```
 
-## [翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/description)
+### [翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/description)
 
 ```js
 var invertTree = function(root) {
@@ -64,7 +66,9 @@ var invertTree = function(root) {
 };
 ```
 
-## [树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
+## 路径计算相关
+
+### [树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
 
 ```js
 var maxDepth = function(root) {
@@ -77,7 +81,7 @@ var maxDepth = function(root) {
 }
 ```
 
-## [树的最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/)
+### [树的最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/)
 
 层序遍历，无左右子节点则返回当前的深度
 
@@ -98,6 +102,25 @@ var minDepth = function(root) {
     }
   }
   return depth
+}
+```
+
+## [求根节点到叶节点数字之和](https://leetcode.cn/problems/3Etpl5/description/)
+
+```js
+var sumNumbers = function(root) {
+  const dfs = (root, preSum) => {
+    if(root === null) {
+      return 0;
+    }
+    const sum = preSum * 10 + root.val;
+    if (!root.left && !root.right) {
+      return sum;
+    }
+    return dfs(root.left) + dfs(root.right);
+  }
+
+  return dfs(root, 0);
 }
 ```
 
@@ -189,6 +212,98 @@ var buildTree = function(preorder, inorder) {
 };
 ```
 
+## 层序遍历
+
+### [二叉树的层平均值](https://leetcode.cn/problems/average-of-levels-in-binary-tree/description/)
+
+```js
+var averageOfLevels = function(root) {
+    const stack = [];
+  const res = [];
+  if(root){
+    stack.push(root)
+  }
+  while(stack.length) {
+    const len = stack.length;
+    let sum = 0;
+    for(let i = 0; i < len; i++) {
+      const node = stack.shift();
+      sum += node.val;
+      if(node.left) {
+        stack.push(node.left)
+      }
+      if(node.right) {
+        stack.push(node.right)
+      }
+    }
+    res.push(sum / len);
+  }
+  return res
+};
+```
+
+### [二叉树的右视图](https://leetcode.cn/problems/average-of-levels-in-binary-tree/description/)
+
+```js
+var averageOfLevels = function(root) {
+    const stack = [];
+  const res = [];
+  if(root){
+    stack.push(root)
+  }
+  while(stack.length) {
+    const len = stack.length;
+    let sum = 0;
+    for(let i = 0; i < len; i++) {
+      const node = stack.shift();
+      sum += node.val;
+      if(node.left) {
+        stack.push(node.left)
+      }
+      if(node.right) {
+        stack.push(node.right)
+      }
+    }
+    res.push(sum / len);
+  }
+  return res
+};
+```
+
+### [二叉树的锯齿形层序遍历](https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/description)
+
+```js
+var zigzagLevelOrder = function(root) {
+  const stack = [];
+  const res = [];
+  if (root) {
+    stack.push(root)
+  }
+  let level = 1
+  while (stack.length) {
+    res.push([]);
+    const len = stack.length;
+    for (let i = 0; i < len; i++) {
+      const node = stack.shift()
+      if (level % 2 === 1) {
+        res[res.length - 1].push(node.val)
+      } else [
+        res[res.length - 1].unshift(node.val)
+      ]
+      if (node.left) {
+        stack.push(node.left)
+      }
+      if (node.right) {
+        stack.push(node.right)
+      }
+    }
+    level++
+  }
+  return res;
+};
+```
+
+
 ## [实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
 
 ```js
@@ -248,80 +363,5 @@ var increasingBST = function(root) {
   }
   dsf(root)
   return dummyNode.right;
-};
-```
-
-## [求根节点到叶节点数字之和](https://leetcode.cn/problems/3Etpl5/description/)
-
-```js
-var sumNumbers = function(root) {
-  const dfs = (root, preSum) => {
-    if(root === null) {
-      return 0;
-    }
-    const sum = preSum * 10 + root.val;
-    if (!root.left && !root.right) {
-      return sum;
-    }
-    return dfs(root.left) + dfs(root.right);
-  }
-
-  return dfs(root, 0);
-}
-```
-
-## [二叉树的层平均值](https://leetcode.cn/problems/average-of-levels-in-binary-tree/description/)
-
-```js
-var averageOfLevels = function(root) {
-    const stack = [];
-  const res = [];
-  if(root){
-    stack.push(root)
-  }
-  while(stack.length) {
-    const len = stack.length;
-    let sum = 0;
-    for(let i = 0; i < len; i++) {
-      const node = stack.shift();
-      sum += node.val;
-      if(node.left) {
-        stack.push(node.left)
-      }
-      if(node.right) {
-        stack.push(node.right)
-      }
-    }
-    res.push(sum / len);
-  }
-  return res
-};
-```
-
-## [二叉树的右视图](https://leetcode.cn/problems/average-of-levels-in-binary-tree/description/)
-
-```js
-var averageOfLevels = function(root) {
-    const stack = [];
-  const res = [];
-  if(root){
-    stack.push(root)
-  }
-  while(stack.length) {
-    const len = stack.length;
-    let sum = 0;
-    for(let i = 0; i < len; i++) {
-      const node = stack.shift();
-      sum += node.val;
-      if(node.left) {
-        stack.push(node.left)
-      }
-      if(node.right) {
-        stack.push(node.right)
-      }
-    }
-    res.push(sum / len);
-  }
-  return res
 };
 ```

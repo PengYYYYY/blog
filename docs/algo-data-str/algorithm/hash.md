@@ -11,7 +11,7 @@ var canConstruct = function(ransomNote, magazine) {
   for (const c of magazine) {
     map[c] = (map[c] || 0) + 1
   }
-  for(const c of ransomNote) {
+  for (const c of ransomNote) {
     if (!map[c] || map[c] <= 0) return false;
     map[c] = map[c] - 1;
   }
@@ -24,8 +24,8 @@ var canConstruct = function(ransomNote, magazine) {
 ```js
 var twoSum = function(nums, target) {
   const hashMap = new Map();
-  for(let i = 0; i < nums.length; i++) {
-    if(hashMap.has(target - nums[i])){
+  for (let i = 0; i < nums.length; i++) {
+    if (hashMap.has(target - nums[i])){
       return [hashMap.get(target - nums[i]), i]
     }
     hashMap.set(nums[i], i)
@@ -39,9 +39,9 @@ var twoSum = function(nums, target) {
 var containsNearbyDuplicate = function(nums, k) {
   const map = new Map();
   const length = nums.length;
-  for(let i = 0; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     const num = nums[i];
-    if(map.has(num) && i - map.get(num) <= k) {
+    if (map.has(num) && i - map.get(num) <= k) {
       return true;
     }
     map.set(num, i);
@@ -107,5 +107,35 @@ var isIsomorphic = function(s, t) {
     t2s[y] = x;
   }
   return true;
+};
+```
+
+## [单词规律](https://leetcode.cn/problems/word-pattern/description)
+
+```js
+var wordPattern = function(pattern, s) {
+  const arr = s.split(' ');
+  const map = new Map();
+  const maps = new Map();
+  if (pattern.length != arr.length) return false;
+
+  for (let i = 0; i < pattern.length; i++) {
+    if (maps.has(arr[i]) === false) {
+      maps.set(arr[i], pattern[i])
+    } else {
+      if (maps.get(arr[i]) != pattern[i]) {
+        return false
+      }
+    }
+
+    if (map.has(pattern[i]) === false) {
+      map.set(pattern[i], arr[i]);
+    }  else {
+      if (map.get(pattern[i]) != arr[i]) {
+        return false
+      }
+    }
+  }
+  return true
 };
 ```

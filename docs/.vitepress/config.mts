@@ -31,7 +31,7 @@ export default defineConfig({
     logo: '/logo.svg',
     nav: navList(),
     outline: {
-      level: [2, 6],
+      level: [2, 4],
       label: '目录'
     },
     sidebar: {

@@ -8,9 +8,9 @@ import FigmaContainer from '/components/FigmaContainer.vue'
 
 Axure 是产品经理用来做原型设计的软件，CoDesign 已经上线过一版产品原型，但是存在以下问题：
 
-- axure html 框架的 UI 与 CD 的 UI 不统一
+- Axure Html 框架的 UI 与 CD 的 UI 不统一
 - 无法接入 CD 通用的协作能力
-- 没有对 axure 文件做解析，无法深度定制
+- 没有对 Axure 文件做解析，无法深度定制
 - 存在安全合规隐患
 - 上传速度慢，无法进行差量上传
 - 寄存在设计稿模块中，非单独模块
@@ -19,7 +19,6 @@ Axure 是产品经理用来做原型设计的软件，CoDesign 已经上线过�
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=4915-3033&t=oyHf5qQSFlbfnhzh-4"/>
 
-
 支持的能力如下：
 
 - 通用功能：
@@ -27,7 +26,7 @@ Axure 是产品经理用来做原型设计的软件，CoDesign 已经上线过�
   - 资料库，源文件
   - 原型分享，页面搜索
   - 页面评论，协作通知
-- Axure拓展功能：
+- Axure 拓展功能：
   - 备注说明
   - 热区交互
   - 画布缩放模式
@@ -85,7 +84,6 @@ py-test
 ├── resources // 自带资源文件，无需更改内容
 └── start_with_pages.html
 ```
-
 
 ## CoDesign 接入 Axure 模块
 
@@ -151,6 +149,9 @@ Axure 内置功能在 web 端很多都需要重新实现
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=6050-2207&t=i3Z2mSJ07cOBb7GA-4"/>
 
+- 一个基于 Electron 的客户端应用
+- 
+
 ## 插件更新机制
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=6050-2291&t=i3Z2mSJ07cOBb7GA-4"/>
@@ -162,7 +163,6 @@ Axure 内置功能在 web 端很多都需要重新实现
 ## 上传模块
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=5341-3119&t=i3Z2mSJ07cOBb7GA-4"/>
-
 
 ## 内容安全加固
 
@@ -190,6 +190,7 @@ Axure 内置功能在 web 端很多都需要重新实现
 - 文件上传：将 HTML 文件，通过 .txt 的格式上传至 cos，禁用 html 上传
 - 内容加载：通过读取 txt 文件内容的形式，将内容转成 blob，iframe 通过加载 blob 可以读取到文件内容
 - 无限嵌套的 iframe：axure 的 iframe 可以进行无限嵌套的，这边其实就是一个迭代，每一个子 iframe 都需要主动去发现子 iframe，并加载，代码如下：
+
 ```js
 async loadChildIframe() {
   // 读取所有 iframe
@@ -206,7 +207,9 @@ async loadChildIframe() {
   }
 }
 ```
-- 图片代理：由于图片的 url 继承自 iframe 的域名，但是通过 blob 的方式加载 html 是没有域名的，需要做一个图片代理，利用
+
+- 图片代理：由于图片的 url 继承自 iframe 的域名，但是通过 blob 的方式加载 html 是没有域名的，需要做一个图片代理，利用 image 的 onerror 属性
+
 ```js
 async proxyImage() {
   const allImage = document.querySelectorAll('img');

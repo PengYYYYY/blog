@@ -6,7 +6,7 @@
 
 ### 网格
 
-![img](../images/gride.png)
+![img](../images/gride.svg)
 
 计算机绘图都差不多使用网格系统。这种系统以页面的左上角为(0,0)坐标点，坐标以像素为单位，x轴正方向是向右，y轴正方向是向下.
 
@@ -227,33 +227,33 @@ C x1 y1, x2 y2, x y (or c dx1 dy1, dx2 dy2, dx dy)
 
 这里的最后一个坐标(x,y)表示的是曲线的终点，另外两个坐标是控制点，(x1,y1)是起点的控制点，(x2,y2)是终点的控制点。如果你熟悉代数或者微积分的话，会更容易理解控制点，控制点描述的是曲线起始点的斜率，曲线上各个点的斜率，是从起点斜率到终点斜率的渐变过程.
 
-![img](../images/bessel.png)
+![img](../images/bessel.svg)
 
 ```html
 <svg width="190px" height="160px" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <path d="M10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent"/>
-  <path d="M70 10 C 70 20, 120 20, 120 10" stroke="black" fill="transparent"/>
-  <path d="M130 10 C 120 20, 180 20, 170 10" stroke="black" fill="transparent"/>
-  <path d="M10 60 C 20 80, 40 80, 50 60" stroke="black" fill="transparent"/>
-  <path d="M70 60 C 70 80, 110 80, 110 60" stroke="black" fill="transparent"/>
-  <path d="M130 60 C 120 80, 180 80, 170 60" stroke="black" fill="transparent"/>
-  <path d="M10 110 C 20 140, 40 140, 50 110" stroke="black" fill="transparent"/>
-  <path d="M70 110 C 70 140, 110 140, 110 110" stroke="black" fill="transparent"/>
-  <path d="M130 110 C 120 140, 180 140, 170 110" stroke="black" fill="transparent"/>
+  <path d="M10 10 C 20 20, 40 20, 50 10" stroke="#42b883" fill="transparent"/>
+  <path d="M70 10 C 70 20, 120 20, 120 10" stroke="#42b883" fill="transparent"/>
+  <path d="M130 10 C 120 20, 180 20, 170 10" stroke="#42b883" fill="transparent"/>
+  <path d="M10 60 C 20 80, 40 80, 50 60" stroke="#42b883" fill="transparent"/>
+  <path d="M70 60 C 70 80, 110 80, 110 60" stroke="#42b883" fill="transparent"/>
+  <path d="M130 60 C 120 80, 180 80, 170 60" stroke="#42b883" fill="transparent"/>
+  <path d="M10 110 C 20 140, 40 140, 50 110" stroke="#42b883" fill="transparent"/>
+  <path d="M70 110 C 70 140, 110 140, 110 110" stroke="#42b883" fill="transparent"/>
+  <path d="M130 110 C 120 140, 180 140, 170 110" stroke="#42b883" fill="transparent"/>
 </svg>
 ```
 
 <svg width="190px" height="160px" version="1.1" xmlns="http://www.w3.org/2000/svg">
 
-  <path d="M10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent"/>
-  <path d="M70 10 C 70 20, 120 20, 120 10" stroke="black" fill="transparent"/>
-  <path d="M130 10 C 120 20, 180 20, 170 10" stroke="black" fill="transparent"/>
-  <path d="M10 60 C 20 80, 40 80, 50 60" stroke="black" fill="transparent"/>
-  <path d="M70 60 C 70 80, 110 80, 110 60" stroke="black" fill="transparent"/>
-  <path d="M130 60 C 120 80, 180 80, 170 60" stroke="black" fill="transparent"/>
-  <path d="M10 110 C 20 140, 40 140, 50 110" stroke="black" fill="transparent"/>
-  <path d="M70 110 C 70 140, 110 140, 110 110" stroke="black" fill="transparent"/>
-  <path d="M130 110 C 120 140, 180 140, 170 110" stroke="black" fill="transparent"/>
+  <path d="M10 10 C 20 20, 40 20, 50 10" stroke="#42b883" fill="transparent"/>
+  <path d="M70 10 C 70 20, 120 20, 120 10" stroke="#42b883" fill="transparent"/>
+  <path d="M130 10 C 120 20, 180 20, 170 10" stroke="#42b883" fill="transparent"/>
+  <path d="M10 60 C 20 80, 40 80, 50 60" stroke="#42b883" fill="transparent"/>
+  <path d="M70 60 C 70 80, 110 80, 110 60" stroke="#42b883" fill="transparent"/>
+  <path d="M130 60 C 120 80, 180 80, 170 60" stroke="#42b883" fill="transparent"/>
+  <path d="M10 110 C 20 140, 40 140, 50 110" stroke="#42b883" fill="transparent"/>
+  <path d="M70 110 C 70 140, 110 140, 110 110" stroke="#42b883" fill="transparent"/>
+  <path d="M130 110 C 120 140, 180 140, 170 110" stroke="#42b883" fill="transparent"/>
 
 </svg>
 
@@ -271,7 +271,7 @@ S命令可以用来创建与前面一样的贝塞尔曲线，但是，如果S命
   <path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent"/>
 </svg>
 
-### Q
+#### Q
 
 二次贝塞尔曲线Q，它比三次贝塞尔曲线简单，只需要一个控制点，用来确定起点和终点的曲线斜率。因此它需要两组参数，控制点和终点坐标。
 
@@ -285,7 +285,7 @@ S命令可以用来创建与前面一样的贝塞尔曲线，但是，如果S命
   <path d="M10 80 Q 95 10 180 80" stroke="black" fill="transparent"/>
 </svg>
 
-### T
+#### T
 
 快捷命令T会通过前一个控制点，推断出一个新的控制点。在你的第一个控制点后面，可以只定义终点，就创建出一个相当复杂的曲线。需要注意的是，T命令前面必须是一个Q命令，或者是另一个T命令，才能达到这种效果。
 如果T单独使用，那么控制点就会被认为和终点是同一个点，所以画出来的将是一条直线。

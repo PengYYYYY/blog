@@ -36,6 +36,8 @@
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "lodash": "^4.17.21",
+    "markdown-it-katex": "^2.0.3",
+    "markdown-it-mathjax3": "^4.3.2",
     "prettier": "^2.4.1",
     "typescript": "^4.4.3",
     "vue-eslint-parser": "^9.0.1"

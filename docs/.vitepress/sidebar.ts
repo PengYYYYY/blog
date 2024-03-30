@@ -39,10 +39,14 @@ export const sidebarGraphics = () => [
   {
     text: '引擎',
     items: [
-      // { text: 'pixi', link: '/graphics/engine/pixi.md' },
+      { text: 'pixi', link: '/graphics/engine/pixi.md' },
       { text: 'skia', link: '/graphics/engine/skia.md' },
       { text: '物理引擎', link: '/graphics/engine/physics.md' }
     ]
+  },
+  {
+    text: '数学',
+    items: [{ text: '线性代数', link: '/graphics/math/linear-algebra.md' }]
   }
 ]
 

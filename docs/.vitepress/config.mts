@@ -1,4 +1,6 @@
 import { defineConfig } from 'vitepress'
+import mathjax3 from 'markdown-it-mathjax3'
+import { customElements } from './constants'
 import {
   navList,
   sidebarGraphics,
@@ -25,10 +27,13 @@ export default defineConfig({
       }
     ]
   ],
-
   themeConfig: {
     logo: '/logo.svg',
     nav: navList(),
+    outline: {
+      level: [2, 6],
+      label: '目录'
+    },
     sidebar: {
       '/graphics/': sidebarGraphics(),
       '/work/': sidebarWork(),
@@ -60,6 +65,16 @@ export default defineConfig({
   },
   markdown: {
     theme: 'material-theme-palenight',
-    lineNumbers: true
+    lineNumbers: true,
+    config: (md) => {
+      md.use(mathjax3)
+    }
+  },
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => customElements.includes(tag)
+      }
+    }
   }
 })

@@ -20,7 +20,7 @@ onLoad 事件触发的时间。页面所有资源都加载完毕后（比如图�
 
 两者具体细节：
 
-- [Load与DOMContentLoaded](../html/load.html)
+- [Load与DOMContentLoaded](../base/load.html)
 
 ## 内容呈现相关
 

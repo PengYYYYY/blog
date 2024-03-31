@@ -105,7 +105,7 @@ var minDepth = function(root) {
 }
 ```
 
-## [求根节点到叶节点数字之和](https://leetcode.cn/problems/3Etpl5/description/)
+### [求根节点到叶节点数字之和](https://leetcode.cn/problems/3Etpl5/description/)
 
 ```js
 var sumNumbers = function(root) {
@@ -212,7 +212,7 @@ var buildTree = function(preorder, inorder) {
 };
 ```
 
-## 层序遍历
+## 二叉树层序遍历
 
 ### [二叉树的层平均值](https://leetcode.cn/problems/average-of-levels-in-binary-tree/description/)
 
@@ -303,6 +303,28 @@ var zigzagLevelOrder = function(root) {
 };
 ```
 
+## 二叉搜索树
+
+### [递增顺序搜索树](https://leetcode-cn.com/problems/increasing-order-search-tree/)
+
+```js
+var increasingBST = function(root) {
+  const dummyNode = new TreeNode(-1);
+  let resNode = dummyNode;
+  const dsf = function(root) {
+    if (!root) {
+      return
+    }
+    dsf(root.left)
+    resNode.right = root;
+    root.left = null;
+    resNode = root;
+    dsf(root.right)
+  }
+  dsf(root)
+  return dummyNode.right;
+};
+```
 
 ## [实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
 
@@ -343,25 +365,4 @@ class Trie {
     return this.searchPrefix(prefix) 
   }
 }
-```
-
-## [递增顺序搜索树](https://leetcode-cn.com/problems/increasing-order-search-tree/)
-
-```js
-var increasingBST = function(root) {
-  const dummyNode = new TreeNode(-1);
-  let resNode = dummyNode;
-  const dsf = function(root) {
-    if (!root) {
-      return
-    }
-    dsf(root.left)
-    resNode.right = root;
-    root.left = null;
-    resNode = root;
-    dsf(root.right)
-  }
-  dsf(root)
-  return dummyNode.right;
-};
 ```

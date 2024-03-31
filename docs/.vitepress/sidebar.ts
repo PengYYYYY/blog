@@ -292,7 +292,8 @@ export const sidebarFontEnd = () => [
       { text: '浏览器存储', link: '/font-end/js/storage' },
       { text: '数组操作', link: '/font-end/js/array' },
       { text: '字符操作', link: '/font-end/js/string' },
-      { text: '工具类源码', link: '/font-end/js/utils' }
+      { text: '工具类源码', link: '/font-end/js/utils' },
+      { text: '场景实现', link: '/font-end/js/scene' }
     ]
   },
   {

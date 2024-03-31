@@ -2,29 +2,56 @@
 
 ## 实现链式调用
 
+实现一个链式调用的类，满足以下需求
+
+```js
+new Task("初始化");
+// ...初始化
+```
+
+```js
+new Task("初始化").log('日志一').sleep(3000).log('日志二').sleep(2000).log('日志三');
+// ...初始化
+// 日志一
+// wait 3000ms
+// 日志二
+// wait 2000ms
+// 日志三
+```
+
+```js
+new Task("初始化").firstSleep(3000).log('日志一').sleep(3000).log('日志二').sleep(2000).log('日志三');
+// wait 3000ms
+// ...初始化
+// 日志一
+// wait 3000ms
+// 日志二
+// wait 2000ms
+// 日志三
+```
+
 ```js
 class Task {
-  constructor(name){
+  constructor(name) {
     this.list = [];
-    this.name = name;
 
     const fn = () => {
-      console.log('init', name )
+      console.log('init', name);
       this.next()
     }
 
-    this.list.push(fn)
+    this.list.push(fn);
 
-    setTimeout(()=>{
+    setTimeout(() => {
       this.next();
     }, [])
   }
 
-  log(food) {
+  log(parmas) {
     this.list.push(() => {
-      console.log(food);
+      console.log(parmas);
       this.next();
-    });
+    })
     return this;
   }
 
@@ -37,7 +64,7 @@ class Task {
     this.list.push(fn);
     return this;
   }
-
+  
   firstSleep(n) {
     const fn = () => {
       setTimeout(() => {
@@ -54,9 +81,9 @@ class Task {
   }
 }
 
-const task = new Task("Tom")
+const task = new Task("初始化");
 
-task.firstSleep(3000).eat('吃了1').sleep(3000).eat('吃了2').sleep(2000).eat('吃了3')
+task.firstSleep(3000).log('日志一').sleep(3000).log('日志二').sleep(2000).log('日志三');
 ```
 
 ## 发布订阅
@@ -228,7 +255,7 @@ function throttle(func, ms) {
     let now = Date.now()
     if (now - last >= ms) {
       last = now
-      fn.apply(this, arguments)
+      func.apply(this, arguments)
     }
   }
 }
@@ -542,7 +569,7 @@ function compose(...args) {
 }
 ```
 
-### koa函数组合
+### Koa 函数组合
 
 ```js
 function compose(middlewares) {
@@ -565,18 +592,18 @@ function compose(middlewares) {
 
 ## Promise
 
-### promiseAll
+### promise.all
 
 ```js
 function PromiseAll(arr) {
   return new Promise((resolve, reject) => {
-    if(Array.isArray(arr)) {
+    if (！Array.isArray(arr)) {
       return reject(new Error("需要传入数组"))
     }
     const res = []
     const length = arr.length
     let counter = 0
-    for(let i = 0; i < length; i++) {
+    for (let i = 0; i < length; i++) {
       Promise.resolve(arr[i]).then(value => {
         counter++
         res[i] = value

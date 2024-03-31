@@ -4,7 +4,7 @@
 
 ### 数组去重
 
-- 利用 set
+- re利用 set
 
 ```js
 function unique(arr) {
@@ -106,49 +106,38 @@ Array.property.findIndex = function(callback) {
 ### reduce 的实现
 
 ```js
-Array.prototype.reduce = function(fn, value) {
-  if(typeof fn !== 'function') {
-    console.log("第一个参数需要为函数")
-    return
+function reduce(array, reducer, initialValue) {
+  let accumulator = initialValue;
+
+  for (let i = 0; i < array.length; i++) {
+    accumulator = reducer(accumulator, array[i], i, array);
   }
-  let cur = value
-  const startIndex = 0
-  if(cur === undefined) {
-    cur = this[0]
-    startIndex = 1
-  }
-  for(let i = startIndex; i < this.length; i++) {
-    cur = fn(acc, this[i], i, this)
-  }
-  return acc
+
+  return accumulator;
 }
 ```
 
 ### filter 的实现
 
 ```js
-Array.prototype.filter = function(cb) {
-  let res = []
-  let arr1 = Array.prototype.slice.call(this, 0)
-
-  for (let i = 0; i < arr1.length; i++) {
-    if (cb(this[i], i, this)) {
-      res.push(arr1[i])
+function filter(arr, callback) {
+  const result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (callback(array[i], i, array)) {
+      result.push(array[i]);
     }
   }
-  return res
+  return result;
 }
 ```
 
 ### map 的实现
 
 ```js
-Array.prototype.myMap = function(cb) {
-  let res = []
-  let arr = Array.prototype.slice.call(this, 0)
+function map(arr, callback) {
+  const res = [];
   for (let i = 0; i < arr.length; i++) {
-    console.log(this[0])
-    const item = cb(this[i], i, this)
+    const item = callback(arr[i], i, arr); 
     res.push(item)
   }
   return res
@@ -158,43 +147,43 @@ Array.prototype.myMap = function(cb) {
 ### find 的实现
 
 ```js
-Array.prototype.myFind = function(callback) {
-  let curVal
-  for (let i = 0; i < this.length; i++) {
-    if (callback(this[i])) {
-      curVal = this[i]
-      break
+function map(arr, callback) {
+  let curVal;
+  for (let i = 0; i < arr.length; i++) {
+    if (callback(arr[i])) {
+      curVal = arr[i];
+      break;
     }
   }
-  return curVal
+  return curVal;
 }
 ```
 
 ### some 的实现
 
 ```js
-Array.prototype.mySome = function(callback) {
-  let result = false
-  for (let i = 0; i < this.length; i++) {
-    result = callback && callback[this[i]]
+function some(arr, callback) {
+  let result = false;
+  for (let i = 0; i < arr.length; i++) {
+    result = callback && callback[this[i]];
   }
-  return result
+  return result;
 }
 ```
 
 ### every的实现
 
 ```js
-Array.prototype.every = function(cb) {
-  let result = true
-  for(let i = 0; i < this.length; i++) {
-    if(!cb(this[i])) {
-      result = false
-      break
+function every(array, callback) {
+  let result = true;
+  for (let i = 0; i < array.length; i++) {
+    if(!callback(array[i])) {
+      result = false;
+      break;
     }
   }
 
-  return result
+  return result;
 }
 ```
 
@@ -270,7 +259,7 @@ Object.create = function(obj) {
 ### 类型判断函数
 
 ```js
-function getType (data) {
+function getType(data) {
   let type = typeof data
   if (type !== 'object') {
     return type

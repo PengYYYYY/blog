@@ -245,28 +245,28 @@ var averageOfLevels = function(root) {
 ### [二叉树的右视图](https://leetcode.cn/problems/average-of-levels-in-binary-tree/description/)
 
 ```js
-var averageOfLevels = function(root) {
-    const stack = [];
+var rightSideView = function(root) {
+  const stack = [];
   const res = [];
-  if(root){
+  if (root) {
     stack.push(root)
   }
   while(stack.length) {
     const len = stack.length;
-    let sum = 0;
-    for(let i = 0; i < len; i++) {
-      const node = stack.shift();
-      sum += node.val;
-      if(node.left) {
+    for (let i = 0; i < len; i++) {
+      const node = stack.shift()
+      if (i === len - 1){
+        res.push(node.val)
+      }
+      if (node.left) {
         stack.push(node.left)
       }
       if(node.right) {
         stack.push(node.right)
       }
-    }
-    res.push(sum / len);
+    } 
   }
-  return res
+  return res;
 };
 ```
 

@@ -190,17 +190,18 @@ export const sidebarAlgorithm = () => [
     items: [
       { text: '算法思想', link: '/algo-data-str/algorithm/mind' },
       { text: '复杂度', link: '/algo-data-str/complexity' },
-      { text: '数组和字符串', link: '/algo-data-str/algorithm/arr-str' },
+      { text: '数组和字符串', link: '/algo-data-str/algorithm/arrAndStr' },
       { text: '双指针', link: '/algo-data-str/algorithm/doublePointer' },
+      { text: '滑动窗口', link: '/algo-data-str/algorithm/slidingWindow' },
+      { text: '矩阵', link: '/algo-data-str/algorithm/matrix' },
       { text: '哈希表', link: '/algo-data-str/algorithm/hash' },
+      { text: '区间', link: '/algo-data-str/algorithm/range' },
       { text: '栈', link: '/algo-data-str/algorithm/stack' },
-      { text: '链表', link: '/algo-data-str/algorithm/linkedlist' },
+      { text: '链表', link: '/algo-data-str/algorithm/linkedList' },
       { text: '树', link: '/algo-data-str/algorithm/tree' },
       { text: '回溯', link: '/algo-data-str/algorithm/backtrack' },
-      {
-        text: '二分查找与分治',
-        link: '/algo-data-str/algorithm/binarySearch'
-      },
+      { text: '二分查找', link: '/algo-data-str/algorithm/binarySearch' },
+      { text: '分治', link: '/algo-data-str/algorithm/separateGovern' },
       { text: '排序', link: '/algo-data-str/algorithm/sort' },
       { text: '动态规划', link: '/algo-data-str/algorithm/dynamicPlan' },
       { text: '数学和位运算', link: '/algo-data-str/algorithm/math' }

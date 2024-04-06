@@ -117,7 +117,7 @@ var sumNumbers = function(root) {
     if (!root.left && !root.right) {
       return sum;
     }
-    return dfs(root.left) + dfs(root.right);
+    return dfs(root.left, sum) + dfs(root.right, sum);
   }
 
   return dfs(root, 0);

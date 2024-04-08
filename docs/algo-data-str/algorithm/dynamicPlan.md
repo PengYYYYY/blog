@@ -39,3 +39,16 @@ function rob (nums) {
     return Math.max(dp[num.length - 1]. dp[nums.length - 2])
 }
 ```
+
+## [最大子数和](https://leetcode.cn/problems/maximum-subarray/description/)
+
+```js
+var maxSubArray = function(nums) {
+    let pre = 0, maxAns = nums[0];
+    for (let i = 0; i < nums; i++) {
+        pre = Math.max(pre + x, x);
+        maxAns = Math.max(maxAns, pre);
+    }
+    return maxAns;
+};
+```

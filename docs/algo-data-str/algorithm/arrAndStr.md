@@ -176,7 +176,7 @@ var strStr = function(haystack, needle) {
 };
 ```
 
-## [最后一个单词的长度](https://leetcode.cn/problems/length-of-last-word/description/?envType=study-plan-v2&envId=top-interview-150)
+## [最后一个单词的长度](https://leetcode.cn/problems/length-of-last-word/description/)
 
 ```js
 var lengthOfLastWord = function(s) {
@@ -190,5 +190,120 @@ var lengthOfLastWord = function(s) {
         index--;
     }
     return wordLength;
+};
+```
+
+## [跳跃游戏](https://leetcode.cn/problems/jump-game/description/)
+
+```js
+var canJump = function(nums) {
+  let n = nums.length;
+  let rightMost = 0;
+  for (let i = 0; i < n; i++) {
+    if (i <= rightMost) {
+      rightMost = Math.max(rightMost, i + nums[i]);
+      if (rightMost >= n - 1) {
+        return true
+      }
+    }
+  }
+  return false
+};
+```
+
+## [跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/description/)
+
+```js
+var jump = function(nums) {
+  let end = 0;
+  let maxPosition = 0;
+  let steps = 0;
+  for (let i = 0; i < nums.length - 1; i++) {
+    maxPosition = Math.max(maxPosition, i + nums[i]);
+    if (i === end) {
+      end = maxPosition;
+      steps++
+    }
+  }
+  return steps;
+};
+```
+
+## [加油站](https://leetcode.cn/problems/gas-station/description/)
+
+```js
+var canCompleteCircuit = function(gas, cost) {
+  const n = gas.length;
+  for (let i = 0; i < n) {
+    let j = 0;
+    let left = 0;
+    while (j < n) {
+      const k = (i + j) % n;
+      left += gas[k] - cost[k];
+      if (left < 0) break;
+      j++;
+    }
+    if (j === n) {
+      return i;
+    }
+    i = i + j + 1;
+  }
+  return -1;
+}
+```
+
+## [整数转罗马数字](https://leetcode.cn/problems/integer-to-roman/)
+
+```js
+var intToRoman = function(num) {
+  let intArr = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+  let RomanArr = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', "IX", 'V', 'IV', 'I'];
+  let index = 0;
+  let res = '';
+  while(index < 13) {
+    while(num >= intArr[index]) {
+      res += RomanArr[index];
+      num -= intArr[index];
+    }
+    index++;
+  }
+  return res;
+};
+```
+
+## [反转字符串中的单词](https://leetcode.cn/problems/reverse-words-in-a-string/description/)
+
+```js
+var reverseWords = function(s) {
+  let arr = s.trim().split(/\s+/);
+  let i = 0;
+  let j = arr.length - 1;
+  while (i <= j) {
+    [arr[i], arr[j]] = [arr[j], arr[i]]
+    i++;
+    j--;
+  }
+  return arr.join(' ')
+};
+```
+
+## [轮转数组](https://leetcode.cn/problems/rotate-array/description/)
+
+```js
+var rotate = function(nums, k) {
+  const reverse = (start, end) => {
+    while (start < end) {
+      const temp = nums[start];
+      nums[start] = nums[end];
+      nums[end] = temp;
+      start++;
+      end--;
+    }
+  }
+
+  k = k % nums.length;
+  reverse(0, nums.length - 1);
+  reverse(0, k - 1);
+  reverse(k, nums.length - 1);
 };
 ```

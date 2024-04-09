@@ -52,3 +52,54 @@ var maxSubArray = function(nums) {
     return maxAns;
 };
 ```
+
+## [最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/description/)
+
+```js
+var lengthOfLIS = function(nums) {
+    if (nums.length <= 1) {
+        return nums.length;
+    }
+    let n = nums.length;
+    let maxLength = 0;
+    let dp = [];
+    dp[0] = 1;
+    for (let i = 1; i < n; i++) {
+        let max = 0;
+        for (let j = i - 1; j >= 0; j--) {
+            if (nums[j] < nums[i]) {
+                max = Math.max(dp[j], max);
+            }
+        }
+        dp[i] = max + 1;
+        maxLength = Math.max(maxLength, dp[i]);
+    }
+    return maxLength;
+};
+```
+
+## [零钱兑换](https://leetcode.cn/problems/coin-change/description/)
+
+```js
+var coinChange = function(coins, amount) {
+    const maxCount = amount + 1;
+    const dp = new Array(maxCount).fill(maxCount);
+    dp[0] = 0;
+    for (let i = 1; i <= amount; i++) {
+        for (let j = 0; j < coins.length; j++) {
+            if (coins[j] <= i) {
+                dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+            }
+        }
+    }
+    return dp[amount] > amount ? -1 : dp[amount]
+};
+```
+
+## [最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring/description/)
+
+TODO
+
+## [最大正方形](https://leetcode.cn/problems/maximal-square/solutions/)
+
+TODO

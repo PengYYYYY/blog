@@ -142,3 +142,19 @@ var isSubsequence = function(s, t) {
   return slow >= s.length
 };
 ```
+
+## [两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
+
+```js
+var twoSum = function(numbers, target) {
+  let left = 0;
+  let right = numbers.length - 1;
+  while (true) {
+    let s = numbers[left] + numbers[right];
+    if (s === target) {
+      return [left + 1, right + 1];
+    }
+    s > target ? right-- : left++;
+  }
+};
+```

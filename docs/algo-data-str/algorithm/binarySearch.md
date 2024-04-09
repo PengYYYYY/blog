@@ -134,3 +134,19 @@ function searchInsert(nums, target) {
   return start
 }
 ```
+
+## [搜索二维矩阵](https://leetcode.cn/problems/search-a-2d-matrix/description/)
+
+TODO
+
+## [寻找峰值](https://leetcode.cn/problems/find-peak-element/description/)
+
+TODO
+
+## [搜索旋转排序数组](https://leetcode.cn/problems/search-in-rotated-sorted-array/description/)
+
+TODO
+
+## [寻找旋转排序数组中的最小值](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/description/)
+
+TODO

@@ -27,17 +27,19 @@ function climbStairs (n) {
 状态转换方程 `dp[n] = Max(dp[n-1], dp[n-2] + nums[n])`
 
 ```js
-function rob (nums) {
-    if (!nums.length) return 0
-    if (nums.length == 1) return nums[0]
-    if (nums.length == 2) return Math.max(nums[0],nums[1]);
-
-    let dp = [nums[0], Math.max(nums[0], nums[1])]
-    for (let i = 2; i < nums.length; i++) {
-        dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i])
+var rob = function(nums) {
+    const len = nums.length;
+    if (len === 0) {
+        return 0;
     }
-    return Math.max(dp[num.length - 1]. dp[nums.length - 2])
-}
+    const dp = new Array(len + 1);
+    dp[0] = 0;
+    dp[1] = nums[0];
+    for (let i = 2; i <= len; i++) {
+        dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]);
+    }
+    return dp[len];
+};
 ```
 
 ## [最大子数和](https://leetcode.cn/problems/maximum-subarray/description/)
@@ -50,6 +52,23 @@ var maxSubArray = function(nums) {
         maxAns = Math.max(maxAns, pre);
     }
     return maxAns;
+};
+```
+
+## [零钱兑换](https://leetcode.cn/problems/coin-change/)
+
+```js
+var coinChange = function(coins, amount) {
+    const dp = new Array(amount + 1).fill(amount + 1)
+    dp[0] = 0
+    for (let i = 1; i <= amount; i++) {
+        for (let j = 0; j < coins.length; j++) {
+            // 如果以 coins[j]为步长，前面不存在台阶，继续下一次（如果步长有序，则可 break
+            if (i < coins[j]) continue
+            dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1)
+        }
+    }
+    return dp[amount] > amount ? -1 : dp[amount]
 };
 ```
 

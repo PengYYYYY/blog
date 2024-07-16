@@ -9,7 +9,8 @@ import {
   sidebarBackend,
   sidebarAlgorithm,
   sidebarFeFramework,
-  sidebarFontEnd
+  sidebarFontEnd,
+  sidebarNative
 } from './sidebar'
 
 export default defineConfig({
@@ -36,6 +37,7 @@ export default defineConfig({
     },
     sidebar: {
       '/graphics/': sidebarGraphics(),
+      '/native/': sidebarNative(),
       '/work/': sidebarWork(),
       '/font-end/': sidebarFontEnd(),
       '/algo-data-str/': sidebarAlgorithm(),

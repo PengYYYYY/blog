@@ -9,8 +9,9 @@ import {
   sidebarBackend,
   sidebarAlgorithm,
   sidebarFeFramework,
-  sidebarFontEnd,
-  sidebarNative
+  sidebarFontEnd
+  // sidebarNative,
+  // sidebarRust
 } from './sidebar'
 
 export default defineConfig({
@@ -37,11 +38,12 @@ export default defineConfig({
     },
     sidebar: {
       '/graphics/': sidebarGraphics(),
-      '/native/': sidebarNative(),
+      // '/native/': sidebarNative(),
       '/work/': sidebarWork(),
       '/font-end/': sidebarFontEnd(),
       '/algo-data-str/': sidebarAlgorithm(),
       '/basics/': sidebarBasics(),
+      // '/rust/': sidebarRust(),
       '/backend/': sidebarBackend(),
       '/font-end-framework/': sidebarFeFramework()
     },

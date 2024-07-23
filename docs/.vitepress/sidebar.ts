@@ -62,6 +62,13 @@ export const sidebarNative = () => [
   }
 ]
 
+export const sidebarRust = () => [
+  {
+    text: 'rust 基础',
+    items: [{ text: '基础知识', link: '/rust/index.md' }]
+  }
+]
+
 export const sidebarWork = () => [
   { text: '关于我', link: '/work/me.md' },
   {

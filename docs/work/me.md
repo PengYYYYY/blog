@@ -35,8 +35,8 @@ import FigmaContainer from '/components/FigmaContainer.vue'
 
 ### 客户端
 
-- 拥有：安卓的基础开发
-- 展望：更底层的学习、如 c++ 的涉猎
+- 拥有：基础的安卓相关开发
+- 展望：更底层的学习、比如 c++ 相关的开发
 
 ### 后端能力
 

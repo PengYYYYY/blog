@@ -74,6 +74,7 @@ export const sidebarWork = () => [
   {
     text: '腾讯',
     items: [
+      { text: '2025 年', link: '/work/tencent/2025.md' },
       { text: '2024 年', link: '/work/tencent/2024.md' },
       { text: '2023 年', link: '/work/tencent/2023.md' },
       { text: '2022 年', link: '/work/tencent/2022.md' },

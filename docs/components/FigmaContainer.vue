@@ -30,6 +30,7 @@ const Vue3Lottie = defineAsyncComponent(() =>
 )
 
 const isLoaded = ref(false)
+const FORCE_SHOW_MS = 4000 // load 事件未触发时的兜底:超时后强制显示 iframe
 
 const props = defineProps({
   url: String
@@ -44,6 +45,11 @@ const fileSrc = computed(() => {
 const handleLoaded = () => {
   isLoaded.value = true
 }
+
+// 兜底:若 iframe load 事件迟迟不触发(网络慢/被拦),超时后也强制显示
+setTimeout(() => {
+  isLoaded.value = true
+}, FORCE_SHOW_MS)
 </script>
 
 <style scoped>

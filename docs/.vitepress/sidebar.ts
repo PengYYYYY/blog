@@ -16,7 +16,6 @@ export const navList = () => [
       { text: '前端基础', link: '/font-end/index' },
       { text: '前端框架', link: '/font-end-framework/index' },
       { text: '图形学', link: '/graphics/index' },
-      { text: '客户端', link: '/native/index' },
       { text: '数据结构与算法', link: '/algo-data-str/index' },
       { text: '后端与运维', link: '/backend/index' },
       { text: '基础知识', link: '/basics/index' }
@@ -45,32 +44,6 @@ export const sidebarGraphics = () => [
       { text: 'skia', link: '/graphics/engine/skia.md' },
       { text: '物理引擎', link: '/graphics/engine/physics.md' }
     ]
-  },
-  {
-    text: '数学',
-    items: [{ text: '线性代数', link: '/graphics/math/linear-algebra.md' }]
-  }
-]
-
-export const sidebarNative = () => [
-  {
-    text: '安卓',
-    items: [{ text: '基础知识', link: '/native/android/index.md' }]
-  },
-  {
-    text: 'iOS',
-    items: [{ text: '基础知识', link: '/native/ios/index.md' }]
-  },
-  {
-    text: '动态化',
-    items: [{ text: '动态化', link: '/native/dynamic/index.md' }]
-  }
-]
-
-export const sidebarRust = () => [
-  {
-    text: 'rust 基础',
-    items: [{ text: '基础知识', link: '/rust/index.md' }]
   }
 ]
 
@@ -80,7 +53,7 @@ export const sidebarAI = () => [
   {
     text: 'LLM基础',
     collapsible: true,
-    items: [{ text: 'LLM 基础', link: '/ai/llm-basics/index' }]
+    items: [{ text: '大模型基础名词', link: '/ai/llm-basics/glossary' }]
   },
   {
     text: 'Agent',

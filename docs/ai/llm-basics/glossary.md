@@ -1,5 +1,14 @@
 # 大模型基础名词词典
 
+<script setup>
+import RelationGraph from '/components/RelationGraph.vue'
+import { nodes, edges, clusters } from './relation-data'
+</script>
+
+把下面的名词按 6 个主题聚类,连线表示关系方向,连线上的小标签说明关系类型。点击或悬停节点看定义并高亮关联概念。
+
+<RelationGraph :nodes="nodes" :edges="edges" :clusters="clusters" />
+
 ## 一、模型本体
 
 ### 权重（Weights / Parameters）

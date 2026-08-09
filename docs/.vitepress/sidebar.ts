@@ -5,6 +5,11 @@ export const navList = () => [
     link: '/article/'
   },
   {
+    text: 'AI',
+    activeMatch: '/ai/',
+    link: '/ai/'
+  },
+  {
     text: '学习记录',
     activeMatch: `^/(font-end|font-end-framework|algo-data-str|backend|basics|graphics)/`,
     items: [
@@ -69,47 +74,18 @@ export const sidebarRust = () => [
   }
 ]
 
-export const sidebarWork = () => [
-  { text: '关于我', link: '/work/me.md' },
+export const sidebarWork = () => [{ text: '关于我', link: '/work/me.md' }]
+
+export const sidebarAI = () => [
   {
-    text: '腾讯',
-    items: [
-      { text: '2025 年', link: '/work/tencent/2025.md' },
-      { text: '2024 年', link: '/work/tencent/2024.md' },
-      { text: '2023 年', link: '/work/tencent/2023.md' },
-      { text: '2022 年', link: '/work/tencent/2022.md' },
-      { text: '2021 年', link: '/work/tencent/2021.md' }
-    ]
-  },
-  {
-    text: '广告业务',
-    items: [
-      { text: '广告系统总览', link: '/work/ams/ads-system.md' },
-      { text: '广告业务名词', link: '/work/ams/noun-business.md' }
-    ]
-  },
-  {
-    text: '同程旅行',
+    text: 'LLM基础',
     collapsible: true,
-    collapsed: true,
-    items: [
-      { text: '工作记录', link: '/work/tc-travel/index' },
-      {
-        text: '页面搭建系统',
-        link: '/work/tc-travel/business/low-code'
-      },
-      { text: '产品增长', link: '/work/tc-travel/business/growth' },
-      { text: 'siskin按需加载', link: '/work/tc-travel/siskin/import' },
-      { text: 'siskin样式包', link: '/work/tc-travel/siskin/style' },
-      {
-        text: 'siskin单元测试',
-        link: '/work/tc-travel/siskin/unit-test'
-      },
-      {
-        text: 'siskin文件上传组件',
-        link: '/work/tc-travel/siskin/upload'
-      }
-    ]
+    items: [{ text: 'LLM 基础', link: '/ai/llm-basics/index' }]
+  },
+  {
+    text: 'Agent',
+    collapsible: true,
+    items: [{ text: 'Agent', link: '/ai/agent/index' }]
   }
 ]
 

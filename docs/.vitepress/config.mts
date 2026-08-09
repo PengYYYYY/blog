@@ -4,6 +4,7 @@ import { customElements } from './constants'
 import {
   navList,
   sidebarGraphics,
+  sidebarAI,
   sidebarWork,
   sidebarBasics,
   sidebarBackend,
@@ -40,6 +41,7 @@ export default defineConfig({
       '/graphics/': sidebarGraphics(),
       // '/native/': sidebarNative(),
       '/work/': sidebarWork(),
+      '/ai/': sidebarAI(),
       '/font-end/': sidebarFontEnd(),
       '/algo-data-str/': sidebarAlgorithm(),
       '/basics/': sidebarBasics(),

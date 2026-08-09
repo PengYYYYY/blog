@@ -12,7 +12,7 @@ import FigmaContainer from '/components/FigmaContainer.vue'
 
 🎨：`figma` 爱好者，白板重度使用者
 
-🏀：喜欢打篮球、是湖人粉丝、詹姆斯死忠
+🏀：喜欢打篮球、詹姆斯粉丝
 
 🎵：Hiphop Music
 
@@ -23,8 +23,6 @@ import FigmaContainer from '/components/FigmaContainer.vue'
 ## 能力模型
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=2198-1380&t=etTZ3dzajSasZUJz-4"/>
-
-👆 是个人期望能够拥有的能力，道阻且长，持续更新能力模型认知。
 
 ## 目前的能力
 

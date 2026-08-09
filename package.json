@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "engines": {
-    "node": ">= 16"
+    "node": ">= 18"
   },
   "scripts": {
     "dev": "vitepress dev docs",
@@ -13,8 +13,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "vitepress": "1.0.0-rc.35",
-    "vue": "^3.3.4",
+    "vitepress": "1.6.4",
+    "vue": "^3.5.13",
     "vue3-lottie": "^3.2.0"
   },
   "devDependencies": {
@@ -53,15 +53,5 @@
       "npm run lint --fix",
       "git add ."
     ]
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "react",
-        "react-dom",
-        "@types/react",
-        "@algolia/client-search"
-      ]
-    }
   }
 }

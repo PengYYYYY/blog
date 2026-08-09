@@ -63,10 +63,27 @@ export default defineConfig({
       copyright: `Powered By vitepress`
     },
 
-    algolia: {
-      appId: 'PXUFXUCGYX',
-      apiKey: '8d01cc8eefc39c46b7940eaf926091a0',
-      indexName: 'blog'
+    search: {
+      provider: 'local',
+      options: {
+        translations: {
+          button: {
+            buttonText: '搜索',
+            buttonAriaLabel: '搜索'
+          },
+          modal: {
+            displayDetails: '显示详情',
+            resetButtonTitle: '重置',
+            backButtonTitle: '返回',
+            noResultsText: '没有找到结果',
+            footer: {
+              selectText: '选择',
+              navigateText: '切换',
+              closeText: '关闭'
+            }
+          }
+        }
+      }
     }
   },
   markdown: {

@@ -42,7 +42,7 @@
     "import/no-unresolved": "off",
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
-    "import/first": "off", // https://github.com/vuejs/vue-eslint-parser/issues/58
+    "import/first": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "vue/first-attribute-linebreak": 0

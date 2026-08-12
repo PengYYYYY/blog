@@ -16,7 +16,7 @@ import FigmaContainer from '/components/FigmaContainer.vue'
 
 ## 渲染引擎
 
-Palette 核心是一个基于 Skia 的渲染引擎。Skia 是一个google开源的2d图形库，它是Chrome、Android、Flutter等知名产品的图形引擎。[Skia](https://skia.org/)
+Palette 核心是一个基于 Skia 的渲染引擎。Skia 是一个 google 开源的 2d 图形库，它是 Chrome、Android、Flutter 等知名产品的图形引擎。[Skia](https://skia.org/)
 
 ### pixi vs skia
 
@@ -44,7 +44,7 @@ Skia 是一个维护了近 20 年的方案，也存在很多的历史包袱，�
 ##### 布尔运算问题
 
 - 目前市面上存在的布尔运算算法库主要是基于svg的，例如 [`paper.js`](https://paperjs.org/)（Paper.js — Boolean Operations）。
-- 布尔元算实现算法「Vatti clipping algorithm」和一篇92年发表在ACM上的论文，也叫 [瓦蒂裁切算法](https://dl.acm.org/doi/10.1145/129902.129906)。
+- 布尔运算实现算法「Vatti clipping algorithm」和一篇 92 年发表在 ACM 上的论文，也叫 [瓦蒂裁切算法](https://dl.acm.org/doi/10.1145/129902.129906)。
 
 #### 背景模糊（毛玻璃）问题
 
@@ -54,7 +54,7 @@ Skia 是一个维护了近 20 年的方案，也存在很多的历史包袱，�
 
 #### 曲线平滑度问题
 
-pixi在渲染贝塞尔曲线时会将贝塞尔微分成非常多的直线，但他不会随着缩放比例微分的更细，导致视口放大的很大是曲线表现的不是很光滑。
+pixi 在渲染贝塞尔曲线时会将贝塞尔微分成非常多的直线，但它不会随着缩放比例微分的更细，导致视口放大很大时曲线表现得不是很光滑。
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=2914-3910&t=hzW5L5zaX1dMDGIz-4"/>
 
@@ -69,7 +69,7 @@ Palette 支持的渲染能力如下：
 - 通用能力：蒙版、布尔、编组、画板、层级、锁定、混合模式
 - 文本：粗体、斜体、字号、字体、删除线、下划线、列表、对齐
 - 路径：路径渲染、控制点操作
-- 通用能力：历史记录、变换、端导出、palette 打开 sketch/figma 设计稿
+- 通用能力：历史记录、变换、多端导出、palette 打开 sketch/figma 设计稿
 
 ## 项目架构
 
@@ -116,9 +116,9 @@ Palette 支持的渲染能力如下：
 
 Figma 的数据结构比较复杂，图形间关系如上图，不做太多赘述，需要注意的有以下几点：
 
-- Figma [REST API](https://www.figma.com/developers/api) 与 [PLUGIN API](https://www.figma.com/plugin-docs/api/api-reference/) 数据结构存在差异
+- Figma [REST API](https://developers.figma.com/docs/rest-api/) 与 [PLUGIN API](https://developers.figma.com/docs/plugins/api/api-reference/) 数据结构存在差异
 - 如何拿到 Figma 源数据，有以下几个方式
-  - 可以使用下面这个服务：[figma-api-live](https://pengyyyyy.github.io/figma-api-live/#/figma)，原理是通过 rest api。
+  - 可以使用下面这个服务：figma-api-live（个人搭建的演示站点，已下线），原理是通过 rest api。
   - 通过 figma 插件，拿到画布上下文，
   - 直接解析 figma 的 fig 文件，开源的 [figma-to-json](https://github.com/yagudaev/figma-to-json)，Figma CTO 写的 [fig-file-parser](https://madebyevan.com/figma/fig-file-parser/)
 

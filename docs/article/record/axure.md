@@ -52,7 +52,7 @@ Axure 是产品经理用来做原型设计的软件，CoDesign 已经上线过�
 
 混淆处理的目的是为了能够把 `axure` 的渲染控制权集成在 axure sdk 中，这样可以保证站外不能引用改页面。Axure 的产物是一个 HTML 的 `zip` 包。
 
-老版本的策略是，直接将 `zip` 包的内容传到 `cos` `上面，然后在CoDesign` 中的 `iframe` 嵌入，所以可以直接在站外访问这个页面。相当于一个静态资源在线化了。
+老版本的策略是，直接将 `zip` 包的内容传到 `cos` 上面，然后在 CoDesign 中的 `iframe` 嵌入，所以可以直接在站外访问这个页面。相当于一个静态资源在线化了。
 
 ### Axure 数据源
 
@@ -150,14 +150,13 @@ Axure 内置功能在 web 端很多都需要重新实现
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=6050-2207&t=i3Z2mSJ07cOBb7GA-4"/>
 
 - 一个基于 Electron 的客户端应用
-- 
 
 ## 插件更新机制
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=6050-2291&t=i3Z2mSJ07cOBb7GA-4"/>
 
 - 整理了客户端插件更新流程，流程如上图，是一个基于版本号的更新机制
-- electron 客户端的自动更新基于 electron-updater，具体的使用流程可以参考 [官方文档](https://www.electron.build/auto-update.html)
+- electron 客户端的自动更新基于 electron-updater，具体的使用流程可以参考 [官方文档](https://www.electron.build/docs/features/auto-update)
 - 更新遇到的坑：Windows 签名后，exe 文件的内容会发生变化，而 yml 描述文件使用的是老版本的文件 hash，在做文件 hash 对比时会抛出异常。在签名后需要更新 yml 文件的 hash，这一部分在流水线已经处理。
 
 ## 上传模块

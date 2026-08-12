@@ -29,7 +29,7 @@ export default {
 
 ## 如何工作
 
-接下来看看他是如何工作的
+接下来看看他是如何工作的（以下流程基于 vue-loader v15 / Vue 2 时代的实现，vue-loader v16+ 配合 Vue 3 已经将 SFC 解析能力换成了 `@vue/compiler-sfc`，但整体的分块转换思路是一致的）
 
 ### 第一步
 
@@ -51,7 +51,7 @@ export default script
 
 ```
 
-代码都是从source.vue中导入的，但是域不同。
+代码都是从 source.vue 中导入的，只是 query 参数不同。
 
 ### 第二步，针对不同语言
 
@@ -69,7 +69,7 @@ import script from 'source.vue?vue&type=script'
 import script from 'babel-loader!vue-loader!source.vue?vue&type=script'
 ```
 
-如果你为为 * .scss 文件配置了 style-loader + css-loader + sass-loader。
+如果你为 * .scss 文件配置了 style-loader + css-loader + sass-loader。
 
 ```html
 <style scoped lang="scss">
@@ -93,7 +93,7 @@ import 'style-loader!css-loader!sass-loader!vue-loader!source.vue?vue&type=style
 
 ### 第四步，转换
 
-对于 `<script`> 块，转换基本结束，对于 `<template>` 和 `<style>` 块来说，还有一些额外的任务需要执行。
+对于 `<script>` 块，转换基本结束，对于 `<template>` 和 `<style>` 块来说，还有一些额外的任务需要执行。
 
 - 需要使用 Vue 模板编译器来编译模板
 

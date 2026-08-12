@@ -87,7 +87,7 @@ function createCar(color, passengers, brand){
 const car = createCar('red', ['a','b'], 'benz')
 ```
 
-工厂模式很好理解，实例化一个对象，在把传入的参数放入该对象，再返回。
+工厂模式很好理解，实例化一个对象，再把传入的参数放入该对象，再返回。
 
 ![img](../images/js-prototype-BUOPMK.png)
 
@@ -147,10 +147,10 @@ function myInstanceOf(left, right) {
 ```js
 function Car(){};
 
-car.prototype.color = "red";
-car.prototype.passengers = ["a","b","c"];
-car.prototype.brand = "benz";
-car.prototype.printBrand = function () {
+Car.prototype.color = "red";
+Car.prototype.passengers = ["a","b","c"];
+Car.prototype.brand = "benz";
+Car.prototype.printBrand = function () {
     console.log(this.brand)
 };
 
@@ -158,9 +158,9 @@ var car1 = new Car();
 var car2 = new Car();
 car1.color = "blue";
 car1.passengers.push('d');
-console.log(car1.brand); //["a","b","c","d"]
-console.log(car2.brand); //["a","b","c","d"]
-console.log(car1.color); // "bule"
+console.log(car1.passengers); // ["a","b","c","d"]
+console.log(car2.passengers); // ["a","b","c","d"]
+console.log(car1.color); // "blue"
 console.log(car2.color); // "red"
 ```
 
@@ -185,9 +185,9 @@ Car.prototype = {
 var car1 = new Car("red",'benz');
 var car2 = new Car("blue","BMW");
 car1.color = "blue";
-car1.passengers('d');
-console.log(car1.brand); //["a","b","c"]
-console.log(car2.brand); //["a","b","c","d"]
+car1.passengers.push('d');
+console.log(car1.passengers); // ["a","b","c","d"]
+console.log(car2.passengers); // ["a","b","c"]
 ```
 
 利用原型自定义构造函数，每个实例都会存在一份实例的副本，同时利用原型方法共享的特性，最大程度节省了内存，也提供了向构造函数中传递参数的功能。为最佳实践。
@@ -278,7 +278,7 @@ function A(){}
 A.prototype.name = 'py';
 A.prototype.age = 12;
 
-<!--等价于-->
+// 等价于
 A.prototype = {
     name: 'py',
     age: 12
@@ -287,7 +287,7 @@ A.prototype.constructor = A
 
 ```
 
-上面的例子中，上半部分是最基本的对原型的赋值，而下班部分的对原型的赋值A的原型的构造函数会变成Object（先new Object然后再赋值参数），所以需要显式的去增强构造函数。
+上面的例子中，上半部分是最基本的对原型的赋值，而下半部分的对原型的赋值A的原型的构造函数会变成Object（先new Object然后再赋值参数），所以需要显式的去增强构造函数。
 
 ### 寄生组合继承
 
@@ -319,12 +319,13 @@ NewCar.prototype.getColor = function(){
 
 ```js
 function createObj(obj){
-    function Car();
+    function Car(){};
     Car.prototype = obj;
     return new Car();
 }
-Object.create() 等价于 crateObj()，相当于对传入的对象进行了一次浅复制。
 ```
+
+`Object.create()` 等价于上面的 `createObj()`，相当于对传入的对象进行了一次浅复制。
 
 那么，我们来看看继承的过程中发生了什么。先对超类的原型进行一次浅复制。然后将中间对象的构造函数替换为普通类。为什么要进行这一步？因为对超类的原型进行浅复制以后，中间对象的构造函数变成了Object，需要对该对象进行增强处理。最后将普通类的原型指向中间变量，这样就只需要调用一次超类就可以完成继承。
 

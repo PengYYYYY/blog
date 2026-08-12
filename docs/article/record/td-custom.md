@@ -1,7 +1,6 @@
 # 基于 TDesign 搭建一个业务组件库
 
 本文讲述了如何利用 TDesign 基础组件库的能力，基于 TDesign 搭建一个业务组件库 TDesign Custom。包含组件库官网搭建，业务组件开发，Design Token 定制，单元测试，打包构建。覆盖整个组件库搭建流程。
-许多前端团队都有搭建业务组件库的需求，那么如何基于 TDesign 搭建一个业务组件库呢？在本文中，我将向大家介绍使用 TDesign 搭建一个业务组件库的过程。
 
 许多前端团队都有搭建业务组件库的需求，那么如何基于 TDesign 搭建一个业务组件库呢？在本文中，我将向大家介绍使用 TDesign 搭建一个业务组件库 [TDesign Custom ](https://pengyyyyy.github.io/tdesign-custom/#/vue/getting-started) 的过程。
 
@@ -21,7 +20,7 @@ import FigmaContainer from '/components/FigmaContainer.vue'
 
 ### 基于 TDesign NPM 包
 
-最理想的方式当然是最大程度的利用 TDesign 能力，构建一个标准的便于维护和迭代的业务组件库。目前 TDesign 的迭代和发布是稳定的，业务组件库只需要聚焦于业务组件的开发，其余能力完全复用 TDeisgn 即可。那一个业务组件库需要那些东西呢？
+最理想的方式当然是最大程度的利用 TDesign 能力，构建一个标准的便于维护和迭代的业务组件库。目前 TDesign 的迭代和发布是稳定的，业务组件库只需要聚焦于业务组件的开发，其余能力完全复用 TDesign 即可。那一个业务组件库需要那些东西呢？
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=1337-500&t=0UGDHRMQ2OaGJaKW-4"/>
 
@@ -78,14 +77,14 @@ site
 
 <FigmaContainer url="https://www.figma.com/file/E2utI9rEseFTc7tJ3Bbl9o/blog?type=whiteboard&node-id=1337-488&t=0UGDHRMQ2OaGJaKW-4"/>
 
-这里可以用到 git submodule，直接将 github 上 TDeisgn 的仓库作为子仓库。结构如上图所示。在 site.config.mjs 路由配置中链接到子仓库的源码。这样就可以直接依赖子仓库来做示例展示了。
+这里可以用到 git submodule，直接将 github 上 TDesign 的仓库作为子仓库。结构如上图所示。在 site.config.mjs 路由配置中链接到子仓库的源码。这样就可以直接依赖子仓库来做示例展示了。
 
 此外还需要做几件事情：
 
-- 在 plugin-tdoc 中需要将原来 common 仓库的引用地址修改到 TDeisgn 子仓库的 common 子仓库的链接。
-- 拉新仓库时需要安装 TDeisgn 子仓库以及 TDeisgn 子仓库的 common 子仓库。
+- 在 plugin-tdoc 中需要将原来 common 仓库的引用地址修改到 TDesign 子仓库的 common 子仓库的链接。
+- 拉新仓库时需要安装 TDesign 子仓库以及 TDesign 子仓库的 common 子仓库。
 
-这边不对 common 子仓库进行单独的提取，为的是不破坏 TDeisgn 子仓库原有的结构，降低维护成本。所以形成了一个两层子仓库的结构。在 TDesign 版本更新时，直接将子仓库的版本切换到对应的 tag 就可以保持同步。
+这边不对 common 子仓库进行单独的提取，为的是不破坏 TDesign 子仓库原有的结构，降低维护成本。所以形成了一个两层子仓库的结构。在 TDesign 版本更新时，直接将子仓库的版本切换到对应的 tag 就可以保持同步。
 
 ## 业务组件开发
 
@@ -203,7 +202,7 @@ export default {
 
 css variable 在已经能够满足大部分场景中的定制工作。但是如果需要更精细化的定制。比如在业务中 Button 的主题色为黑色，但是其他组件的主题色还是蓝色。Css variable 显然无法满足。TDesign 也提供组件级别的 less 变量，可以使用 less 变量针对组件进行精细化定制。
 
-以 Button 为例子，可以从 TDesign-common 中查看到每一个组件的 less 变体。[Button 组件所有 Design Token](https://github.com/Tencent/tdesign-common/blob/develop/style/web/components/button/_var.less) 。可以在项目中导出一个针对此类需求的 `modifyVars` 对象。
+以 Button 为例子，可以从 tdesign-common 中查看到每一个组件的 less 变体。[Button 组件所有 Design Token](https://github.com/Tencent/tdesign-common/blob/develop/style/web/components/button/_var.less) 。可以在项目中导出一个针对此类需求的 `modifyVars` 对象。
 
 ```js
 export const modifyVars = {
@@ -237,7 +236,7 @@ TDesign 的单元测试使用 vitest 来进行构建。vitest 的配置非常简
   - vitest.config.js
 ```
 
-- 单元测试配置可以参考： [TDeisgn vitest 配置](https://github.com/PengYYYYY/tdesign-custom/blob/master/test/vitest.config.js)
+- 单元测试配置可以参考： [TDesign vitest 配置](https://github.com/PengYYYYY/tdesign-custom/blob/master/test/vitest.config.js)
 - 单元测试规范可以参考：[TDesign 单元测试规范](https://github.com/Tencent/tdesign-vue-next/wiki/TDesign-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E8%A7%84%E8%8C%83)
 - 关于 TDesign 在 vitest 的实践可以参考：[TDesign 在 vitest 的实践](./vitest-refactor.md)
 

@@ -4,7 +4,7 @@
 
 ## 先上线再优化
 
-[Tdesign-vue-next](https://github.com/Tencent/tdesign-vue-next) 仓库是从 [Tdesign-vue](https://github.com/Tencent/tdesign-vue) `fork` 过来，并开始做 `vue-next` 的适配（那时候叫 `vue-next`, 成为vue的正式版后叫 `core` 了），当时的首要工作就是是对 `options` 写法兼容，工具函数差异抹平、组件库构建兼容等，让它能最快的跑起来，能让用户用起来即可。
+[Tdesign-vue-next](https://github.com/Tencent/tdesign-vue-next) 仓库是从 [Tdesign-vue](https://github.com/Tencent/tdesign-vue) `fork` 过来，并开始做 `vue-next` 的适配（那时候叫 `vue-next`, 成为vue的正式版后叫 `core` 了），当时的首要工作就是对 `options` 写法兼容，工具函数差异抹平、组件库构建兼容等，让它能最快的跑起来，能让用户用起来即可。
 
 ### 市面流行库对比
 
@@ -13,7 +13,7 @@
 | ui库 | 仓库策略 | `compositionAPI` 使用情况 |
 |  ----  | ---- | ---- |
 | [antd-vue](https://github.com/vueComponent/ant-design-vue)  | 同仓库,不同分支 | 除 `color-picker` 以外全部使用 |
-| [naive](https://github.com/TuSimple/naive-ui)  | 同仓库,不同分支 | 全部组件使用 |
+| [naive](https://github.com/tusen-ai/naive-ui)  | 同仓库,不同分支 | 全部组件使用 |
 | [vuetify](https://github.com/vuetifyjs/vuetify)  | 同仓库,不同分支 | 进行中, 处于 `beta` 阶段，仓库 [Checklist](https://github.com/vuetifyjs/vuetify/issues/14984) |
 | [element](https://github.com/element-plus/element-plus)  | 新仓库 `element-plus`| 无历史包袱，全新的仓库，使用 `sfc` 开发 |
 | [iview](https://github.com/view-design/ViewUIPlus)  | 新仓库 `view-ui-plus` | 处于较早期，使用 `sfc` + `optionsAPI` |
@@ -49,7 +49,7 @@
 ![img](../images/vca-pmc.png)
 来自 [chaishi](https://github.com/chaishi) 的疑问
 
-在这个阶段，比较迷茫的点是，为什么要做这件事情，这件事情带来的好处在那儿。
+在这个阶段，比较迷茫的点是，为什么要做这件事情，这件事情带来的好处在哪儿。
 
 站在当时的角度上来看，代码层面上，之前我们的代码存在各种范式，并且组件之间的聚合也没有做到很多，通过组件之间的聚合以及开发范式的统一，会为后面的维护工作带来很大的帮助。
 
@@ -92,7 +92,7 @@
 
 [源码来源](https://github.com/Tencent/tdesign-vue-next/blob/0.6.4/src/utils/map-props.ts)，代码如下：
 
-```js
+```ts
 import { ComponentOptions, defineComponent, ComponentPublicInstance, h } from 'vue';
 import kebabCase from 'lodash/kebabCase';
 
@@ -331,7 +331,7 @@ export default function (props: (string | PropOption)[]): any {
 
 我们几乎抛弃了原型式的开发方式，组件的代码都写进 `setup` 里面，`setup` 只返回一个 `render` 函数。组件内的每一个变量的来源与用处都很清晰。且充分利用 `TS` 的类型推导，减少主动断言，增加代码可读性。避免下面这类代码的出现。
 
-```js
+```ts
 export interface DatePickerComputed {
   inputListeners: any;
   startText: string;

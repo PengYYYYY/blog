@@ -10,7 +10,7 @@
 
 触发器指的是触发部署动作，分为两大类：
 
-- cli: 腾讯云 `TCD`, `vercel-cli` 这类工具实现本地命令行登陆账号，通过本地命令行出发构建部署。
+- cli: 腾讯云 `TCB`, `vercel-cli` 这类工具实现本地命令行登陆账号，通过本地命令行出发构建部署。
 - webhook: 通过 `GitHub`, `gitlab` 这类平台的 `webhook` 监听到指定的分支代码推送，触发相应的构建和部署。
 
 ### CI
@@ -21,7 +21,7 @@
 
 产物部署阶段需要进入生产环境中，分为以下三类：
 
-- 静态资源：静态资源，无法部署 `node` 服务,通常用户静态资源的CDN加速场景，适用于博客类，无法部署API。
+- 静态资源：静态资源，无法部署 `node` 服务,通常用于静态资源的CDN加速场景，适用于博客类，无法部署API。
 - serverless：云函数类，部署的是函数服务，使用场景受限，适合轻量的 `API` 服务
 - 容器：微信云托管，托管容器，最为灵活，可以部署任何你想部署的东西，和企业级的部署方式类似。
 
@@ -29,7 +29,7 @@
 
 ### vercel
 
-[vercel](https://vercel.com/dashboard) 是一个前端明星团队。使用 `vercel` 部署非常简单：
+[vercel](https://vercel.com) 是一个前端明星团队。使用 `vercel` 部署非常简单：
 
 - 上 `vercel` 官网，选择对应的模版
 - 选择对应的代码托管平台并且授权，以 `github` 为例，会自动安装 `vercel app`。
@@ -110,18 +110,20 @@ jobs:
       "use": "node"
     },
     {
-      "src": "index.js", //函数入口
-      "use": "@vercel/node" //使用@vercel/node
+      "src": "index.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
         "src": "/(.*)",
-        "dest": "index.js" //函数录路由
+        "dest": "index.js"
     }
   ]
 }
 ```
+
+> `builds` 中第二项的 `src` 是函数入口文件，`use` 指定使用 `@vercel/node` 运行时；`routes` 用于配置请求路由转发。
 
 #### 部署与调试
 
@@ -135,7 +137,7 @@ vercel
 vercel dev
 ```
 
-具体可参考 [figma-api-live](https://github.com/pengYYYYY/figma-api-live/blob/master/server)
+具体可参考 [figma-api-live](https://github.com/pengYYYYY/figma-api-live)（仓库后续重构，原来的 `server` 目录已经不存在了）
 
 ## 容器托管
 
@@ -143,7 +145,7 @@ vercel dev
 
 ### 微信云托管
 
-2021年的时候，使用过腾讯云托管容器使用过，但是各方面都不成熟，除了demo其他的项目就没部署成功过。最近上腾讯云开发的时候发现整体迁移到了微信云托管上面了，于是尝试使用。让人非常惊喜，除了公网服务只能用于测试（很痛）以外
+2021年的时候，使用过腾讯云托管容器，但是各方面都不成熟，除了demo其他的项目就没部署成功过。最近上腾讯云开发的时候发现整体迁移到了微信云托管上面了，于是尝试使用。让人非常惊喜，除了公网服务只能用于测试（很痛）以外
 ，其他的服务完美。期待后面能够开放公网服务。
 
 [开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloudrun/src/basic/intro.html)

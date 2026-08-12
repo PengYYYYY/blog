@@ -82,7 +82,7 @@
 
 ### vite 插件处理
 
-`vite` 插件的 `hook` 比较常用的是 `load`, `resolveId` 和 `transformer`。在 `transformer` 中返回给 `vite` 你想要他处理的内容。
+`vite` 插件的 `hook` 比较常用的是 `load`, `resolveId` 和 `transform`。在 `transform` 中返回给 `vite` 你想要他处理的内容。
 
 参照 [源码](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/plugins/worker.ts), 对 `web-worker:.xxx.ts`类型文件进行 `web-worker` 相关的处理。
 
@@ -94,13 +94,12 @@ export function webWorkerPathTransformPlugin(): Plugin {
   const pattern = /web-worker:(.+)/;
   return {
     name: 'vite:web-work-path-transform',
-    transformer(_, id) {
-      if (id.test(pattern)) {
+    transform(_, id) {
+      if (pattern.test(id)) {
         // 处理逻辑
         return {
           code: `export default function WorkerWrapper() {
             xxxx
-          )}, ${JSON.stringify(workerOptions, null, 2)})
           }`,
           map: { mappings: '' }
         }
@@ -154,7 +153,7 @@ https://unpkg.com/browse/react-virtualized@9.22.3/dist/es/WindowScroller/utils/o
 ```json
 {
   "resolutions": {
-    "react-virtualized": "git+https://git@github.com/remorses/react-virtualized-fixed-import.git#9.22.3""
+    "react-virtualized": "git+https://git@github.com/remorses/react-virtualized-fixed-import.git#9.22.3"
   }
 }
 ```
@@ -175,7 +174,7 @@ https://unpkg.com/browse/react-virtualized@9.22.3/dist/es/WindowScroller/utils/o
 
 ## 依赖包类型问题
 
-部分依赖包是 `commonjs` 规范,在 `vite` 的字典里确实找不到和他相似的问题。解决这个问题：
+部分依赖包是 `commonjs` 规范,在 `vite` 的生态里确实不太好找到类似问题的现成解决方案。解决这个问题：
 
 1. 根据报错路径找到相关依赖包，然后替换掉。
 2. 我们发现在一些对 `antd` 对依赖会导致相关问题。在同事的帮助下也很快顺利的解决了。

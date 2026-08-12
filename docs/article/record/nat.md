@@ -17,6 +17,8 @@
 
 搭建稍微复杂，但是非常灵活，目前内网穿透首选了。[frp传送门](https://github.com/fatedier/frp)
 
+> 以下版本号（`v0.33.0`）和配置文件格式（`.ini`）是写作时的版本。frp 从 `v0.52.0` 起已经废弃 `.ini` 配置格式，转为 `.toml`/`.yaml`/`.json`，建议实际使用时去 [releases](https://github.com/fatedier/frp/releases) 下载最新版本，并参考最新的配置格式。
+
 ### 需要的工具
 
 - vps一台，随便什么云都可以
@@ -50,30 +52,15 @@ dashboard_port = 7001
 token = superYue
 dashboard_user = frp
 dashboard_pwd = frp
+vhost_http_port = 10080
+vhost_https_port = 10443
 ```
 
 - bind_port表示客户端和服务端连接的端口，默认是7000，需要跟客户端的bind_port保持一致。
 - dashboard_port是服务端仪表盘的端口，配置完成以后可以通过浏览器访问x.x.x.x:7500查看frp服务的dashborad。
 - token是用于客户端跟服务端连接的口令，连接口令，要跟客户端的token保持一致就行。
 - dashboard_user和dashboard_pwd表示打开仪表板页面登录的用户名和密码，登陆时候要用上。
-
-```shell
-vim frps.ini
-```
-
-添加如下配置：
-
-```shell
-[common]
-bind_port = 7000
-token = superYue
-vhost_http_port = 10080
-vhost_https_port = 10443
-```
-
-- bind_port表示客户端和服务端连接的端口，默认是7000，需要保持和客户端的bind_port一致。
-- token跟服务端设置的token保持一致。
-- vhost_http_port和vhost_https_port用于服务端主机访问的端口，需要再vps安全组里添加此端口，保持端口放行。
+- vhost_http_port和vhost_https_port用于服务端主机访问的端口，需要在vps安全组里添加此端口，保持端口放行。
 
 ### 启动
 
@@ -118,7 +105,7 @@ custom_domains = xx.xx.xx
 ./frpc -c frpc.ini
 
 // 守护进程
-nohup ./frpc -c frpsc.ini
+nohup ./frpc -c frpc.ini
 ```
 
 启动成功之后，使用外网IP或者域名:vhost_http_port，即custom_domains:10080，就可以通过外网的访问自己内网/本地启动的web服务了。
@@ -181,7 +168,7 @@ frp还有很多其他协议支持，`tcp`,`udp`,`http`,`https`,`stcp`,  但是fr
 > config 方式
 
 ``` shell
-cd ~/.ngrok2/ngrok.yml
+vim ~/.ngrok2/ngrok.yml
 authtoken: xxxxx
 ```
 
@@ -201,4 +188,4 @@ ngrok http 8000
 
 ## 小结
 
-当然内网穿透的姿势远不至这些，有兴趣的话自己研究把，希望上面的内容可以帮到大家。
+当然内网穿透的姿势远不止这些，有兴趣的话自己研究吧，希望上面的内容可以帮到大家。

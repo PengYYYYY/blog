@@ -24,7 +24,7 @@
 const isSingle = computed(() => props.theme === 'single')
 ```
 
-- 组件事件简化，因为 `TD` 的 `API` 在多个框架下使用，会融合一些 `react API` 的设计,在事件方面 `XXX evnt` 通常会伴随一个 `onXXX` 的函数参数,[组件事件](https://github.com/Tencent/tdesign-vue-next/wiki/TDesign--CompositionAPI-%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83#%E7%BB%84%E4%BB%B6%E4%BA%8B%E4%BB%B6)
+- 组件事件简化，因为 `TD` 的 `API` 在多个框架下使用，会融合一些 `react API` 的设计,在事件方面 `XXX event` 通常会伴随一个 `onXXX` 的函数参数,[组件事件](https://github.com/Tencent/tdesign-vue-next/wiki/%E4%BD%BF%E7%94%A8-CompositionAPI-%E5%BC%80%E5%8F%91-TDesign-%E7%BB%84%E4%BB%B6#%E7%BB%84%E4%BB%B6%E4%BA%8B%E4%BB%B6)
 
 - 在 `options API` 中，`methods` 可以直接暴露出去，不需要 `expose`，而 `setup` 中，需要按需 `expose` 相关函数。
 
@@ -33,7 +33,7 @@ const isSingle = computed(() => props.theme === 'single')
 ### 组件代码示例
 
 ```js
-import { defineComponent } from 'vue';
+import { defineComponent, toRefs, reactive } from 'vue';
 import { TdUploadProps } from './type'; // 标准的type文件
 import props from './props'; // 标准的props文件
 import { xxx } from './interface' // 如果需要自定义一些 `interface`, 则统一放到 `interface` 文件当中
@@ -81,8 +81,8 @@ export default defineComponent({
     
     // 表现层 `render` 函数, 按模块拆分，避免主 `render` 函数内容过多。
     const renderContent = () => {
-      <div class={[COMPONENT_NAME.value, {
-         STATUS.disabled: props.disabled
+      return <div class={[COMPONENT_NAME.value, {
+         [STATUS.disabled]: props.disabled
        }]} onClick={logicHandler}>
         {logicVar}
       </div>
@@ -98,7 +98,7 @@ export default defineComponent({
 
 ## TNode渲染
 
-[TNode 介绍](https://github.com/Tencent/tdesign-vue-next/wiki/%E4%B8%A4%E7%A7%8D-renderTNode-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F)
+[TNode 介绍](https://github.com/Tencent/tdesign-vue-next/wiki/%E4%BD%BF%E7%94%A8-CompositionAPI-%E5%BC%80%E5%8F%91-TDesign-%E7%BB%84%E4%BB%B6#tnode%E6%B8%B2%E6%9F%93)
 
 为 `TNode` 的 `API` 中，需要使用 `useTNodeJSX` 得到渲染函数进行渲染，函数内会处理好 `props` `function props` 与插槽的关系。
 

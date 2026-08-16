@@ -47,18 +47,38 @@ export const sidebarGraphics = () => [
   }
 ]
 
-export const sidebarWork = () => [{ text: '关于我', link: '/work/me.md' }]
+export const sidebarWork = () => [
+  { text: '关于我', link: '/work/me.md' },
+  { text: '我的 AI 工作流', link: '/work/ai-workflow.md' }
+]
 
 export const sidebarAI = () => [
   {
-    text: 'LLM基础',
+    text: 'LLM 原理',
     collapsible: true,
-    items: [{ text: '大模型基础名词', link: '/ai/llm-basics/glossary' }]
+    items: [
+      {
+        text: '大模型基础名词词典',
+        link: '/ai/llm-basics/llm-dictionary'
+      },
+      { text: '跟着一个 token 走完全程', link: '/ai/llm-basics/glossary' },
+      {
+        text: '多模态：一张图怎么变成 token',
+        link: '/ai/llm-basics/multimodal'
+      },
+      { text: '一张卡装不下之后', link: '/ai/llm-basics/distributed' }
+    ]
   },
   {
     text: 'Agent',
     collapsible: true,
-    items: [{ text: 'Agent', link: '/ai/agent/index' }]
+    items: [
+      {
+        text: 'Agent：跟着一次循环走完全程',
+        link: '/ai/agent/agent-loop'
+      },
+      { text: 'ReAct 论文笔记', link: '/ai/agent/yao-2023-react' }
+    ]
   }
 ]
 

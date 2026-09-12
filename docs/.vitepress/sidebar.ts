@@ -5,14 +5,10 @@ export const navList = () => [
     link: '/article/'
   },
   {
-    text: 'AI',
-    activeMatch: '/ai/',
-    link: '/ai/'
-  },
-  {
     text: '学习记录',
-    activeMatch: `^/(font-end|font-end-framework|algo-data-str|backend|basics|graphics)/`,
+    activeMatch: `^/(font-end|font-end-framework|algo-data-str|backend|basics|graphics|ai)/`,
     items: [
+      { text: 'AI', link: '/ai/' },
       { text: '前端基础', link: '/font-end/index' },
       { text: '前端框架', link: '/font-end-framework/index' },
       { text: '图形学', link: '/graphics/index' },
@@ -48,8 +44,7 @@ export const sidebarGraphics = () => [
 ]
 
 export const sidebarWork = () => [
-  { text: '关于我', link: '/work/me.md' },
-  { text: '我的 AI 工作流', link: '/work/ai-workflow.md' }
+  { text: '关于我', link: '/work/me.md' }
 ]
 
 export const sidebarAI = () => [
